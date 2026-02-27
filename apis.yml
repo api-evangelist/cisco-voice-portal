@@ -1,0 +1,86 @@
+name: Cisco Voice Portal
+description: Cisco Voice Portal (CVP) is an enterprise-class Voice XML (VXML) browser and call control platform that enables self-service applications for voice, video, and multimodal interactions.
+image: https://www.cisco.com/c/en/us/products/customer-collaboration/unified-contact-center-enterprise/index.html
+tags:
+- Voice
+- IVR
+- Contact Center
+- VXML
+- Telephony
+created: '2024'
+modified: '2024'
+url: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
+apis:
+- name: Cisco Voice Portal Call Control API
+  description: Provides programmatic access to call control functions including call routing, transfer, and session management
+  image: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-server.example.com/api/v1
+  tags:
+  - Call Control
+  - Session Management
+  - Routing
+  properties:
+  - type: Documentation
+    url: https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+  - type: OpenAPI
+    url: https://api.example.com/voice-portal/openapi.json
+- name: Cisco Voice Portal Reporting API
+  description: Access to call analytics, reporting data, and historical call records
+  image: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-server.example.com/api/v1/reporting
+  tags:
+  - Reporting
+  - Analytics
+  - CDR
+  properties:
+  - type: Documentation
+    url: https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+  - type: OpenAPI
+    url: https://api.example.com/voice-portal/reporting-openapi.json
+- name: Cisco Voice Portal Administration API
+  description: Administrative functions for managing CVP configuration, applications, and system settings
+  image: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-server.example.com/api/v1/admin
+  tags:
+  - Administration
+  - Configuration
+  - Management
+  properties:
+  - type: Documentation
+    url: https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+  - type: OpenAPI
+    url: https://api.example.com/voice-portal/admin-openapi.json
+- name: Cisco Voice Portal VXML Services API
+  description: Interface for deploying and managing VXML applications and voice services
+  image: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-server.example.com/api/v1/vxml
+  tags:
+  - VXML
+  - Voice Applications
+  - IVR
+  properties:
+  - type: Documentation
+    url: https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+  - type: OpenAPI
+    url: https://api.example.com/voice-portal/vxml-openapi.json
+common:
+- type: Developer Portal
+  url: https://developer.cisco.com/
+- type: Authentication
+  url: https://developer.cisco.com/docs/voice-portal/#!authentication
+- type: Status
+  url: https://status.cisco.com/
+- type: Support
+  url: https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/tsd-products-support-series-home.html
+- type: Terms of Service
+  url: https://www.cisco.com/c/en/us/about/legal/terms-conditions.html
+- type: Privacy Policy
+  url: https://www.cisco.com/c/en/us/about/legal/privacy-full.html
+maintainers:
+- name: Cisco
+  email: developer-support@cisco.com
+  url: https://developer.cisco.com/
