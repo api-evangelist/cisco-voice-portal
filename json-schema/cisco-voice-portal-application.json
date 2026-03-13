@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/cisco-voice-portal/json-schema/cisco-voice-portal-application.json",
+  "title": "Cisco Voice Portal Application",
+  "description": "Schema for a CVP VXML application. Applications are VoiceXML programs typically built with Cisco Unified Call Studio that execute on the CVP VXML Server to provide interactive voice response (IVR) functionality. Applications consist of call flow elements including voice elements, action elements, and decision elements.",
+  "type": "object",
+  "properties": {
+    "applicationId": {
+      "type": "string",
+      "description": "Unique identifier for the application"
+    },
+    "applicationName": {
+      "type": "string",
+      "description": "Name of the application as deployed"
+    },
+    "applicationType": {
+      "type": "string",
+      "enum": ["callstudio", "standalone_vxml", "microapp"],
+      "description": "Type of VXML application. Call Studio applications are built with Cisco Unified Call Studio. Standalone VXML applications are hand-coded VoiceXML. Micro-applications are built-in CVP IVR functions."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["deployed", "undeployed", "deploying", "error", "active", "inactive"],
+      "description": "Current deployment and operational status"
+    },
+    "version": {
+      "type": "string",
+      "description": "Application version"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the application purpose"
+    },
+    "entryPoint": {
+      "type": "string",
+      "description": "Name of the starting call flow element"
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CallFlowElement"
+      },
+      "description": "Call flow elements that make up the application"
+    },
+    "configParameters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Application-level runtime configuration parameters"
+    },
+    "defaultLanguage": {
+      "type": "string",
+      "default": "en-US",
+      "description": "Default language for prompts and ASR"
+    },
+    "inputModes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["dtmf", "voice"]
+      },
+      "description": "Allowed caller input modes"
+    },
+    "deployedServers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ServerDeployment"
+      },
+      "description": "VXML Servers this application is deployed to"
+    },
+    "mediaDirectory": {
+      "type": "string",
+      "description": "Path to associated audio prompt files"
+    },
+    "grammarDirectory": {
+      "type": "string",
+      "description": "Path to associated speech grammar files"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["applicationName", "applicationType"],
+  "$defs": {
+    "CallFlowElement": {
+      "type": "object",
+      "properties": {
+        "elementName": {
+          "type": "string",
+          "description": "Name of the call flow element"
+        },
+        "elementType": {
+          "type": "string",
+          "enum": ["voice", "action", "decision", "subdialog"],
+          "description": "Type of element. Voice elements interact with the caller (e.g., play prompt, collect digits). Action elements perform backend operations (e.g., database lookup, web service call). Decision elements control flow logic. Subdialog elements invoke sub-applications."
+        },
+        "className": {
+          "type": "string",
+          "description": "Fully qualified Java class name implementing the element"
+        },
+        "configParameters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Element-specific configuration"
+        },
+        "exits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Exit name (e.g., done, error, timeout, nomatch)"
+              },
+              "targetElement": {
+                "type": "string",
+                "description": "Name of the target element for this exit"
+              }
+            },
+            "required": ["name"]
+          },
+          "description": "Available exit paths from this element"
+        }
+      },
+      "required": ["elementName", "elementType"]
+    },
+    "ServerDeployment": {
+      "type": "object",
+      "properties": {
+        "serverId": {
+          "type": "string"
+        },
+        "serverHostname": {
+          "type": "string"
+        },
+        "deploymentStatus": {
+          "type": "string",
+          "enum": ["deployed", "pending", "error"]
+        },
+        "deployedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["serverId", "deploymentStatus"]
+    }
+  }
+}

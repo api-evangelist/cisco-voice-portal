@@ -1,0 +1,807 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Call Control API
+  description: >-
+    The Cisco Unified Customer Voice Portal (CVP) Call Control API provides
+    programmatic access to call control functions on the CVP Call Server. The
+    Call Server is the SIP-based call control component that manages call
+    routing, transfers, and session management within the CVP deployment. It
+    integrates with Cisco Unified ICM/UCCE for intelligent call routing and
+    with Cisco Unified Communications Manager (CUCM) for agent delivery. This
+    API exposes management and monitoring operations for active call sessions
+    and call routing configuration on the Call Server component, typically
+    accessible on port 8000.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+  - url: https://{call-server}:8000/cvp/rest
+    description: CVP Call Server REST management interface
+    variables:
+      call-server:
+        default: cvp-callserver.example.com
+        description: Hostname or IP of the CVP Call Server
+paths:
+  /call:
+    get:
+      operationId: listActiveCalls
+      summary: List active calls
+      description: >-
+        Retrieves a list of all currently active calls on this Call Server.
+        Each entry includes the call GUID, current state, and associated
+        SIP session information.
+      tags:
+        - Call Management
+      parameters:
+        - name: state
+          in: query
+          description: Filter by call state
+          schema:
+            type: string
+            enum:
+              - ringing
+              - connected
+              - queued
+              - self_service
+              - transferring
+        - name: calledNumber
+          in: query
+          description: Filter by DNIS
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+            maximum: 1000
+      responses:
+        '200':
+          description: List of active calls
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalActiveCalls:
+                    type: integer
+                  calls:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ActiveCall'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /call/{callGuid}:
+    get:
+      operationId: getCallDetails
+      summary: Get active call details
+      description: >-
+        Retrieves detailed information about a specific active call, including
+        SIP session details, current state, call variables, and routing
+        information.
+      tags:
+        - Call Management
+      parameters:
+        - $ref: '#/components/parameters/CallGuid'
+      responses:
+        '200':
+          description: Call details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveCallDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Call not found or no longer active
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /call/{callGuid}/transfer:
+    post:
+      operationId: transferCall
+      summary: Transfer an active call
+      description: >-
+        Initiates a transfer of an active call to a specified destination. The
+        transfer can be a blind transfer or a consultation transfer. This
+        operation sends the appropriate SIP REFER or re-INVITE to execute
+        the transfer.
+      tags:
+        - Call Management
+      parameters:
+        - $ref: '#/components/parameters/CallGuid'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferRequest'
+      responses:
+        '202':
+          description: Transfer initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOperationResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Call not found or no longer active
+        '409':
+          description: Call is in a state that does not allow transfer
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /call/{callGuid}/terminate:
+    post:
+      operationId: terminateCall
+      summary: Terminate an active call
+      description: >-
+        Terminates an active call by sending a SIP BYE request. The call is
+        disconnected and a CDR is generated.
+      tags:
+        - Call Management
+      parameters:
+        - $ref: '#/components/parameters/CallGuid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: Reason for termination
+                  enum:
+                    - administrative
+                    - timeout
+                    - error
+                    - requested
+      responses:
+        '200':
+          description: Call terminated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOperationResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Call not found or already terminated
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /call/{callGuid}/variables:
+    get:
+      operationId: getCallVariables
+      summary: Get call variables
+      description: >-
+        Retrieves the Expanded Call Context (ECC) variables and peripheral
+        variables associated with an active call. These variables carry
+        data between CVP, ICM, and the VXML application.
+      tags:
+        - Call Management
+      parameters:
+        - $ref: '#/components/parameters/CallGuid'
+      responses:
+        '200':
+          description: Call variables
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallVariables'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Call not found
+        '500':
+          $ref: '#/components/responses/InternalError'
+    put:
+      operationId: setCallVariables
+      summary: Set call variables
+      description: >-
+        Sets or updates ECC variables on an active call. These variables
+        are passed to the VXML application and to ICM for routing decisions.
+      tags:
+        - Call Management
+      parameters:
+        - $ref: '#/components/parameters/CallGuid'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallVariablesUpdate'
+      responses:
+        '200':
+          description: Variables updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallVariables'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Call not found
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /routing/lookup:
+    post:
+      operationId: routingLookup
+      summary: Perform a routing lookup
+      description: >-
+        Performs a routing lookup to determine the call treatment for a given
+        dialed number. This queries the configured dialed number patterns
+        and returns the routing decision without initiating an actual call.
+        Useful for testing and validation.
+      tags:
+        - Call Routing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - dialedNumber
+              properties:
+                dialedNumber:
+                  type: string
+                  description: The dialed number to look up
+                callingNumber:
+                  type: string
+                  description: Optional calling number for context
+      responses:
+        '200':
+          description: Routing lookup result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutingResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /sip/session:
+    get:
+      operationId: listSipSessions
+      summary: List active SIP sessions
+      description: >-
+        Retrieves information about active SIP sessions (dialogs) on the Call
+        Server. Each SIP session corresponds to an active call leg.
+      tags:
+        - SIP Sessions
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: Active SIP sessions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalSessions:
+                    type: integer
+                  sessions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SipSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /sip/session/{sessionId}:
+    get:
+      operationId: getSipSession
+      summary: Get SIP session details
+      description: >-
+        Retrieves detailed SIP session information including SIP headers,
+        dialog state, and associated call GUID.
+      tags:
+        - SIP Sessions
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: SIP session details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SipSessionDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Session not found
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /health:
+    get:
+      operationId: getCallServerHealth
+      summary: Get Call Server health status
+      description: >-
+        Retrieves the health and resource status of the Call Server, including
+        active call count, SIP stack status, and connectivity to upstream
+        components (ICM, CUCM, VXML Server).
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Call Server health status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /health/connectivity:
+    get:
+      operationId: getConnectivityStatus
+      summary: Get connectivity status to upstream components
+      description: >-
+        Checks and reports the connectivity status to all configured upstream
+        components including ICM/UCCE, CUCM clusters, VXML Servers, and
+        Reporting Server.
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Connectivity status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectivityStatus'
+        '500':
+          $ref: '#/components/responses/InternalError'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP Call Server credentials
+  parameters:
+    CallGuid:
+      name: callGuid
+      in: path
+      required: true
+      description: Globally unique call identifier
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    ActiveCall:
+      type: object
+      properties:
+        callGuid:
+          type: string
+          description: Globally unique call identifier
+        state:
+          type: string
+          enum:
+            - ringing
+            - connected
+            - queued
+            - self_service
+            - transferring
+            - on_hold
+        callingNumber:
+          type: string
+          description: Caller ANI
+        calledNumber:
+          type: string
+          description: Called DNIS
+        startTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          description: Current call duration in seconds
+        applicationName:
+          type: string
+          description: Current VXML application handling the call
+    ActiveCallDetail:
+      type: object
+      properties:
+        callGuid:
+          type: string
+        state:
+          type: string
+          enum:
+            - ringing
+            - connected
+            - queued
+            - self_service
+            - transferring
+            - on_hold
+        callingNumber:
+          type: string
+        calledNumber:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        applicationName:
+          type: string
+        sipCallId:
+          type: string
+          description: SIP Call-ID
+        sipFromTag:
+          type: string
+        sipToTag:
+          type: string
+        icmRouteResult:
+          type: object
+          properties:
+            routeLabel:
+              type: string
+            skillGroup:
+              type: string
+            agentId:
+              type: string
+        vxmlServer:
+          type: string
+          description: VXML Server currently handling the call
+        callHistory:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              event:
+                type: string
+              details:
+                type: string
+          description: Chronological list of call events
+        eccVariables:
+          type: object
+          additionalProperties:
+            type: string
+    TransferRequest:
+      type: object
+      required:
+        - destination
+      properties:
+        destination:
+          type: string
+          description: >-
+            Transfer destination (phone number, SIP URI, or agent extension)
+        transferType:
+          type: string
+          enum:
+            - blind
+            - consultation
+          default: blind
+          description: Type of transfer
+        label:
+          type: string
+          description: >-
+            ICM label for the transfer destination. Used when routing through
+            ICM/UCCE.
+        eccVariables:
+          type: object
+          additionalProperties:
+            type: string
+          description: ECC variables to pass with the transfer
+    CallOperationResult:
+      type: object
+      properties:
+        callGuid:
+          type: string
+        operation:
+          type: string
+        status:
+          type: string
+          enum:
+            - success
+            - pending
+            - failed
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    CallVariables:
+      type: object
+      properties:
+        callGuid:
+          type: string
+        eccVariables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Expanded Call Context variables
+        peripheralVariables:
+          type: object
+          properties:
+            peripheral1:
+              type: string
+            peripheral2:
+              type: string
+            peripheral3:
+              type: string
+            peripheral4:
+              type: string
+            peripheral5:
+              type: string
+            peripheral6:
+              type: string
+            peripheral7:
+              type: string
+            peripheral8:
+              type: string
+            peripheral9:
+              type: string
+            peripheral10:
+              type: string
+          description: ICM peripheral variables (1-10)
+        callVariables:
+          type: object
+          properties:
+            callVariable1:
+              type: string
+            callVariable2:
+              type: string
+            callVariable3:
+              type: string
+            callVariable4:
+              type: string
+            callVariable5:
+              type: string
+            callVariable6:
+              type: string
+            callVariable7:
+              type: string
+            callVariable8:
+              type: string
+            callVariable9:
+              type: string
+            callVariable10:
+              type: string
+          description: ICM call variables (1-10)
+    CallVariablesUpdate:
+      type: object
+      properties:
+        eccVariables:
+          type: object
+          additionalProperties:
+            type: string
+        peripheralVariables:
+          type: object
+          additionalProperties:
+            type: string
+        callVariables:
+          type: object
+          additionalProperties:
+            type: string
+    RoutingResult:
+      type: object
+      properties:
+        dialedNumber:
+          type: string
+        matched:
+          type: boolean
+          description: Whether a matching pattern was found
+        matchedPattern:
+          type: string
+          description: The dialed number pattern that matched
+        callType:
+          type: string
+          enum:
+            - preroute
+            - translation_route
+            - post_route
+        applicationName:
+          type: string
+          description: Application that would handle the call
+        routeDestination:
+          type: string
+          description: Resulting route destination
+    SipSession:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        callId:
+          type: string
+          description: SIP Call-ID
+        callGuid:
+          type: string
+          description: Associated CVP call GUID
+        state:
+          type: string
+          enum:
+            - initial
+            - early
+            - confirmed
+            - terminated
+        method:
+          type: string
+          description: Initial SIP method (INVITE)
+        fromUri:
+          type: string
+        toUri:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+    SipSessionDetail:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        callId:
+          type: string
+        callGuid:
+          type: string
+        state:
+          type: string
+        fromUri:
+          type: string
+        toUri:
+          type: string
+        fromTag:
+          type: string
+        toTag:
+          type: string
+        cseq:
+          type: integer
+        transport:
+          type: string
+          enum:
+            - UDP
+            - TCP
+            - TLS
+        localAddress:
+          type: string
+        remoteAddress:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        lastActivityTime:
+          type: string
+          format: date-time
+    HealthStatus:
+      type: object
+      properties:
+        serverName:
+          type: string
+        status:
+          type: string
+          enum:
+            - healthy
+            - degraded
+            - unhealthy
+        uptime:
+          type: string
+          description: Server uptime duration
+        version:
+          type: string
+        activeCalls:
+          type: integer
+        maxCalls:
+          type: integer
+          description: Maximum concurrent call capacity
+        sipStackStatus:
+          type: string
+          enum:
+            - running
+            - stopped
+            - error
+        cpuUsage:
+          type: number
+          format: float
+        memoryUsage:
+          type: number
+          format: float
+        timestamp:
+          type: string
+          format: date-time
+    ConnectivityStatus:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        connections:
+          type: array
+          items:
+            type: object
+            properties:
+              component:
+                type: string
+                enum:
+                  - ICM
+                  - CUCM
+                  - VXMLServer
+                  - ReportingServer
+                  - MediaServer
+              hostname:
+                type: string
+              ipAddress:
+                type: string
+              port:
+                type: integer
+              status:
+                type: string
+                enum:
+                  - connected
+                  - disconnected
+                  - timeout
+                  - error
+              latency:
+                type: integer
+                description: Connection latency in milliseconds
+              lastSuccessfulContact:
+                type: string
+                format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+security:
+  - basicAuth: []
+tags:
+  - name: Call Management
+    description: Manage and control active calls
+  - name: Call Routing
+    description: Call routing lookup and testing
+  - name: SIP Sessions
+    description: Monitor SIP session details
+  - name: Health
+    description: Call Server health and connectivity status

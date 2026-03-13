@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/cisco-voice-portal/json-schema/cisco-voice-portal-device.json",
+  "title": "Cisco Voice Portal Device",
+  "description": "Schema for a CVP managed device. Devices are the server components that make up a CVP deployment, including Call Servers, VXML Servers, Reporting Servers, and Media Servers. Devices are registered with and managed through the CVP OAMP Server.",
+  "type": "object",
+  "properties": {
+    "deviceId": {
+      "type": "string",
+      "description": "Unique identifier for the device assigned by the OAMP Server"
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Fully qualified hostname of the device"
+    },
+    "ipAddress": {
+      "type": "string",
+      "format": "ipv4",
+      "description": "IPv4 address of the device"
+    },
+    "deviceType": {
+      "type": "string",
+      "enum": ["CallServer", "VXMLServer", "ReportingServer", "MediaServer", "OAMPServer"],
+      "description": "Type of CVP server component"
+    },
+    "description": {
+      "type": "string",
+      "description": "Administrator-defined description of the device"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["online", "offline", "maintenance", "error"],
+      "description": "Current operational status"
+    },
+    "version": {
+      "type": "string",
+      "description": "Installed CVP software version"
+    },
+    "lastContact": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the last successful communication with the device"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/DeviceService"
+      },
+      "description": "Services running on the device"
+    },
+    "resourceUtilization": {
+      "$ref": "#/$defs/ResourceUtilization"
+    }
+  },
+  "required": ["deviceId", "hostname", "ipAddress", "deviceType"],
+  "$defs": {
+    "DeviceService": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Service name"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["running", "stopped", "error"],
+          "description": "Service operational status"
+        },
+        "uptime": {
+          "type": "string",
+          "description": "Service uptime duration"
+        },
+        "port": {
+          "type": "integer",
+          "description": "Network port the service listens on"
+        }
+      },
+      "required": ["name", "status"]
+    },
+    "ResourceUtilization": {
+      "type": "object",
+      "properties": {
+        "cpuUsage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "CPU usage percentage"
+        },
+        "memoryUsage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Memory usage percentage"
+        },
+        "diskUsage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Disk usage percentage"
+        },
+        "activeCalls": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of active calls on this device"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

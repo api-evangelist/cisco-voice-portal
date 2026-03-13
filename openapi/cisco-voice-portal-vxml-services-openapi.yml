@@ -1,0 +1,995 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal VXML Services API
+  description: >-
+    The Cisco Unified Customer Voice Portal (CVP) VXML Services API provides
+    management and monitoring capabilities for the CVP VXML Server component.
+    The VXML Server hosts and executes VoiceXML applications built with Cisco
+    Unified Call Studio. This API enables deployment and management of VXML
+    applications, access to element configurations, and monitoring of the VXML
+    execution environment. The VXML Server exposes its management interface
+    on the HTTP/HTTPS ports (default 7000/7443) alongside the application
+    serving endpoints.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+  - url: https://{vxml-server}:7443/CVP/rest
+    description: CVP VXML Server REST management interface
+    variables:
+      vxml-server:
+        default: cvp-vxmlserver.example.com
+        description: Hostname or IP of the CVP VXML Server
+paths:
+  /application:
+    get:
+      operationId: listDeployedApplications
+      summary: List deployed VXML applications
+      description: >-
+        Retrieves a list of all VXML applications deployed on this VXML Server.
+        Applications are typically built with Cisco Unified Call Studio and
+        deployed as WAR/ZIP archives.
+      tags:
+        - Application Management
+      parameters:
+        - name: status
+          in: query
+          description: Filter by application status
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+              - error
+      responses:
+        '200':
+          description: List of deployed applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VxmlApplication'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /application/{applicationName}:
+    get:
+      operationId: getApplicationDetails
+      summary: Get VXML application details
+      description: >-
+        Retrieves detailed information about a specific deployed VXML
+        application, including its configuration, call flow elements,
+        and deployment metadata.
+      tags:
+        - Application Management
+      parameters:
+        - $ref: '#/components/parameters/ApplicationName'
+      responses:
+        '200':
+          description: Application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VxmlApplicationDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /application/{applicationName}/activate:
+    post:
+      operationId: activateApplication
+      summary: Activate a VXML application
+      description: >-
+        Activates a deployed VXML application, making it available to handle
+        incoming calls. An application must be active to process calls.
+      tags:
+        - Application Management
+      parameters:
+        - $ref: '#/components/parameters/ApplicationName'
+      responses:
+        '200':
+          description: Application activated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Application is already active
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /application/{applicationName}/deactivate:
+    post:
+      operationId: deactivateApplication
+      summary: Deactivate a VXML application
+      description: >-
+        Deactivates a VXML application. Active calls using the application
+        are allowed to complete, but no new calls will be routed to it.
+      tags:
+        - Application Management
+      parameters:
+        - $ref: '#/components/parameters/ApplicationName'
+      responses:
+        '200':
+          description: Application deactivated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Application is already inactive
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /application/{applicationName}/config:
+    get:
+      operationId: getApplicationConfig
+      summary: Get application configuration
+      description: >-
+        Retrieves the runtime configuration parameters for a VXML application.
+        These settings are defined in the Call Studio project and can be
+        overridden at runtime.
+      tags:
+        - Application Configuration
+      parameters:
+        - $ref: '#/components/parameters/ApplicationName'
+      responses:
+        '200':
+          description: Application configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    put:
+      operationId: updateApplicationConfig
+      summary: Update application configuration
+      description: >-
+        Updates the runtime configuration parameters for a VXML application.
+        Changes take effect for new calls; active calls continue with their
+        existing configuration.
+      tags:
+        - Application Configuration
+      parameters:
+        - $ref: '#/components/parameters/ApplicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationConfigUpdate'
+      responses:
+        '200':
+          description: Configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationConfig'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /application/{applicationName}/elements:
+    get:
+      operationId: listApplicationElements
+      summary: List application call flow elements
+      description: >-
+        Retrieves the list of call flow elements (voice elements, action
+        elements, and decision elements) that make up the VXML application.
+        Elements are the building blocks of Call Studio applications.
+      tags:
+        - Application Configuration
+      parameters:
+        - $ref: '#/components/parameters/ApplicationName'
+      responses:
+        '200':
+          description: List of application elements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CallFlowElement'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /application/{applicationName}/sessions:
+    get:
+      operationId: listApplicationSessions
+      summary: List active application sessions
+      description: >-
+        Retrieves a list of active call sessions currently being handled by
+        the specified VXML application.
+      tags:
+        - Session Monitoring
+      parameters:
+        - $ref: '#/components/parameters/ApplicationName'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: Active sessions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalSessions:
+                    type: integer
+                  sessions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VxmlSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /session/{sessionId}:
+    get:
+      operationId: getSessionDetails
+      summary: Get VXML session details
+      description: >-
+        Retrieves detailed information about an active VXML session, including
+        the current element being executed, session variables, and execution
+        history.
+      tags:
+        - Session Monitoring
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Session details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VxmlSessionDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Session not found
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /microapp:
+    get:
+      operationId: listMicroApplications
+      summary: List available micro-applications
+      description: >-
+        Retrieves a list of built-in CVP micro-applications. Micro-applications
+        are pre-built VXML applications for common IVR tasks such as playing
+        media, collecting digits, and external VXML retrieval. These are
+        invoked through ICM scripting via the Run External Script node.
+      tags:
+        - Micro-Applications
+      responses:
+        '200':
+          description: List of micro-applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MicroApplication'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /microapp/{microAppName}/config:
+    get:
+      operationId: getMicroAppConfig
+      summary: Get micro-application configuration
+      description: >-
+        Retrieves the configuration for a specific built-in micro-application
+        such as PlayMedia (PM), GetDigits (GD), Menu, PlayData (PD),
+        CaptureCurrentCallerInfo, or ExternalVXML (EV).
+      tags:
+        - Micro-Applications
+      parameters:
+        - name: microAppName
+          in: path
+          required: true
+          description: >-
+            Micro-application identifier (e.g., PlayMedia, GetDigits, Menu,
+            PlayData, ExternalVXML)
+          schema:
+            type: string
+            enum:
+              - PlayMedia
+              - GetDigits
+              - Menu
+              - PlayData
+              - ExternalVXML
+              - CaptureCurrentCallerInfo
+              - AgentGreeting
+      responses:
+        '200':
+          description: Micro-application configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicroAppConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /media:
+    get:
+      operationId: listMediaFiles
+      summary: List media files
+      description: >-
+        Retrieves a list of media files (audio prompts) available on the
+        VXML Server. Media files are used by VXML applications and
+        micro-applications for playing prompts to callers.
+      tags:
+        - Media Management
+      parameters:
+        - name: path
+          in: query
+          description: Directory path to list media from
+          schema:
+            type: string
+            default: /
+        - name: type
+          in: query
+          description: Filter by media type
+          schema:
+            type: string
+            enum:
+              - wav
+              - au
+              - vox
+      responses:
+        '200':
+          description: List of media files
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MediaFile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /media/upload:
+    post:
+      operationId: uploadMediaFile
+      summary: Upload a media file
+      description: >-
+        Uploads an audio media file (WAV, AU, or VOX format) to the VXML
+        Server for use in voice prompts and announcements.
+      tags:
+        - Media Management
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Audio file to upload
+                path:
+                  type: string
+                  description: Target directory path
+                  default: /
+                overwrite:
+                  type: boolean
+                  default: false
+                  description: Whether to overwrite existing file
+      responses:
+        '201':
+          description: Media file uploaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFile'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: File already exists and overwrite is false
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /grammar:
+    get:
+      operationId: listGrammarFiles
+      summary: List grammar files
+      description: >-
+        Retrieves a list of speech recognition grammar files (GRXML, GSL)
+        available on the VXML Server. Grammars define the speech recognition
+        rules used by voice-enabled VXML applications.
+      tags:
+        - Grammar Management
+      responses:
+        '200':
+          description: List of grammar files
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GrammarFile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /server/status:
+    get:
+      operationId: getVxmlServerStatus
+      summary: Get VXML Server status
+      description: >-
+        Retrieves the operational status of the VXML Server, including
+        active session count, thread pool status, and resource utilization.
+      tags:
+        - Server Status
+      responses:
+        '200':
+          description: Server status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VxmlServerStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /server/log:
+    get:
+      operationId: getServerLogs
+      summary: Get recent server log entries
+      description: >-
+        Retrieves recent log entries from the VXML Server. Supports filtering
+        by severity level and time range.
+      tags:
+        - Server Status
+      parameters:
+        - name: level
+          in: query
+          description: Minimum log level to include
+          schema:
+            type: string
+            enum:
+              - ERROR
+              - WARN
+              - INFO
+              - DEBUG
+            default: INFO
+        - name: since
+          in: query
+          description: Return logs since this timestamp
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+            maximum: 1000
+      responses:
+        '200':
+          description: Log entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP VXML Server credentials
+  parameters:
+    ApplicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Name of the deployed VXML application
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    VxmlApplication:
+      type: object
+      properties:
+        applicationName:
+          type: string
+          description: Application name
+        applicationType:
+          type: string
+          enum:
+            - callstudio
+            - standalone_vxml
+            - microapp
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+            - error
+        version:
+          type: string
+        activeSessions:
+          type: integer
+          description: Number of active call sessions
+        deployedAt:
+          type: string
+          format: date-time
+    VxmlApplicationDetail:
+      type: object
+      properties:
+        applicationName:
+          type: string
+        applicationType:
+          type: string
+        status:
+          type: string
+        version:
+          type: string
+        activeSessions:
+          type: integer
+        deployedAt:
+          type: string
+          format: date-time
+        description:
+          type: string
+        entryPoint:
+          type: string
+          description: Starting element of the call flow
+        elements:
+          type: array
+          items:
+            type: string
+          description: List of element names in the application
+        mediaDirectory:
+          type: string
+          description: Path to the application media files
+        grammarDirectory:
+          type: string
+          description: Path to the application grammar files
+        configParameters:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application-level configuration parameters
+    ApplicationConfig:
+      type: object
+      properties:
+        applicationName:
+          type: string
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+          description: Runtime configuration parameters
+        defaultLanguage:
+          type: string
+          default: en-US
+        fetchTimeout:
+          type: integer
+          description: VXML document fetch timeout in milliseconds
+        maxSessionDuration:
+          type: integer
+          description: Maximum session duration in seconds
+        inputModes:
+          type: array
+          items:
+            type: string
+            enum:
+              - dtmf
+              - voice
+          description: Allowed input modes
+        loggingLevel:
+          type: string
+          enum:
+            - ERROR
+            - WARN
+            - INFO
+            - DEBUG
+    ApplicationConfigUpdate:
+      type: object
+      properties:
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+        defaultLanguage:
+          type: string
+        fetchTimeout:
+          type: integer
+        maxSessionDuration:
+          type: integer
+        inputModes:
+          type: array
+          items:
+            type: string
+            enum:
+              - dtmf
+              - voice
+        loggingLevel:
+          type: string
+          enum:
+            - ERROR
+            - WARN
+            - INFO
+            - DEBUG
+    CallFlowElement:
+      type: object
+      properties:
+        elementName:
+          type: string
+          description: Name of the call flow element
+        elementType:
+          type: string
+          enum:
+            - voice
+            - action
+            - decision
+            - subdialog
+          description: >-
+            Type of element. Voice elements interact with the caller, action
+            elements perform backend operations, decision elements control
+            flow logic, and subdialog elements invoke sub-applications.
+        description:
+          type: string
+        className:
+          type: string
+          description: Java class implementing the element
+        configParameters:
+          type: object
+          additionalProperties:
+            type: string
+          description: Element-specific configuration
+        exits:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              targetElement:
+                type: string
+          description: Element exit paths and their targets
+    VxmlSession:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        callGuid:
+          type: string
+          description: Associated CVP call GUID
+        applicationName:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          description: Session duration in seconds
+        currentElement:
+          type: string
+          description: Currently executing call flow element
+        callingNumber:
+          type: string
+        calledNumber:
+          type: string
+    VxmlSessionDetail:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        callGuid:
+          type: string
+        applicationName:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        currentElement:
+          type: string
+        callingNumber:
+          type: string
+        calledNumber:
+          type: string
+        sessionVariables:
+          type: object
+          additionalProperties:
+            type: string
+          description: VXML session-level variables
+        elementHistory:
+          type: array
+          items:
+            type: object
+            properties:
+              elementName:
+                type: string
+              enteredAt:
+                type: string
+                format: date-time
+              exitedAt:
+                type: string
+                format: date-time
+              exitState:
+                type: string
+          description: History of elements visited in this session
+        lastUserInput:
+          type: string
+          description: Last input received from the caller (DTMF or ASR result)
+    MicroApplication:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Micro-application name
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+            - PlayMedia
+            - GetDigits
+            - Menu
+            - PlayData
+            - ExternalVXML
+            - CaptureCurrentCallerInfo
+            - AgentGreeting
+        configurable:
+          type: boolean
+    MicroAppConfig:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        parameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              required:
+                type: boolean
+              defaultValue:
+                type: string
+              description:
+                type: string
+          description: Configuration parameters for the micro-application
+    MediaFile:
+      type: object
+      properties:
+        fileName:
+          type: string
+        filePath:
+          type: string
+        fileType:
+          type: string
+          enum:
+            - wav
+            - au
+            - vox
+        fileSize:
+          type: integer
+          description: File size in bytes
+        duration:
+          type: number
+          format: float
+          description: Audio duration in seconds
+        lastModified:
+          type: string
+          format: date-time
+    GrammarFile:
+      type: object
+      properties:
+        fileName:
+          type: string
+        filePath:
+          type: string
+        fileType:
+          type: string
+          enum:
+            - grxml
+            - gsl
+            - abnf
+        fileSize:
+          type: integer
+        language:
+          type: string
+          description: Language of the grammar (e.g., en-US)
+        lastModified:
+          type: string
+          format: date-time
+    VxmlServerStatus:
+      type: object
+      properties:
+        hostname:
+          type: string
+        status:
+          type: string
+          enum:
+            - running
+            - stopped
+            - error
+        uptime:
+          type: string
+        version:
+          type: string
+        activeSessions:
+          type: integer
+        maxSessions:
+          type: integer
+        threadPool:
+          type: object
+          properties:
+            activeThreads:
+              type: integer
+            idleThreads:
+              type: integer
+            maxThreads:
+              type: integer
+            queuedRequests:
+              type: integer
+        cpuUsage:
+          type: number
+          format: float
+        memoryUsage:
+          type: object
+          properties:
+            heapUsed:
+              type: integer
+              description: Heap memory used in bytes
+            heapMax:
+              type: integer
+              description: Maximum heap memory in bytes
+            heapPercentage:
+              type: number
+              format: float
+        deployedApplications:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+    LogEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        level:
+          type: string
+          enum:
+            - ERROR
+            - WARN
+            - INFO
+            - DEBUG
+        logger:
+          type: string
+        message:
+          type: string
+        sessionId:
+          type: string
+          description: Associated session ID, if applicable
+        applicationName:
+          type: string
+          description: Associated application, if applicable
+    OperationResult:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - success
+            - failed
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+security:
+  - basicAuth: []
+tags:
+  - name: Application Management
+    description: Deploy, activate, and manage VXML applications
+  - name: Application Configuration
+    description: Configure VXML application runtime settings
+  - name: Session Monitoring
+    description: Monitor active VXML call sessions
+  - name: Micro-Applications
+    description: Manage built-in CVP micro-applications
+  - name: Media Management
+    description: Manage audio media files and prompts
+  - name: Grammar Management
+    description: Manage speech recognition grammar files
+  - name: Server Status
+    description: VXML Server status and monitoring

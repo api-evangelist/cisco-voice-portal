@@ -1,0 +1,1532 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration API
+  description: >-
+    The Cisco Unified Customer Voice Portal (CVP) Operations, Administration,
+    Maintenance, and Provisioning (OAMP) API provides RESTful web services for
+    managing CVP deployment configuration. This API enables programmatic access
+    to device management, application deployment, system settings, and
+    provisioning operations through the CVP OAMP Server. The OAMP Server is the
+    central management component of the CVP solution, typically accessed via the
+    Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+  - url: https://{oamp-server}:9443/oamp/rest
+    description: CVP OAMP Server REST API
+    variables:
+      oamp-server:
+        default: cvp-oamp.example.com
+        description: Hostname or IP of the CVP OAMP Server
+paths:
+  /device:
+    get:
+      operationId: listDevices
+      summary: List all managed devices
+      description: >-
+        Retrieves a list of all devices registered with the CVP OAMP Server,
+        including Call Servers, VXML Servers, Reporting Servers, and Media
+        Servers. Each device entry contains its type, hostname, IP address,
+        and current operational status.
+      tags:
+        - Device Management
+      responses:
+        '200':
+          description: List of managed devices
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    post:
+      operationId: addDevice
+      summary: Add a new device
+      description: >-
+        Registers a new device (Call Server, VXML Server, Reporting Server,
+        or Media Server) with the CVP OAMP Server for centralized management.
+      tags:
+        - Device Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceCreateRequest'
+      responses:
+        '201':
+          description: Device created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Device with this hostname or IP already exists
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /device/{deviceId}:
+    get:
+      operationId: getDevice
+      summary: Get device details
+      description: >-
+        Retrieves detailed information about a specific managed device,
+        including its configuration, status, and associated services.
+      tags:
+        - Device Management
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Device details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    put:
+      operationId: updateDevice
+      summary: Update device configuration
+      description: >-
+        Updates the configuration of an existing managed device. Changes may
+        require a device restart to take effect.
+      tags:
+        - Device Management
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceUpdateRequest'
+      responses:
+        '200':
+          description: Device updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    delete:
+      operationId: deleteDevice
+      summary: Remove a managed device
+      description: >-
+        Removes a device from the CVP OAMP management. The device itself is not
+        uninstalled but is no longer managed centrally.
+      tags:
+        - Device Management
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '204':
+          description: Device removed successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /device/{deviceId}/status:
+    get:
+      operationId: getDeviceStatus
+      summary: Get device operational status
+      description: >-
+        Retrieves the current operational status of a managed device, including
+        service status, resource utilization, and connectivity state.
+      tags:
+        - Device Management
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Device status information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /device/{deviceId}/restart:
+    post:
+      operationId: restartDevice
+      summary: Restart a device service
+      description: >-
+        Initiates a restart of the CVP service on the specified device. This
+        operation is asynchronous and the device status can be monitored via
+        the status endpoint.
+      tags:
+        - Device Management
+      parameters:
+        - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '202':
+          description: Restart initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /callserver:
+    get:
+      operationId: listCallServers
+      summary: List all Call Servers
+      description: >-
+        Retrieves a list of all CVP Call Servers managed by the OAMP Server.
+        Call Servers handle SIP call control and routing within the CVP
+        deployment.
+      tags:
+        - Call Server Management
+      responses:
+        '200':
+          description: List of Call Servers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CallServer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /callserver/{serverId}/config:
+    get:
+      operationId: getCallServerConfig
+      summary: Get Call Server configuration
+      description: >-
+        Retrieves the full configuration of a specific Call Server, including
+        SIP settings, call routing rules, dialed number patterns, and
+        connection settings to ICM/UCCE.
+      tags:
+        - Call Server Management
+      parameters:
+        - $ref: '#/components/parameters/ServerId'
+      responses:
+        '200':
+          description: Call Server configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallServerConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    put:
+      operationId: updateCallServerConfig
+      summary: Update Call Server configuration
+      description: >-
+        Updates the configuration of a specific Call Server. Changes to SIP
+        and routing configuration may require a service restart.
+      tags:
+        - Call Server Management
+      parameters:
+        - $ref: '#/components/parameters/ServerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallServerConfig'
+      responses:
+        '200':
+          description: Configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallServerConfig'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /vxmlserver:
+    get:
+      operationId: listVxmlServers
+      summary: List all VXML Servers
+      description: >-
+        Retrieves a list of all CVP VXML Servers. VXML Servers host and execute
+        VoiceXML applications that provide interactive voice response (IVR)
+        functionality.
+      tags:
+        - VXML Server Management
+      responses:
+        '200':
+          description: List of VXML Servers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VxmlServer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /vxmlserver/{serverId}/config:
+    get:
+      operationId: getVxmlServerConfig
+      summary: Get VXML Server configuration
+      description: >-
+        Retrieves the configuration of a specific VXML Server, including
+        application settings, thread pool configuration, and VXML browser
+        settings.
+      tags:
+        - VXML Server Management
+      parameters:
+        - $ref: '#/components/parameters/ServerId'
+      responses:
+        '200':
+          description: VXML Server configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VxmlServerConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    put:
+      operationId: updateVxmlServerConfig
+      summary: Update VXML Server configuration
+      description: >-
+        Updates the configuration of a specific VXML Server. Application
+        deployment changes take effect immediately; server configuration
+        changes may require a restart.
+      tags:
+        - VXML Server Management
+      parameters:
+        - $ref: '#/components/parameters/ServerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VxmlServerConfig'
+      responses:
+        '200':
+          description: Configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VxmlServerConfig'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /application:
+    get:
+      operationId: listApplications
+      summary: List deployed applications
+      description: >-
+        Retrieves a list of all VXML and call studio applications deployed
+        across the CVP infrastructure. Includes deployment status and
+        associated server assignments.
+      tags:
+        - Application Management
+      parameters:
+        - name: type
+          in: query
+          description: Filter by application type
+          schema:
+            type: string
+            enum:
+              - vxml
+              - callstudio
+              - microapp
+        - name: status
+          in: query
+          description: Filter by deployment status
+          schema:
+            type: string
+            enum:
+              - deployed
+              - undeployed
+              - error
+      responses:
+        '200':
+          description: List of applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    post:
+      operationId: deployApplication
+      summary: Deploy a new application
+      description: >-
+        Deploys a VXML or Call Studio application to designated VXML Servers.
+        The application archive is uploaded and distributed to the target
+        servers.
+      tags:
+        - Application Management
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - applicationName
+                - applicationFile
+              properties:
+                applicationName:
+                  type: string
+                  description: Unique name for the application
+                applicationType:
+                  type: string
+                  enum:
+                    - vxml
+                    - callstudio
+                    - microapp
+                  description: Type of the application
+                applicationFile:
+                  type: string
+                  format: binary
+                  description: Application archive file (.zip or .war)
+                targetServers:
+                  type: array
+                  items:
+                    type: string
+                  description: List of VXML Server IDs to deploy to
+      responses:
+        '201':
+          description: Application deployed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /application/{applicationId}:
+    get:
+      operationId: getApplication
+      summary: Get application details
+      description: >-
+        Retrieves detailed information about a deployed application, including
+        deployment status on each server and configuration parameters.
+      tags:
+        - Application Management
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    delete:
+      operationId: undeployApplication
+      summary: Undeploy an application
+      description: >-
+        Removes a deployed application from all associated VXML Servers. Active
+        calls using the application are allowed to complete before removal.
+      tags:
+        - Application Management
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '202':
+          description: Undeployment initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /dialedNumberPattern:
+    get:
+      operationId: listDialedNumberPatterns
+      summary: List dialed number patterns
+      description: >-
+        Retrieves all configured dialed number patterns (DNPs). DNPs define
+        how incoming calls are routed to specific applications or call
+        treatments based on the dialed number.
+      tags:
+        - Dialed Number Patterns
+      responses:
+        '200':
+          description: List of dialed number patterns
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DialedNumberPattern'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    post:
+      operationId: createDialedNumberPattern
+      summary: Create a dialed number pattern
+      description: >-
+        Creates a new dialed number pattern to route incoming calls to the
+        appropriate application or call treatment.
+      tags:
+        - Dialed Number Patterns
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DialedNumberPatternCreate'
+      responses:
+        '201':
+          description: Pattern created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DialedNumberPattern'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Pattern already exists
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /dialedNumberPattern/{patternId}:
+    get:
+      operationId: getDialedNumberPattern
+      summary: Get dialed number pattern details
+      tags:
+        - Dialed Number Patterns
+      parameters:
+        - name: patternId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Pattern details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DialedNumberPattern'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateDialedNumberPattern
+      summary: Update a dialed number pattern
+      tags:
+        - Dialed Number Patterns
+      parameters:
+        - name: patternId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DialedNumberPatternCreate'
+      responses:
+        '200':
+          description: Pattern updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DialedNumberPattern'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDialedNumberPattern
+      summary: Delete a dialed number pattern
+      tags:
+        - Dialed Number Patterns
+      parameters:
+        - name: patternId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Pattern deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sipserver:
+    get:
+      operationId: listSipServers
+      summary: List SIP server groups
+      description: >-
+        Retrieves the configured SIP server groups used for call routing.
+        Server groups define clusters of SIP endpoints (such as CUCM, SBCs,
+        or gateways) that the CVP Call Server communicates with.
+      tags:
+        - SIP Configuration
+      responses:
+        '200':
+          description: List of SIP server groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SipServerGroup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    post:
+      operationId: createSipServerGroup
+      summary: Create a SIP server group
+      description: >-
+        Creates a new SIP server group for call routing purposes. Server groups
+        allow load balancing and failover across multiple SIP endpoints.
+      tags:
+        - SIP Configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SipServerGroupCreate'
+      responses:
+        '201':
+          description: SIP server group created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SipServerGroup'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /system/config:
+    get:
+      operationId: getSystemConfig
+      summary: Get system-wide configuration
+      description: >-
+        Retrieves global system configuration settings including logging levels,
+        security settings, and system-wide defaults.
+      tags:
+        - System Configuration
+      responses:
+        '200':
+          description: System configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    put:
+      operationId: updateSystemConfig
+      summary: Update system-wide configuration
+      tags:
+        - System Configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SystemConfig'
+      responses:
+        '200':
+          description: Configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemConfig'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /system/license:
+    get:
+      operationId: getLicenseInfo
+      summary: Get licensing information
+      description: >-
+        Retrieves current licensing information including licensed features,
+        port capacity, and license expiration status.
+      tags:
+        - System Configuration
+      responses:
+        '200':
+          description: License information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /user:
+    get:
+      operationId: listUsers
+      summary: List OAMP users
+      description: >-
+        Retrieves a list of users with access to the CVP OAMP management
+        interface. Users are assigned roles that determine their access level.
+      tags:
+        - User Management
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    post:
+      operationId: createUser
+      summary: Create an OAMP user
+      tags:
+        - User Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Username already exists
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /deployment:
+    post:
+      operationId: deployConfiguration
+      summary: Deploy configuration to devices
+      description: >-
+        Pushes the current OAMP configuration to specified devices or all
+        managed devices. This synchronizes the centrally managed configuration
+        with the actual device configurations.
+      tags:
+        - Deployment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                targetDevices:
+                  type: array
+                  items:
+                    type: string
+                  description: >-
+                    List of device IDs to deploy to. If empty, deploys to all
+                    devices.
+                restartAfterDeploy:
+                  type: boolean
+                  default: false
+                  description: Whether to restart services after deploying
+      responses:
+        '202':
+          description: Deployment initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /deployment/{operationId}:
+    get:
+      operationId: getDeploymentStatus
+      summary: Get deployment operation status
+      description: >-
+        Retrieves the status of an ongoing or completed deployment operation.
+      tags:
+        - Deployment
+      parameters:
+        - name: operationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deployment status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic authentication using CVP OAMP administrative credentials.
+        The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: >-
+        Session-based authentication obtained after login. The JSESSIONID
+        cookie is returned after successful basic authentication.
+  parameters:
+    DeviceId:
+      name: deviceId
+      in: path
+      required: true
+      description: Unique device identifier
+      schema:
+        type: string
+    ServerId:
+      name: serverId
+      in: path
+      required: true
+      description: Server identifier
+      schema:
+        type: string
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Application identifier
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Device:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          description: Unique identifier for the device
+        hostname:
+          type: string
+          description: Hostname of the device
+        ipAddress:
+          type: string
+          format: ipv4
+          description: IP address of the device
+        deviceType:
+          type: string
+          enum:
+            - CallServer
+            - VXMLServer
+            - ReportingServer
+            - MediaServer
+            - OAMPServer
+          description: Type of CVP component
+        description:
+          type: string
+          description: Device description
+        status:
+          type: string
+          enum:
+            - online
+            - offline
+            - maintenance
+            - error
+          description: Current operational status
+        version:
+          type: string
+          description: Software version installed on the device
+        lastContact:
+          type: string
+          format: date-time
+          description: Last time the OAMP server contacted this device
+    DeviceCreateRequest:
+      type: object
+      required:
+        - hostname
+        - ipAddress
+        - deviceType
+      properties:
+        hostname:
+          type: string
+        ipAddress:
+          type: string
+          format: ipv4
+        deviceType:
+          type: string
+          enum:
+            - CallServer
+            - VXMLServer
+            - ReportingServer
+            - MediaServer
+        description:
+          type: string
+        credentials:
+          type: object
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+              format: password
+    DeviceUpdateRequest:
+      type: object
+      properties:
+        hostname:
+          type: string
+        ipAddress:
+          type: string
+          format: ipv4
+        description:
+          type: string
+    DeviceStatus:
+      type: object
+      properties:
+        deviceId:
+          type: string
+        status:
+          type: string
+          enum:
+            - online
+            - offline
+            - maintenance
+            - error
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              status:
+                type: string
+                enum:
+                  - running
+                  - stopped
+                  - error
+              uptime:
+                type: string
+                description: Service uptime duration
+        cpuUsage:
+          type: number
+          format: float
+          description: CPU usage percentage
+        memoryUsage:
+          type: number
+          format: float
+          description: Memory usage percentage
+        activeCalls:
+          type: integer
+          description: Number of active calls on this device
+        timestamp:
+          type: string
+          format: date-time
+    CallServer:
+      type: object
+      properties:
+        serverId:
+          type: string
+        hostname:
+          type: string
+        ipAddress:
+          type: string
+          format: ipv4
+        sipPort:
+          type: integer
+          default: 5060
+        status:
+          type: string
+          enum:
+            - online
+            - offline
+            - maintenance
+        activeCalls:
+          type: integer
+        maxCalls:
+          type: integer
+    CallServerConfig:
+      type: object
+      properties:
+        serverId:
+          type: string
+        sip:
+          type: object
+          properties:
+            port:
+              type: integer
+              default: 5060
+            transport:
+              type: string
+              enum:
+                - UDP
+                - TCP
+                - TLS
+              default: UDP
+            maxConnections:
+              type: integer
+            heartbeatInterval:
+              type: integer
+              description: SIP OPTIONS heartbeat interval in seconds
+        icm:
+          type: object
+          properties:
+            primaryVruLabel:
+              type: string
+              description: Primary VRU label for ICM/UCCE integration
+            secondaryVruLabel:
+              type: string
+              description: Secondary VRU label
+            maxCallDuration:
+              type: integer
+              description: Maximum call duration in seconds
+        callRouting:
+          type: object
+          properties:
+            defaultDnisPattern:
+              type: string
+            sendToVxmlServer:
+              type: boolean
+              default: true
+            ringtoneApplication:
+              type: string
+            errorApplication:
+              type: string
+    VxmlServer:
+      type: object
+      properties:
+        serverId:
+          type: string
+        hostname:
+          type: string
+        ipAddress:
+          type: string
+          format: ipv4
+        httpPort:
+          type: integer
+          default: 7000
+        httpsPort:
+          type: integer
+          default: 7443
+        status:
+          type: string
+          enum:
+            - online
+            - offline
+            - maintenance
+        deployedApplications:
+          type: integer
+          description: Number of applications deployed on this server
+    VxmlServerConfig:
+      type: object
+      properties:
+        serverId:
+          type: string
+        http:
+          type: object
+          properties:
+            port:
+              type: integer
+              default: 7000
+            httpsPort:
+              type: integer
+              default: 7443
+            enableHttps:
+              type: boolean
+              default: true
+        threadPool:
+          type: object
+          properties:
+            minThreads:
+              type: integer
+              default: 5
+            maxThreads:
+              type: integer
+              default: 500
+        vxmlBrowser:
+          type: object
+          properties:
+            fetchTimeout:
+              type: integer
+              description: Default fetch timeout in milliseconds
+              default: 30000
+            maxDocumentSize:
+              type: integer
+              description: Maximum VXML document size in bytes
+            defaultLanguage:
+              type: string
+              default: en-US
+        logging:
+          type: object
+          properties:
+            level:
+              type: string
+              enum:
+                - ERROR
+                - WARN
+                - INFO
+                - DEBUG
+                - TRACE
+            maxLogFileSize:
+              type: string
+              description: Maximum log file size (e.g., 10MB)
+    Application:
+      type: object
+      properties:
+        applicationId:
+          type: string
+        applicationName:
+          type: string
+        applicationType:
+          type: string
+          enum:
+            - vxml
+            - callstudio
+            - microapp
+        status:
+          type: string
+          enum:
+            - deployed
+            - undeployed
+            - deploying
+            - error
+        version:
+          type: string
+        deployedServers:
+          type: array
+          items:
+            type: object
+            properties:
+              serverId:
+                type: string
+              serverHostname:
+                type: string
+              deploymentStatus:
+                type: string
+                enum:
+                  - deployed
+                  - pending
+                  - error
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    DialedNumberPattern:
+      type: object
+      properties:
+        patternId:
+          type: string
+        pattern:
+          type: string
+          description: >-
+            The dialed number pattern (supports wildcards). Example: 1800555*
+        description:
+          type: string
+        callType:
+          type: string
+          enum:
+            - preroute
+            - translation_route
+            - post_route
+          description: Call type for ICM routing
+        applicationName:
+          type: string
+          description: Associated VXML application name
+        enabled:
+          type: boolean
+          default: true
+    DialedNumberPatternCreate:
+      type: object
+      required:
+        - pattern
+        - callType
+      properties:
+        pattern:
+          type: string
+        description:
+          type: string
+        callType:
+          type: string
+          enum:
+            - preroute
+            - translation_route
+            - post_route
+        applicationName:
+          type: string
+        enabled:
+          type: boolean
+          default: true
+    SipServerGroup:
+      type: object
+      properties:
+        groupId:
+          type: string
+        groupName:
+          type: string
+        description:
+          type: string
+        servers:
+          type: array
+          items:
+            type: object
+            properties:
+              hostname:
+                type: string
+              ipAddress:
+                type: string
+                format: ipv4
+              port:
+                type: integer
+                default: 5060
+              priority:
+                type: integer
+              weight:
+                type: integer
+        loadBalancing:
+          type: string
+          enum:
+            - round_robin
+            - top_down
+            - weight_based
+          default: round_robin
+    SipServerGroupCreate:
+      type: object
+      required:
+        - groupName
+        - servers
+      properties:
+        groupName:
+          type: string
+        description:
+          type: string
+        servers:
+          type: array
+          items:
+            type: object
+            required:
+              - hostname
+              - ipAddress
+            properties:
+              hostname:
+                type: string
+              ipAddress:
+                type: string
+                format: ipv4
+              port:
+                type: integer
+                default: 5060
+              priority:
+                type: integer
+                default: 1
+              weight:
+                type: integer
+                default: 100
+        loadBalancing:
+          type: string
+          enum:
+            - round_robin
+            - top_down
+            - weight_based
+          default: round_robin
+    SystemConfig:
+      type: object
+      properties:
+        logging:
+          type: object
+          properties:
+            globalLogLevel:
+              type: string
+              enum:
+                - ERROR
+                - WARN
+                - INFO
+                - DEBUG
+                - TRACE
+            syslogServer:
+              type: string
+            syslogPort:
+              type: integer
+              default: 514
+        security:
+          type: object
+          properties:
+            enableTls:
+              type: boolean
+              default: true
+            tlsVersion:
+              type: string
+              default: TLSv1.2
+            sessionTimeout:
+              type: integer
+              description: Session timeout in minutes
+              default: 30
+            passwordPolicy:
+              type: object
+              properties:
+                minLength:
+                  type: integer
+                  default: 8
+                requireUppercase:
+                  type: boolean
+                  default: true
+                requireSpecialChar:
+                  type: boolean
+                  default: true
+                maxAge:
+                  type: integer
+                  description: Password max age in days
+        snmp:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              default: false
+            communityString:
+              type: string
+            trapDestination:
+              type: string
+    LicenseInfo:
+      type: object
+      properties:
+        licenseType:
+          type: string
+          enum:
+            - standard
+            - premium
+            - enterprise
+        maxPorts:
+          type: integer
+          description: Maximum number of concurrent call ports
+        usedPorts:
+          type: integer
+          description: Currently used call ports
+        features:
+          type: array
+          items:
+            type: string
+          description: Licensed feature list
+        expirationDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+            - active
+            - expired
+            - grace_period
+    User:
+      type: object
+      properties:
+        userId:
+          type: string
+        username:
+          type: string
+        role:
+          type: string
+          enum:
+            - administrator
+            - operator
+            - read_only
+        email:
+          type: string
+          format: email
+        lastLogin:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+    UserCreate:
+      type: object
+      required:
+        - username
+        - password
+        - role
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+        role:
+          type: string
+          enum:
+            - administrator
+            - operator
+            - read_only
+        email:
+          type: string
+          format: email
+    OperationStatus:
+      type: object
+      properties:
+        operationId:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending
+            - in_progress
+            - completed
+            - failed
+        message:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        progress:
+          type: number
+          format: float
+          description: Progress percentage (0-100)
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+security:
+  - basicAuth: []
+  - sessionCookie: []
+tags:
+  - name: Device Management
+    description: Manage CVP devices (Call Servers, VXML Servers, Reporting Servers)
+  - name: Call Server Management
+    description: Configure and manage CVP Call Servers
+  - name: VXML Server Management
+    description: Configure and manage CVP VXML Servers
+  - name: Application Management
+    description: Deploy and manage VXML and Call Studio applications
+  - name: Dialed Number Patterns
+    description: Manage call routing dialed number patterns
+  - name: SIP Configuration
+    description: Configure SIP server groups and settings
+  - name: System Configuration
+    description: Global system settings and licensing
+  - name: User Management
+    description: Manage OAMP user accounts
+  - name: Deployment
+    description: Deploy configuration to managed devices

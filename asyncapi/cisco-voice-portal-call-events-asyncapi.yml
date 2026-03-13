@@ -1,0 +1,555 @@
+asyncapi: 2.6.0
+info:
+  title: Cisco Voice Portal Call Events API
+  version: 12.6.0
+  description: >-
+    The Cisco Unified Customer Voice Portal (CVP) generates real-time events
+    during call processing that can be consumed for monitoring, analytics, and
+    integration purposes. CVP publishes call lifecycle events, system alerts,
+    and operational notifications through multiple channels including JMS
+    messaging, SNMP traps, and syslog. This specification documents the
+    event-driven interfaces for consuming CVP call processing events and
+    system notifications.
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+servers:
+  jms:
+    url: tcp://{cvp-server}:61616
+    protocol: jms
+    description: >-
+      CVP JMS message broker for call event notifications. The CVP Call Server
+      and VXML Server publish events to JMS topics that can be consumed by
+      external applications.
+    variables:
+      cvp-server:
+        default: cvp-callserver.example.com
+        description: Hostname or IP of the CVP server running the JMS broker
+  syslog:
+    url: udp://{syslog-server}:514
+    protocol: syslog
+    description: >-
+      Syslog endpoint for receiving CVP system events and alerts. CVP
+      components forward structured syslog messages for operational events.
+    variables:
+      syslog-server:
+        default: syslog.example.com
+        description: Hostname or IP of the syslog receiver
+channels:
+  cvp/calls/started:
+    description: >-
+      Published when a new call is received by the CVP Call Server. This
+      event is generated after the initial SIP INVITE is processed and a
+      call GUID is assigned.
+    subscribe:
+      operationId: onCallStarted
+      summary: Receive call started events
+      message:
+        $ref: '#/components/messages/CallStartedEvent'
+  cvp/calls/ended:
+    description: >-
+      Published when a call is terminated. Includes the final call
+      disposition, duration, and summary of the call treatment.
+    subscribe:
+      operationId: onCallEnded
+      summary: Receive call ended events
+      message:
+        $ref: '#/components/messages/CallEndedEvent'
+  cvp/calls/transferred:
+    description: >-
+      Published when a call is transferred to another destination, such as
+      an agent queue, external number, or another application.
+    subscribe:
+      operationId: onCallTransferred
+      summary: Receive call transfer events
+      message:
+        $ref: '#/components/messages/CallTransferredEvent'
+  cvp/calls/queued:
+    description: >-
+      Published when a call enters a queue waiting for an agent. This event
+      is generated when ICM/UCCE routes the call to a skill group and the
+      call is placed in queue.
+    subscribe:
+      operationId: onCallQueued
+      summary: Receive call queued events
+      message:
+        $ref: '#/components/messages/CallQueuedEvent'
+  cvp/calls/application-invoked:
+    description: >-
+      Published when a VXML application is invoked to handle a call. This
+      occurs when the Call Server sends the call to a VXML Server for
+      self-service treatment.
+    subscribe:
+      operationId: onApplicationInvoked
+      summary: Receive application invocation events
+      message:
+        $ref: '#/components/messages/ApplicationInvokedEvent'
+  cvp/calls/error:
+    description: >-
+      Published when a call processing error occurs, such as a SIP failure,
+      VXML application error, or ICM communication failure.
+    subscribe:
+      operationId: onCallError
+      summary: Receive call error events
+      message:
+        $ref: '#/components/messages/CallErrorEvent'
+  cvp/system/device-status-changed:
+    description: >-
+      Published when the status of a managed CVP device changes, such as
+      transitioning from online to offline or entering maintenance mode.
+    subscribe:
+      operationId: onDeviceStatusChanged
+      summary: Receive device status change events
+      message:
+        $ref: '#/components/messages/DeviceStatusChangedEvent'
+  cvp/system/threshold-exceeded:
+    description: >-
+      Published when a monitored system threshold is exceeded, such as
+      concurrent call limits, CPU usage, memory usage, or disk space.
+      These events correspond to SNMP traps that CVP generates.
+    subscribe:
+      operationId: onThresholdExceeded
+      summary: Receive threshold exceeded alerts
+      message:
+        $ref: '#/components/messages/ThresholdExceededEvent'
+  cvp/system/service-state-changed:
+    description: >-
+      Published when a CVP service starts, stops, or encounters an error.
+      Monitors service health across the deployment.
+    subscribe:
+      operationId: onServiceStateChanged
+      summary: Receive service state change events
+      message:
+        $ref: '#/components/messages/ServiceStateChangedEvent'
+  cvp/deployment/config-deployed:
+    description: >-
+      Published when a configuration deployment operation completes,
+      either successfully or with errors.
+    subscribe:
+      operationId: onConfigDeployed
+      summary: Receive deployment completion events
+      message:
+        $ref: '#/components/messages/ConfigDeployedEvent'
+components:
+  messages:
+    CallStartedEvent:
+      name: CallStartedEvent
+      title: Call Started
+      summary: A new call has been received by CVP
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          eventType:
+            type: string
+            const: call.started
+          timestamp:
+            type: string
+            format: date-time
+          callGuid:
+            type: string
+            description: Globally unique call identifier
+          callingNumber:
+            type: string
+            description: Caller ANI
+          calledNumber:
+            type: string
+            description: Called DNIS
+          callServerHostname:
+            type: string
+            description: Call Server handling the call
+          sipCallId:
+            type: string
+            description: SIP Call-ID
+          ingressGateway:
+            type: string
+            description: SIP endpoint that sent the call to CVP
+          matchedPattern:
+            type: string
+            description: Dialed number pattern that matched
+        required:
+          - eventType
+          - timestamp
+          - callGuid
+          - callingNumber
+          - calledNumber
+    CallEndedEvent:
+      name: CallEndedEvent
+      title: Call Ended
+      summary: A call has been terminated
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          eventType:
+            type: string
+            const: call.ended
+          timestamp:
+            type: string
+            format: date-time
+          callGuid:
+            type: string
+          callingNumber:
+            type: string
+          calledNumber:
+            type: string
+          callResult:
+            type: string
+            enum:
+              - completed
+              - abandoned
+              - transferred
+              - error
+          callDuration:
+            type: integer
+            description: Total call duration in seconds
+          selfServiceDuration:
+            type: integer
+            description: Self-service IVR duration in seconds
+          queueDuration:
+            type: integer
+            description: Queue wait time in seconds
+          applicationName:
+            type: string
+          terminationReason:
+            type: string
+            description: Reason the call ended
+          sipResponseCode:
+            type: integer
+            description: Final SIP response code
+        required:
+          - eventType
+          - timestamp
+          - callGuid
+          - callResult
+    CallTransferredEvent:
+      name: CallTransferredEvent
+      title: Call Transferred
+      summary: A call has been transferred to a new destination
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          eventType:
+            type: string
+            const: call.transferred
+          timestamp:
+            type: string
+            format: date-time
+          callGuid:
+            type: string
+          callingNumber:
+            type: string
+          calledNumber:
+            type: string
+          transferDestination:
+            type: string
+            description: Transfer target number or URI
+          transferType:
+            type: string
+            enum:
+              - blind
+              - consultation
+          icmLabel:
+            type: string
+            description: ICM routing label for the transfer
+          skillGroup:
+            type: string
+            description: Target skill group if agent-bound
+        required:
+          - eventType
+          - timestamp
+          - callGuid
+          - transferDestination
+    CallQueuedEvent:
+      name: CallQueuedEvent
+      title: Call Queued
+      summary: A call has been placed in an agent queue
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          eventType:
+            type: string
+            const: call.queued
+          timestamp:
+            type: string
+            format: date-time
+          callGuid:
+            type: string
+          callingNumber:
+            type: string
+          calledNumber:
+            type: string
+          skillGroup:
+            type: string
+            description: Skill group the call is queued for
+          estimatedWaitTime:
+            type: integer
+            description: Estimated wait time in seconds (if available)
+          queuePosition:
+            type: integer
+            description: Position in the queue
+          queueApplication:
+            type: string
+            description: Queue treatment application being played
+        required:
+          - eventType
+          - timestamp
+          - callGuid
+    ApplicationInvokedEvent:
+      name: ApplicationInvokedEvent
+      title: Application Invoked
+      summary: A VXML application has been invoked to handle a call
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          eventType:
+            type: string
+            const: call.application_invoked
+          timestamp:
+            type: string
+            format: date-time
+          callGuid:
+            type: string
+          applicationName:
+            type: string
+            description: Name of the invoked VXML application
+          vxmlServerHostname:
+            type: string
+            description: VXML Server executing the application
+          sessionId:
+            type: string
+            description: VXML session identifier
+        required:
+          - eventType
+          - timestamp
+          - callGuid
+          - applicationName
+    CallErrorEvent:
+      name: CallErrorEvent
+      title: Call Error
+      summary: A call processing error has occurred
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          eventType:
+            type: string
+            const: call.error
+          timestamp:
+            type: string
+            format: date-time
+          callGuid:
+            type: string
+          errorCode:
+            type: string
+            description: CVP error code
+          errorMessage:
+            type: string
+            description: Human-readable error description
+          errorCategory:
+            type: string
+            enum:
+              - sip_failure
+              - vxml_error
+              - icm_communication
+              - application_error
+              - timeout
+              - system_error
+          serverHostname:
+            type: string
+            description: Server where the error occurred
+          sipResponseCode:
+            type: integer
+            description: SIP response code if applicable
+        required:
+          - eventType
+          - timestamp
+          - errorCode
+          - errorCategory
+    DeviceStatusChangedEvent:
+      name: DeviceStatusChangedEvent
+      title: Device Status Changed
+      summary: A managed device status has changed
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          eventType:
+            type: string
+            const: system.device_status_changed
+          timestamp:
+            type: string
+            format: date-time
+          deviceId:
+            type: string
+          hostname:
+            type: string
+          deviceType:
+            type: string
+            enum:
+              - CallServer
+              - VXMLServer
+              - ReportingServer
+              - MediaServer
+          previousStatus:
+            type: string
+            enum:
+              - online
+              - offline
+              - maintenance
+              - error
+          currentStatus:
+            type: string
+            enum:
+              - online
+              - offline
+              - maintenance
+              - error
+          reason:
+            type: string
+            description: Reason for the status change
+        required:
+          - eventType
+          - timestamp
+          - deviceId
+          - previousStatus
+          - currentStatus
+    ThresholdExceededEvent:
+      name: ThresholdExceededEvent
+      title: Threshold Exceeded
+      summary: A system monitoring threshold has been exceeded
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          eventType:
+            type: string
+            const: system.threshold_exceeded
+          timestamp:
+            type: string
+            format: date-time
+          deviceId:
+            type: string
+          hostname:
+            type: string
+          metric:
+            type: string
+            enum:
+              - concurrent_calls
+              - cpu_usage
+              - memory_usage
+              - disk_usage
+              - call_error_rate
+              - sip_response_time
+            description: Metric that exceeded the threshold
+          thresholdValue:
+            type: number
+            description: Configured threshold value
+          currentValue:
+            type: number
+            description: Current metric value
+          severity:
+            type: string
+            enum:
+              - warning
+              - critical
+        required:
+          - eventType
+          - timestamp
+          - metric
+          - thresholdValue
+          - currentValue
+          - severity
+    ServiceStateChangedEvent:
+      name: ServiceStateChangedEvent
+      title: Service State Changed
+      summary: A CVP service has changed state
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          eventType:
+            type: string
+            const: system.service_state_changed
+          timestamp:
+            type: string
+            format: date-time
+          deviceId:
+            type: string
+          hostname:
+            type: string
+          serviceName:
+            type: string
+            description: Name of the CVP service
+          previousState:
+            type: string
+            enum:
+              - running
+              - stopped
+              - error
+          currentState:
+            type: string
+            enum:
+              - running
+              - stopped
+              - error
+          message:
+            type: string
+        required:
+          - eventType
+          - timestamp
+          - serviceName
+          - previousState
+          - currentState
+    ConfigDeployedEvent:
+      name: ConfigDeployedEvent
+      title: Configuration Deployed
+      summary: A configuration deployment operation has completed
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          eventType:
+            type: string
+            const: deployment.config_deployed
+          timestamp:
+            type: string
+            format: date-time
+          operationId:
+            type: string
+          status:
+            type: string
+            enum:
+              - success
+              - partial_success
+              - failed
+          targetDevices:
+            type: array
+            items:
+              type: object
+              properties:
+                deviceId:
+                  type: string
+                hostname:
+                  type: string
+                status:
+                  type: string
+                  enum:
+                    - success
+                    - failed
+                message:
+                  type: string
+          initiatedBy:
+            type: string
+            description: Username of the administrator who initiated the deployment
+        required:
+          - eventType
+          - timestamp
+          - operationId
+          - status
