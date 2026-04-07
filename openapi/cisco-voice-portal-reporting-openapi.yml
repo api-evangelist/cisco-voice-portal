@@ -29,7 +29,7 @@ paths:
   /cdr:
     get:
       operationId: getCallDetailRecords
-      summary: Query call detail records
+      summary: Cisco Voice Portal Query call detail records
       description: >-
         Retrieves call detail records (CDRs) based on specified filter
         criteria. CDRs contain comprehensive information about each call
@@ -125,7 +125,7 @@ paths:
   /cdr/{callGuid}:
     get:
       operationId: getCallDetailRecord
-      summary: Get a specific call detail record
+      summary: Cisco Voice Portal Get a specific call detail record
       description: >-
         Retrieves the complete call detail record for a specific call,
         identified by its globally unique identifier (GUID). Includes all
@@ -155,7 +155,7 @@ paths:
   /cdr/{callGuid}/legs:
     get:
       operationId: getCallLegs
-      summary: Get call legs for a call
+      summary: Cisco Voice Portal Get call legs for a call
       description: >-
         Retrieves all individual call legs associated with a specific call.
         A call may have multiple legs representing transfers, conferences,
@@ -186,7 +186,7 @@ paths:
   /statistics/realtime:
     get:
       operationId: getRealtimeStatistics
-      summary: Get real-time call statistics
+      summary: Cisco Voice Portal Get real-time call statistics
       description: >-
         Retrieves current real-time statistics across the CVP deployment,
         including active calls, calls per second, and resource utilization
@@ -213,7 +213,7 @@ paths:
   /statistics/summary:
     get:
       operationId: getCallSummaryStatistics
-      summary: Get call summary statistics
+      summary: Cisco Voice Portal Get call summary statistics
       description: >-
         Retrieves aggregated call summary statistics for a specified time
         period, including total calls, average handle time, abandonment
@@ -265,7 +265,7 @@ paths:
   /statistics/application:
     get:
       operationId: getApplicationStatistics
-      summary: Get VXML application statistics
+      summary: Cisco Voice Portal Get VXML application statistics
       description: >-
         Retrieves usage and performance statistics for deployed VXML
         applications, including invocation counts, completion rates, and
@@ -306,7 +306,7 @@ paths:
   /statistics/server:
     get:
       operationId: getServerStatistics
-      summary: Get per-server statistics
+      summary: Cisco Voice Portal Get per-server statistics
       description: >-
         Retrieves call processing statistics broken down by individual CVP
         server, useful for capacity planning and load monitoring.
@@ -349,7 +349,7 @@ paths:
   /report:
     get:
       operationId: listReportTemplates
-      summary: List available report templates
+      summary: Cisco Voice Portal List available report templates
       description: >-
         Retrieves a list of available report templates that can be executed.
         These correspond to the standard CVP reports available in Cisco
@@ -372,7 +372,7 @@ paths:
   /report/{templateId}/execute:
     post:
       operationId: executeReport
-      summary: Execute a report template
+      summary: Cisco Voice Portal Execute a report template
       description: >-
         Executes a report template with the specified parameters. Reports
         may be generated synchronously for small datasets or asynchronously
@@ -423,7 +423,7 @@ paths:
   /report/{reportId}/result:
     get:
       operationId: getReportResult
-      summary: Get report execution result
+      summary: Cisco Voice Portal Get report execution result
       description: >-
         Retrieves the result of a previously executed report. For
         asynchronous reports, returns the result once generation is complete.

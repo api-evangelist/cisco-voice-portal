@@ -29,7 +29,7 @@ paths:
   /device:
     get:
       operationId: listDevices
-      summary: List all managed devices
+      summary: Cisco Voice Portal List all managed devices
       description: >-
         Retrieves a list of all devices registered with the CVP OAMP Server,
         including Call Servers, VXML Servers, Reporting Servers, and Media
@@ -52,7 +52,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     post:
       operationId: addDevice
-      summary: Add a new device
+      summary: Cisco Voice Portal Add a new device
       description: >-
         Registers a new device (Call Server, VXML Server, Reporting Server,
         or Media Server) with the CVP OAMP Server for centralized management.
@@ -82,7 +82,7 @@ paths:
   /device/{deviceId}:
     get:
       operationId: getDevice
-      summary: Get device details
+      summary: Cisco Voice Portal Get device details
       description: >-
         Retrieves detailed information about a specific managed device,
         including its configuration, status, and associated services.
@@ -105,7 +105,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     put:
       operationId: updateDevice
-      summary: Update device configuration
+      summary: Cisco Voice Portal Update device configuration
       description: >-
         Updates the configuration of an existing managed device. Changes may
         require a device restart to take effect.
@@ -136,7 +136,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     delete:
       operationId: deleteDevice
-      summary: Remove a managed device
+      summary: Cisco Voice Portal Remove a managed device
       description: >-
         Removes a device from the CVP OAMP management. The device itself is not
         uninstalled but is no longer managed centrally.
@@ -156,7 +156,7 @@ paths:
   /device/{deviceId}/status:
     get:
       operationId: getDeviceStatus
-      summary: Get device operational status
+      summary: Cisco Voice Portal Get device operational status
       description: >-
         Retrieves the current operational status of a managed device, including
         service status, resource utilization, and connectivity state.
@@ -180,7 +180,7 @@ paths:
   /device/{deviceId}/restart:
     post:
       operationId: restartDevice
-      summary: Restart a device service
+      summary: Cisco Voice Portal Restart a device service
       description: >-
         Initiates a restart of the CVP service on the specified device. This
         operation is asynchronous and the device status can be monitored via
@@ -205,7 +205,7 @@ paths:
   /callserver:
     get:
       operationId: listCallServers
-      summary: List all Call Servers
+      summary: Cisco Voice Portal List all Call Servers
       description: >-
         Retrieves a list of all CVP Call Servers managed by the OAMP Server.
         Call Servers handle SIP call control and routing within the CVP
@@ -228,7 +228,7 @@ paths:
   /callserver/{serverId}/config:
     get:
       operationId: getCallServerConfig
-      summary: Get Call Server configuration
+      summary: Cisco Voice Portal Get Call Server configuration
       description: >-
         Retrieves the full configuration of a specific Call Server, including
         SIP settings, call routing rules, dialed number patterns, and
@@ -252,7 +252,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     put:
       operationId: updateCallServerConfig
-      summary: Update Call Server configuration
+      summary: Cisco Voice Portal Update Call Server configuration
       description: >-
         Updates the configuration of a specific Call Server. Changes to SIP
         and routing configuration may require a service restart.
@@ -284,7 +284,7 @@ paths:
   /vxmlserver:
     get:
       operationId: listVxmlServers
-      summary: List all VXML Servers
+      summary: Cisco Voice Portal List all VXML Servers
       description: >-
         Retrieves a list of all CVP VXML Servers. VXML Servers host and execute
         VoiceXML applications that provide interactive voice response (IVR)
@@ -307,7 +307,7 @@ paths:
   /vxmlserver/{serverId}/config:
     get:
       operationId: getVxmlServerConfig
-      summary: Get VXML Server configuration
+      summary: Cisco Voice Portal Get VXML Server configuration
       description: >-
         Retrieves the configuration of a specific VXML Server, including
         application settings, thread pool configuration, and VXML browser
@@ -331,7 +331,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     put:
       operationId: updateVxmlServerConfig
-      summary: Update VXML Server configuration
+      summary: Cisco Voice Portal Update VXML Server configuration
       description: >-
         Updates the configuration of a specific VXML Server. Application
         deployment changes take effect immediately; server configuration
@@ -364,7 +364,7 @@ paths:
   /application:
     get:
       operationId: listApplications
-      summary: List deployed applications
+      summary: Cisco Voice Portal List deployed applications
       description: >-
         Retrieves a list of all VXML and call studio applications deployed
         across the CVP infrastructure. Includes deployment status and
@@ -405,7 +405,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     post:
       operationId: deployApplication
-      summary: Deploy a new application
+      summary: Cisco Voice Portal Deploy a new application
       description: >-
         Deploys a VXML or Call Studio application to designated VXML Servers.
         The application archive is uploaded and distributed to the target
@@ -457,7 +457,7 @@ paths:
   /application/{applicationId}:
     get:
       operationId: getApplication
-      summary: Get application details
+      summary: Cisco Voice Portal Get application details
       description: >-
         Retrieves detailed information about a deployed application, including
         deployment status on each server and configuration parameters.
@@ -480,7 +480,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     delete:
       operationId: undeployApplication
-      summary: Undeploy an application
+      summary: Cisco Voice Portal Undeploy an application
       description: >-
         Removes a deployed application from all associated VXML Servers. Active
         calls using the application are allowed to complete before removal.
@@ -504,7 +504,7 @@ paths:
   /dialedNumberPattern:
     get:
       operationId: listDialedNumberPatterns
-      summary: List dialed number patterns
+      summary: Cisco Voice Portal List dialed number patterns
       description: >-
         Retrieves all configured dialed number patterns (DNPs). DNPs define
         how incoming calls are routed to specific applications or call
@@ -526,7 +526,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     post:
       operationId: createDialedNumberPattern
-      summary: Create a dialed number pattern
+      summary: Cisco Voice Portal Create a dialed number pattern
       description: >-
         Creates a new dialed number pattern to route incoming calls to the
         appropriate application or call treatment.
@@ -556,7 +556,7 @@ paths:
   /dialedNumberPattern/{patternId}:
     get:
       operationId: getDialedNumberPattern
-      summary: Get dialed number pattern details
+      summary: Cisco Voice Portal Get dialed number pattern details
       tags:
         - Dialed Number Patterns
       parameters:
@@ -578,7 +578,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateDialedNumberPattern
-      summary: Update a dialed number pattern
+      summary: Cisco Voice Portal Update a dialed number pattern
       tags:
         - Dialed Number Patterns
       parameters:
@@ -608,7 +608,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteDialedNumberPattern
-      summary: Delete a dialed number pattern
+      summary: Cisco Voice Portal Delete a dialed number pattern
       tags:
         - Dialed Number Patterns
       parameters:
@@ -627,7 +627,7 @@ paths:
   /sipserver:
     get:
       operationId: listSipServers
-      summary: List SIP server groups
+      summary: Cisco Voice Portal List SIP server groups
       description: >-
         Retrieves the configured SIP server groups used for call routing.
         Server groups define clusters of SIP endpoints (such as CUCM, SBCs,
@@ -649,7 +649,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     post:
       operationId: createSipServerGroup
-      summary: Create a SIP server group
+      summary: Cisco Voice Portal Create a SIP server group
       description: >-
         Creates a new SIP server group for call routing purposes. Server groups
         allow load balancing and failover across multiple SIP endpoints.
@@ -677,7 +677,7 @@ paths:
   /system/config:
     get:
       operationId: getSystemConfig
-      summary: Get system-wide configuration
+      summary: Cisco Voice Portal Get system-wide configuration
       description: >-
         Retrieves global system configuration settings including logging levels,
         security settings, and system-wide defaults.
@@ -696,7 +696,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     put:
       operationId: updateSystemConfig
-      summary: Update system-wide configuration
+      summary: Cisco Voice Portal Update system-wide configuration
       tags:
         - System Configuration
       requestBody:
@@ -721,7 +721,7 @@ paths:
   /system/license:
     get:
       operationId: getLicenseInfo
-      summary: Get licensing information
+      summary: Cisco Voice Portal Get licensing information
       description: >-
         Retrieves current licensing information including licensed features,
         port capacity, and license expiration status.
@@ -741,7 +741,7 @@ paths:
   /user:
     get:
       operationId: listUsers
-      summary: List OAMP users
+      summary: Cisco Voice Portal List OAMP users
       description: >-
         Retrieves a list of users with access to the CVP OAMP management
         interface. Users are assigned roles that determine their access level.
@@ -762,7 +762,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     post:
       operationId: createUser
-      summary: Create an OAMP user
+      summary: Cisco Voice Portal Create an OAMP user
       tags:
         - User Management
       requestBody:
@@ -789,7 +789,7 @@ paths:
   /deployment:
     post:
       operationId: deployConfiguration
-      summary: Deploy configuration to devices
+      summary: Cisco Voice Portal Deploy configuration to devices
       description: >-
         Pushes the current OAMP configuration to specified devices or all
         managed devices. This synchronizes the centrally managed configuration
@@ -828,7 +828,7 @@ paths:
   /deployment/{operationId}:
     get:
       operationId: getDeploymentStatus
-      summary: Get deployment operation status
+      summary: Cisco Voice Portal Get deployment operation status
       description: >-
         Retrieves the status of an ongoing or completed deployment operation.
       tags:

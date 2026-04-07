@@ -30,7 +30,7 @@ paths:
   /application:
     get:
       operationId: listDeployedApplications
-      summary: List deployed VXML applications
+      summary: Cisco Voice Portal List deployed VXML applications
       description: >-
         Retrieves a list of all VXML applications deployed on this VXML Server.
         Applications are typically built with Cisco Unified Call Studio and
@@ -63,7 +63,7 @@ paths:
   /application/{applicationName}:
     get:
       operationId: getApplicationDetails
-      summary: Get VXML application details
+      summary: Cisco Voice Portal Get VXML application details
       description: >-
         Retrieves detailed information about a specific deployed VXML
         application, including its configuration, call flow elements,
@@ -88,7 +88,7 @@ paths:
   /application/{applicationName}/activate:
     post:
       operationId: activateApplication
-      summary: Activate a VXML application
+      summary: Cisco Voice Portal Activate a VXML application
       description: >-
         Activates a deployed VXML application, making it available to handle
         incoming calls. An application must be active to process calls.
@@ -114,7 +114,7 @@ paths:
   /application/{applicationName}/deactivate:
     post:
       operationId: deactivateApplication
-      summary: Deactivate a VXML application
+      summary: Cisco Voice Portal Deactivate a VXML application
       description: >-
         Deactivates a VXML application. Active calls using the application
         are allowed to complete, but no new calls will be routed to it.
@@ -140,7 +140,7 @@ paths:
   /application/{applicationName}/config:
     get:
       operationId: getApplicationConfig
-      summary: Get application configuration
+      summary: Cisco Voice Portal Get application configuration
       description: >-
         Retrieves the runtime configuration parameters for a VXML application.
         These settings are defined in the Call Studio project and can be
@@ -164,7 +164,7 @@ paths:
           $ref: '#/components/responses/InternalError'
     put:
       operationId: updateApplicationConfig
-      summary: Update application configuration
+      summary: Cisco Voice Portal Update application configuration
       description: >-
         Updates the runtime configuration parameters for a VXML application.
         Changes take effect for new calls; active calls continue with their
@@ -197,7 +197,7 @@ paths:
   /application/{applicationName}/elements:
     get:
       operationId: listApplicationElements
-      summary: List application call flow elements
+      summary: Cisco Voice Portal List application call flow elements
       description: >-
         Retrieves the list of call flow elements (voice elements, action
         elements, and decision elements) that make up the VXML application.
@@ -224,7 +224,7 @@ paths:
   /application/{applicationName}/sessions:
     get:
       operationId: listApplicationSessions
-      summary: List active application sessions
+      summary: Cisco Voice Portal List active application sessions
       description: >-
         Retrieves a list of active call sessions currently being handled by
         the specified VXML application.
@@ -260,7 +260,7 @@ paths:
   /session/{sessionId}:
     get:
       operationId: getSessionDetails
-      summary: Get VXML session details
+      summary: Cisco Voice Portal Get VXML session details
       description: >-
         Retrieves detailed information about an active VXML session, including
         the current element being executed, session variables, and execution
@@ -289,7 +289,7 @@ paths:
   /microapp:
     get:
       operationId: listMicroApplications
-      summary: List available micro-applications
+      summary: Cisco Voice Portal List available micro-applications
       description: >-
         Retrieves a list of built-in CVP micro-applications. Micro-applications
         are pre-built VXML applications for common IVR tasks such as playing
@@ -313,7 +313,7 @@ paths:
   /microapp/{microAppName}/config:
     get:
       operationId: getMicroAppConfig
-      summary: Get micro-application configuration
+      summary: Cisco Voice Portal Get micro-application configuration
       description: >-
         Retrieves the configuration for a specific built-in micro-application
         such as PlayMedia (PM), GetDigits (GD), Menu, PlayData (PD),
@@ -353,7 +353,7 @@ paths:
   /media:
     get:
       operationId: listMediaFiles
-      summary: List media files
+      summary: Cisco Voice Portal List media files
       description: >-
         Retrieves a list of media files (audio prompts) available on the
         VXML Server. Media files are used by VXML applications and
@@ -392,7 +392,7 @@ paths:
   /media/upload:
     post:
       operationId: uploadMediaFile
-      summary: Upload a media file
+      summary: Cisco Voice Portal Upload a media file
       description: >-
         Uploads an audio media file (WAV, AU, or VOX format) to the VXML
         Server for use in voice prompts and announcements.
@@ -437,7 +437,7 @@ paths:
   /grammar:
     get:
       operationId: listGrammarFiles
-      summary: List grammar files
+      summary: Cisco Voice Portal List grammar files
       description: >-
         Retrieves a list of speech recognition grammar files (GRXML, GSL)
         available on the VXML Server. Grammars define the speech recognition
@@ -460,7 +460,7 @@ paths:
   /server/status:
     get:
       operationId: getVxmlServerStatus
-      summary: Get VXML Server status
+      summary: Cisco Voice Portal Get VXML Server status
       description: >-
         Retrieves the operational status of the VXML Server, including
         active session count, thread pool status, and resource utilization.
@@ -480,7 +480,7 @@ paths:
   /server/log:
     get:
       operationId: getServerLogs
-      summary: Get recent server log entries
+      summary: Cisco Voice Portal Get recent server log entries
       description: >-
         Retrieves recent log entries from the VXML Server. Supports filtering
         by severity level and time range.
