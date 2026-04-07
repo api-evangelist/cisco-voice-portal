@@ -979,17 +979,17 @@ components:
 security:
   - basicAuth: []
 tags:
-  - name: Application Management
-    description: Deploy, activate, and manage VXML applications
   - name: Application Configuration
     description: Configure VXML application runtime settings
-  - name: Session Monitoring
-    description: Monitor active VXML call sessions
-  - name: Micro-Applications
-    description: Manage built-in CVP micro-applications
-  - name: Media Management
-    description: Manage audio media files and prompts
+  - name: Application Management
+    description: Deploy, activate, and manage VXML applications
   - name: Grammar Management
     description: Manage speech recognition grammar files
+  - name: Media Management
+    description: Manage audio media files and prompts
+  - name: Micro-Applications
+    description: Manage built-in CVP micro-applications
   - name: Server Status
     description: VXML Server status and monitoring
+  - name: Session Monitoring
+    description: Monitor active VXML call sessions

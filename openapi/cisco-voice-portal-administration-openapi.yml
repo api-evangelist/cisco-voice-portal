@@ -1512,14 +1512,14 @@ security:
   - basicAuth: []
   - sessionCookie: []
 tags:
-  - name: Device Management
-    description: Manage CVP devices (Call Servers, VXML Servers, Reporting Servers)
-  - name: Call Server Management
-    description: Configure and manage CVP Call Servers
-  - name: VXML Server Management
-    description: Configure and manage CVP VXML Servers
   - name: Application Management
     description: Deploy and manage VXML and Call Studio applications
+  - name: Call Server Management
+    description: Configure and manage CVP Call Servers
+  - name: Deployment
+    description: Deploy configuration to managed devices
+  - name: Device Management
+    description: Manage CVP devices (Call Servers, VXML Servers, Reporting Servers)
   - name: Dialed Number Patterns
     description: Manage call routing dialed number patterns
   - name: SIP Configuration
@@ -1528,5 +1528,5 @@ tags:
     description: Global system settings and licensing
   - name: User Management
     description: Manage OAMP user accounts
-  - name: Deployment
-    description: Deploy configuration to managed devices
+  - name: VXML Server Management
+    description: Configure and manage CVP VXML Servers

@@ -801,7 +801,7 @@ tags:
     description: Manage and control active calls
   - name: Call Routing
     description: Call routing lookup and testing
-  - name: SIP Sessions
-    description: Monitor SIP session details
   - name: Health
     description: Call Server health and connectivity status
+  - name: SIP Sessions
+    description: Monitor SIP session details

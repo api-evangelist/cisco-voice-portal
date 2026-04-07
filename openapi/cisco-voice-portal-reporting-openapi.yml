@@ -192,7 +192,7 @@ paths:
         including active calls, calls per second, and resource utilization
         metrics. Data is refreshed at the reporting server polling interval.
       tags:
-        - Real-time Statistics
+        - Real-Time Statistics
       parameters:
         - name: serverId
           in: query
@@ -866,9 +866,9 @@ security:
 tags:
   - name: Call Detail Records
     description: Access and query call detail records
-  - name: Real-time Statistics
-    description: Current call processing statistics
   - name: Historical Reports
     description: Aggregated historical reporting data
+  - name: Real-Time Statistics
+    description: Current call processing statistics
   - name: Report Templates
     description: Execute pre-defined report templates
