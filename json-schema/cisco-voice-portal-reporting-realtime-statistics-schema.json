@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RealtimeStatistics",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string"
+    },
+    "activeCalls": {
+      "type": "integer",
+      "description": "Current number of active calls"
+    },
+    "callsInProgress": {
+      "type": "object"
+    },
+    "callsPerSecond": {
+      "type": "number",
+      "description": "Current calls per second rate"
+    },
+    "peakActiveCalls": {
+      "type": "integer",
+      "description": "Peak active calls in current period"
+    },
+    "serverMetrics": {
+      "type": "array"
+    }
+  }
+}

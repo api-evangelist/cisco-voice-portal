@@ -19,24 +19,24 @@ info:
   x-provider: cisco
   x-product: unified-customer-voice-portal
 servers:
-  - url: https://{oamp-server}:9443/oamp/rest
-    description: CVP OAMP Server REST API
-    variables:
-      oamp-server:
-        default: cvp-oamp.example.com
-        description: Hostname or IP of the CVP OAMP Server
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
 paths:
   /device:
     get:
       operationId: listDevices
-      summary: Cisco Voice Portal List all managed devices
+      summary: Cisco Voice Portal List All Managed Devices
       description: >-
         Retrieves a list of all devices registered with the CVP OAMP Server,
         including Call Servers, VXML Servers, Reporting Servers, and Media
         Servers. Each device entry contains its type, hostname, IP address,
         and current operational status.
       tags:
-        - Device Management
+      - Device Management
       responses:
         '200':
           description: List of managed devices
@@ -50,14 +50,17 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: addDevice
-      summary: Cisco Voice Portal Add a new device
+      summary: Cisco Voice Portal Add a New Device
       description: >-
         Registers a new device (Call Server, VXML Server, Reporting Server,
         or Media Server) with the CVP OAMP Server for centralized management.
       tags:
-        - Device Management
+      - Device Management
       requestBody:
         required: true
         content:
@@ -79,17 +82,20 @@ paths:
           description: Device with this hostname or IP already exists
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /device/{deviceId}:
     get:
       operationId: getDevice
-      summary: Cisco Voice Portal Get device details
+      summary: Cisco Voice Portal Get Device Details
       description: >-
         Retrieves detailed information about a specific managed device,
         including its configuration, status, and associated services.
       tags:
-        - Device Management
+      - Device Management
       parameters:
-        - $ref: '#/components/parameters/DeviceId'
+      - $ref: '#/components/parameters/DeviceId'
       responses:
         '200':
           description: Device details
@@ -103,16 +109,19 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateDevice
-      summary: Cisco Voice Portal Update device configuration
+      summary: Cisco Voice Portal Update Device Configuration
       description: >-
         Updates the configuration of an existing managed device. Changes may
         require a device restart to take effect.
       tags:
-        - Device Management
+      - Device Management
       parameters:
-        - $ref: '#/components/parameters/DeviceId'
+      - $ref: '#/components/parameters/DeviceId'
       requestBody:
         required: true
         content:
@@ -134,16 +143,19 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteDevice
-      summary: Cisco Voice Portal Remove a managed device
+      summary: Cisco Voice Portal Remove a Managed Device
       description: >-
         Removes a device from the CVP OAMP management. The device itself is not
         uninstalled but is no longer managed centrally.
       tags:
-        - Device Management
+      - Device Management
       parameters:
-        - $ref: '#/components/parameters/DeviceId'
+      - $ref: '#/components/parameters/DeviceId'
       responses:
         '204':
           description: Device removed successfully
@@ -153,17 +165,20 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /device/{deviceId}/status:
     get:
       operationId: getDeviceStatus
-      summary: Cisco Voice Portal Get device operational status
+      summary: Cisco Voice Portal Get Device Operational Status
       description: >-
         Retrieves the current operational status of a managed device, including
         service status, resource utilization, and connectivity state.
       tags:
-        - Device Management
+      - Device Management
       parameters:
-        - $ref: '#/components/parameters/DeviceId'
+      - $ref: '#/components/parameters/DeviceId'
       responses:
         '200':
           description: Device status information
@@ -177,18 +192,21 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /device/{deviceId}/restart:
     post:
       operationId: restartDevice
-      summary: Cisco Voice Portal Restart a device service
+      summary: Cisco Voice Portal Restart a Device Service
       description: >-
         Initiates a restart of the CVP service on the specified device. This
         operation is asynchronous and the device status can be monitored via
         the status endpoint.
       tags:
-        - Device Management
+      - Device Management
       parameters:
-        - $ref: '#/components/parameters/DeviceId'
+      - $ref: '#/components/parameters/DeviceId'
       responses:
         '202':
           description: Restart initiated
@@ -202,16 +220,19 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /callserver:
     get:
       operationId: listCallServers
-      summary: Cisco Voice Portal List all Call Servers
+      summary: Cisco Voice Portal List All Call Servers
       description: >-
         Retrieves a list of all CVP Call Servers managed by the OAMP Server.
         Call Servers handle SIP call control and routing within the CVP
         deployment.
       tags:
-        - Call Server Management
+      - Call Server Management
       responses:
         '200':
           description: List of Call Servers
@@ -225,18 +246,21 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /callserver/{serverId}/config:
     get:
       operationId: getCallServerConfig
-      summary: Cisco Voice Portal Get Call Server configuration
+      summary: Cisco Voice Portal Get Call Server Configuration
       description: >-
         Retrieves the full configuration of a specific Call Server, including
         SIP settings, call routing rules, dialed number patterns, and
         connection settings to ICM/UCCE.
       tags:
-        - Call Server Management
+      - Call Server Management
       parameters:
-        - $ref: '#/components/parameters/ServerId'
+      - $ref: '#/components/parameters/ServerId'
       responses:
         '200':
           description: Call Server configuration
@@ -250,16 +274,19 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateCallServerConfig
-      summary: Cisco Voice Portal Update Call Server configuration
+      summary: Cisco Voice Portal Update Call Server Configuration
       description: >-
         Updates the configuration of a specific Call Server. Changes to SIP
         and routing configuration may require a service restart.
       tags:
-        - Call Server Management
+      - Call Server Management
       parameters:
-        - $ref: '#/components/parameters/ServerId'
+      - $ref: '#/components/parameters/ServerId'
       requestBody:
         required: true
         content:
@@ -281,16 +308,19 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /vxmlserver:
     get:
       operationId: listVxmlServers
-      summary: Cisco Voice Portal List all VXML Servers
+      summary: Cisco Voice Portal List All Vxml Servers
       description: >-
         Retrieves a list of all CVP VXML Servers. VXML Servers host and execute
         VoiceXML applications that provide interactive voice response (IVR)
         functionality.
       tags:
-        - VXML Server Management
+      - VXML Server Management
       responses:
         '200':
           description: List of VXML Servers
@@ -304,18 +334,21 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /vxmlserver/{serverId}/config:
     get:
       operationId: getVxmlServerConfig
-      summary: Cisco Voice Portal Get VXML Server configuration
+      summary: Cisco Voice Portal Get Vxml Server Configuration
       description: >-
         Retrieves the configuration of a specific VXML Server, including
         application settings, thread pool configuration, and VXML browser
         settings.
       tags:
-        - VXML Server Management
+      - VXML Server Management
       parameters:
-        - $ref: '#/components/parameters/ServerId'
+      - $ref: '#/components/parameters/ServerId'
       responses:
         '200':
           description: VXML Server configuration
@@ -329,17 +362,20 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateVxmlServerConfig
-      summary: Cisco Voice Portal Update VXML Server configuration
+      summary: Cisco Voice Portal Update Vxml Server Configuration
       description: >-
         Updates the configuration of a specific VXML Server. Application
         deployment changes take effect immediately; server configuration
         changes may require a restart.
       tags:
-        - VXML Server Management
+      - VXML Server Management
       parameters:
-        - $ref: '#/components/parameters/ServerId'
+      - $ref: '#/components/parameters/ServerId'
       requestBody:
         required: true
         content:
@@ -361,35 +397,38 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /application:
     get:
       operationId: listApplications
-      summary: Cisco Voice Portal List deployed applications
+      summary: Cisco Voice Portal List Deployed Applications
       description: >-
         Retrieves a list of all VXML and call studio applications deployed
         across the CVP infrastructure. Includes deployment status and
         associated server assignments.
       tags:
-        - Application Management
+      - Application Management
       parameters:
-        - name: type
-          in: query
-          description: Filter by application type
-          schema:
-            type: string
-            enum:
-              - vxml
-              - callstudio
-              - microapp
-        - name: status
-          in: query
-          description: Filter by deployment status
-          schema:
-            type: string
-            enum:
-              - deployed
-              - undeployed
-              - error
+      - name: type
+        in: query
+        description: Filter by application type
+        schema:
+          type: string
+          enum:
+          - vxml
+          - callstudio
+          - microapp
+      - name: status
+        in: query
+        description: Filter by deployment status
+        schema:
+          type: string
+          enum:
+          - deployed
+          - undeployed
+          - error
       responses:
         '200':
           description: List of applications
@@ -403,15 +442,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: deployApplication
-      summary: Cisco Voice Portal Deploy a new application
+      summary: Cisco Voice Portal Deploy a New Application
       description: >-
         Deploys a VXML or Call Studio application to designated VXML Servers.
         The application archive is uploaded and distributed to the target
         servers.
       tags:
-        - Application Management
+      - Application Management
       requestBody:
         required: true
         content:
@@ -419,8 +461,8 @@ paths:
             schema:
               type: object
               required:
-                - applicationName
-                - applicationFile
+              - applicationName
+              - applicationFile
               properties:
                 applicationName:
                   type: string
@@ -428,9 +470,9 @@ paths:
                 applicationType:
                   type: string
                   enum:
-                    - vxml
-                    - callstudio
-                    - microapp
+                  - vxml
+                  - callstudio
+                  - microapp
                   description: Type of the application
                 applicationFile:
                   type: string
@@ -454,17 +496,20 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /application/{applicationId}:
     get:
       operationId: getApplication
-      summary: Cisco Voice Portal Get application details
+      summary: Cisco Voice Portal Get Application Details
       description: >-
         Retrieves detailed information about a deployed application, including
         deployment status on each server and configuration parameters.
       tags:
-        - Application Management
+      - Application Management
       parameters:
-        - $ref: '#/components/parameters/ApplicationId'
+      - $ref: '#/components/parameters/ApplicationId'
       responses:
         '200':
           description: Application details
@@ -478,16 +523,19 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: undeployApplication
-      summary: Cisco Voice Portal Undeploy an application
+      summary: Cisco Voice Portal Undeploy an Application
       description: >-
         Removes a deployed application from all associated VXML Servers. Active
         calls using the application are allowed to complete before removal.
       tags:
-        - Application Management
+      - Application Management
       parameters:
-        - $ref: '#/components/parameters/ApplicationId'
+      - $ref: '#/components/parameters/ApplicationId'
       responses:
         '202':
           description: Undeployment initiated
@@ -501,16 +549,19 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /dialedNumberPattern:
     get:
       operationId: listDialedNumberPatterns
-      summary: Cisco Voice Portal List dialed number patterns
+      summary: Cisco Voice Portal List Dialed Number Patterns
       description: >-
         Retrieves all configured dialed number patterns (DNPs). DNPs define
         how incoming calls are routed to specific applications or call
         treatments based on the dialed number.
       tags:
-        - Dialed Number Patterns
+      - Dialed Number Patterns
       responses:
         '200':
           description: List of dialed number patterns
@@ -524,14 +575,17 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createDialedNumberPattern
-      summary: Cisco Voice Portal Create a dialed number pattern
+      summary: Cisco Voice Portal Create a Dialed Number Pattern
       description: >-
         Creates a new dialed number pattern to route incoming calls to the
         appropriate application or call treatment.
       tags:
-        - Dialed Number Patterns
+      - Dialed Number Patterns
       requestBody:
         required: true
         content:
@@ -553,18 +607,21 @@ paths:
           description: Pattern already exists
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /dialedNumberPattern/{patternId}:
     get:
       operationId: getDialedNumberPattern
-      summary: Cisco Voice Portal Get dialed number pattern details
+      summary: Cisco Voice Portal Get Dialed Number Pattern Details
       tags:
-        - Dialed Number Patterns
+      - Dialed Number Patterns
       parameters:
-        - name: patternId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: patternId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Pattern details
@@ -576,17 +633,20 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateDialedNumberPattern
-      summary: Cisco Voice Portal Update a dialed number pattern
+      summary: Cisco Voice Portal Update a Dialed Number Pattern
       tags:
-        - Dialed Number Patterns
+      - Dialed Number Patterns
       parameters:
-        - name: patternId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: patternId
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -606,17 +666,20 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteDialedNumberPattern
-      summary: Cisco Voice Portal Delete a dialed number pattern
+      summary: Cisco Voice Portal Delete a Dialed Number Pattern
       tags:
-        - Dialed Number Patterns
+      - Dialed Number Patterns
       parameters:
-        - name: patternId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: patternId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '204':
           description: Pattern deleted
@@ -624,16 +687,19 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /sipserver:
     get:
       operationId: listSipServers
-      summary: Cisco Voice Portal List SIP server groups
+      summary: Cisco Voice Portal List Sip Server Groups
       description: >-
         Retrieves the configured SIP server groups used for call routing.
         Server groups define clusters of SIP endpoints (such as CUCM, SBCs,
         or gateways) that the CVP Call Server communicates with.
       tags:
-        - SIP Configuration
+      - SIP Configuration
       responses:
         '200':
           description: List of SIP server groups
@@ -647,14 +713,17 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createSipServerGroup
-      summary: Cisco Voice Portal Create a SIP server group
+      summary: Cisco Voice Portal Create a Sip Server Group
       description: >-
         Creates a new SIP server group for call routing purposes. Server groups
         allow load balancing and failover across multiple SIP endpoints.
       tags:
-        - SIP Configuration
+      - SIP Configuration
       requestBody:
         required: true
         content:
@@ -674,15 +743,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /system/config:
     get:
       operationId: getSystemConfig
-      summary: Cisco Voice Portal Get system-wide configuration
+      summary: Cisco Voice Portal Get System-wide Configuration
       description: >-
         Retrieves global system configuration settings including logging levels,
         security settings, and system-wide defaults.
       tags:
-        - System Configuration
+      - System Configuration
       responses:
         '200':
           description: System configuration
@@ -694,11 +766,14 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateSystemConfig
-      summary: Cisco Voice Portal Update system-wide configuration
+      summary: Cisco Voice Portal Update System-wide Configuration
       tags:
-        - System Configuration
+      - System Configuration
       requestBody:
         required: true
         content:
@@ -718,15 +793,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /system/license:
     get:
       operationId: getLicenseInfo
-      summary: Cisco Voice Portal Get licensing information
+      summary: Cisco Voice Portal Get Licensing Information
       description: >-
         Retrieves current licensing information including licensed features,
         port capacity, and license expiration status.
       tags:
-        - System Configuration
+      - System Configuration
       responses:
         '200':
           description: License information
@@ -738,15 +816,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /user:
     get:
       operationId: listUsers
-      summary: Cisco Voice Portal List OAMP users
+      summary: Cisco Voice Portal List Oamp Users
       description: >-
         Retrieves a list of users with access to the CVP OAMP management
         interface. Users are assigned roles that determine their access level.
       tags:
-        - User Management
+      - User Management
       responses:
         '200':
           description: List of users
@@ -760,11 +841,14 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createUser
-      summary: Cisco Voice Portal Create an OAMP user
+      summary: Cisco Voice Portal Create an Oamp User
       tags:
-        - User Management
+      - User Management
       requestBody:
         required: true
         content:
@@ -786,16 +870,19 @@ paths:
           description: Username already exists
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /deployment:
     post:
       operationId: deployConfiguration
-      summary: Cisco Voice Portal Deploy configuration to devices
+      summary: Cisco Voice Portal Deploy Configuration to Devices
       description: >-
         Pushes the current OAMP configuration to specified devices or all
         managed devices. This synchronizes the centrally managed configuration
         with the actual device configurations.
       tags:
-        - Deployment
+      - Deployment
       requestBody:
         required: true
         content:
@@ -825,20 +912,23 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /deployment/{operationId}:
     get:
       operationId: getDeploymentStatus
-      summary: Cisco Voice Portal Get deployment operation status
+      summary: Cisco Voice Portal Get Deployment Operation Status
       description: >-
         Retrieves the status of an ongoing or completed deployment operation.
       tags:
-        - Deployment
+      - Deployment
       parameters:
-        - name: operationId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: operationId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Deployment status
@@ -852,6 +942,9 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     basicAuth:
@@ -921,61 +1014,73 @@ components:
         deviceId:
           type: string
           description: Unique identifier for the device
+          example: '500123'
         hostname:
           type: string
           description: Hostname of the device
+          example: example_value
         ipAddress:
           type: string
           format: ipv4
           description: IP address of the device
+          example: example_value
         deviceType:
           type: string
           enum:
-            - CallServer
-            - VXMLServer
-            - ReportingServer
-            - MediaServer
-            - OAMPServer
+          - CallServer
+          - VXMLServer
+          - ReportingServer
+          - MediaServer
+          - OAMPServer
           description: Type of CVP component
+          example: CallServer
         description:
           type: string
           description: Device description
+          example: A sample description.
         status:
           type: string
           enum:
-            - online
-            - offline
-            - maintenance
-            - error
+          - online
+          - offline
+          - maintenance
+          - error
           description: Current operational status
+          example: online
         version:
           type: string
           description: Software version installed on the device
+          example: example_value
         lastContact:
           type: string
           format: date-time
           description: Last time the OAMP server contacted this device
+          example: '2026-01-15T10:30:00Z'
     DeviceCreateRequest:
       type: object
       required:
-        - hostname
-        - ipAddress
-        - deviceType
+      - hostname
+      - ipAddress
+      - deviceType
       properties:
         hostname:
           type: string
+          example: example_value
         ipAddress:
           type: string
           format: ipv4
+          example: example_value
         deviceType:
           type: string
           enum:
-            - CallServer
-            - VXMLServer
-            - ReportingServer
-            - MediaServer
+          - CallServer
+          - VXMLServer
+          - ReportingServer
+          - MediaServer
+          example: CallServer
         description:
           type: string
+          example: A sample description.
         credentials:
           type: object
           properties:
@@ -984,28 +1089,34 @@ components:
             password:
               type: string
               format: password
+          example: example_value
     DeviceUpdateRequest:
       type: object
       properties:
         hostname:
           type: string
+          example: example_value
         ipAddress:
           type: string
           format: ipv4
+          example: example_value
         description:
           type: string
+          example: A sample description.
     DeviceStatus:
       type: object
       properties:
         deviceId:
           type: string
+          example: '500123'
         status:
           type: string
           enum:
-            - online
-            - offline
-            - maintenance
-            - error
+          - online
+          - offline
+          - maintenance
+          - error
+          example: online
         services:
           type: array
           items:
@@ -1016,54 +1127,67 @@ components:
               status:
                 type: string
                 enum:
-                  - running
-                  - stopped
-                  - error
+                - running
+                - stopped
+                - error
               uptime:
                 type: string
                 description: Service uptime duration
+          example: []
         cpuUsage:
           type: number
           format: float
           description: CPU usage percentage
+          example: 42.5
         memoryUsage:
           type: number
           format: float
           description: Memory usage percentage
+          example: 42.5
         activeCalls:
           type: integer
           description: Number of active calls on this device
+          example: 10
         timestamp:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
     CallServer:
       type: object
       properties:
         serverId:
           type: string
+          example: '500123'
         hostname:
           type: string
+          example: example_value
         ipAddress:
           type: string
           format: ipv4
+          example: example_value
         sipPort:
           type: integer
           default: 5060
+          example: 10
         status:
           type: string
           enum:
-            - online
-            - offline
-            - maintenance
+          - online
+          - offline
+          - maintenance
+          example: online
         activeCalls:
           type: integer
+          example: 10
         maxCalls:
           type: integer
+          example: 10
     CallServerConfig:
       type: object
       properties:
         serverId:
           type: string
+          example: '500123'
         sip:
           type: object
           properties:
@@ -1073,15 +1197,16 @@ components:
             transport:
               type: string
               enum:
-                - UDP
-                - TCP
-                - TLS
+              - UDP
+              - TCP
+              - TLS
               default: UDP
             maxConnections:
               type: integer
             heartbeatInterval:
               type: integer
               description: SIP OPTIONS heartbeat interval in seconds
+          example: example_value
         icm:
           type: object
           properties:
@@ -1094,6 +1219,7 @@ components:
             maxCallDuration:
               type: integer
               description: Maximum call duration in seconds
+          example: example_value
         callRouting:
           type: object
           properties:
@@ -1106,36 +1232,45 @@ components:
               type: string
             errorApplication:
               type: string
+          example: example_value
     VxmlServer:
       type: object
       properties:
         serverId:
           type: string
+          example: '500123'
         hostname:
           type: string
+          example: example_value
         ipAddress:
           type: string
           format: ipv4
+          example: example_value
         httpPort:
           type: integer
           default: 7000
+          example: 10
         httpsPort:
           type: integer
           default: 7443
+          example: 10
         status:
           type: string
           enum:
-            - online
-            - offline
-            - maintenance
+          - online
+          - offline
+          - maintenance
+          example: online
         deployedApplications:
           type: integer
           description: Number of applications deployed on this server
+          example: 10
     VxmlServerConfig:
       type: object
       properties:
         serverId:
           type: string
+          example: '500123'
         http:
           type: object
           properties:
@@ -1148,6 +1283,7 @@ components:
             enableHttps:
               type: boolean
               default: true
+          example: example_value
         threadPool:
           type: object
           properties:
@@ -1157,6 +1293,7 @@ components:
             maxThreads:
               type: integer
               default: 500
+          example: example_value
         vxmlBrowser:
           type: object
           properties:
@@ -1170,42 +1307,49 @@ components:
             defaultLanguage:
               type: string
               default: en-US
+          example: example_value
         logging:
           type: object
           properties:
             level:
               type: string
               enum:
-                - ERROR
-                - WARN
-                - INFO
-                - DEBUG
-                - TRACE
+              - ERROR
+              - WARN
+              - INFO
+              - DEBUG
+              - TRACE
             maxLogFileSize:
               type: string
               description: Maximum log file size (e.g., 10MB)
+          example: example_value
     Application:
       type: object
       properties:
         applicationId:
           type: string
+          example: '500123'
         applicationName:
           type: string
+          example: example_value
         applicationType:
           type: string
           enum:
-            - vxml
-            - callstudio
-            - microapp
+          - vxml
+          - callstudio
+          - microapp
+          example: vxml
         status:
           type: string
           enum:
-            - deployed
-            - undeployed
-            - deploying
-            - error
+          - deployed
+          - undeployed
+          - deploying
+          - error
+          example: deployed
         version:
           type: string
+          example: example_value
         deployedServers:
           type: array
           items:
@@ -1218,69 +1362,86 @@ components:
               deploymentStatus:
                 type: string
                 enum:
-                  - deployed
-                  - pending
-                  - error
+                - deployed
+                - pending
+                - error
+          example: []
         createdAt:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         updatedAt:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
     DialedNumberPattern:
       type: object
       properties:
         patternId:
           type: string
+          example: '500123'
         pattern:
           type: string
           description: >-
             The dialed number pattern (supports wildcards). Example: 1800555*
+          example: example_value
         description:
           type: string
+          example: A sample description.
         callType:
           type: string
           enum:
-            - preroute
-            - translation_route
-            - post_route
+          - preroute
+          - translation_route
+          - post_route
           description: Call type for ICM routing
+          example: preroute
         applicationName:
           type: string
           description: Associated VXML application name
+          example: example_value
         enabled:
           type: boolean
           default: true
+          example: true
     DialedNumberPatternCreate:
       type: object
       required:
-        - pattern
-        - callType
+      - pattern
+      - callType
       properties:
         pattern:
           type: string
+          example: example_value
         description:
           type: string
+          example: A sample description.
         callType:
           type: string
           enum:
-            - preroute
-            - translation_route
-            - post_route
+          - preroute
+          - translation_route
+          - post_route
+          example: preroute
         applicationName:
           type: string
+          example: example_value
         enabled:
           type: boolean
           default: true
+          example: true
     SipServerGroup:
       type: object
       properties:
         groupId:
           type: string
+          example: '500123'
         groupName:
           type: string
+          example: example_value
         description:
           type: string
+          example: A sample description.
         servers:
           type: array
           items:
@@ -1298,30 +1459,34 @@ components:
                 type: integer
               weight:
                 type: integer
+          example: []
         loadBalancing:
           type: string
           enum:
-            - round_robin
-            - top_down
-            - weight_based
+          - round_robin
+          - top_down
+          - weight_based
           default: round_robin
+          example: round_robin
     SipServerGroupCreate:
       type: object
       required:
-        - groupName
-        - servers
+      - groupName
+      - servers
       properties:
         groupName:
           type: string
+          example: example_value
         description:
           type: string
+          example: A sample description.
         servers:
           type: array
           items:
             type: object
             required:
-              - hostname
-              - ipAddress
+            - hostname
+            - ipAddress
             properties:
               hostname:
                 type: string
@@ -1337,13 +1502,15 @@ components:
               weight:
                 type: integer
                 default: 100
+          example: []
         loadBalancing:
           type: string
           enum:
-            - round_robin
-            - top_down
-            - weight_based
+          - round_robin
+          - top_down
+          - weight_based
           default: round_robin
+          example: round_robin
     SystemConfig:
       type: object
       properties:
@@ -1353,16 +1520,17 @@ components:
             globalLogLevel:
               type: string
               enum:
-                - ERROR
-                - WARN
-                - INFO
-                - DEBUG
-                - TRACE
+              - ERROR
+              - WARN
+              - INFO
+              - DEBUG
+              - TRACE
             syslogServer:
               type: string
             syslogPort:
               type: integer
               default: 514
+          example: example_value
         security:
           type: object
           properties:
@@ -1391,6 +1559,7 @@ components:
                 maxAge:
                   type: integer
                   description: Password max age in days
+          example: example_value
         snmp:
           type: object
           properties:
@@ -1401,132 +1570,159 @@ components:
               type: string
             trapDestination:
               type: string
+          example: example_value
     LicenseInfo:
       type: object
       properties:
         licenseType:
           type: string
           enum:
-            - standard
-            - premium
-            - enterprise
+          - standard
+          - premium
+          - enterprise
+          example: standard
         maxPorts:
           type: integer
           description: Maximum number of concurrent call ports
+          example: 10
         usedPorts:
           type: integer
           description: Currently used call ports
+          example: 10
         features:
           type: array
           items:
             type: string
           description: Licensed feature list
+          example: []
         expirationDate:
           type: string
           format: date
+          example: '2026-01-15'
         status:
           type: string
           enum:
-            - active
-            - expired
-            - grace_period
+          - active
+          - expired
+          - grace_period
+          example: active
     User:
       type: object
       properties:
         userId:
           type: string
+          example: '500123'
         username:
           type: string
+          example: example_value
         role:
           type: string
           enum:
-            - administrator
-            - operator
-            - read_only
+          - administrator
+          - operator
+          - read_only
+          example: administrator
         email:
           type: string
           format: email
+          example: user@example.com
         lastLogin:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         enabled:
           type: boolean
+          example: true
     UserCreate:
       type: object
       required:
-        - username
-        - password
-        - role
+      - username
+      - password
+      - role
       properties:
         username:
           type: string
+          example: example_value
         password:
           type: string
           format: password
+          example: example_value
         role:
           type: string
           enum:
-            - administrator
-            - operator
-            - read_only
+          - administrator
+          - operator
+          - read_only
+          example: administrator
         email:
           type: string
           format: email
+          example: user@example.com
     OperationStatus:
       type: object
       properties:
         operationId:
           type: string
+          example: '500123'
         status:
           type: string
           enum:
-            - pending
-            - in_progress
-            - completed
-            - failed
+          - pending
+          - in_progress
+          - completed
+          - failed
+          example: pending
         message:
           type: string
+          example: example_value
         startedAt:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         completedAt:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         progress:
           type: number
           format: float
           description: Progress percentage (0-100)
+          example: 42.5
     Error:
       type: object
       properties:
         code:
           type: string
+          example: example_value
         message:
           type: string
+          example: example_value
         details:
           type: string
+          example: example_value
         timestamp:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
 security:
-  - basicAuth: []
-  - sessionCookie: []
+- basicAuth: []
+- sessionCookie: []
 tags:
-  - name: Application Management
-    description: Deploy and manage VXML and Call Studio applications
-  - name: Call Server Management
-    description: Configure and manage CVP Call Servers
-  - name: Deployment
-    description: Deploy configuration to managed devices
-  - name: Device Management
-    description: Manage CVP devices (Call Servers, VXML Servers, Reporting Servers)
-  - name: Dialed Number Patterns
-    description: Manage call routing dialed number patterns
-  - name: SIP Configuration
-    description: Configure SIP server groups and settings
-  - name: System Configuration
-    description: Global system settings and licensing
-  - name: User Management
-    description: Manage OAMP user accounts
-  - name: VXML Server Management
-    description: Configure and manage CVP VXML Servers
+- name: Application Management
+  description: Deploy and manage VXML and Call Studio applications
+- name: Call Server Management
+  description: Configure and manage CVP Call Servers
+- name: Deployment
+  description: Deploy configuration to managed devices
+- name: Device Management
+  description: Manage CVP devices (Call Servers, VXML Servers, Reporting Servers)
+- name: Dialed Number Patterns
+  description: Manage call routing dialed number patterns
+- name: SIP Configuration
+  description: Configure SIP server groups and settings
+- name: System Configuration
+  description: Global system settings and licensing
+- name: User Management
+  description: Manage OAMP user accounts
+- name: VXML Server Management
+  description: Configure and manage CVP VXML Servers

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CallDetailRecord",
+  "type": "object",
+  "properties": {
+    "callGuid": {
+      "type": "string"
+    },
+    "callStartTime": {
+      "type": "string"
+    },
+    "callEndTime": {
+      "type": "string"
+    },
+    "callingNumber": {
+      "type": "string"
+    },
+    "calledNumber": {
+      "type": "string"
+    },
+    "callResult": {
+      "type": "string"
+    },
+    "callDuration": {
+      "type": "integer"
+    },
+    "selfServiceDuration": {
+      "type": "integer"
+    },
+    "queueDuration": {
+      "type": "integer"
+    },
+    "applicationName": {
+      "type": "string"
+    },
+    "callServerHostname": {
+      "type": "string"
+    },
+    "vxmlServerHostname": {
+      "type": "string"
+    },
+    "sipCallId": {
+      "type": "string"
+    },
+    "icmCallKey": {
+      "type": "string"
+    },
+    "eccVariables": {
+      "type": "object"
+    },
+    "transferDestination": {
+      "type": "string"
+    },
+    "errorCode": {
+      "type": "string"
+    }
+  }
+}

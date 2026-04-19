@@ -1,0 +1,12 @@
+{
+  "serverName": "example_value",
+  "status": "example_value",
+  "uptime": "example_value",
+  "version": "example_value",
+  "activeCalls": 10,
+  "maxCalls": 10,
+  "sipStackStatus": "example_value",
+  "cpuUsage": 42.5,
+  "memoryUsage": 42.5,
+  "timestamp": "example_value"
+}

@@ -1,0 +1,19 @@
+{
+  "callGuid": "500123",
+  "callStartTime": "example_value",
+  "callEndTime": "example_value",
+  "callingNumber": "example_value",
+  "calledNumber": "example_value",
+  "callResult": "example_value",
+  "callDuration": 10,
+  "selfServiceDuration": 10,
+  "queueDuration": 10,
+  "applicationName": "example_value",
+  "callServerHostname": "example_value",
+  "vxmlServerHostname": "example_value",
+  "sipCallId": "500123",
+  "icmCallKey": "example_value",
+  "eccVariables": "example_value",
+  "transferDestination": "example_value",
+  "errorCode": "example_value"
+}

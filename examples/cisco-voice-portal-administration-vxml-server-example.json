@@ -1,0 +1,9 @@
+{
+  "serverId": "500123",
+  "hostname": "example_value",
+  "ipAddress": "example_value",
+  "httpPort": 10,
+  "httpsPort": 10,
+  "status": "example_value",
+  "deployedApplications": 10
+}

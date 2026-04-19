@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DialedNumberPattern",
+  "type": "object",
+  "properties": {
+    "patternId": {
+      "type": "string"
+    },
+    "pattern": {
+      "type": "string",
+      "description": "The dialed number pattern (supports wildcards). Example: 1800555*"
+    },
+    "description": {
+      "type": "string"
+    },
+    "callType": {
+      "type": "string",
+      "description": "Call type for ICM routing"
+    },
+    "applicationName": {
+      "type": "string",
+      "description": "Associated VXML application name"
+    },
+    "enabled": {
+      "type": "boolean"
+    }
+  }
+}

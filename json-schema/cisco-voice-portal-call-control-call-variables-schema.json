@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CallVariables",
+  "type": "object",
+  "properties": {
+    "callGuid": {
+      "type": "string"
+    },
+    "eccVariables": {
+      "type": "object",
+      "description": "Expanded Call Context variables"
+    },
+    "peripheralVariables": {
+      "type": "object",
+      "description": "ICM peripheral variables (1-10)"
+    },
+    "callVariables": {
+      "type": "object",
+      "description": "ICM call variables (1-10)"
+    }
+  }
+}

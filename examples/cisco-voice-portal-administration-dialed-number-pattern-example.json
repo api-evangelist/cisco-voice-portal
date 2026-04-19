@@ -1,0 +1,8 @@
+{
+  "patternId": "500123",
+  "pattern": "example_value",
+  "description": "A sample description.",
+  "callType": "example_value",
+  "applicationName": "example_value",
+  "enabled": true
+}

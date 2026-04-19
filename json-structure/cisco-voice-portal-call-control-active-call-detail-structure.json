@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ActiveCallDetail",
+  "type": "object",
+  "properties": {
+    "callGuid": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "callingNumber": {
+      "type": "string"
+    },
+    "calledNumber": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "applicationName": {
+      "type": "string"
+    },
+    "sipCallId": {
+      "type": "string"
+    },
+    "sipFromTag": {
+      "type": "string"
+    },
+    "sipToTag": {
+      "type": "string"
+    },
+    "icmRouteResult": {
+      "type": "object"
+    },
+    "vxmlServer": {
+      "type": "string"
+    },
+    "callHistory": {
+      "type": "array"
+    },
+    "eccVariables": {
+      "type": "object"
+    }
+  }
+}

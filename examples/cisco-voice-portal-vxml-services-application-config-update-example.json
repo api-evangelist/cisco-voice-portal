@@ -1,0 +1,8 @@
+{
+  "parameters": "example_value",
+  "defaultLanguage": "example_value",
+  "fetchTimeout": 10,
+  "maxSessionDuration": 10,
+  "inputModes": [],
+  "loggingLevel": "example_value"
+}

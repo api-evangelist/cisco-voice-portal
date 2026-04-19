@@ -1,0 +1,30 @@
+name: cisco-voice-portal API Vocabulary
+provider: cisco-voice-portal
+created: '2026-04-19'
+modified: '2026-04-19'
+operations: 68
+schemas: 57
+tags:
+- Application Configuration
+- Application Management
+- Call Detail Records
+- Call Management
+- Call Routing
+- Call Server Management
+- Deployment
+- Device Management
+- Dialed Number Patterns
+- Grammar Management
+- Health
+- Historical Reports
+- Media Management
+- Micro-Applications
+- Real-Time Statistics
+- Report Templates
+- SIP Configuration
+- SIP Sessions
+- Server Status
+- Session Monitoring
+- System Configuration
+- User Management
+- VXML Server Management

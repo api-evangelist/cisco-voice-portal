@@ -1,0 +1,12 @@
+{
+  "legId": "500123",
+  "callGuid": "500123",
+  "legType": "example_value",
+  "startTime": "example_value",
+  "endTime": "example_value",
+  "duration": 10,
+  "fromUri": "example_value",
+  "toUri": "example_value",
+  "serverHostname": "example_value",
+  "sipResponseCode": 10
+}

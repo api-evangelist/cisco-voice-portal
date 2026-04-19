@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CallFlowElement",
+  "type": "object",
+  "properties": {
+    "elementName": {
+      "type": "string"
+    },
+    "elementType": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "configParameters": {
+      "type": "object"
+    },
+    "exits": {
+      "type": "array"
+    }
+  }
+}

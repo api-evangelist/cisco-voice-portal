@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CallFlowElement",
+  "type": "object",
+  "properties": {
+    "elementName": {
+      "type": "string",
+      "description": "Name of the call flow element"
+    },
+    "elementType": {
+      "type": "string",
+      "description": "Type of element. Voice elements interact with the caller, action elements perform backend operations, decision elements control flow logic, and subdialog elements invoke sub-applications."
+    },
+    "description": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string",
+      "description": "Java class implementing the element"
+    },
+    "configParameters": {
+      "type": "object",
+      "description": "Element-specific configuration"
+    },
+    "exits": {
+      "type": "array",
+      "description": "Element exit paths and their targets"
+    }
+  }
+}

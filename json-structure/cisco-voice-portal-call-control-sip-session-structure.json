@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "SipSession",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string"
+    },
+    "callId": {
+      "type": "string"
+    },
+    "callGuid": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "method": {
+      "type": "string"
+    },
+    "fromUri": {
+      "type": "string"
+    },
+    "toUri": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    }
+  }
+}

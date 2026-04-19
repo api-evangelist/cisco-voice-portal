@@ -1,0 +1,9 @@
+{
+  "callGuid": "500123",
+  "state": "example_value",
+  "callingNumber": "example_value",
+  "calledNumber": "example_value",
+  "startTime": "example_value",
+  "duration": 10,
+  "applicationName": "example_value"
+}

@@ -1,0 +1,8 @@
+{
+  "timestamp": "example_value",
+  "activeCalls": 10,
+  "callsInProgress": "example_value",
+  "callsPerSecond": 42.5,
+  "peakActiveCalls": 10,
+  "serverMetrics": []
+}

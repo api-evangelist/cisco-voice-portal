@@ -1,0 +1,100 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Cisco Voice Portal Administration API"
+  description: "OAMP REST API for managing devices, applications, dialed number patterns, SIP server groups, and deployment operations."
+  tags:
+    - Cisco
+    - Voice Portal
+    - Administration
+    - OAMP
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      CVP_ADMIN_USERNAME: CVP_ADMIN_USERNAME
+      CVP_ADMIN_PASSWORD: CVP_ADMIN_PASSWORD
+
+capability:
+  consumes:
+    - type: http
+      namespace: administration
+      baseUri: https://cvp-oamp.example.com:9443/oamp/rest
+      description: "CVP OAMP REST API"
+      authentication:
+        type: basic
+        username: "{{CVP_ADMIN_USERNAME}}"
+        password: "{{CVP_ADMIN_PASSWORD}}"
+      resources:
+        - name: devices
+          path: /device
+          description: "Device management"
+          operations:
+            - name: list-devices
+              method: GET
+              description: "List managed devices"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: applications
+          path: /application
+          description: "Application management"
+          operations:
+            - name: list-applications
+              method: GET
+              description: "List deployed applications"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: dialed-number-patterns
+          path: /dialedNumberPattern
+          description: "Dialed number pattern management"
+          operations:
+            - name: list-dialed-number-patterns
+              method: GET
+              description: "List dialed number patterns"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: mcp
+      port: 9102
+      namespace: administration-mcp
+      transport: http
+      tools:
+        - name: list-devices
+          description: "List managed CVP devices"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "administration.list-devices"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-applications
+          description: "List deployed CVP applications"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "administration.list-applications"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-dialed-number-patterns
+          description: "List dialed number patterns"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "administration.list-dialed-number-patterns"
+          outputParameters:
+            - type: object
+              mapping: "$."

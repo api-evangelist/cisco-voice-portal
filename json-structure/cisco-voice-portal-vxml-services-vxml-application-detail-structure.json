@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "VxmlApplicationDetail",
+  "type": "object",
+  "properties": {
+    "applicationName": {
+      "type": "string"
+    },
+    "applicationType": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "activeSessions": {
+      "type": "integer"
+    },
+    "deployedAt": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "entryPoint": {
+      "type": "string"
+    },
+    "elements": {
+      "type": "array"
+    },
+    "mediaDirectory": {
+      "type": "string"
+    },
+    "grammarDirectory": {
+      "type": "string"
+    },
+    "configParameters": {
+      "type": "object"
+    }
+  }
+}

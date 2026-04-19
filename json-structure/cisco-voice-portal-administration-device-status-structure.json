@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "DeviceStatus",
+  "type": "object",
+  "properties": {
+    "deviceId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "services": {
+      "type": "array"
+    },
+    "cpuUsage": {
+      "type": "number"
+    },
+    "memoryUsage": {
+      "type": "number"
+    },
+    "activeCalls": {
+      "type": "integer"
+    },
+    "timestamp": {
+      "type": "string"
+    }
+  }
+}

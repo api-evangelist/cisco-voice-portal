@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "LicenseInfo",
+  "type": "object",
+  "properties": {
+    "licenseType": {
+      "type": "string"
+    },
+    "maxPorts": {
+      "type": "integer"
+    },
+    "usedPorts": {
+      "type": "integer"
+    },
+    "features": {
+      "type": "array"
+    },
+    "expirationDate": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

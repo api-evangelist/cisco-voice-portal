@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ActiveCall",
+  "type": "object",
+  "properties": {
+    "callGuid": {
+      "type": "string",
+      "description": "Globally unique call identifier"
+    },
+    "state": {
+      "type": "string"
+    },
+    "callingNumber": {
+      "type": "string",
+      "description": "Caller ANI"
+    },
+    "calledNumber": {
+      "type": "string",
+      "description": "Called DNIS"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Current call duration in seconds"
+    },
+    "applicationName": {
+      "type": "string",
+      "description": "Current VXML application handling the call"
+    }
+  }
+}

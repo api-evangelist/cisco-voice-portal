@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "VxmlServer",
+  "type": "object",
+  "properties": {
+    "serverId": {
+      "type": "string"
+    },
+    "hostname": {
+      "type": "string"
+    },
+    "ipAddress": {
+      "type": "string"
+    },
+    "httpPort": {
+      "type": "integer"
+    },
+    "httpsPort": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string"
+    },
+    "deployedApplications": {
+      "type": "integer"
+    }
+  }
+}

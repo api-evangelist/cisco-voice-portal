@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ServerStatistics",
+  "type": "object",
+  "properties": {
+    "startTime": {
+      "type": "string"
+    },
+    "endTime": {
+      "type": "string"
+    },
+    "servers": {
+      "type": "array"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CallDetailRecord",
+  "type": "object",
+  "properties": {
+    "callGuid": {
+      "type": "string",
+      "description": "Globally unique call identifier"
+    },
+    "callStartTime": {
+      "type": "string",
+      "description": "Call start timestamp"
+    },
+    "callEndTime": {
+      "type": "string",
+      "description": "Call end timestamp"
+    },
+    "callingNumber": {
+      "type": "string",
+      "description": "Caller ANI (Automatic Number Identification)"
+    },
+    "calledNumber": {
+      "type": "string",
+      "description": "Called DNIS (Dialed Number Identification Service)"
+    },
+    "callResult": {
+      "type": "string",
+      "description": "Final call outcome"
+    },
+    "callDuration": {
+      "type": "integer",
+      "description": "Total call duration in seconds"
+    },
+    "selfServiceDuration": {
+      "type": "integer",
+      "description": "Duration of self-service (IVR) portion in seconds"
+    },
+    "queueDuration": {
+      "type": "integer",
+      "description": "Duration in queue in seconds"
+    },
+    "applicationName": {
+      "type": "string",
+      "description": "VXML application that handled the call"
+    },
+    "callServerHostname": {
+      "type": "string",
+      "description": "Call Server that processed the call"
+    },
+    "vxmlServerHostname": {
+      "type": "string",
+      "description": "VXML Server that executed the application"
+    },
+    "sipCallId": {
+      "type": "string",
+      "description": "SIP Call-ID header value"
+    },
+    "icmCallKey": {
+      "type": "string",
+      "description": "ICM/UCCE call key for correlation"
+    },
+    "eccVariables": {
+      "type": "object",
+      "description": "Expanded Call Context (ECC) variables"
+    },
+    "transferDestination": {
+      "type": "string",
+      "description": "Transfer destination number if the call was transferred"
+    },
+    "errorCode": {
+      "type": "string",
+      "description": "Error code if the call ended in error"
+    }
+  }
+}

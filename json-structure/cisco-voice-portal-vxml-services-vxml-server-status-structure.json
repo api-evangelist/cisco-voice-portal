@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "VxmlServerStatus",
+  "type": "object",
+  "properties": {
+    "hostname": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "uptime": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "activeSessions": {
+      "type": "integer"
+    },
+    "maxSessions": {
+      "type": "integer"
+    },
+    "threadPool": {
+      "type": "object"
+    },
+    "cpuUsage": {
+      "type": "number"
+    },
+    "memoryUsage": {
+      "type": "object"
+    },
+    "deployedApplications": {
+      "type": "integer"
+    },
+    "timestamp": {
+      "type": "string"
+    }
+  }
+}

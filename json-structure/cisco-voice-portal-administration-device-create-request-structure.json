@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "DeviceCreateRequest",
+  "type": "object",
+  "properties": {
+    "hostname": {
+      "type": "string"
+    },
+    "ipAddress": {
+      "type": "string"
+    },
+    "deviceType": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "credentials": {
+      "type": "object"
+    }
+  }
+}

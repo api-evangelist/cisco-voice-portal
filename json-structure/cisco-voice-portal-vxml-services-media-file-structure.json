@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "MediaFile",
+  "type": "object",
+  "properties": {
+    "fileName": {
+      "type": "string"
+    },
+    "filePath": {
+      "type": "string"
+    },
+    "fileType": {
+      "type": "string"
+    },
+    "fileSize": {
+      "type": "integer"
+    },
+    "duration": {
+      "type": "number"
+    },
+    "lastModified": {
+      "type": "string"
+    }
+  }
+}

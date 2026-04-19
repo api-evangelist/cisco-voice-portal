@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CallLeg",
+  "type": "object",
+  "properties": {
+    "legId": {
+      "type": "string"
+    },
+    "callGuid": {
+      "type": "string"
+    },
+    "legType": {
+      "type": "string",
+      "description": "Type of call leg"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "endTime": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Leg duration in seconds"
+    },
+    "fromUri": {
+      "type": "string",
+      "description": "SIP From URI"
+    },
+    "toUri": {
+      "type": "string",
+      "description": "SIP To URI"
+    },
+    "serverHostname": {
+      "type": "string",
+      "description": "Server that handled this leg"
+    },
+    "sipResponseCode": {
+      "type": "integer",
+      "description": "Final SIP response code for this leg"
+    }
+  }
+}

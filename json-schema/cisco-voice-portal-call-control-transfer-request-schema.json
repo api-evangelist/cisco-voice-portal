@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TransferRequest",
+  "type": "object",
+  "properties": {
+    "destination": {
+      "type": "string",
+      "description": "Transfer destination (phone number, SIP URI, or agent extension)"
+    },
+    "transferType": {
+      "type": "string",
+      "description": "Type of transfer"
+    },
+    "label": {
+      "type": "string",
+      "description": "ICM label for the transfer destination. Used when routing through ICM/UCCE."
+    },
+    "eccVariables": {
+      "type": "object",
+      "description": "ECC variables to pass with the transfer"
+    }
+  }
+}

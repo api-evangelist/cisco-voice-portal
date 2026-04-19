@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CdrQueryResult",
+  "type": "object",
+  "properties": {
+    "totalRecords": {
+      "type": "integer"
+    },
+    "offset": {
+      "type": "integer"
+    },
+    "limit": {
+      "type": "integer"
+    },
+    "records": {
+      "type": "array"
+    }
+  }
+}

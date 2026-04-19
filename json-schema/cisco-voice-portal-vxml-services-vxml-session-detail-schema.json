@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VxmlSessionDetail",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string"
+    },
+    "callGuid": {
+      "type": "string"
+    },
+    "applicationName": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "currentElement": {
+      "type": "string"
+    },
+    "callingNumber": {
+      "type": "string"
+    },
+    "calledNumber": {
+      "type": "string"
+    },
+    "sessionVariables": {
+      "type": "object",
+      "description": "VXML session-level variables"
+    },
+    "elementHistory": {
+      "type": "array",
+      "description": "History of elements visited in this session"
+    },
+    "lastUserInput": {
+      "type": "string",
+      "description": "Last input received from the caller (DTMF or ASR result)"
+    }
+  }
+}

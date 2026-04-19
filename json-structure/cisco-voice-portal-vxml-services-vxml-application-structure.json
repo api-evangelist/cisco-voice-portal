@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "VxmlApplication",
+  "type": "object",
+  "properties": {
+    "applicationName": {
+      "type": "string"
+    },
+    "applicationType": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "activeSessions": {
+      "type": "integer"
+    },
+    "deployedAt": {
+      "type": "string"
+    }
+  }
+}

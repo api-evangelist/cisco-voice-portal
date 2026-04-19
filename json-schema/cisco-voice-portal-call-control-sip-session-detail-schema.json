@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SipSessionDetail",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string"
+    },
+    "callId": {
+      "type": "string"
+    },
+    "callGuid": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "fromUri": {
+      "type": "string"
+    },
+    "toUri": {
+      "type": "string"
+    },
+    "fromTag": {
+      "type": "string"
+    },
+    "toTag": {
+      "type": "string"
+    },
+    "cseq": {
+      "type": "integer"
+    },
+    "transport": {
+      "type": "string"
+    },
+    "localAddress": {
+      "type": "string"
+    },
+    "remoteAddress": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "lastActivityTime": {
+      "type": "string"
+    }
+  }
+}

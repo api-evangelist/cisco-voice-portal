@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ActiveCall",
+  "type": "object",
+  "properties": {
+    "callGuid": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "callingNumber": {
+      "type": "string"
+    },
+    "calledNumber": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "applicationName": {
+      "type": "string"
+    }
+  }
+}

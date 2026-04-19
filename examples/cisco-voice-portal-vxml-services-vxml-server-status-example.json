@@ -1,0 +1,13 @@
+{
+  "hostname": "example_value",
+  "status": "example_value",
+  "uptime": "example_value",
+  "version": "example_value",
+  "activeSessions": 10,
+  "maxSessions": 10,
+  "threadPool": "example_value",
+  "cpuUsage": 42.5,
+  "memoryUsage": "example_value",
+  "deployedApplications": 10,
+  "timestamp": "example_value"
+}

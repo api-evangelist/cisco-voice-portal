@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "SipServerGroup",
+  "type": "object",
+  "properties": {
+    "groupId": {
+      "type": "string"
+    },
+    "groupName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "servers": {
+      "type": "array"
+    },
+    "loadBalancing": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "RealtimeStatistics",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string"
+    },
+    "activeCalls": {
+      "type": "integer"
+    },
+    "callsInProgress": {
+      "type": "object"
+    },
+    "callsPerSecond": {
+      "type": "number"
+    },
+    "peakActiveCalls": {
+      "type": "integer"
+    },
+    "serverMetrics": {
+      "type": "array"
+    }
+  }
+}

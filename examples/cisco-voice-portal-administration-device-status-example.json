@@ -1,0 +1,9 @@
+{
+  "deviceId": "500123",
+  "status": "example_value",
+  "services": [],
+  "cpuUsage": 42.5,
+  "memoryUsage": 42.5,
+  "activeCalls": 10,
+  "timestamp": "example_value"
+}

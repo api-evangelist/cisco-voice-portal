@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SipServerGroupCreate",
+  "type": "object",
+  "properties": {
+    "groupName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "servers": {
+      "type": "array"
+    },
+    "loadBalancing": {
+      "type": "string"
+    }
+  }
+}

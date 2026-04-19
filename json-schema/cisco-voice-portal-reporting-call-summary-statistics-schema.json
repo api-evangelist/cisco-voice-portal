@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CallSummaryStatistics",
+  "type": "object",
+  "properties": {
+    "startTime": {
+      "type": "string"
+    },
+    "endTime": {
+      "type": "string"
+    },
+    "interval": {
+      "type": "string"
+    },
+    "intervals": {
+      "type": "array"
+    }
+  }
+}

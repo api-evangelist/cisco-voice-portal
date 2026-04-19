@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VxmlApplicationDetail",
+  "type": "object",
+  "properties": {
+    "applicationName": {
+      "type": "string"
+    },
+    "applicationType": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "activeSessions": {
+      "type": "integer"
+    },
+    "deployedAt": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "entryPoint": {
+      "type": "string",
+      "description": "Starting element of the call flow"
+    },
+    "elements": {
+      "type": "array",
+      "description": "List of element names in the application"
+    },
+    "mediaDirectory": {
+      "type": "string",
+      "description": "Path to the application media files"
+    },
+    "grammarDirectory": {
+      "type": "string",
+      "description": "Path to the application grammar files"
+    },
+    "configParameters": {
+      "type": "object",
+      "description": "Application-level configuration parameters"
+    }
+  }
+}

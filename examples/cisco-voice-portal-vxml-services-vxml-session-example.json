@@ -1,0 +1,10 @@
+{
+  "sessionId": "500123",
+  "callGuid": "500123",
+  "applicationName": "example_value",
+  "startTime": "example_value",
+  "duration": 10,
+  "currentElement": "example_value",
+  "callingNumber": "example_value",
+  "calledNumber": "example_value"
+}

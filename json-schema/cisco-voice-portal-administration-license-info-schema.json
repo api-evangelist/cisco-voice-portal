@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LicenseInfo",
+  "type": "object",
+  "properties": {
+    "licenseType": {
+      "type": "string"
+    },
+    "maxPorts": {
+      "type": "integer",
+      "description": "Maximum number of concurrent call ports"
+    },
+    "usedPorts": {
+      "type": "integer",
+      "description": "Currently used call ports"
+    },
+    "features": {
+      "type": "array",
+      "description": "Licensed feature list"
+    },
+    "expirationDate": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

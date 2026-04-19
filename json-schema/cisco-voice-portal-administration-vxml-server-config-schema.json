@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VxmlServerConfig",
+  "type": "object",
+  "properties": {
+    "serverId": {
+      "type": "string"
+    },
+    "http": {
+      "type": "object"
+    },
+    "threadPool": {
+      "type": "object"
+    },
+    "vxmlBrowser": {
+      "type": "object"
+    },
+    "logging": {
+      "type": "object"
+    }
+  }
+}

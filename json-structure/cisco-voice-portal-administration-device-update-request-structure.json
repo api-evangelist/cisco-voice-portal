@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "DeviceUpdateRequest",
+  "type": "object",
+  "properties": {
+    "hostname": {
+      "type": "string"
+    },
+    "ipAddress": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

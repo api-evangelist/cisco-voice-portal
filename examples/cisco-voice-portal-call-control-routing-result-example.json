@@ -1,0 +1,8 @@
+{
+  "dialedNumber": "example_value",
+  "matched": true,
+  "matchedPattern": "example_value",
+  "callType": "example_value",
+  "applicationName": "example_value",
+  "routeDestination": "example_value"
+}

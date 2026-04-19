@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "VxmlSessionDetail",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string"
+    },
+    "callGuid": {
+      "type": "string"
+    },
+    "applicationName": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "currentElement": {
+      "type": "string"
+    },
+    "callingNumber": {
+      "type": "string"
+    },
+    "calledNumber": {
+      "type": "string"
+    },
+    "sessionVariables": {
+      "type": "object"
+    },
+    "elementHistory": {
+      "type": "array"
+    },
+    "lastUserInput": {
+      "type": "string"
+    }
+  }
+}

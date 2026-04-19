@@ -1,0 +1,9 @@
+{
+  "serverId": "500123",
+  "hostname": "example_value",
+  "ipAddress": "example_value",
+  "sipPort": 10,
+  "status": "example_value",
+  "activeCalls": 10,
+  "maxCalls": 10
+}

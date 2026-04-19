@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CallServer",
+  "type": "object",
+  "properties": {
+    "serverId": {
+      "type": "string"
+    },
+    "hostname": {
+      "type": "string"
+    },
+    "ipAddress": {
+      "type": "string"
+    },
+    "sipPort": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string"
+    },
+    "activeCalls": {
+      "type": "integer"
+    },
+    "maxCalls": {
+      "type": "integer"
+    }
+  }
+}

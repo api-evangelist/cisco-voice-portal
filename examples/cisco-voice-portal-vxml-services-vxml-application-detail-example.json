@@ -1,0 +1,14 @@
+{
+  "applicationName": "example_value",
+  "applicationType": "example_value",
+  "status": "example_value",
+  "version": "example_value",
+  "activeSessions": 10,
+  "deployedAt": "example_value",
+  "description": "A sample description.",
+  "entryPoint": "example_value",
+  "elements": [],
+  "mediaDirectory": "example_value",
+  "grammarDirectory": "example_value",
+  "configParameters": "example_value"
+}

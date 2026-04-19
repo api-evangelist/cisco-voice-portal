@@ -1,0 +1,8 @@
+{
+  "operationId": "500123",
+  "status": "example_value",
+  "message": "example_value",
+  "startedAt": "example_value",
+  "completedAt": "example_value",
+  "progress": 42.5
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VxmlApplication",
+  "type": "object",
+  "properties": {
+    "applicationName": {
+      "type": "string",
+      "description": "Application name"
+    },
+    "applicationType": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "activeSessions": {
+      "type": "integer",
+      "description": "Number of active call sessions"
+    },
+    "deployedAt": {
+      "type": "string"
+    }
+  }
+}

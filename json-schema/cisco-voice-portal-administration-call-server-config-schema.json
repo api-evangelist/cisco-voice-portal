@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CallServerConfig",
+  "type": "object",
+  "properties": {
+    "serverId": {
+      "type": "string"
+    },
+    "sip": {
+      "type": "object"
+    },
+    "icm": {
+      "type": "object"
+    },
+    "callRouting": {
+      "type": "object"
+    }
+  }
+}

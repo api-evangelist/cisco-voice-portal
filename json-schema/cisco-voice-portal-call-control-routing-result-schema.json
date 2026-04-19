@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RoutingResult",
+  "type": "object",
+  "properties": {
+    "dialedNumber": {
+      "type": "string"
+    },
+    "matched": {
+      "type": "boolean",
+      "description": "Whether a matching pattern was found"
+    },
+    "matchedPattern": {
+      "type": "string",
+      "description": "The dialed number pattern that matched"
+    },
+    "callType": {
+      "type": "string"
+    },
+    "applicationName": {
+      "type": "string",
+      "description": "Application that would handle the call"
+    },
+    "routeDestination": {
+      "type": "string",
+      "description": "Resulting route destination"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ApplicationConfig",
+  "type": "object",
+  "properties": {
+    "applicationName": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "object"
+    },
+    "defaultLanguage": {
+      "type": "string"
+    },
+    "fetchTimeout": {
+      "type": "integer"
+    },
+    "maxSessionDuration": {
+      "type": "integer"
+    },
+    "inputModes": {
+      "type": "array"
+    },
+    "loggingLevel": {
+      "type": "string"
+    }
+  }
+}

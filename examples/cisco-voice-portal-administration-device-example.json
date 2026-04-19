@@ -1,0 +1,10 @@
+{
+  "deviceId": "500123",
+  "hostname": "example_value",
+  "ipAddress": "example_value",
+  "deviceType": "example_value",
+  "description": "A sample description.",
+  "status": "example_value",
+  "version": "example_value",
+  "lastContact": "example_value"
+}

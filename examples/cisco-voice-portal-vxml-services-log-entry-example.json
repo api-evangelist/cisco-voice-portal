@@ -1,0 +1,8 @@
+{
+  "timestamp": "example_value",
+  "level": "example_value",
+  "logger": "example_value",
+  "message": "example_value",
+  "sessionId": "500123",
+  "applicationName": "example_value"
+}

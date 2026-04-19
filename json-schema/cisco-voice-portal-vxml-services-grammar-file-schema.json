@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GrammarFile",
+  "type": "object",
+  "properties": {
+    "fileName": {
+      "type": "string"
+    },
+    "filePath": {
+      "type": "string"
+    },
+    "fileType": {
+      "type": "string"
+    },
+    "fileSize": {
+      "type": "integer"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language of the grammar (e.g., en-US)"
+    },
+    "lastModified": {
+      "type": "string"
+    }
+  }
+}

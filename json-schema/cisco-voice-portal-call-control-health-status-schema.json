@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HealthStatus",
+  "type": "object",
+  "properties": {
+    "serverName": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "uptime": {
+      "type": "string",
+      "description": "Server uptime duration"
+    },
+    "version": {
+      "type": "string"
+    },
+    "activeCalls": {
+      "type": "integer"
+    },
+    "maxCalls": {
+      "type": "integer",
+      "description": "Maximum concurrent call capacity"
+    },
+    "sipStackStatus": {
+      "type": "string"
+    },
+    "cpuUsage": {
+      "type": "number"
+    },
+    "memoryUsage": {
+      "type": "number"
+    },
+    "timestamp": {
+      "type": "string"
+    }
+  }
+}

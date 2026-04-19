@@ -21,46 +21,46 @@ info:
   x-provider: cisco
   x-product: unified-customer-voice-portal
 servers:
-  - url: https://{call-server}:8000/cvp/rest
-    description: CVP Call Server REST management interface
-    variables:
-      call-server:
-        default: cvp-callserver.example.com
-        description: Hostname or IP of the CVP Call Server
+- url: https://{call-server}:8000/cvp/rest
+  description: CVP Call Server REST management interface
+  variables:
+    call-server:
+      default: cvp-callserver.example.com
+      description: Hostname or IP of the CVP Call Server
 paths:
   /call:
     get:
       operationId: listActiveCalls
-      summary: Cisco Voice Portal List active calls
+      summary: Cisco Voice Portal List Active Calls
       description: >-
         Retrieves a list of all currently active calls on this Call Server.
         Each entry includes the call GUID, current state, and associated
         SIP session information.
       tags:
-        - Call Management
+      - Call Management
       parameters:
-        - name: state
-          in: query
-          description: Filter by call state
-          schema:
-            type: string
-            enum:
-              - ringing
-              - connected
-              - queued
-              - self_service
-              - transferring
-        - name: calledNumber
-          in: query
-          description: Filter by DNIS
-          schema:
-            type: string
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            default: 100
-            maximum: 1000
+      - name: state
+        in: query
+        description: Filter by call state
+        schema:
+          type: string
+          enum:
+          - ringing
+          - connected
+          - queued
+          - self_service
+          - transferring
+      - name: calledNumber
+        in: query
+        description: Filter by DNIS
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+          maximum: 1000
       responses:
         '200':
           description: List of active calls
@@ -79,18 +79,21 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /call/{callGuid}:
     get:
       operationId: getCallDetails
-      summary: Cisco Voice Portal Get active call details
+      summary: Cisco Voice Portal Get Active Call Details
       description: >-
         Retrieves detailed information about a specific active call, including
         SIP session details, current state, call variables, and routing
         information.
       tags:
-        - Call Management
+      - Call Management
       parameters:
-        - $ref: '#/components/parameters/CallGuid'
+      - $ref: '#/components/parameters/CallGuid'
       responses:
         '200':
           description: Call details
@@ -104,19 +107,22 @@ paths:
           description: Call not found or no longer active
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /call/{callGuid}/transfer:
     post:
       operationId: transferCall
-      summary: Cisco Voice Portal Transfer an active call
+      summary: Cisco Voice Portal Transfer an Active Call
       description: >-
         Initiates a transfer of an active call to a specified destination. The
         transfer can be a blind transfer or a consultation transfer. This
         operation sends the appropriate SIP REFER or re-INVITE to execute
         the transfer.
       tags:
-        - Call Management
+      - Call Management
       parameters:
-        - $ref: '#/components/parameters/CallGuid'
+      - $ref: '#/components/parameters/CallGuid'
       requestBody:
         required: true
         content:
@@ -140,17 +146,20 @@ paths:
           description: Call is in a state that does not allow transfer
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /call/{callGuid}/terminate:
     post:
       operationId: terminateCall
-      summary: Cisco Voice Portal Terminate an active call
+      summary: Cisco Voice Portal Terminate an Active Call
       description: >-
         Terminates an active call by sending a SIP BYE request. The call is
         disconnected and a CDR is generated.
       tags:
-        - Call Management
+      - Call Management
       parameters:
-        - $ref: '#/components/parameters/CallGuid'
+      - $ref: '#/components/parameters/CallGuid'
       requestBody:
         content:
           application/json:
@@ -161,10 +170,10 @@ paths:
                   type: string
                   description: Reason for termination
                   enum:
-                    - administrative
-                    - timeout
-                    - error
-                    - requested
+                  - administrative
+                  - timeout
+                  - error
+                  - requested
       responses:
         '200':
           description: Call terminated
@@ -178,18 +187,21 @@ paths:
           description: Call not found or already terminated
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /call/{callGuid}/variables:
     get:
       operationId: getCallVariables
-      summary: Cisco Voice Portal Get call variables
+      summary: Cisco Voice Portal Get Call Variables
       description: >-
         Retrieves the Expanded Call Context (ECC) variables and peripheral
         variables associated with an active call. These variables carry
         data between CVP, ICM, and the VXML application.
       tags:
-        - Call Management
+      - Call Management
       parameters:
-        - $ref: '#/components/parameters/CallGuid'
+      - $ref: '#/components/parameters/CallGuid'
       responses:
         '200':
           description: Call variables
@@ -203,16 +215,19 @@ paths:
           description: Call not found
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: setCallVariables
-      summary: Cisco Voice Portal Set call variables
+      summary: Cisco Voice Portal Set Call Variables
       description: >-
         Sets or updates ECC variables on an active call. These variables
         are passed to the VXML application and to ICM for routing decisions.
       tags:
-        - Call Management
+      - Call Management
       parameters:
-        - $ref: '#/components/parameters/CallGuid'
+      - $ref: '#/components/parameters/CallGuid'
       requestBody:
         required: true
         content:
@@ -234,17 +249,20 @@ paths:
           description: Call not found
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /routing/lookup:
     post:
       operationId: routingLookup
-      summary: Cisco Voice Portal Perform a routing lookup
+      summary: Cisco Voice Portal Perform a Routing Lookup
       description: >-
         Performs a routing lookup to determine the call treatment for a given
         dialed number. This queries the configured dialed number patterns
         and returns the routing decision without initiating an actual call.
         Useful for testing and validation.
       tags:
-        - Call Routing
+      - Call Routing
       requestBody:
         required: true
         content:
@@ -252,7 +270,7 @@ paths:
             schema:
               type: object
               required:
-                - dialedNumber
+              - dialedNumber
               properties:
                 dialedNumber:
                   type: string
@@ -273,21 +291,24 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /sip/session:
     get:
       operationId: listSipSessions
-      summary: Cisco Voice Portal List active SIP sessions
+      summary: Cisco Voice Portal List Active Sip Sessions
       description: >-
         Retrieves information about active SIP sessions (dialogs) on the Call
         Server. Each SIP session corresponds to an active call leg.
       tags:
-        - SIP Sessions
+      - SIP Sessions
       parameters:
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            default: 100
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
       responses:
         '200':
           description: Active SIP sessions
@@ -306,21 +327,24 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /sip/session/{sessionId}:
     get:
       operationId: getSipSession
-      summary: Cisco Voice Portal Get SIP session details
+      summary: Cisco Voice Portal Get Sip Session Details
       description: >-
         Retrieves detailed SIP session information including SIP headers,
         dialog state, and associated call GUID.
       tags:
-        - SIP Sessions
+      - SIP Sessions
       parameters:
-        - name: sessionId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: sessionId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: SIP session details
@@ -334,16 +358,19 @@ paths:
           description: Session not found
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /health:
     get:
       operationId: getCallServerHealth
-      summary: Cisco Voice Portal Get Call Server health status
+      summary: Cisco Voice Portal Get Call Server Health Status
       description: >-
         Retrieves the health and resource status of the Call Server, including
         active call count, SIP stack status, and connectivity to upstream
         components (ICM, CUCM, VXML Server).
       tags:
-        - Health
+      - Health
       responses:
         '200':
           description: Call Server health status
@@ -353,16 +380,19 @@ paths:
                 $ref: '#/components/schemas/HealthStatus'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /health/connectivity:
     get:
       operationId: getConnectivityStatus
-      summary: Cisco Voice Portal Get connectivity status to upstream components
+      summary: Cisco Voice Portal Get Connectivity Status to Upstream Components
       description: >-
         Checks and reports the connectivity status to all configured upstream
         components including ICM/UCCE, CUCM clusters, VXML Servers, and
         Reporting Server.
       tags:
-        - Health
+      - Health
       responses:
         '200':
           description: Connectivity status
@@ -372,6 +402,9 @@ paths:
                 $ref: '#/components/schemas/ConnectivityStatus'
         '500':
           $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     basicAuth:
@@ -418,62 +451,79 @@ components:
         callGuid:
           type: string
           description: Globally unique call identifier
+          example: '500123'
         state:
           type: string
           enum:
-            - ringing
-            - connected
-            - queued
-            - self_service
-            - transferring
-            - on_hold
+          - ringing
+          - connected
+          - queued
+          - self_service
+          - transferring
+          - on_hold
+          example: ringing
         callingNumber:
           type: string
           description: Caller ANI
+          example: example_value
         calledNumber:
           type: string
           description: Called DNIS
+          example: example_value
         startTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         duration:
           type: integer
           description: Current call duration in seconds
+          example: 10
         applicationName:
           type: string
           description: Current VXML application handling the call
+          example: example_value
     ActiveCallDetail:
       type: object
       properties:
         callGuid:
           type: string
+          example: '500123'
         state:
           type: string
           enum:
-            - ringing
-            - connected
-            - queued
-            - self_service
-            - transferring
-            - on_hold
+          - ringing
+          - connected
+          - queued
+          - self_service
+          - transferring
+          - on_hold
+          example: ringing
         callingNumber:
           type: string
+          example: example_value
         calledNumber:
           type: string
+          example: example_value
         startTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         duration:
           type: integer
+          example: 10
         applicationName:
           type: string
+          example: example_value
         sipCallId:
           type: string
           description: SIP Call-ID
+          example: '500123'
         sipFromTag:
           type: string
+          example: example_value
         sipToTag:
           type: string
+          example: example_value
         icmRouteResult:
           type: object
           properties:
@@ -483,9 +533,11 @@ components:
               type: string
             agentId:
               type: string
+          example: example_value
         vxmlServer:
           type: string
           description: VXML Server currently handling the call
+          example: example_value
         callHistory:
           type: array
           items:
@@ -499,64 +551,77 @@ components:
               details:
                 type: string
           description: Chronological list of call events
+          example: []
         eccVariables:
           type: object
           additionalProperties:
             type: string
+          example: example_value
     TransferRequest:
       type: object
       required:
-        - destination
+      - destination
       properties:
         destination:
           type: string
           description: >-
             Transfer destination (phone number, SIP URI, or agent extension)
+          example: example_value
         transferType:
           type: string
           enum:
-            - blind
-            - consultation
+          - blind
+          - consultation
           default: blind
           description: Type of transfer
+          example: blind
         label:
           type: string
           description: >-
             ICM label for the transfer destination. Used when routing through
             ICM/UCCE.
+          example: Example Title
         eccVariables:
           type: object
           additionalProperties:
             type: string
           description: ECC variables to pass with the transfer
+          example: example_value
     CallOperationResult:
       type: object
       properties:
         callGuid:
           type: string
+          example: '500123'
         operation:
           type: string
+          example: example_value
         status:
           type: string
           enum:
-            - success
-            - pending
-            - failed
+          - success
+          - pending
+          - failed
+          example: success
         message:
           type: string
+          example: example_value
         timestamp:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
     CallVariables:
       type: object
       properties:
         callGuid:
           type: string
+          example: '500123'
         eccVariables:
           type: object
           additionalProperties:
             type: string
           description: Expanded Call Context variables
+          example: example_value
         peripheralVariables:
           type: object
           properties:
@@ -581,6 +646,7 @@ components:
             peripheral10:
               type: string
           description: ICM peripheral variables (1-10)
+          example: example_value
         callVariables:
           type: object
           properties:
@@ -605,6 +671,7 @@ components:
             callVariable10:
               type: string
           description: ICM call variables (1-10)
+          example: example_value
     CallVariablesUpdate:
       type: object
       properties:
@@ -612,144 +679,186 @@ components:
           type: object
           additionalProperties:
             type: string
+          example: example_value
         peripheralVariables:
           type: object
           additionalProperties:
             type: string
+          example: example_value
         callVariables:
           type: object
           additionalProperties:
             type: string
+          example: example_value
     RoutingResult:
       type: object
       properties:
         dialedNumber:
           type: string
+          example: example_value
         matched:
           type: boolean
           description: Whether a matching pattern was found
+          example: true
         matchedPattern:
           type: string
           description: The dialed number pattern that matched
+          example: example_value
         callType:
           type: string
           enum:
-            - preroute
-            - translation_route
-            - post_route
+          - preroute
+          - translation_route
+          - post_route
+          example: preroute
         applicationName:
           type: string
           description: Application that would handle the call
+          example: example_value
         routeDestination:
           type: string
           description: Resulting route destination
+          example: example_value
     SipSession:
       type: object
       properties:
         sessionId:
           type: string
+          example: '500123'
         callId:
           type: string
           description: SIP Call-ID
+          example: '500123'
         callGuid:
           type: string
           description: Associated CVP call GUID
+          example: '500123'
         state:
           type: string
           enum:
-            - initial
-            - early
-            - confirmed
-            - terminated
+          - initial
+          - early
+          - confirmed
+          - terminated
+          example: initial
         method:
           type: string
           description: Initial SIP method (INVITE)
+          example: example_value
         fromUri:
           type: string
+          example: example_value
         toUri:
           type: string
+          example: example_value
         startTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
     SipSessionDetail:
       type: object
       properties:
         sessionId:
           type: string
+          example: '500123'
         callId:
           type: string
+          example: '500123'
         callGuid:
           type: string
+          example: '500123'
         state:
           type: string
+          example: example_value
         fromUri:
           type: string
+          example: example_value
         toUri:
           type: string
+          example: example_value
         fromTag:
           type: string
+          example: example_value
         toTag:
           type: string
+          example: example_value
         cseq:
           type: integer
+          example: 10
         transport:
           type: string
           enum:
-            - UDP
-            - TCP
-            - TLS
+          - UDP
+          - TCP
+          - TLS
+          example: UDP
         localAddress:
           type: string
+          example: example_value
         remoteAddress:
           type: string
+          example: example_value
         startTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         lastActivityTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
     HealthStatus:
       type: object
       properties:
         serverName:
           type: string
+          example: example_value
         status:
           type: string
           enum:
-            - healthy
-            - degraded
-            - unhealthy
+          - healthy
+          - degraded
+          - unhealthy
+          example: healthy
         uptime:
           type: string
           description: Server uptime duration
+          example: example_value
         version:
           type: string
+          example: example_value
         activeCalls:
           type: integer
+          example: 10
         maxCalls:
           type: integer
           description: Maximum concurrent call capacity
+          example: 10
         sipStackStatus:
           type: string
           enum:
-            - running
-            - stopped
-            - error
+          - running
+          - stopped
+          - error
+          example: running
         cpuUsage:
           type: number
           format: float
+          example: 42.5
         memoryUsage:
           type: number
           format: float
+          example: 42.5
         timestamp:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
     ConnectivityStatus:
       type: object
       properties:
         timestamp:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         connections:
           type: array
           items:
@@ -758,11 +867,11 @@ components:
               component:
                 type: string
                 enum:
-                  - ICM
-                  - CUCM
-                  - VXMLServer
-                  - ReportingServer
-                  - MediaServer
+                - ICM
+                - CUCM
+                - VXMLServer
+                - ReportingServer
+                - MediaServer
               hostname:
                 type: string
               ipAddress:
@@ -772,36 +881,41 @@ components:
               status:
                 type: string
                 enum:
-                  - connected
-                  - disconnected
-                  - timeout
-                  - error
+                - connected
+                - disconnected
+                - timeout
+                - error
               latency:
                 type: integer
                 description: Connection latency in milliseconds
               lastSuccessfulContact:
                 type: string
                 format: date-time
+          example: []
     Error:
       type: object
       properties:
         code:
           type: string
+          example: example_value
         message:
           type: string
+          example: example_value
         details:
           type: string
+          example: example_value
         timestamp:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
 security:
-  - basicAuth: []
+- basicAuth: []
 tags:
-  - name: Call Management
-    description: Manage and control active calls
-  - name: Call Routing
-    description: Call routing lookup and testing
-  - name: Health
-    description: Call Server health and connectivity status
-  - name: SIP Sessions
-    description: Monitor SIP session details
+- name: Call Management
+  description: Manage and control active calls
+- name: Call Routing
+  description: Call routing lookup and testing
+- name: Health
+  description: Call Server health and connectivity status
+- name: SIP Sessions
+  description: Monitor SIP session details

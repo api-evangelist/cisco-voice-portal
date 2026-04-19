@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OperationStatus",
+  "type": "object",
+  "properties": {
+    "operationId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "startedAt": {
+      "type": "string"
+    },
+    "completedAt": {
+      "type": "string"
+    },
+    "progress": {
+      "type": "number",
+      "description": "Progress percentage (0-100)"
+    }
+  }
+}

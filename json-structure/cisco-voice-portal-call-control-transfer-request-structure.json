@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "TransferRequest",
+  "type": "object",
+  "properties": {
+    "destination": {
+      "type": "string"
+    },
+    "transferType": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "eccVariables": {
+      "type": "object"
+    }
+  }
+}

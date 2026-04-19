@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApplicationConfigUpdate",
+  "type": "object",
+  "properties": {
+    "parameters": {
+      "type": "object"
+    },
+    "defaultLanguage": {
+      "type": "string"
+    },
+    "fetchTimeout": {
+      "type": "integer"
+    },
+    "maxSessionDuration": {
+      "type": "integer"
+    },
+    "inputModes": {
+      "type": "array"
+    },
+    "loggingLevel": {
+      "type": "string"
+    }
+  }
+}

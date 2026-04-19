@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApplicationConfig",
+  "type": "object",
+  "properties": {
+    "applicationName": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Runtime configuration parameters"
+    },
+    "defaultLanguage": {
+      "type": "string"
+    },
+    "fetchTimeout": {
+      "type": "integer",
+      "description": "VXML document fetch timeout in milliseconds"
+    },
+    "maxSessionDuration": {
+      "type": "integer",
+      "description": "Maximum session duration in seconds"
+    },
+    "inputModes": {
+      "type": "array",
+      "description": "Allowed input modes"
+    },
+    "loggingLevel": {
+      "type": "string"
+    }
+  }
+}

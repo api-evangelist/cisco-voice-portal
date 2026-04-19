@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LogEntry",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string"
+    },
+    "level": {
+      "type": "string"
+    },
+    "logger": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Associated session ID, if applicable"
+    },
+    "applicationName": {
+      "type": "string",
+      "description": "Associated application, if applicable"
+    }
+  }
+}

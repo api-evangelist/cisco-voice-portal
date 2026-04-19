@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "RoutingResult",
+  "type": "object",
+  "properties": {
+    "dialedNumber": {
+      "type": "string"
+    },
+    "matched": {
+      "type": "boolean"
+    },
+    "matchedPattern": {
+      "type": "string"
+    },
+    "callType": {
+      "type": "string"
+    },
+    "applicationName": {
+      "type": "string"
+    },
+    "routeDestination": {
+      "type": "string"
+    }
+  }
+}

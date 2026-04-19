@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MediaFile",
+  "type": "object",
+  "properties": {
+    "fileName": {
+      "type": "string"
+    },
+    "filePath": {
+      "type": "string"
+    },
+    "fileType": {
+      "type": "string"
+    },
+    "fileSize": {
+      "type": "integer",
+      "description": "File size in bytes"
+    },
+    "duration": {
+      "type": "number",
+      "description": "Audio duration in seconds"
+    },
+    "lastModified": {
+      "type": "string"
+    }
+  }
+}

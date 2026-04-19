@@ -1,0 +1,16 @@
+{
+  "sessionId": "500123",
+  "callId": "500123",
+  "callGuid": "500123",
+  "state": "example_value",
+  "fromUri": "example_value",
+  "toUri": "example_value",
+  "fromTag": "example_value",
+  "toTag": "example_value",
+  "cseq": 10,
+  "transport": "example_value",
+  "localAddress": "example_value",
+  "remoteAddress": "example_value",
+  "startTime": "example_value",
+  "lastActivityTime": "example_value"
+}

@@ -1,0 +1,16 @@
+{
+  "callGuid": "500123",
+  "state": "example_value",
+  "callingNumber": "example_value",
+  "calledNumber": "example_value",
+  "startTime": "example_value",
+  "duration": 10,
+  "applicationName": "example_value",
+  "sipCallId": "500123",
+  "sipFromTag": "example_value",
+  "sipToTag": "example_value",
+  "icmRouteResult": "example_value",
+  "vxmlServer": "example_value",
+  "callHistory": [],
+  "eccVariables": "example_value"
+}

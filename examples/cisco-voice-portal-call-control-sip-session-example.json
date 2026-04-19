@@ -1,0 +1,10 @@
+{
+  "sessionId": "500123",
+  "callId": "500123",
+  "callGuid": "500123",
+  "state": "example_value",
+  "method": "example_value",
+  "fromUri": "example_value",
+  "toUri": "example_value",
+  "startTime": "example_value"
+}

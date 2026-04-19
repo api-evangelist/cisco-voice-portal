@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CallVariables",
+  "type": "object",
+  "properties": {
+    "callGuid": {
+      "type": "string"
+    },
+    "eccVariables": {
+      "type": "object"
+    },
+    "peripheralVariables": {
+      "type": "object"
+    },
+    "callVariables": {
+      "type": "object"
+    }
+  }
+}

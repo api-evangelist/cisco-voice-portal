@@ -8,7 +8,7 @@ tags:
   - Voice
   - VXML
 created: '2024'
-modified: '2026-03-04'
+modified: '2026-04-19'
 specificationVersion: '0.18'
 url: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
 apis:
@@ -91,42 +91,44 @@ apis:
       - type: AsyncAPI
         url: asyncapi/cisco-voice-portal-call-events-asyncapi.yml
 common:
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://developer.cisco.com/
   - type: Authentication
     url: https://developer.cisco.com/docs/voice-portal/#!authentication
-  - type: Status
+  - type: StatusPage
     url: https://status.cisco.com/
   - type: Support
     url: https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/tsd-products-support-series-home.html
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.cisco.com/c/en/us/about/legal/terms-conditions.html
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.cisco.com/c/en/us/about/legal/privacy-full.html
   - type: Documentation
     url: https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/tsd-products-support-series-home.html
-  - type: Getting Started
+  - type: GettingStarted
     url: https://developer.cisco.com/site/devnet/
-  - type: Website
-    url: https://www.cisco.com/
   - type: Blog
     url: https://blogs.cisco.com/developer
-  - type: Community
-    url: https://community.cisco.com/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/CiscoDevNet
-  - type: Sign Up
+  - type: SignUp
     url: https://developer.cisco.com/join/devnet
-  - type: Release Notes
+  - type: ReleaseNotes
     url: https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-release-notes-list.html
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/cisco-voice-portal-call-detail-record.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/cisco-voice-portal-device.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/cisco-voice-portal-application.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/cisco-voice-portal-dialed-number-pattern.json
+  - type: Features
+    url: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
+  - type: UseCases
+    url: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
+  - type: Integrations
+    url: https://developer.cisco.com/ecosystem/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

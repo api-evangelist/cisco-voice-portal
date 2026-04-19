@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Device",
+  "type": "object",
+  "properties": {
+    "deviceId": {
+      "type": "string",
+      "description": "Unique identifier for the device"
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Hostname of the device"
+    },
+    "ipAddress": {
+      "type": "string",
+      "description": "IP address of the device"
+    },
+    "deviceType": {
+      "type": "string",
+      "description": "Type of CVP component"
+    },
+    "description": {
+      "type": "string",
+      "description": "Device description"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current operational status"
+    },
+    "version": {
+      "type": "string",
+      "description": "Software version installed on the device"
+    },
+    "lastContact": {
+      "type": "string",
+      "description": "Last time the OAMP server contacted this device"
+    }
+  }
+}

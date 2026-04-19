@@ -1,0 +1,7 @@
+{
+  "serverId": "500123",
+  "http": "example_value",
+  "threadPool": "example_value",
+  "vxmlBrowser": "example_value",
+  "logging": "example_value"
+}

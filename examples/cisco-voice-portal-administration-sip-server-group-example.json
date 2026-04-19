@@ -1,0 +1,7 @@
+{
+  "groupId": "500123",
+  "groupName": "example_value",
+  "description": "A sample description.",
+  "servers": [],
+  "loadBalancing": "example_value"
+}
