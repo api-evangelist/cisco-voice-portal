@@ -1,0 +1,218 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cisco Voice Portal Reporting API — Call Detail Records
+  description: 'Cisco Voice Portal Reporting API — Call Detail Records. 3 operations. Lead operation: Cisco Voice Portal Query
+    Call Detail Records. Self-contained Naftiko capability covering one Cisco Voice Portal business surface.'
+  tags:
+  - Cisco Voice Portal
+  - Call Detail Records
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CISCO_VOICE_PORTAL_API_KEY: CISCO_VOICE_PORTAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: reporting-call-detail-records
+    baseUri: https://{reporting-server}:8111/cvp-reporting/rest
+    description: Cisco Voice Portal Reporting API — Call Detail Records business capability. Self-contained, no shared references.
+    resources:
+    - name: cdr
+      path: /cdr
+      operations:
+      - name: getcalldetailrecords
+        method: GET
+        description: Cisco Voice Portal Query Call Detail Records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startTime
+          in: query
+          type: string
+          description: Start of the query time range (ISO 8601)
+          required: true
+        - name: endTime
+          in: query
+          type: string
+          description: End of the query time range (ISO 8601)
+          required: true
+        - name: calledNumber
+          in: query
+          type: string
+          description: Filter by called number (DNIS)
+        - name: callingNumber
+          in: query
+          type: string
+          description: Filter by calling number (ANI)
+        - name: callGuid
+          in: query
+          type: string
+          description: Filter by unique call GUID
+        - name: callResult
+          in: query
+          type: string
+          description: Filter by call result
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of records to return
+        - name: sortBy
+          in: query
+          type: string
+          description: Field to sort by
+        - name: sortOrder
+          in: query
+          type: string
+    - name: cdr-callGuid
+      path: /cdr/{callGuid}
+      operations:
+      - name: getcalldetailrecord
+        method: GET
+        description: Cisco Voice Portal Get a Specific Call Detail Record
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: callGuid
+          in: path
+          type: string
+          description: Globally unique call identifier
+          required: true
+    - name: cdr-callGuid-legs
+      path: /cdr/{callGuid}/legs
+      operations:
+      - name: getcalllegs
+        method: GET
+        description: Cisco Voice Portal Get Call Legs for a Call
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: callGuid
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.CISCO_VOICE_PORTAL_USER}}'
+      password: '{{env.CISCO_VOICE_PORTAL_PASS}}'
+  exposes:
+  - type: rest
+    namespace: reporting-call-detail-records-rest
+    port: 8080
+    description: REST adapter for Cisco Voice Portal Reporting API — Call Detail Records. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/cdr
+      name: cdr
+      description: REST surface for cdr.
+      operations:
+      - method: GET
+        name: getcalldetailrecords
+        description: Cisco Voice Portal Query Call Detail Records
+        call: reporting-call-detail-records.getcalldetailrecords
+        with:
+          startTime: rest.startTime
+          endTime: rest.endTime
+          calledNumber: rest.calledNumber
+          callingNumber: rest.callingNumber
+          callGuid: rest.callGuid
+          callResult: rest.callResult
+          offset: rest.offset
+          limit: rest.limit
+          sortBy: rest.sortBy
+          sortOrder: rest.sortOrder
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cdr/{callguid}
+      name: cdr-callguid
+      description: REST surface for cdr-callGuid.
+      operations:
+      - method: GET
+        name: getcalldetailrecord
+        description: Cisco Voice Portal Get a Specific Call Detail Record
+        call: reporting-call-detail-records.getcalldetailrecord
+        with:
+          callGuid: rest.callGuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cdr/{callguid}/legs
+      name: cdr-callguid-legs
+      description: REST surface for cdr-callGuid-legs.
+      operations:
+      - method: GET
+        name: getcalllegs
+        description: Cisco Voice Portal Get Call Legs for a Call
+        call: reporting-call-detail-records.getcalllegs
+        with:
+          callGuid: rest.callGuid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: reporting-call-detail-records-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cisco Voice Portal Reporting API — Call Detail Records. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: cisco-voice-portal-query-call
+      description: Cisco Voice Portal Query Call Detail Records
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: reporting-call-detail-records.getcalldetailrecords
+      with:
+        startTime: tools.startTime
+        endTime: tools.endTime
+        calledNumber: tools.calledNumber
+        callingNumber: tools.callingNumber
+        callGuid: tools.callGuid
+        callResult: tools.callResult
+        offset: tools.offset
+        limit: tools.limit
+        sortBy: tools.sortBy
+        sortOrder: tools.sortOrder
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-get-specific
+      description: Cisco Voice Portal Get a Specific Call Detail Record
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: reporting-call-detail-records.getcalldetailrecord
+      with:
+        callGuid: tools.callGuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-get-call
+      description: Cisco Voice Portal Get Call Legs for a Call
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: reporting-call-detail-records.getcalllegs
+      with:
+        callGuid: tools.callGuid
+      outputParameters:
+      - type: object
+        mapping: $.

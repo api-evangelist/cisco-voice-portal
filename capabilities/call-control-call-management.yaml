@@ -1,0 +1,274 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cisco Voice Portal Call Control API — Call Management
+  description: 'Cisco Voice Portal Call Control API — Call Management. 6 operations. Lead operation: Cisco Voice Portal List
+    Active Calls. Self-contained Naftiko capability covering one Cisco Voice Portal business surface.'
+  tags:
+  - Cisco Voice Portal
+  - Call Management
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CISCO_VOICE_PORTAL_API_KEY: CISCO_VOICE_PORTAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: call-control-call-management
+    baseUri: https://{call-server}:8000/cvp/rest
+    description: Cisco Voice Portal Call Control API — Call Management business capability. Self-contained, no shared references.
+    resources:
+    - name: call
+      path: /call
+      operations:
+      - name: listactivecalls
+        method: GET
+        description: Cisco Voice Portal List Active Calls
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: state
+          in: query
+          type: string
+          description: Filter by call state
+        - name: calledNumber
+          in: query
+          type: string
+          description: Filter by DNIS
+        - name: limit
+          in: query
+          type: integer
+    - name: call-callGuid
+      path: /call/{callGuid}
+      operations:
+      - name: getcalldetails
+        method: GET
+        description: Cisco Voice Portal Get Active Call Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: call-callGuid-terminate
+      path: /call/{callGuid}/terminate
+      operations:
+      - name: terminatecall
+        method: POST
+        description: Cisco Voice Portal Terminate an Active Call
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: call-callGuid-transfer
+      path: /call/{callGuid}/transfer
+      operations:
+      - name: transfercall
+        method: POST
+        description: Cisco Voice Portal Transfer an Active Call
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: call-callGuid-variables
+      path: /call/{callGuid}/variables
+      operations:
+      - name: getcallvariables
+        method: GET
+        description: Cisco Voice Portal Get Call Variables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: setcallvariables
+        method: PUT
+        description: Cisco Voice Portal Set Call Variables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.CISCO_VOICE_PORTAL_USER}}'
+      password: '{{env.CISCO_VOICE_PORTAL_PASS}}'
+  exposes:
+  - type: rest
+    namespace: call-control-call-management-rest
+    port: 8080
+    description: REST adapter for Cisco Voice Portal Call Control API — Call Management. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/call
+      name: call
+      description: REST surface for call.
+      operations:
+      - method: GET
+        name: listactivecalls
+        description: Cisco Voice Portal List Active Calls
+        call: call-control-call-management.listactivecalls
+        with:
+          state: rest.state
+          calledNumber: rest.calledNumber
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/call/{callguid}
+      name: call-callguid
+      description: REST surface for call-callGuid.
+      operations:
+      - method: GET
+        name: getcalldetails
+        description: Cisco Voice Portal Get Active Call Details
+        call: call-control-call-management.getcalldetails
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/call/{callguid}/terminate
+      name: call-callguid-terminate
+      description: REST surface for call-callGuid-terminate.
+      operations:
+      - method: POST
+        name: terminatecall
+        description: Cisco Voice Portal Terminate an Active Call
+        call: call-control-call-management.terminatecall
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/call/{callguid}/transfer
+      name: call-callguid-transfer
+      description: REST surface for call-callGuid-transfer.
+      operations:
+      - method: POST
+        name: transfercall
+        description: Cisco Voice Portal Transfer an Active Call
+        call: call-control-call-management.transfercall
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/call/{callguid}/variables
+      name: call-callguid-variables
+      description: REST surface for call-callGuid-variables.
+      operations:
+      - method: GET
+        name: getcallvariables
+        description: Cisco Voice Portal Get Call Variables
+        call: call-control-call-management.getcallvariables
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: setcallvariables
+        description: Cisco Voice Portal Set Call Variables
+        call: call-control-call-management.setcallvariables
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: call-control-call-management-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cisco Voice Portal Call Control API — Call Management. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: cisco-voice-portal-list-active
+      description: Cisco Voice Portal List Active Calls
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: call-control-call-management.listactivecalls
+      with:
+        state: tools.state
+        calledNumber: tools.calledNumber
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-get-active
+      description: Cisco Voice Portal Get Active Call Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: call-control-call-management.getcalldetails
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-terminate-active
+      description: Cisco Voice Portal Terminate an Active Call
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: call-control-call-management.terminatecall
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-transfer-active
+      description: Cisco Voice Portal Transfer an Active Call
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: call-control-call-management.transfercall
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-get-call
+      description: Cisco Voice Portal Get Call Variables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: call-control-call-management.getcallvariables
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-set-call
+      description: Cisco Voice Portal Set Call Variables
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: call-control-call-management.setcallvariables
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

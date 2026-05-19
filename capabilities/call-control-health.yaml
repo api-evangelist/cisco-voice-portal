@@ -1,0 +1,103 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cisco Voice Portal Call Control API — Health
+  description: 'Cisco Voice Portal Call Control API — Health. 2 operations. Lead operation: Cisco Voice Portal Get Call Server
+    Health Status. Self-contained Naftiko capability covering one Cisco Voice Portal business surface.'
+  tags:
+  - Cisco Voice Portal
+  - Health
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CISCO_VOICE_PORTAL_API_KEY: CISCO_VOICE_PORTAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: call-control-health
+    baseUri: https://{call-server}:8000/cvp/rest
+    description: Cisco Voice Portal Call Control API — Health business capability. Self-contained, no shared references.
+    resources:
+    - name: health
+      path: /health
+      operations:
+      - name: getcallserverhealth
+        method: GET
+        description: Cisco Voice Portal Get Call Server Health Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: health-connectivity
+      path: /health/connectivity
+      operations:
+      - name: getconnectivitystatus
+        method: GET
+        description: Cisco Voice Portal Get Connectivity Status to Upstream Components
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.CISCO_VOICE_PORTAL_USER}}'
+      password: '{{env.CISCO_VOICE_PORTAL_PASS}}'
+  exposes:
+  - type: rest
+    namespace: call-control-health-rest
+    port: 8080
+    description: REST adapter for Cisco Voice Portal Call Control API — Health. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/health
+      name: health
+      description: REST surface for health.
+      operations:
+      - method: GET
+        name: getcallserverhealth
+        description: Cisco Voice Portal Get Call Server Health Status
+        call: call-control-health.getcallserverhealth
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/health/connectivity
+      name: health-connectivity
+      description: REST surface for health-connectivity.
+      operations:
+      - method: GET
+        name: getconnectivitystatus
+        description: Cisco Voice Portal Get Connectivity Status to Upstream Components
+        call: call-control-health.getconnectivitystatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: call-control-health-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cisco Voice Portal Call Control API — Health. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: cisco-voice-portal-get-call
+      description: Cisco Voice Portal Get Call Server Health Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: call-control-health.getcallserverhealth
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-get-connectivity
+      description: Cisco Voice Portal Get Connectivity Status to Upstream Components
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: call-control-health.getconnectivitystatus
+      outputParameters:
+      - type: object
+        mapping: $.

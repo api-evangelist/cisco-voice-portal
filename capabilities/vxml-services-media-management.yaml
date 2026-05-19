@@ -1,0 +1,128 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cisco Voice Portal VXML Services API — Media Management
+  description: 'Cisco Voice Portal VXML Services API — Media Management. 2 operations. Lead operation: Cisco Voice Portal
+    List Media Files. Self-contained Naftiko capability covering one Cisco Voice Portal business surface.'
+  tags:
+  - Cisco Voice Portal
+  - Media Management
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CISCO_VOICE_PORTAL_API_KEY: CISCO_VOICE_PORTAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: vxml-services-media-management
+    baseUri: https://{vxml-server}:7443/CVP/rest
+    description: Cisco Voice Portal VXML Services API — Media Management business capability. Self-contained, no shared references.
+    resources:
+    - name: media
+      path: /media
+      operations:
+      - name: listmediafiles
+        method: GET
+        description: Cisco Voice Portal List Media Files
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Directory path to list media from
+        - name: type
+          in: query
+          type: string
+          description: Filter by media type
+    - name: media-upload
+      path: /media/upload
+      operations:
+      - name: uploadmediafile
+        method: POST
+        description: Cisco Voice Portal Upload a Media File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.CISCO_VOICE_PORTAL_USER}}'
+      password: '{{env.CISCO_VOICE_PORTAL_PASS}}'
+  exposes:
+  - type: rest
+    namespace: vxml-services-media-management-rest
+    port: 8080
+    description: REST adapter for Cisco Voice Portal VXML Services API — Media Management. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/media
+      name: media
+      description: REST surface for media.
+      operations:
+      - method: GET
+        name: listmediafiles
+        description: Cisco Voice Portal List Media Files
+        call: vxml-services-media-management.listmediafiles
+        with:
+          path: rest.path
+          type: rest.type
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/media/upload
+      name: media-upload
+      description: REST surface for media-upload.
+      operations:
+      - method: POST
+        name: uploadmediafile
+        description: Cisco Voice Portal Upload a Media File
+        call: vxml-services-media-management.uploadmediafile
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: vxml-services-media-management-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cisco Voice Portal VXML Services API — Media Management. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: cisco-voice-portal-list-media
+      description: Cisco Voice Portal List Media Files
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: vxml-services-media-management.listmediafiles
+      with:
+        path: tools.path
+        type: tools.type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-upload-media
+      description: Cisco Voice Portal Upload a Media File
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: vxml-services-media-management.uploadmediafile
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

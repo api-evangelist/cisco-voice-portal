@@ -1,0 +1,264 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cisco Voice Portal Administration API — Device Management
+  description: 'Cisco Voice Portal Administration API — Device Management. 7 operations. Lead operation: Cisco Voice Portal
+    List All Managed Devices. Self-contained Naftiko capability covering one Cisco Voice Portal business surface.'
+  tags:
+  - Cisco Voice Portal
+  - Device Management
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CISCO_VOICE_PORTAL_API_KEY: CISCO_VOICE_PORTAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: administration-device-management
+    baseUri: https://{oamp-server}:9443/oamp/rest
+    description: Cisco Voice Portal Administration API — Device Management business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: device
+      path: /device
+      operations:
+      - name: listdevices
+        method: GET
+        description: Cisco Voice Portal List All Managed Devices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: adddevice
+        method: POST
+        description: Cisco Voice Portal Add a New Device
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: device-deviceId
+      path: /device/{deviceId}
+      operations:
+      - name: getdevice
+        method: GET
+        description: Cisco Voice Portal Get Device Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatedevice
+        method: PUT
+        description: Cisco Voice Portal Update Device Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletedevice
+        method: DELETE
+        description: Cisco Voice Portal Remove a Managed Device
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: device-deviceId-restart
+      path: /device/{deviceId}/restart
+      operations:
+      - name: restartdevice
+        method: POST
+        description: Cisco Voice Portal Restart a Device Service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: device-deviceId-status
+      path: /device/{deviceId}/status
+      operations:
+      - name: getdevicestatus
+        method: GET
+        description: Cisco Voice Portal Get Device Operational Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: JSESSIONID
+      value: '{{env.CISCO_VOICE_PORTAL_API_KEY}}'
+      placement: cookie
+  exposes:
+  - type: rest
+    namespace: administration-device-management-rest
+    port: 8080
+    description: REST adapter for Cisco Voice Portal Administration API — Device Management. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/device
+      name: device
+      description: REST surface for device.
+      operations:
+      - method: GET
+        name: listdevices
+        description: Cisco Voice Portal List All Managed Devices
+        call: administration-device-management.listdevices
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: adddevice
+        description: Cisco Voice Portal Add a New Device
+        call: administration-device-management.adddevice
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/device/{deviceid}
+      name: device-deviceid
+      description: REST surface for device-deviceId.
+      operations:
+      - method: GET
+        name: getdevice
+        description: Cisco Voice Portal Get Device Details
+        call: administration-device-management.getdevice
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedevice
+        description: Cisco Voice Portal Update Device Configuration
+        call: administration-device-management.updatedevice
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedevice
+        description: Cisco Voice Portal Remove a Managed Device
+        call: administration-device-management.deletedevice
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/device/{deviceid}/restart
+      name: device-deviceid-restart
+      description: REST surface for device-deviceId-restart.
+      operations:
+      - method: POST
+        name: restartdevice
+        description: Cisco Voice Portal Restart a Device Service
+        call: administration-device-management.restartdevice
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/device/{deviceid}/status
+      name: device-deviceid-status
+      description: REST surface for device-deviceId-status.
+      operations:
+      - method: GET
+        name: getdevicestatus
+        description: Cisco Voice Portal Get Device Operational Status
+        call: administration-device-management.getdevicestatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: administration-device-management-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cisco Voice Portal Administration API — Device Management. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: cisco-voice-portal-list-all
+      description: Cisco Voice Portal List All Managed Devices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: administration-device-management.listdevices
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-add-new
+      description: Cisco Voice Portal Add a New Device
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: administration-device-management.adddevice
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-get-device
+      description: Cisco Voice Portal Get Device Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: administration-device-management.getdevice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-update-device
+      description: Cisco Voice Portal Update Device Configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: administration-device-management.updatedevice
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-remove-managed
+      description: Cisco Voice Portal Remove a Managed Device
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: administration-device-management.deletedevice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-restart-device
+      description: Cisco Voice Portal Restart a Device Service
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: administration-device-management.restartdevice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-get-device-2
+      description: Cisco Voice Portal Get Device Operational Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: administration-device-management.getdevicestatus
+      outputParameters:
+      - type: object
+        mapping: $.

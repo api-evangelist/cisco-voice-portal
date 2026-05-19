@@ -1,0 +1,121 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cisco Voice Portal VXML Services API — Session Monitoring
+  description: 'Cisco Voice Portal VXML Services API — Session Monitoring. 2 operations. Lead operation: Cisco Voice Portal
+    List Active Application Sessions. Self-contained Naftiko capability covering one Cisco Voice Portal business surface.'
+  tags:
+  - Cisco Voice Portal
+  - Session Monitoring
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CISCO_VOICE_PORTAL_API_KEY: CISCO_VOICE_PORTAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: vxml-services-session-monitoring
+    baseUri: https://{vxml-server}:7443/CVP/rest
+    description: Cisco Voice Portal VXML Services API — Session Monitoring business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: application-applicationName-sessions
+      path: /application/{applicationName}/sessions
+      operations:
+      - name: listapplicationsessions
+        method: GET
+        description: Cisco Voice Portal List Active Application Sessions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+    - name: session-sessionId
+      path: /session/{sessionId}
+      operations:
+      - name: getsessiondetails
+        method: GET
+        description: Cisco Voice Portal Get Vxml Session Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sessionId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.CISCO_VOICE_PORTAL_USER}}'
+      password: '{{env.CISCO_VOICE_PORTAL_PASS}}'
+  exposes:
+  - type: rest
+    namespace: vxml-services-session-monitoring-rest
+    port: 8080
+    description: REST adapter for Cisco Voice Portal VXML Services API — Session Monitoring. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/application/{applicationname}/sessions
+      name: application-applicationname-sessions
+      description: REST surface for application-applicationName-sessions.
+      operations:
+      - method: GET
+        name: listapplicationsessions
+        description: Cisco Voice Portal List Active Application Sessions
+        call: vxml-services-session-monitoring.listapplicationsessions
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/session/{sessionid}
+      name: session-sessionid
+      description: REST surface for session-sessionId.
+      operations:
+      - method: GET
+        name: getsessiondetails
+        description: Cisco Voice Portal Get Vxml Session Details
+        call: vxml-services-session-monitoring.getsessiondetails
+        with:
+          sessionId: rest.sessionId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: vxml-services-session-monitoring-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cisco Voice Portal VXML Services API — Session Monitoring. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: cisco-voice-portal-list-active
+      description: Cisco Voice Portal List Active Application Sessions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: vxml-services-session-monitoring.listapplicationsessions
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cisco-voice-portal-get-vxml
+      description: Cisco Voice Portal Get Vxml Session Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: vxml-services-session-monitoring.getsessiondetails
+      with:
+        sessionId: tools.sessionId
+      outputParameters:
+      - type: object
+        mapping: $.
