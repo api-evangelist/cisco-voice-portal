@@ -1,0 +1,259 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Call Control API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Call Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Active Calls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{call-server}:8000/cvp/rest/call",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by call state"
+              },
+              {
+                "name": "calledNumber",
+                "value": "",
+                "type": "query",
+                "description": "Filter by DNIS"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all currently active calls on this Call Server. Each entry includes the call GUID, current state, and associated SIP session information."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Active Call Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{call-server}:8000/cvp/rest/call/:callGuid",
+            "params": [
+              {
+                "name": "callGuid",
+                "value": "",
+                "type": "path",
+                "description": "Globally unique call identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific active call, including SIP session details, current state, call variables, and routing information."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Transfer an Active Call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{call-server}:8000/cvp/rest/call/:callGuid/transfer",
+            "params": [
+              {
+                "name": "callGuid",
+                "value": "",
+                "type": "path",
+                "description": "Globally unique call identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a transfer of an active call to a specified destination. The transfer can be a blind transfer or a consultation transfer. This operation sends the appropriate SIP REFER or re-INVITE to execute the transfer."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Terminate an Active Call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{call-server}:8000/cvp/rest/call/:callGuid/terminate",
+            "params": [
+              {
+                "name": "callGuid",
+                "value": "",
+                "type": "path",
+                "description": "Globally unique call identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Terminates an active call by sending a SIP BYE request. The call is disconnected and a CDR is generated."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Call Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{call-server}:8000/cvp/rest/call/:callGuid/variables",
+            "params": [
+              {
+                "name": "callGuid",
+                "value": "",
+                "type": "path",
+                "description": "Globally unique call identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves the Expanded Call Context (ECC) variables and peripheral variables associated with an active call. These variables carry data between CVP, ICM, and the VXML application."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Set Call Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{call-server}:8000/cvp/rest/call/:callGuid/variables",
+            "params": [
+              {
+                "name": "callGuid",
+                "value": "",
+                "type": "path",
+                "description": "Globally unique call identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets or updates ECC variables on an active call. These variables are passed to the VXML application and to ICM for routing decisions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Call Routing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Perform a Routing Lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{call-server}:8000/cvp/rest/routing/lookup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a routing lookup to determine the call treatment for a given dialed number. This queries the configured dialed number patterns and returns the routing decision without initiating an actual call. Useful for testing and validation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SIP Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Active Sip Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{call-server}:8000/cvp/rest/sip/session",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves information about active SIP sessions (dialogs) on the Call Server. Each SIP session corresponds to an active call leg."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Sip Session Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{call-server}:8000/cvp/rest/sip/session/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed SIP session information including SIP headers, dialog state, and associated call GUID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Call Server Health Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{call-server}:8000/cvp/rest/health"
+          },
+          "docs": "Retrieves the health and resource status of the Call Server, including active call count, SIP stack status, and connectivity to upstream components (ICM, CUCM, VXML Server)."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Connectivity Status to Upstream Components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{call-server}:8000/cvp/rest/health/connectivity"
+          },
+          "docs": "Checks and reports the connectivity status to all configured upstream components including ICM/UCCE, CUCM clusters, VXML Servers, and Reporting Server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

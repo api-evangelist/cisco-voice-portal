@@ -1,0 +1,625 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List All Managed Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/device"
+          },
+          "docs": "Retrieves a list of all devices registered with the CVP OAMP Server, including Call Servers, VXML Servers, Reporting Servers, and Media Servers. Each device entry contains its type, hostname, IP address, and current operational status."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Add a New Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/device",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new device (Call Server, VXML Server, Reporting Server, or Media Server) with the CVP OAMP Server for centralized management."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Device Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/device/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific managed device, including its configuration, status, and associated services."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Update Device Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{oamp-server}:9443/oamp/rest/device/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing managed device. Changes may require a device restart to take effect."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Remove a Managed Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{oamp-server}:9443/oamp/rest/device/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Removes a device from the CVP OAMP management. The device itself is not uninstalled but is no longer managed centrally."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Device Operational Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/device/:deviceId/status",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves the current operational status of a managed device, including service status, resource utilization, and connectivity state."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Restart a Device Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/device/:deviceId/restart",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Initiates a restart of the CVP service on the specified device. This operation is asynchronous and the device status can be monitored via the status endpoint."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Call Server Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List All Call Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/callserver"
+          },
+          "docs": "Retrieves a list of all CVP Call Servers managed by the OAMP Server. Call Servers handle SIP call control and routing within the CVP deployment."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Call Server Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/callserver/:serverId/config",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "Server identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves the full configuration of a specific Call Server, including SIP settings, call routing rules, dialed number patterns, and connection settings to ICM/UCCE."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Update Call Server Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{oamp-server}:9443/oamp/rest/callserver/:serverId/config",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "Server identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a specific Call Server. Changes to SIP and routing configuration may require a service restart."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "VXML Server Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List All Vxml Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/vxmlserver"
+          },
+          "docs": "Retrieves a list of all CVP VXML Servers. VXML Servers host and execute VoiceXML applications that provide interactive voice response (IVR) functionality."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Vxml Server Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/vxmlserver/:serverId/config",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "Server identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves the configuration of a specific VXML Server, including application settings, thread pool configuration, and VXML browser settings."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Update Vxml Server Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{oamp-server}:9443/oamp/rest/vxmlserver/:serverId/config",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "Server identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a specific VXML Server. Application deployment changes take effect immediately; server configuration changes may require a restart."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Application Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Deployed Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/application",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application type"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deployment status"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all VXML and call studio applications deployed across the CVP infrastructure. Includes deployment status and associated server assignments."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Deploy a New Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/application",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "applicationName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "applicationType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "applicationFile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "targetServers",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Deploys a VXML or Call Studio application to designated VXML Servers. The application archive is uploaded and distributed to the target servers."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Application Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/application/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Application identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a deployed application, including deployment status on each server and configuration parameters."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Undeploy an Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{oamp-server}:9443/oamp/rest/application/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Application identifier"
+              }
+            ]
+          },
+          "docs": "Removes a deployed application from all associated VXML Servers. Active calls using the application are allowed to complete before removal."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dialed Number Patterns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Dialed Number Patterns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/dialedNumberPattern"
+          },
+          "docs": "Retrieves all configured dialed number patterns (DNPs). DNPs define how incoming calls are routed to specific applications or call treatments based on the dialed number."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Create a Dialed Number Pattern",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/dialedNumberPattern",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new dialed number pattern to route incoming calls to the appropriate application or call treatment."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Dialed Number Pattern Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/dialedNumberPattern/:patternId",
+            "params": [
+              {
+                "name": "patternId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cisco Voice Portal Get Dialed Number Pattern Details"
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Update a Dialed Number Pattern",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{oamp-server}:9443/oamp/rest/dialedNumberPattern/:patternId",
+            "params": [
+              {
+                "name": "patternId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cisco Voice Portal Update a Dialed Number Pattern"
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Delete a Dialed Number Pattern",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{oamp-server}:9443/oamp/rest/dialedNumberPattern/:patternId",
+            "params": [
+              {
+                "name": "patternId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cisco Voice Portal Delete a Dialed Number Pattern"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SIP Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Sip Server Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/sipserver"
+          },
+          "docs": "Retrieves the configured SIP server groups used for call routing. Server groups define clusters of SIP endpoints (such as CUCM, SBCs, or gateways) that the CVP Call Server communicates with."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Create a Sip Server Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/sipserver",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new SIP server group for call routing purposes. Server groups allow load balancing and failover across multiple SIP endpoints."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "System Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get System-wide Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/system/config"
+          },
+          "docs": "Retrieves global system configuration settings including logging levels, security settings, and system-wide defaults."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Update System-wide Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{oamp-server}:9443/oamp/rest/system/config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cisco Voice Portal Update System-wide Configuration"
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Licensing Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/system/license"
+          },
+          "docs": "Retrieves current licensing information including licensed features, port capacity, and license expiration status."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Oamp Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/user"
+          },
+          "docs": "Retrieves a list of users with access to the CVP OAMP management interface. Users are assigned roles that determine their access level."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Create an Oamp User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cisco Voice Portal Create an Oamp User"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Deployment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Deploy Configuration to Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/deployment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Pushes the current OAMP configuration to specified devices or all managed devices. This synchronizes the centrally managed configuration with the actual device configurations."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Deployment Operation Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/deployment/:operationId",
+            "params": [
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the status of an ongoing or completed deployment operation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

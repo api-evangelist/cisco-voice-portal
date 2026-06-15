@@ -1,0 +1,3281 @@
+{
+  "item": [
+    {
+      "id": "0cd3f9e9-ba99-4fa7-abd6-3d7fb877b0e0",
+      "name": "Call Detail Records",
+      "description": {
+        "content": "Access and query call detail records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e20fe38-a848-44c8-8e15-0263545f51c5",
+          "name": "Cisco Voice Portal Query Call Detail Records",
+          "request": {
+            "name": "Cisco Voice Portal Query Call Detail Records",
+            "description": {
+              "content": "Retrieves call detail records (CDRs) based on specified filter criteria. CDRs contain comprehensive information about each call processed by CVP including timing, routing decisions, application interactions, and outcome.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cdr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start of the query time range (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) End of the query time range (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "calledNumber",
+                  "value": "<string>",
+                  "description": "Filter by called number (DNIS)"
+                },
+                {
+                  "disabled": false,
+                  "key": "callingNumber",
+                  "value": "<string>",
+                  "description": "Filter by calling number (ANI)"
+                },
+                {
+                  "disabled": false,
+                  "key": "callGuid",
+                  "value": "<string>",
+                  "description": "Filter by unique call GUID"
+                },
+                {
+                  "disabled": false,
+                  "key": "callResult",
+                  "value": "<string>",
+                  "description": "Filter by call result"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of records to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "callStartTime",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "desc"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP Reporting Server",
+                  "type": "any",
+                  "value": "{{reporting-server}}",
+                  "key": "reporting-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de0cb575-58e6-4343-8884-e97a39887ad6",
+              "name": "Call detail records matching the query",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callResult",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "callStartTime"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRecords\": 10,\n  \"offset\": 10,\n  \"limit\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5165980-0686-490c-bc0b-070e7b6e1de6",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callResult",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "callStartTime"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d3867bd-fc07-4c35-a727-56ee78f09b2a",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callResult",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "callStartTime"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7b5fc4e-9868-4d21-9109-130d80b0d2c6",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "callResult",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "callStartTime"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cae849e-29ae-4c8d-86a8-14a5b50e4de8",
+          "name": "Cisco Voice Portal Get a Specific Call Detail Record",
+          "request": {
+            "name": "Cisco Voice Portal Get a Specific Call Detail Record",
+            "description": {
+              "content": "Retrieves the complete call detail record for a specific call, identified by its globally unique identifier (GUID). Includes all call legs, application interactions, and ECC variables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cdr",
+                ":callGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callGuid",
+                  "description": "(Required) Globally unique call identifier"
+                },
+                {
+                  "description": "Hostname or IP of the CVP Reporting Server",
+                  "type": "any",
+                  "value": "{{reporting-server}}",
+                  "key": "reporting-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a9edb70-cd2c-4b10-977f-66b3de5b9ec4",
+              "name": "Call detail record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr",
+                    ":callGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callGuid\": \"500123\",\n  \"callStartTime\": \"2026-01-15T10:30:00Z\",\n  \"callEndTime\": \"2026-01-15T10:30:00Z\",\n  \"callingNumber\": \"example_value\",\n  \"calledNumber\": \"example_value\",\n  \"callResult\": \"completed\",\n  \"callDuration\": 10,\n  \"selfServiceDuration\": 10,\n  \"queueDuration\": 10,\n  \"applicationName\": \"example_value\",\n  \"callServerHostname\": \"example_value\",\n  \"vxmlServerHostname\": \"example_value\",\n  \"sipCallId\": \"500123\",\n  \"icmCallKey\": \"example_value\",\n  \"eccVariables\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"transferDestination\": \"example_value\",\n  \"errorCode\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfc7ab82-0c90-43ae-837d-f7ad3b5a5d13",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr",
+                    ":callGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5af65576-6711-419b-809e-9e3963dbadb5",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr",
+                    ":callGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "901914d7-c2bd-4560-b052-f2ac2196cecd",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr",
+                    ":callGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a72d1378-3484-455e-926c-4b9e6cb164df",
+          "name": "Cisco Voice Portal Get Call Legs for a Call",
+          "request": {
+            "name": "Cisco Voice Portal Get Call Legs for a Call",
+            "description": {
+              "content": "Retrieves all individual call legs associated with a specific call. A call may have multiple legs representing transfers, conferences, or application hand-offs within the CVP system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cdr",
+                ":callGuid",
+                "legs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callGuid",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP of the CVP Reporting Server",
+                  "type": "any",
+                  "value": "{{reporting-server}}",
+                  "key": "reporting-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef2789c4-f798-415f-b862-6f6ec3164a07",
+              "name": "Call legs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr",
+                    ":callGuid",
+                    "legs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"legId\": \"500123\",\n    \"callGuid\": \"500123\",\n    \"legType\": \"inbound\",\n    \"startTime\": \"2026-01-15T10:30:00Z\",\n    \"endTime\": \"2026-01-15T10:30:00Z\",\n    \"duration\": 10,\n    \"fromUri\": \"example_value\",\n    \"toUri\": \"example_value\",\n    \"serverHostname\": \"example_value\",\n    \"sipResponseCode\": 10\n  },\n  {\n    \"legId\": \"500123\",\n    \"callGuid\": \"500123\",\n    \"legType\": \"inbound\",\n    \"startTime\": \"2026-01-15T10:30:00Z\",\n    \"endTime\": \"2026-01-15T10:30:00Z\",\n    \"duration\": 10,\n    \"fromUri\": \"example_value\",\n    \"toUri\": \"example_value\",\n    \"serverHostname\": \"example_value\",\n    \"sipResponseCode\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af66c7d4-4d06-447e-8ac4-fdc60bdbe114",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr",
+                    ":callGuid",
+                    "legs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40e0eef0-c7e7-4e95-904b-81fd124c03a8",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr",
+                    ":callGuid",
+                    "legs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8ef52cf-6f43-4902-a510-d5db315f2e61",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cdr",
+                    ":callGuid",
+                    "legs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e63fbf92-f98f-4ec8-9847-78b5b5d0bdfc",
+      "name": "Historical Reports",
+      "description": {
+        "content": "Aggregated historical reporting data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "541ddefd-0d1a-4af1-ab4d-74e6a0f97d97",
+          "name": "Cisco Voice Portal Get Call Summary Statistics",
+          "request": {
+            "name": "Cisco Voice Portal Get Call Summary Statistics",
+            "description": {
+              "content": "Retrieves aggregated call summary statistics for a specified time period, including total calls, average handle time, abandonment rate, and self-service completion rate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "statistics",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "hourly",
+                  "description": "Aggregation interval"
+                },
+                {
+                  "disabled": false,
+                  "key": "calledNumber",
+                  "value": "<string>",
+                  "description": "Filter by called number (DNIS)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP Reporting Server",
+                  "type": "any",
+                  "value": "{{reporting-server}}",
+                  "key": "reporting-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "449cafbc-7112-4800-bfe9-3899e041c315",
+              "name": "Summary statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "hourly"
+                    },
+                    {
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"startTime\": \"2026-01-15T10:30:00Z\",\n  \"endTime\": \"2026-01-15T10:30:00Z\",\n  \"interval\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0915fe42-4189-46d5-aa7b-03b552be52c9",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "hourly"
+                    },
+                    {
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b16550ed-4976-4d84-bcf4-67a11dc97597",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "hourly"
+                    },
+                    {
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb139a0e-3b4d-4068-b15b-52ea357fa331",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "hourly"
+                    },
+                    {
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc6ec372-4075-4e84-9967-4672d6d3958c",
+          "name": "Cisco Voice Portal Get Vxml Application Statistics",
+          "request": {
+            "name": "Cisco Voice Portal Get Vxml Application Statistics",
+            "description": {
+              "content": "Retrieves usage and performance statistics for deployed VXML applications, including invocation counts, completion rates, and average interaction duration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "statistics",
+                "application"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "applicationName",
+                  "value": "<string>",
+                  "description": "Filter by specific application name"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP Reporting Server",
+                  "type": "any",
+                  "value": "{{reporting-server}}",
+                  "key": "reporting-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56536fe3-5951-4b4c-b7f7-a24dec96d482",
+              "name": "Application statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "applicationName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"startTime\": \"2026-01-15T10:30:00Z\",\n  \"endTime\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "112aa50d-abab-4b59-9a54-9d1510f065d4",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "applicationName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e486e7fb-b898-47e0-9c88-544a42dcdca6",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "applicationName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d54c19c-73c0-4854-82c7-e970a67d0cc3",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "applicationName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bdeb7d2-caee-4688-b4fe-c67555ce7b04",
+          "name": "Cisco Voice Portal Get Per-server Statistics",
+          "request": {
+            "name": "Cisco Voice Portal Get Per-server Statistics",
+            "description": {
+              "content": "Retrieves call processing statistics broken down by individual CVP server, useful for capacity planning and load monitoring.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "statistics",
+                "server"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "serverType",
+                  "value": "<string>",
+                  "description": "Filter by server type"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP Reporting Server",
+                  "type": "any",
+                  "value": "{{reporting-server}}",
+                  "key": "reporting-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2113575-3ba7-41de-a07e-f076e32b1760",
+              "name": "Server statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "serverType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"startTime\": \"2026-01-15T10:30:00Z\",\n  \"endTime\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47fe85da-3087-4744-b80d-a5ed570c828d",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "serverType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "884782fe-c96c-44ca-978c-7e92d5dd0b9b",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "serverType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3672e6d-e759-4902-bd96-6cede9075b72",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "serverType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "69d2632e-9d89-49d8-adfe-b8eb6a986993",
+      "name": "Real-Time Statistics",
+      "description": {
+        "content": "Current call processing statistics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "965d3a8f-bd37-4ab0-b9ac-a355aea40e43",
+          "name": "Cisco Voice Portal Get Real-time Call Statistics",
+          "request": {
+            "name": "Cisco Voice Portal Get Real-time Call Statistics",
+            "description": {
+              "content": "Retrieves current real-time statistics across the CVP deployment, including active calls, calls per second, and resource utilization metrics. Data is refreshed at the reporting server polling interval.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "statistics",
+                "realtime"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "serverId",
+                  "value": "<string>",
+                  "description": "Filter by specific server ID. If omitted, returns aggregate."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP Reporting Server",
+                  "type": "any",
+                  "value": "{{reporting-server}}",
+                  "key": "reporting-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b5ce992-0b6c-4553-b29e-9624717cec7f",
+              "name": "Real-time statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "realtime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serverId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-01-15T10:30:00Z\",\n  \"activeCalls\": 10,\n  \"callsInProgress\": {\n    \"selfService\": 6957,\n    \"queued\": 1608,\n    \"connected\": 6806\n  },\n  \"callsPerSecond\": 42.5,\n  \"peakActiveCalls\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "177a1d9c-619f-48c0-9aec-0a732545939f",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "realtime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serverId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c78b163-690c-43b9-aa31-5393ad4739be",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "realtime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serverId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "62defe3c-5d38-40bc-b5ba-1a2439ae3f51",
+      "name": "Report Templates",
+      "description": {
+        "content": "Execute pre-defined report templates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12f928d5-fae7-40b5-94f2-b090b37b65b2",
+          "name": "Cisco Voice Portal List Available Report Templates",
+          "request": {
+            "name": "Cisco Voice Portal List Available Report Templates",
+            "description": {
+              "content": "Retrieves a list of available report templates that can be executed. These correspond to the standard CVP reports available in Cisco Unified Intelligence Center.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP Reporting Server",
+                  "type": "any",
+                  "value": "{{reporting-server}}",
+                  "key": "reporting-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c54497b-d5d8-46c3-ad6c-c4a034af945a",
+              "name": "List of report templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"templateId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"category\": \"call_activity\"\n  },\n  {\n    \"templateId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"category\": \"call_activity\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9b8d718-2daf-4ca8-bc62-8caab6d3e57d",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88da7f28-a132-4e7c-8a75-3469def4c8dd",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d2af53a-0ee6-4131-b2f3-3d86614f645e",
+          "name": "Cisco Voice Portal Execute a Report Template",
+          "request": {
+            "name": "Cisco Voice Portal Execute a Report Template",
+            "description": {
+              "content": "Executes a report template with the specified parameters. Reports may be generated synchronously for small datasets or asynchronously for large reports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "report",
+                ":templateId",
+                "execute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP of the CVP Reporting Server",
+                  "type": "any",
+                  "value": "{{reporting-server}}",
+                  "key": "reporting-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parameters\": {\n    \"key_0\": 6276.04858013162,\n    \"key_1\": 586.1628328434598\n  },\n  \"format\": \"json\",\n  \"async\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "937e55c2-33b8-4c50-a45f-50a9d527628e",
+              "name": "Report results (synchronous)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    ":templateId",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"string\"\n  },\n  \"format\": \"json\",\n  \"async\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reportId\": \"500123\",\n  \"templateId\": \"500123\",\n  \"templateName\": \"example_value\",\n  \"status\": \"completed\",\n  \"generatedAt\": \"2026-01-15T10:30:00Z\",\n  \"parameters\": {\n    \"key_0\": \"string\"\n  },\n  \"totalRows\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2df16b6-eb41-4969-8e97-faf5503c3c91",
+              "name": "Report generation initiated (asynchronous)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    ":templateId",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"string\"\n  },\n  \"format\": \"json\",\n  \"async\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reportId\": \"string\",\n  \"status\": \"processing\",\n  \"estimatedCompletionTime\": \"1985-02-13T22:07:13.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8623edc0-41ff-4b0e-af93-9a556b6803ef",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    ":templateId",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"string\"\n  },\n  \"format\": \"json\",\n  \"async\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6e1c0bb-73bd-4b46-8658-b015347921ba",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    ":templateId",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"string\"\n  },\n  \"format\": \"json\",\n  \"async\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0efd134f-55b7-42c9-a783-51b1febac5c4",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    ":templateId",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"string\"\n  },\n  \"format\": \"json\",\n  \"async\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e61f1c74-0a1f-49de-9bdb-9c45ba5649e4",
+          "name": "Cisco Voice Portal Get Report Execution Result",
+          "request": {
+            "name": "Cisco Voice Portal Get Report Execution Result",
+            "description": {
+              "content": "Retrieves the result of a previously executed report. For asynchronous reports, returns the result once generation is complete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "report",
+                ":reportId",
+                "result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Output format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP of the CVP Reporting Server",
+                  "type": "any",
+                  "value": "{{reporting-server}}",
+                  "key": "reporting-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "884f76a6-8a68-4495-939a-7aecbd275975",
+              "name": "Report result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    ":reportId",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reportId\": \"500123\",\n  \"templateId\": \"500123\",\n  \"templateName\": \"example_value\",\n  \"status\": \"completed\",\n  \"generatedAt\": \"2026-01-15T10:30:00Z\",\n  \"parameters\": {\n    \"key_0\": \"string\"\n  },\n  \"totalRows\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ac5977c-aec1-4190-9d87-5796683197c2",
+              "name": "Report still processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    ":reportId",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8471cd3c-160d-4f05-8673-d9e386b1e42a",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    ":reportId",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e7c16ae-64fd-4a35-9fc6-3bec4eb94d97",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    ":reportId",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abc88414-9c02-4031-9209-14207297b841",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    ":reportId",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Reporting Server",
+                      "type": "any",
+                      "value": "{{reporting-server}}",
+                      "key": "reporting-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP of the CVP Reporting Server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "cvp-reporting.example.com",
+      "key": "reporting-server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{reporting-server}}:8111/cvp-reporting/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bb248c38-bbd1-43ee-859a-fe66783fc8ff",
+    "name": "Cisco Voice Portal Reporting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Cisco Unified Customer Voice Portal (CVP) Reporting API provides access to call detail records (CDRs), real-time call statistics, and historical reporting data. The Reporting Server collects data from CVP Call Servers and VXML Servers, storing it in the CVP Reporting Database (an Informix database). This API provides RESTful access to reporting data that is typically accessed via the Cisco Unified Intelligence Center (CUIC) reporting interface.\n\nContact Support:\n Name: Cisco Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,3157 @@
+{
+  "item": [
+    {
+      "id": "696cafe6-b7f1-4ad6-9952-160bdfe6f555",
+      "name": "Call Management",
+      "description": {
+        "content": "Manage and control active calls",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7eb50b75-890e-4c76-aac8-62b570986334",
+          "name": "Cisco Voice Portal List Active Calls",
+          "request": {
+            "name": "Cisco Voice Portal List Active Calls",
+            "description": {
+              "content": "Retrieves a list of all currently active calls on this Call Server. Each entry includes the call GUID, current state, and associated SIP session information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "call"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter by call state"
+                },
+                {
+                  "disabled": false,
+                  "key": "calledNumber",
+                  "value": "<string>",
+                  "description": "Filter by DNIS"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP Call Server",
+                  "type": "any",
+                  "value": "{{call-server}}",
+                  "key": "call-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ebb161a-c266-4f72-be4d-00c555f4ecd0",
+              "name": "List of active calls",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalActiveCalls\": 3545,\n  \"calls\": [\n    {\n      \"callGuid\": \"500123\",\n      \"state\": \"ringing\",\n      \"callingNumber\": \"example_value\",\n      \"calledNumber\": \"example_value\",\n      \"startTime\": \"2026-01-15T10:30:00Z\",\n      \"duration\": 10,\n      \"applicationName\": \"example_value\"\n    },\n    {\n      \"callGuid\": \"500123\",\n      \"state\": \"ringing\",\n      \"callingNumber\": \"example_value\",\n      \"calledNumber\": \"example_value\",\n      \"startTime\": \"2026-01-15T10:30:00Z\",\n      \"duration\": 10,\n      \"applicationName\": \"example_value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "794c1cb7-f169-418e-867f-f02b567c3a4a",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6913c383-ce5e-44a8-8db3-2359ad02f416",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "433509af-aa8f-45e2-892c-dfd2a27f5917",
+          "name": "Cisco Voice Portal Get Active Call Details",
+          "request": {
+            "name": "Cisco Voice Portal Get Active Call Details",
+            "description": {
+              "content": "Retrieves detailed information about a specific active call, including SIP session details, current state, call variables, and routing information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "call",
+                ":callGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callGuid",
+                  "description": "(Required) Globally unique call identifier"
+                },
+                {
+                  "description": "Hostname or IP of the CVP Call Server",
+                  "type": "any",
+                  "value": "{{call-server}}",
+                  "key": "call-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdeb67bb-82f0-49ad-8523-a2561f1dd0ac",
+              "name": "Call details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callGuid\": \"500123\",\n  \"state\": \"ringing\",\n  \"callingNumber\": \"example_value\",\n  \"calledNumber\": \"example_value\",\n  \"startTime\": \"2026-01-15T10:30:00Z\",\n  \"duration\": 10,\n  \"applicationName\": \"example_value\",\n  \"sipCallId\": \"500123\",\n  \"sipFromTag\": \"example_value\",\n  \"sipToTag\": \"example_value\",\n  \"icmRouteResult\": {\n    \"routeLabel\": \"string\",\n    \"skillGroup\": \"string\",\n    \"agentId\": \"string\"\n  },\n  \"vxmlServer\": \"example_value\",\n  \"eccVariables\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abe1cb33-b2b9-41c0-9d92-d4a52385b109",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ef2f422-0edf-4eb8-b175-b2c744d091c1",
+              "name": "Call not found or no longer active",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "db8aeeba-2a59-4496-b491-ccafd9053dc1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ed5c15b-e5bb-4f6c-953b-79920d7a6df4",
+          "name": "Cisco Voice Portal Transfer an Active Call",
+          "request": {
+            "name": "Cisco Voice Portal Transfer an Active Call",
+            "description": {
+              "content": "Initiates a transfer of an active call to a specified destination. The transfer can be a blind transfer or a consultation transfer. This operation sends the appropriate SIP REFER or re-INVITE to execute the transfer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "call",
+                ":callGuid",
+                "transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callGuid",
+                  "description": "(Required) Globally unique call identifier"
+                },
+                {
+                  "description": "Hostname or IP of the CVP Call Server",
+                  "type": "any",
+                  "value": "{{call-server}}",
+                  "key": "call-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination\": \"<string>\",\n  \"transferType\": \"blind\",\n  \"label\": \"<string>\",\n  \"eccVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e401ede-86b3-4783-974a-72becdd691f4",
+              "name": "Transfer initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination\": \"example_value\",\n  \"transferType\": \"blind\",\n  \"label\": \"Example Title\",\n  \"eccVariables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callGuid\": \"500123\",\n  \"operation\": \"example_value\",\n  \"status\": \"success\",\n  \"message\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84c982b8-6da9-4f28-93f9-4b0c8406c879",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination\": \"example_value\",\n  \"transferType\": \"blind\",\n  \"label\": \"Example Title\",\n  \"eccVariables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "becc0e59-9616-4076-b98d-695a08fc6823",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination\": \"example_value\",\n  \"transferType\": \"blind\",\n  \"label\": \"Example Title\",\n  \"eccVariables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aabc400b-9aea-4381-a284-d5b9e88861ec",
+              "name": "Call not found or no longer active",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination\": \"example_value\",\n  \"transferType\": \"blind\",\n  \"label\": \"Example Title\",\n  \"eccVariables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f4c77307-dc1c-4d37-b87c-1b4978912725",
+              "name": "Call is in a state that does not allow transfer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination\": \"example_value\",\n  \"transferType\": \"blind\",\n  \"label\": \"Example Title\",\n  \"eccVariables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b58a8f34-c604-44cb-a40a-59d0ce286a88",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination\": \"example_value\",\n  \"transferType\": \"blind\",\n  \"label\": \"Example Title\",\n  \"eccVariables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe0243e6-0b28-4d73-b9d0-64ff4e1d9936",
+          "name": "Cisco Voice Portal Terminate an Active Call",
+          "request": {
+            "name": "Cisco Voice Portal Terminate an Active Call",
+            "description": {
+              "content": "Terminates an active call by sending a SIP BYE request. The call is disconnected and a CDR is generated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "call",
+                ":callGuid",
+                "terminate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callGuid",
+                  "description": "(Required) Globally unique call identifier"
+                },
+                {
+                  "description": "Hostname or IP of the CVP Call Server",
+                  "type": "any",
+                  "value": "{{call-server}}",
+                  "key": "call-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e6b119a2-f97e-4e9a-8929-5d34d0e43f54",
+              "name": "Call terminated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callGuid\": \"500123\",\n  \"operation\": \"example_value\",\n  \"status\": \"success\",\n  \"message\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12c54223-2a23-48b4-8490-c8e367d143cc",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b74fed4b-b1dd-45fe-a268-a8d10643e650",
+              "name": "Call not found or already terminated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8b3254b9-32f2-49c4-99c6-6fdc1c90f873",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c988ac73-97cd-41f5-aa71-4a5f4e3324ac",
+          "name": "Cisco Voice Portal Get Call Variables",
+          "request": {
+            "name": "Cisco Voice Portal Get Call Variables",
+            "description": {
+              "content": "Retrieves the Expanded Call Context (ECC) variables and peripheral variables associated with an active call. These variables carry data between CVP, ICM, and the VXML application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "call",
+                ":callGuid",
+                "variables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callGuid",
+                  "description": "(Required) Globally unique call identifier"
+                },
+                {
+                  "description": "Hostname or IP of the CVP Call Server",
+                  "type": "any",
+                  "value": "{{call-server}}",
+                  "key": "call-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac2d23c8-d64b-4088-a239-7f699a442800",
+              "name": "Call variables",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "variables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callGuid\": \"500123\",\n  \"eccVariables\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"peripheralVariables\": {\n    \"peripheral1\": \"string\",\n    \"peripheral2\": \"string\",\n    \"peripheral3\": \"string\",\n    \"peripheral4\": \"string\",\n    \"peripheral5\": \"string\",\n    \"peripheral6\": \"string\",\n    \"peripheral7\": \"string\",\n    \"peripheral8\": \"string\",\n    \"peripheral9\": \"string\",\n    \"peripheral10\": \"string\"\n  },\n  \"callVariables\": {\n    \"callVariable1\": \"string\",\n    \"callVariable2\": \"string\",\n    \"callVariable3\": \"string\",\n    \"callVariable4\": \"string\",\n    \"callVariable5\": \"string\",\n    \"callVariable6\": \"string\",\n    \"callVariable7\": \"string\",\n    \"callVariable8\": \"string\",\n    \"callVariable9\": \"string\",\n    \"callVariable10\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0df9b45-5e5a-4efc-a55c-b3ea9b8944dc",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "variables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "268bd8d2-6bef-4549-97ec-f5ba91e04a21",
+              "name": "Call not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "variables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8f383b15-49c9-4a24-971a-4d42b757aa05",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "variables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76a67a73-e3d2-4b67-aa1a-fc5a2a4d2945",
+          "name": "Cisco Voice Portal Set Call Variables",
+          "request": {
+            "name": "Cisco Voice Portal Set Call Variables",
+            "description": {
+              "content": "Sets or updates ECC variables on an active call. These variables are passed to the VXML application and to ICM for routing decisions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "call",
+                ":callGuid",
+                "variables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "callGuid",
+                  "description": "(Required) Globally unique call identifier"
+                },
+                {
+                  "description": "Hostname or IP of the CVP Call Server",
+                  "type": "any",
+                  "value": "{{call-server}}",
+                  "key": "call-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eccVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"key_0\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "87e9cf97-7f43-43d0-b5a1-3a6544c1aa05",
+              "name": "Variables updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "variables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"eccVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callGuid\": \"500123\",\n  \"eccVariables\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"peripheralVariables\": {\n    \"peripheral1\": \"string\",\n    \"peripheral2\": \"string\",\n    \"peripheral3\": \"string\",\n    \"peripheral4\": \"string\",\n    \"peripheral5\": \"string\",\n    \"peripheral6\": \"string\",\n    \"peripheral7\": \"string\",\n    \"peripheral8\": \"string\",\n    \"peripheral9\": \"string\",\n    \"peripheral10\": \"string\"\n  },\n  \"callVariables\": {\n    \"callVariable1\": \"string\",\n    \"callVariable2\": \"string\",\n    \"callVariable3\": \"string\",\n    \"callVariable4\": \"string\",\n    \"callVariable5\": \"string\",\n    \"callVariable6\": \"string\",\n    \"callVariable7\": \"string\",\n    \"callVariable8\": \"string\",\n    \"callVariable9\": \"string\",\n    \"callVariable10\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8edbd346-187c-4303-a19b-d1c39b34f175",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "variables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"eccVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cddc7f1f-3a78-4a5b-adbe-894eda224303",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "variables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"eccVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67a410b1-d58c-41eb-9ade-a33b83d62643",
+              "name": "Call not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "variables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"eccVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8f139ee-3d85-4cc1-b588-13cc8c359643",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "call",
+                    ":callGuid",
+                    "variables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "callGuid",
+                      "description": "(Required) Globally unique call identifier"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"eccVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e312147f-05f5-4628-9f8f-8dce1f9138c8",
+      "name": "Call Routing",
+      "description": {
+        "content": "Call routing lookup and testing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dadb4e8c-5dfe-4e44-964b-bc75a6bc1bf8",
+          "name": "Cisco Voice Portal Perform a Routing Lookup",
+          "request": {
+            "name": "Cisco Voice Portal Perform a Routing Lookup",
+            "description": {
+              "content": "Performs a routing lookup to determine the call treatment for a given dialed number. This queries the configured dialed number patterns and returns the routing decision without initiating an actual call. Useful for testing and validation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "routing",
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP Call Server",
+                  "type": "any",
+                  "value": "{{call-server}}",
+                  "key": "call-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dialedNumber\": \"<string>\",\n  \"callingNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fdf0fdf9-6469-46c4-826d-74b8ae7de20e",
+              "name": "Routing lookup result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routing",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dialedNumber\": \"<string>\",\n  \"callingNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dialedNumber\": \"example_value\",\n  \"matched\": true,\n  \"matchedPattern\": \"example_value\",\n  \"callType\": \"preroute\",\n  \"applicationName\": \"example_value\",\n  \"routeDestination\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb200bc4-ed6e-4bde-b136-976ece15111c",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routing",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dialedNumber\": \"<string>\",\n  \"callingNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a419def2-682b-4333-8e38-7b730e2e92f7",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routing",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dialedNumber\": \"<string>\",\n  \"callingNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67b5b701-f775-4bf2-967a-4b6c845606b6",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routing",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dialedNumber\": \"<string>\",\n  \"callingNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ae5a8ea6-fe17-4f47-ad80-2e194fb739f7",
+      "name": "Health",
+      "description": {
+        "content": "Call Server health and connectivity status",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "830aaa7b-3ce7-4f92-96f1-214bb90949f0",
+          "name": "Cisco Voice Portal Get Call Server Health Status",
+          "request": {
+            "name": "Cisco Voice Portal Get Call Server Health Status",
+            "description": {
+              "content": "Retrieves the health and resource status of the Call Server, including active call count, SIP stack status, and connectivity to upstream components (ICM, CUCM, VXML Server).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP Call Server",
+                  "type": "any",
+                  "value": "{{call-server}}",
+                  "key": "call-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c30d0df2-af31-430b-adbd-a6a4b5170446",
+              "name": "Call Server health status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"serverName\": \"example_value\",\n  \"status\": \"healthy\",\n  \"uptime\": \"example_value\",\n  \"version\": \"example_value\",\n  \"activeCalls\": 10,\n  \"maxCalls\": 10,\n  \"sipStackStatus\": \"running\",\n  \"cpuUsage\": 42.5,\n  \"memoryUsage\": 42.5,\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fff7b0e-38fe-44e7-8c2c-6f274bcb12e1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa01d0e3-b91b-4dca-80ed-a2adf227955b",
+          "name": "Cisco Voice Portal Get Connectivity Status to Upstream Components",
+          "request": {
+            "name": "Cisco Voice Portal Get Connectivity Status to Upstream Components",
+            "description": {
+              "content": "Checks and reports the connectivity status to all configured upstream components including ICM/UCCE, CUCM clusters, VXML Servers, and Reporting Server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health",
+                "connectivity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP Call Server",
+                  "type": "any",
+                  "value": "{{call-server}}",
+                  "key": "call-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94143ced-b622-4b38-9183-8be51429f492",
+              "name": "Connectivity status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health",
+                    "connectivity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8183233-b453-44bb-a81c-efba3754dc24",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health",
+                    "connectivity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9c76db31-faca-4111-9ed3-61718509356b",
+      "name": "SIP Sessions",
+      "description": {
+        "content": "Monitor SIP session details",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "42c23763-2df6-4242-854a-f4cab2198212",
+          "name": "Cisco Voice Portal List Active Sip Sessions",
+          "request": {
+            "name": "Cisco Voice Portal List Active Sip Sessions",
+            "description": {
+              "content": "Retrieves information about active SIP sessions (dialogs) on the Call Server. Each SIP session corresponds to an active call leg.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sip",
+                "session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP Call Server",
+                  "type": "any",
+                  "value": "{{call-server}}",
+                  "key": "call-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54dc2c43-304f-4b9b-ac88-b3be1353ed12",
+              "name": "Active SIP sessions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sip",
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalSessions\": 2879,\n  \"sessions\": [\n    {\n      \"sessionId\": \"500123\",\n      \"callId\": \"500123\",\n      \"callGuid\": \"500123\",\n      \"state\": \"initial\",\n      \"method\": \"example_value\",\n      \"fromUri\": \"example_value\",\n      \"toUri\": \"example_value\",\n      \"startTime\": \"2026-01-15T10:30:00Z\"\n    },\n    {\n      \"sessionId\": \"500123\",\n      \"callId\": \"500123\",\n      \"callGuid\": \"500123\",\n      \"state\": \"initial\",\n      \"method\": \"example_value\",\n      \"fromUri\": \"example_value\",\n      \"toUri\": \"example_value\",\n      \"startTime\": \"2026-01-15T10:30:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b441ec28-cf27-46d2-96cd-67c2b4f1807e",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sip",
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70464d5a-a29d-4855-9e78-7fca4ab5e0c5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sip",
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4db0e56e-1e3d-416d-becd-1f235ae4355e",
+          "name": "Cisco Voice Portal Get Sip Session Details",
+          "request": {
+            "name": "Cisco Voice Portal Get Sip Session Details",
+            "description": {
+              "content": "Retrieves detailed SIP session information including SIP headers, dialog state, and associated call GUID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sip",
+                "session",
+                ":sessionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP of the CVP Call Server",
+                  "type": "any",
+                  "value": "{{call-server}}",
+                  "key": "call-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a93e04a3-2175-4b17-9caa-fde97cbce89b",
+              "name": "SIP session details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sip",
+                    "session",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"500123\",\n  \"callId\": \"500123\",\n  \"callGuid\": \"500123\",\n  \"state\": \"example_value\",\n  \"fromUri\": \"example_value\",\n  \"toUri\": \"example_value\",\n  \"fromTag\": \"example_value\",\n  \"toTag\": \"example_value\",\n  \"cseq\": 10,\n  \"transport\": \"UDP\",\n  \"localAddress\": \"example_value\",\n  \"remoteAddress\": \"example_value\",\n  \"startTime\": \"2026-01-15T10:30:00Z\",\n  \"lastActivityTime\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "069a41a9-f262-41dd-8692-bb9f05eba929",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sip",
+                    "session",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cde4c1e-efd2-4a76-8493-bfbbbf95fead",
+              "name": "Session not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sip",
+                    "session",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4bfecec1-32b7-49f4-b3c8-e9336c728e31",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sip",
+                    "session",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP Call Server",
+                      "type": "any",
+                      "value": "{{call-server}}",
+                      "key": "call-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP of the CVP Call Server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "cvp-callserver.example.com",
+      "key": "call-server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{call-server}}:8000/cvp/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b6e129f7-f972-437b-a8e6-90daccfbba6e",
+    "name": "Cisco Voice Portal Call Control API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Cisco Unified Customer Voice Portal (CVP) Call Control API provides programmatic access to call control functions on the CVP Call Server. The Call Server is the SIP-based call control component that manages call routing, transfers, and session management within the CVP deployment. It integrates with Cisco Unified ICM/UCCE for intelligent call routing and with Cisco Unified Communications Manager (CUCM) for agent delivery. This API exposes management and monitoring operations for active call sessions and call routing configuration on the Call Server component, typically accessible on port 8000.\n\nContact Support:\n Name: Cisco Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

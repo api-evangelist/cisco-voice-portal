@@ -1,0 +1,4691 @@
+{
+  "item": [
+    {
+      "id": "64eefcae-542e-49fa-bcd7-5c293c1d615e",
+      "name": "Application Configuration",
+      "description": {
+        "content": "Configure VXML application runtime settings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a278b847-0273-4d61-93cb-8e8beb97a8a1",
+          "name": "Cisco Voice Portal Get Application Configuration",
+          "request": {
+            "name": "Cisco Voice Portal Get Application Configuration",
+            "description": {
+              "content": "Retrieves the runtime configuration parameters for a VXML application. These settings are defined in the Call Studio project and can be overridden at runtime.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "application",
+                ":applicationName",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationName",
+                  "description": "(Required) Name of the deployed VXML application"
+                },
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a9f26ad-b074-4368-8652-79affad3e7f8",
+              "name": "Application configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"example_value\",\n  \"parameters\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1a98480-e047-4d6c-8d15-1d0e31fd1203",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cde3ae8-6106-47bd-a45b-277d2dbee539",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26808ecb-f010-42a7-8ef7-856f30eb29fe",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8a6e471-4db1-4182-8c6b-cc55ba46eed5",
+          "name": "Cisco Voice Portal Update Application Configuration",
+          "request": {
+            "name": "Cisco Voice Portal Update Application Configuration",
+            "description": {
+              "content": "Updates the runtime configuration parameters for a VXML application. Changes take effect for new calls; active calls continue with their existing configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "application",
+                ":applicationName",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationName",
+                  "description": "(Required) Name of the deployed VXML application"
+                },
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"defaultLanguage\": \"<string>\",\n  \"fetchTimeout\": \"<integer>\",\n  \"maxSessionDuration\": \"<integer>\",\n  \"inputModes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"loggingLevel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66909e70-58e9-4ed3-9c00-32b9cfe2310b",
+              "name": "Configuration updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"example_value\",\n  \"parameters\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7419fb86-fe26-400f-8ac9-a24295258a00",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "796a4eaa-9198-4514-a38c-baa5d8145389",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1ea5bc1-b53b-4e43-a061-2c6721a9a1a2",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c70960d6-c6cc-4004-aa4b-52559a43327f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca3ac31d-6041-4b17-8b26-965ca50bc324",
+          "name": "Cisco Voice Portal List Application Call Flow Elements",
+          "request": {
+            "name": "Cisco Voice Portal List Application Call Flow Elements",
+            "description": {
+              "content": "Retrieves the list of call flow elements (voice elements, action elements, and decision elements) that make up the VXML application. Elements are the building blocks of Call Studio applications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "application",
+                ":applicationName",
+                "elements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationName",
+                  "description": "(Required) Name of the deployed VXML application"
+                },
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2183b44-9c8c-4b74-8ad5-a10b8edf3c2a",
+              "name": "List of application elements",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"elementName\": \"example_value\",\n    \"elementType\": \"voice\",\n    \"description\": \"A sample description.\",\n    \"className\": \"example_value\",\n    \"configParameters\": {\n      \"key_0\": \"string\"\n    }\n  },\n  {\n    \"elementName\": \"example_value\",\n    \"elementType\": \"voice\",\n    \"description\": \"A sample description.\",\n    \"className\": \"example_value\",\n    \"configParameters\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e56d8de-8170-42a8-995d-2fbf08b6ca2a",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b08e0942-4550-4928-8b4d-45f7db2d87f3",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dee531fd-cb8e-487d-b9aa-b94de3ea2eea",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d5f62abd-0678-4b14-b70a-c3053e55e54d",
+      "name": "Application Management",
+      "description": {
+        "content": "Deploy, activate, and manage VXML applications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81c97605-d05a-4e93-9019-30910b465682",
+          "name": "Cisco Voice Portal List Deployed Vxml Applications",
+          "request": {
+            "name": "Cisco Voice Portal List Deployed Vxml Applications",
+            "description": {
+              "content": "Retrieves a list of all VXML applications deployed on this VXML Server. Applications are typically built with Cisco Unified Call Studio and deployed as WAR/ZIP archives.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "application"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by application status"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4510fe3-5345-4b46-87f0-31bfb7c54b8e",
+              "name": "List of deployed applications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"applicationName\": \"example_value\",\n    \"applicationType\": \"callstudio\",\n    \"status\": \"active\",\n    \"version\": \"example_value\",\n    \"activeSessions\": 10,\n    \"deployedAt\": \"2026-01-15T10:30:00Z\"\n  },\n  {\n    \"applicationName\": \"example_value\",\n    \"applicationType\": \"callstudio\",\n    \"status\": \"active\",\n    \"version\": \"example_value\",\n    \"activeSessions\": 10,\n    \"deployedAt\": \"2026-01-15T10:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84b79e02-b0f5-469e-9dee-b4ea86dc5d61",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3917091-b452-45b5-bcb6-ba61ca01748e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "055db66b-61b6-44f9-b152-80602ff8141a",
+          "name": "Cisco Voice Portal Get Vxml Application Details",
+          "request": {
+            "name": "Cisco Voice Portal Get Vxml Application Details",
+            "description": {
+              "content": "Retrieves detailed information about a specific deployed VXML application, including its configuration, call flow elements, and deployment metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "application",
+                ":applicationName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationName",
+                  "description": "(Required) Name of the deployed VXML application"
+                },
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9434ed5e-2d3f-4137-ae0c-1154bd4cbcb4",
+              "name": "Application details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"example_value\",\n  \"applicationType\": \"example_value\",\n  \"status\": \"example_value\",\n  \"version\": \"example_value\",\n  \"activeSessions\": 10,\n  \"deployedAt\": \"2026-01-15T10:30:00Z\",\n  \"description\": \"A sample description.\",\n  \"entryPoint\": \"example_value\",\n  \"mediaDirectory\": \"example_value\",\n  \"grammarDirectory\": \"example_value\",\n  \"configParameters\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c6c8471-fb14-4a41-9258-418101f4d94c",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8ce2d7d-81e4-4493-873d-07c08abfc3a8",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "412016c3-ed52-4081-a1c6-dfdc2f840608",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba1143f1-becc-434c-ab17-e4b786f40c20",
+          "name": "Cisco Voice Portal Activate a Vxml Application",
+          "request": {
+            "name": "Cisco Voice Portal Activate a Vxml Application",
+            "description": {
+              "content": "Activates a deployed VXML application, making it available to handle incoming calls. An application must be active to process calls.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "application",
+                ":applicationName",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationName",
+                  "description": "(Required) Name of the deployed VXML application"
+                },
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fcefabf8-22b7-4e9f-ad95-d83daf4848d2",
+              "name": "Application activated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef303f87-6da2-46c4-99ea-d97aa445d376",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33ab9486-605c-4413-bf4a-1fe0a2d27b3b",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfa8e44d-fa7d-4b11-86fa-5e5b8ec96f5f",
+              "name": "Application is already active",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e99f296f-c135-49f7-9b2d-5a81e6502a35",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99b670f6-c0f6-450c-8a38-fe4570753f3c",
+          "name": "Cisco Voice Portal Deactivate a Vxml Application",
+          "request": {
+            "name": "Cisco Voice Portal Deactivate a Vxml Application",
+            "description": {
+              "content": "Deactivates a VXML application. Active calls using the application are allowed to complete, but no new calls will be routed to it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "application",
+                ":applicationName",
+                "deactivate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationName",
+                  "description": "(Required) Name of the deployed VXML application"
+                },
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92508ed7-a37e-4a6d-8ede-7af61628659e",
+              "name": "Application deactivated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "621fb407-41fd-4178-bab3-09b1f543bd2c",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad1206b5-df70-4341-8721-12eba2a3dde5",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecf4faaa-7577-4874-98c6-96923f1a6dbe",
+              "name": "Application is already inactive",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "72722fea-746a-48c3-91b7-1956fe1d35a7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "14a9af07-d388-40c4-9f04-480d403bd383",
+      "name": "Grammar Management",
+      "description": {
+        "content": "Manage speech recognition grammar files",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8cf8023a-f830-4c39-bee7-0acd8725fde4",
+          "name": "Cisco Voice Portal List Grammar Files",
+          "request": {
+            "name": "Cisco Voice Portal List Grammar Files",
+            "description": {
+              "content": "Retrieves a list of speech recognition grammar files (GRXML, GSL) available on the VXML Server. Grammars define the speech recognition rules used by voice-enabled VXML applications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "grammar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "377d161b-f364-4f95-9b2e-3fa107e5a857",
+              "name": "List of grammar files",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "grammar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"fileName\": \"example_value\",\n    \"filePath\": \"example_value\",\n    \"fileType\": \"grxml\",\n    \"fileSize\": 10,\n    \"language\": \"example_value\",\n    \"lastModified\": \"2026-01-15T10:30:00Z\"\n  },\n  {\n    \"fileName\": \"example_value\",\n    \"filePath\": \"example_value\",\n    \"fileType\": \"grxml\",\n    \"fileSize\": 10,\n    \"language\": \"example_value\",\n    \"lastModified\": \"2026-01-15T10:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1280f285-7c06-4554-a930-80cb216ac3f0",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "grammar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e8109e4-7998-43eb-8d8b-115b0e8d8e33",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "grammar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b376b760-3492-41f4-becd-f3e9f6ae7098",
+      "name": "Media Management",
+      "description": {
+        "content": "Manage audio media files and prompts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd2b53a3-3016-4a2e-bb8b-26da1d4dfbd1",
+          "name": "Cisco Voice Portal List Media Files",
+          "request": {
+            "name": "Cisco Voice Portal List Media Files",
+            "description": {
+              "content": "Retrieves a list of media files (audio prompts) available on the VXML Server. Media files are used by VXML applications and micro-applications for playing prompts to callers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "/",
+                  "description": "Directory path to list media from"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by media type"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb91443d-ff23-46fd-9f43-8dcf73e60aa4",
+              "name": "List of media files",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "/"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"fileName\": \"example_value\",\n    \"filePath\": \"example_value\",\n    \"fileType\": \"wav\",\n    \"fileSize\": 10,\n    \"duration\": 42.5,\n    \"lastModified\": \"2026-01-15T10:30:00Z\"\n  },\n  {\n    \"fileName\": \"example_value\",\n    \"filePath\": \"example_value\",\n    \"fileType\": \"wav\",\n    \"fileSize\": 10,\n    \"duration\": 42.5,\n    \"lastModified\": \"2026-01-15T10:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5268edf-4055-41a0-b876-ae07e954ab1f",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "/"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ecf3c70-1615-4b42-adf5-589cc9f8c5cd",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "/"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d2d5181-bd97-4032-b2c2-07c5db289384",
+          "name": "Cisco Voice Portal Upload a Media File",
+          "request": {
+            "name": "Cisco Voice Portal Upload a Media File",
+            "description": {
+              "content": "Uploads an audio media file (WAV, AU, or VOX format) to the VXML Server for use in voice prompts and announcements.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "media",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) Audio file to upload"
+                },
+                {
+                  "key": "path",
+                  "value": "/",
+                  "type": "text",
+                  "description": "Target directory path"
+                },
+                {
+                  "key": "overwrite",
+                  "value": "false",
+                  "type": "text",
+                  "description": "Whether to overwrite existing file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "73521b3a-5cc5-4f4e-9c96-6c548068851e",
+              "name": "Media file uploaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Target directory path",
+                        "type": "text/plain"
+                      },
+                      "key": "path",
+                      "value": "/",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether to overwrite existing file",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fileName\": \"example_value\",\n  \"filePath\": \"example_value\",\n  \"fileType\": \"wav\",\n  \"fileSize\": 10,\n  \"duration\": 42.5,\n  \"lastModified\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fe7fee9-a3c0-448d-8425-2291bbdc840a",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Target directory path",
+                        "type": "text/plain"
+                      },
+                      "key": "path",
+                      "value": "/",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether to overwrite existing file",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c927fd7-b3d5-496c-b0c3-97e3cb80f718",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Target directory path",
+                        "type": "text/plain"
+                      },
+                      "key": "path",
+                      "value": "/",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether to overwrite existing file",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bffe7e7-6da6-4d60-b679-ef03b110b47d",
+              "name": "File already exists and overwrite is false",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Target directory path",
+                        "type": "text/plain"
+                      },
+                      "key": "path",
+                      "value": "/",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether to overwrite existing file",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e47b51c-91e2-45f1-9442-75cef8a5fe02",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "media",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Audio file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Target directory path",
+                        "type": "text/plain"
+                      },
+                      "key": "path",
+                      "value": "/",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Whether to overwrite existing file",
+                        "type": "text/plain"
+                      },
+                      "key": "overwrite",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "074ad52b-dd61-42aa-9ccc-9a5188f4502d",
+      "name": "Micro-Applications",
+      "description": {
+        "content": "Manage built-in CVP micro-applications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e47a5bcc-9c21-4cd6-a5cd-77b229fbf391",
+          "name": "Cisco Voice Portal List Available Micro-applications",
+          "request": {
+            "name": "Cisco Voice Portal List Available Micro-applications",
+            "description": {
+              "content": "Retrieves a list of built-in CVP micro-applications. Micro-applications are pre-built VXML applications for common IVR tasks such as playing media, collecting digits, and external VXML retrieval. These are invoked through ICM scripting via the Run External Script node.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "microapp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc7e2da8-e4d8-4892-9d35-fd29d849d302",
+              "name": "List of micro-applications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"type\": \"PlayMedia\",\n    \"configurable\": true\n  },\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"type\": \"PlayMedia\",\n    \"configurable\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "280ac2ab-5456-4558-a5d0-b3dd2c7ef7a0",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "667910f5-d5bf-4af7-8dfa-0ba20196f32a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8142de04-1b72-4968-a4a3-dce2379f185d",
+          "name": "Cisco Voice Portal Get Micro-application Configuration",
+          "request": {
+            "name": "Cisco Voice Portal Get Micro-application Configuration",
+            "description": {
+              "content": "Retrieves the configuration for a specific built-in micro-application such as PlayMedia (PM), GetDigits (GD), Menu, PlayData (PD), CaptureCurrentCallerInfo, or ExternalVXML (EV).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "microapp",
+                ":microAppName",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "microAppName",
+                  "description": "(Required) Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+                },
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a709233-20f7-4cd7-b994-d55fcba59487",
+              "name": "Micro-application configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp",
+                    ":microAppName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "microAppName",
+                      "description": "(Required) Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8b90b5c-4d20-4a22-a77d-092d52b44b96",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp",
+                    ":microAppName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "microAppName",
+                      "description": "(Required) Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab437b60-edef-4dba-a409-72c6ef403a5a",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp",
+                    ":microAppName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "microAppName",
+                      "description": "(Required) Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cffc7e6d-1a74-46cd-b89e-ec43c7d3b32e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp",
+                    ":microAppName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "microAppName",
+                      "description": "(Required) Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3a037478-a905-4fc8-945f-564b71379190",
+      "name": "Server Status",
+      "description": {
+        "content": "VXML Server status and monitoring",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6746e85d-dce1-457d-ae24-7b88ae43a26d",
+          "name": "Cisco Voice Portal Get Vxml Server Status",
+          "request": {
+            "name": "Cisco Voice Portal Get Vxml Server Status",
+            "description": {
+              "content": "Retrieves the operational status of the VXML Server, including active session count, thread pool status, and resource utilization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "server",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "757c02ea-4eb5-4d78-bde9-f21095e91981",
+              "name": "Server status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "server",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hostname\": \"example_value\",\n  \"status\": \"running\",\n  \"uptime\": \"example_value\",\n  \"version\": \"example_value\",\n  \"activeSessions\": 10,\n  \"maxSessions\": 10,\n  \"threadPool\": {\n    \"activeThreads\": 4158,\n    \"idleThreads\": 5577,\n    \"maxThreads\": 4718,\n    \"queuedRequests\": 1529\n  },\n  \"cpuUsage\": 42.5,\n  \"memoryUsage\": {\n    \"heapUsed\": 9314,\n    \"heapMax\": 2851,\n    \"heapPercentage\": 6437.302568013368\n  },\n  \"deployedApplications\": 10,\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "deeac881-d087-47e3-86a3-f0c01766e742",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "server",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aba3e3d3-ecb7-4372-b217-8992cb28342f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "server",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa75969b-f94a-4e7f-be70-3ce191bea815",
+          "name": "Cisco Voice Portal Get Recent Server Log Entries",
+          "request": {
+            "name": "Cisco Voice Portal Get Recent Server Log Entries",
+            "description": {
+              "content": "Retrieves recent log entries from the VXML Server. Supports filtering by severity level and time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "server",
+                "log"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "INFO",
+                  "description": "Minimum log level to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<dateTime>",
+                  "description": "Return logs since this timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab9ebbea-c4e4-4d03-9968-b995ed7fad0d",
+              "name": "Log entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "server",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "INFO"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"timestamp\": \"2026-01-15T10:30:00Z\",\n    \"level\": \"ERROR\",\n    \"logger\": \"example_value\",\n    \"message\": \"example_value\",\n    \"sessionId\": \"500123\",\n    \"applicationName\": \"example_value\"\n  },\n  {\n    \"timestamp\": \"2026-01-15T10:30:00Z\",\n    \"level\": \"ERROR\",\n    \"logger\": \"example_value\",\n    \"message\": \"example_value\",\n    \"sessionId\": \"500123\",\n    \"applicationName\": \"example_value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "354d1fd2-6140-4425-8c53-9869333b370c",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "server",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "INFO"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "293a180e-cd00-41c3-8aa7-43a7ebfb349b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "server",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "INFO"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "21f34448-64db-4f56-8b7e-4a220d4bcd31",
+      "name": "Session Monitoring",
+      "description": {
+        "content": "Monitor active VXML call sessions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a0afc07-8db3-473f-9f46-24447d641559",
+          "name": "Cisco Voice Portal List Active Application Sessions",
+          "request": {
+            "name": "Cisco Voice Portal List Active Application Sessions",
+            "description": {
+              "content": "Retrieves a list of active call sessions currently being handled by the specified VXML application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "application",
+                ":applicationName",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationName",
+                  "description": "(Required) Name of the deployed VXML application"
+                },
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4943de14-deed-4f5b-882d-95ab6e549dec",
+              "name": "Active sessions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalSessions\": 3183,\n  \"sessions\": [\n    {\n      \"sessionId\": \"500123\",\n      \"callGuid\": \"500123\",\n      \"applicationName\": \"example_value\",\n      \"startTime\": \"2026-01-15T10:30:00Z\",\n      \"duration\": 10,\n      \"currentElement\": \"example_value\",\n      \"callingNumber\": \"example_value\",\n      \"calledNumber\": \"example_value\"\n    },\n    {\n      \"sessionId\": \"500123\",\n      \"callGuid\": \"500123\",\n      \"applicationName\": \"example_value\",\n      \"startTime\": \"2026-01-15T10:30:00Z\",\n      \"duration\": 10,\n      \"currentElement\": \"example_value\",\n      \"callingNumber\": \"example_value\",\n      \"calledNumber\": \"example_value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b6dd327-29ab-4b87-b246-3a11053c61ad",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21da8ee4-b4f3-41de-9d0f-4ba303a2b361",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2190457d-0b49-427b-b623-f113089a20ef",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c28d391-f3ef-4810-80f5-83215353d695",
+          "name": "Cisco Voice Portal Get Vxml Session Details",
+          "request": {
+            "name": "Cisco Voice Portal Get Vxml Session Details",
+            "description": {
+              "content": "Retrieves detailed information about an active VXML session, including the current element being executed, session variables, and execution history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "session",
+                ":sessionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP of the CVP VXML Server",
+                  "type": "any",
+                  "value": "{{vxml-server}}",
+                  "key": "vxml-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70cde2e9-ce22-4f52-a28b-ddfae83cc5fe",
+              "name": "Session details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"500123\",\n  \"callGuid\": \"500123\",\n  \"applicationName\": \"example_value\",\n  \"startTime\": \"2026-01-15T10:30:00Z\",\n  \"duration\": 10,\n  \"currentElement\": \"example_value\",\n  \"callingNumber\": \"example_value\",\n  \"calledNumber\": \"example_value\",\n  \"sessionVariables\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"lastUserInput\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2197a177-7e5b-4a71-9a36-d6bfe7bc832c",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bcfca4d-8fc3-48e5-b0d7-08d5a21c2290",
+              "name": "Session not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "095dd951-bb70-47db-84c3-117b344a78e0",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP VXML Server",
+                      "type": "any",
+                      "value": "{{vxml-server}}",
+                      "key": "vxml-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP of the CVP VXML Server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "cvp-vxmlserver.example.com",
+      "key": "vxml-server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{vxml-server}}:7443/CVP/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dff29875-2262-4d07-88ab-cbf4a0bdcb9b",
+    "name": "Cisco Voice Portal VXML Services API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Cisco Unified Customer Voice Portal (CVP) VXML Services API provides management and monitoring capabilities for the CVP VXML Server component. The VXML Server hosts and executes VoiceXML applications built with Cisco Unified Call Studio. This API enables deployment and management of VXML applications, access to element configurations, and monitoring of the VXML execution environment. The VXML Server exposes its management interface on the HTTP/HTTPS ports (default 7000/7443) alongside the application serving endpoints.\n\nContact Support:\n Name: Cisco Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

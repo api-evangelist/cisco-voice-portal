@@ -1,0 +1,327 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Reporting API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Call Detail Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Query Call Detail Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{reporting-server}:8111/cvp-reporting/rest/cdr",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start of the query time range (ISO 8601)"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End of the query time range (ISO 8601)"
+              },
+              {
+                "name": "calledNumber",
+                "value": "",
+                "type": "query",
+                "description": "Filter by called number (DNIS)"
+              },
+              {
+                "name": "callingNumber",
+                "value": "",
+                "type": "query",
+                "description": "Filter by calling number (ANI)"
+              },
+              {
+                "name": "callGuid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by unique call GUID"
+              },
+              {
+                "name": "callResult",
+                "value": "",
+                "type": "query",
+                "description": "Filter by call result"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves call detail records (CDRs) based on specified filter criteria. CDRs contain comprehensive information about each call processed by CVP including timing, routing decisions, application interactions, and outcome."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get a Specific Call Detail Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{reporting-server}:8111/cvp-reporting/rest/cdr/:callGuid",
+            "params": [
+              {
+                "name": "callGuid",
+                "value": "",
+                "type": "path",
+                "description": "Globally unique call identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves the complete call detail record for a specific call, identified by its globally unique identifier (GUID). Includes all call legs, application interactions, and ECC variables."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Call Legs for a Call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{reporting-server}:8111/cvp-reporting/rest/cdr/:callGuid/legs",
+            "params": [
+              {
+                "name": "callGuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves all individual call legs associated with a specific call. A call may have multiple legs representing transfers, conferences, or application hand-offs within the CVP system."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Real-Time Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Real-time Call Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{reporting-server}:8111/cvp-reporting/rest/statistics/realtime",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific server ID. If omitted, returns aggregate."
+              }
+            ]
+          },
+          "docs": "Retrieves current real-time statistics across the CVP deployment, including active calls, calls per second, and resource utilization metrics. Data is refreshed at the reporting server polling interval."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Historical Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Call Summary Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{reporting-server}:8111/cvp-reporting/rest/statistics/summary",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Aggregation interval"
+              },
+              {
+                "name": "calledNumber",
+                "value": "",
+                "type": "query",
+                "description": "Filter by called number (DNIS)"
+              }
+            ]
+          },
+          "docs": "Retrieves aggregated call summary statistics for a specified time period, including total calls, average handle time, abandonment rate, and self-service completion rate."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Vxml Application Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{reporting-server}:8111/cvp-reporting/rest/statistics/application",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific application name"
+              }
+            ]
+          },
+          "docs": "Retrieves usage and performance statistics for deployed VXML applications, including invocation counts, completion rates, and average interaction duration."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Per-server Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{reporting-server}:8111/cvp-reporting/rest/statistics/server",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "serverType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by server type"
+              }
+            ]
+          },
+          "docs": "Retrieves call processing statistics broken down by individual CVP server, useful for capacity planning and load monitoring."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Report Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Available Report Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{reporting-server}:8111/cvp-reporting/rest/report"
+          },
+          "docs": "Retrieves a list of available report templates that can be executed. These correspond to the standard CVP reports available in Cisco Unified Intelligence Center."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Execute a Report Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{reporting-server}:8111/cvp-reporting/rest/report/:templateId/execute",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a report template with the specified parameters. Reports may be generated synchronously for small datasets or asynchronously for large reports."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Report Execution Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{reporting-server}:8111/cvp-reporting/rest/report/:reportId/result",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format"
+              }
+            ]
+          },
+          "docs": "Retrieves the result of a previously executed report. For asynchronous reports, returns the result once generation is complete."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

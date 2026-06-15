@@ -1,0 +1,390 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal VXML Services API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Deployed Vxml Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/application",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application status"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all VXML applications deployed on this VXML Server. Applications are typically built with Cisco Unified Call Studio and deployed as WAR/ZIP archives."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Vxml Application Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/application/:applicationName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific deployed VXML application, including its configuration, call flow elements, and deployment metadata."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Activate a Vxml Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{vxml-server}:7443/CVP/rest/application/:applicationName/activate",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ]
+          },
+          "docs": "Activates a deployed VXML application, making it available to handle incoming calls. An application must be active to process calls."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Deactivate a Vxml Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{vxml-server}:7443/CVP/rest/application/:applicationName/deactivate",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ]
+          },
+          "docs": "Deactivates a VXML application. Active calls using the application are allowed to complete, but no new calls will be routed to it."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Application Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Application Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/application/:applicationName/config",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ]
+          },
+          "docs": "Retrieves the runtime configuration parameters for a VXML application. These settings are defined in the Call Studio project and can be overridden at runtime."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Update Application Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{vxml-server}:7443/CVP/rest/application/:applicationName/config",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the runtime configuration parameters for a VXML application. Changes take effect for new calls; active calls continue with their existing configuration."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Application Call Flow Elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/application/:applicationName/elements",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ]
+          },
+          "docs": "Retrieves the list of call flow elements (voice elements, action elements, and decision elements) that make up the VXML application. Elements are the building blocks of Call Studio applications."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Session Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Active Application Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/application/:applicationName/sessions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of active call sessions currently being handled by the specified VXML application."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Vxml Session Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/session/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about an active VXML session, including the current element being executed, session variables, and execution history."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Micro-Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Available Micro-applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/microapp"
+          },
+          "docs": "Retrieves a list of built-in CVP micro-applications. Micro-applications are pre-built VXML applications for common IVR tasks such as playing media, collecting digits, and external VXML retrieval. These are invoked through ICM scripting via the Run External Script node."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Micro-application Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/microapp/:microAppName/config",
+            "params": [
+              {
+                "name": "microAppName",
+                "value": "",
+                "type": "path",
+                "description": "Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+              }
+            ]
+          },
+          "docs": "Retrieves the configuration for a specific built-in micro-application such as PlayMedia (PM), GetDigits (GD), Menu, PlayData (PD), CaptureCurrentCallerInfo, or ExternalVXML (EV)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Media Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Media Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/media",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Directory path to list media from"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by media type"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of media files (audio prompts) available on the VXML Server. Media files are used by VXML applications and micro-applications for playing prompts to callers."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Upload a Media File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{vxml-server}:7443/CVP/rest/media/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "path",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "overwrite",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads an audio media file (WAV, AU, or VOX format) to the VXML Server for use in voice prompts and announcements."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Grammar Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Grammar Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/grammar"
+          },
+          "docs": "Retrieves a list of speech recognition grammar files (GRXML, GSL) available on the VXML Server. Grammars define the speech recognition rules used by voice-enabled VXML applications."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Server Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Vxml Server Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/server/status"
+          },
+          "docs": "Retrieves the operational status of the VXML Server, including active session count, thread pool status, and resource utilization."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Recent Server Log Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{vxml-server}:7443/CVP/rest/server/log",
+            "params": [
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "Minimum log level to include"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Return logs since this timestamp"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves recent log entries from the VXML Server. Supports filtering by severity level and time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
