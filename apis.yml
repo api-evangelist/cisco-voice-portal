@@ -129,7 +129,7 @@ common:
     url: https://blogs.cisco.com/developer
   - type: GitHubOrganization
     url: https://github.com/CiscoDevNet
-  - type: SignUp
+  - type: Signup
     url: https://developer.cisco.com/join/devnet
   - type: ReleaseNotes
     url: https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-release-notes-list.html
