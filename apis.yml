@@ -109,6 +109,12 @@ apis:
       - type: AsyncAPI
         url: asyncapi/cisco-voice-portal-call-events-asyncapi.yml
 common:
+  - type: VulnerabilityDisclosure
+    url: security/cisco-voice-portal-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/cisco-voice-portal-domain-security.yml
+  - type: Authentication
+    url: authentication/cisco-voice-portal-authentication.yml
   - type: DeveloperPortal
     url: https://developer.cisco.com/
   - type: Authentication

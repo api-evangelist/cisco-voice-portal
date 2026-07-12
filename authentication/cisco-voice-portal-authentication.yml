@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/cisco-voice-portal-administration-openapi.yml, openapi/cisco-voice-portal-call-control-openapi.yml,
+  openapi/cisco-voice-portal-reporting-openapi.yml, openapi/cisco-voice-portal-vxml-services-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - cookie
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication using CVP OAMP administrative credentials. The default
+    administrator account is configured during CVP installation.
+  sources:
+  - openapi/cisco-voice-portal-administration-openapi.yml
+  - openapi/cisco-voice-portal-call-control-openapi.yml
+  - openapi/cisco-voice-portal-reporting-openapi.yml
+  - openapi/cisco-voice-portal-vxml-services-openapi.yml
+- name: sessionCookie
+  type: apiKey
+  in: cookie
+  parameter: JSESSIONID
+  description: Session-based authentication obtained after login. The JSESSIONID cookie is returned
+    after successful basic authentication.
+  sources:
+  - openapi/cisco-voice-portal-administration-openapi.yml
