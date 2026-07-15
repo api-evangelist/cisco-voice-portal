@@ -109,6 +109,8 @@ apis:
       - type: AsyncAPI
         url: asyncapi/cisco-voice-portal-call-events-asyncapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/cisco-voice-portal-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/cisco-voice-portal-vulnerability-disclosure.yml
   - type: DomainSecurity
