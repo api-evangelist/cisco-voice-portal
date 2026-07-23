@@ -1,0 +1,206 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration SIP Configuration API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: SIP Configuration
+  description: Configure SIP server groups and settings
+paths:
+  /sipserver:
+    get:
+      operationId: listSipServers
+      summary: Cisco Voice Portal List Sip Server Groups
+      description: Retrieves the configured SIP server groups used for call routing. Server groups define clusters of SIP endpoints (such as CUCM, SBCs, or gateways) that the CVP Call Server communicates with.
+      tags:
+      - SIP Configuration
+      responses:
+        '200':
+          description: List of SIP server groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SipServerGroup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createSipServerGroup
+      summary: Cisco Voice Portal Create a Sip Server Group
+      description: Creates a new SIP server group for call routing purposes. Server groups allow load balancing and failover across multiple SIP endpoints.
+      tags:
+      - SIP Configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SipServerGroupCreate'
+      responses:
+        '201':
+          description: SIP server group created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SipServerGroup'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    SipServerGroupCreate:
+      type: object
+      required:
+      - groupName
+      - servers
+      properties:
+        groupName:
+          type: string
+          example: example_value
+        description:
+          type: string
+          example: A sample description.
+        servers:
+          type: array
+          items:
+            type: object
+            required:
+            - hostname
+            - ipAddress
+            properties:
+              hostname:
+                type: string
+              ipAddress:
+                type: string
+                format: ipv4
+              port:
+                type: integer
+                default: 5060
+              priority:
+                type: integer
+                default: 1
+              weight:
+                type: integer
+                default: 100
+          example: []
+        loadBalancing:
+          type: string
+          enum:
+          - round_robin
+          - top_down
+          - weight_based
+          default: round_robin
+          example: round_robin
+    SipServerGroup:
+      type: object
+      properties:
+        groupId:
+          type: string
+          example: '500123'
+        groupName:
+          type: string
+          example: example_value
+        description:
+          type: string
+          example: A sample description.
+        servers:
+          type: array
+          items:
+            type: object
+            properties:
+              hostname:
+                type: string
+              ipAddress:
+                type: string
+                format: ipv4
+              port:
+                type: integer
+                default: 5060
+              priority:
+                type: integer
+              weight:
+                type: integer
+          example: []
+        loadBalancing:
+          type: string
+          enum:
+          - round_robin
+          - top_down
+          - weight_based
+          default: round_robin
+          example: round_robin
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

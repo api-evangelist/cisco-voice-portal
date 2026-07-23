@@ -1,0 +1,442 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration Device Management API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Device Management
+  description: Manage CVP devices (Call Servers, VXML Servers, Reporting Servers)
+paths:
+  /device:
+    get:
+      operationId: listDevices
+      summary: Cisco Voice Portal List All Managed Devices
+      description: Retrieves a list of all devices registered with the CVP OAMP Server, including Call Servers, VXML Servers, Reporting Servers, and Media Servers. Each device entry contains its type, hostname, IP address, and current operational status.
+      tags:
+      - Device Management
+      responses:
+        '200':
+          description: List of managed devices
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: addDevice
+      summary: Cisco Voice Portal Add a New Device
+      description: Registers a new device (Call Server, VXML Server, Reporting Server, or Media Server) with the CVP OAMP Server for centralized management.
+      tags:
+      - Device Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceCreateRequest'
+      responses:
+        '201':
+          description: Device created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Device with this hostname or IP already exists
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /device/{deviceId}:
+    get:
+      operationId: getDevice
+      summary: Cisco Voice Portal Get Device Details
+      description: Retrieves detailed information about a specific managed device, including its configuration, status, and associated services.
+      tags:
+      - Device Management
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Device details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateDevice
+      summary: Cisco Voice Portal Update Device Configuration
+      description: Updates the configuration of an existing managed device. Changes may require a device restart to take effect.
+      tags:
+      - Device Management
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceUpdateRequest'
+      responses:
+        '200':
+          description: Device updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteDevice
+      summary: Cisco Voice Portal Remove a Managed Device
+      description: Removes a device from the CVP OAMP management. The device itself is not uninstalled but is no longer managed centrally.
+      tags:
+      - Device Management
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '204':
+          description: Device removed successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /device/{deviceId}/status:
+    get:
+      operationId: getDeviceStatus
+      summary: Cisco Voice Portal Get Device Operational Status
+      description: Retrieves the current operational status of a managed device, including service status, resource utilization, and connectivity state.
+      tags:
+      - Device Management
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '200':
+          description: Device status information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /device/{deviceId}/restart:
+    post:
+      operationId: restartDevice
+      summary: Cisco Voice Portal Restart a Device Service
+      description: Initiates a restart of the CVP service on the specified device. This operation is asynchronous and the device status can be monitored via the status endpoint.
+      tags:
+      - Device Management
+      parameters:
+      - $ref: '#/components/parameters/DeviceId'
+      responses:
+        '202':
+          description: Restart initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    DeviceStatus:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          example: '500123'
+        status:
+          type: string
+          enum:
+          - online
+          - offline
+          - maintenance
+          - error
+          example: online
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              status:
+                type: string
+                enum:
+                - running
+                - stopped
+                - error
+              uptime:
+                type: string
+                description: Service uptime duration
+          example: []
+        cpuUsage:
+          type: number
+          format: float
+          description: CPU usage percentage
+          example: 42.5
+        memoryUsage:
+          type: number
+          format: float
+          description: Memory usage percentage
+          example: 42.5
+        activeCalls:
+          type: integer
+          description: Number of active calls on this device
+          example: 10
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    DeviceCreateRequest:
+      type: object
+      required:
+      - hostname
+      - ipAddress
+      - deviceType
+      properties:
+        hostname:
+          type: string
+          example: example_value
+        ipAddress:
+          type: string
+          format: ipv4
+          example: example_value
+        deviceType:
+          type: string
+          enum:
+          - CallServer
+          - VXMLServer
+          - ReportingServer
+          - MediaServer
+          example: CallServer
+        description:
+          type: string
+          example: A sample description.
+        credentials:
+          type: object
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+              format: password
+          example: example_value
+    DeviceUpdateRequest:
+      type: object
+      properties:
+        hostname:
+          type: string
+          example: example_value
+        ipAddress:
+          type: string
+          format: ipv4
+          example: example_value
+        description:
+          type: string
+          example: A sample description.
+    Device:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          description: Unique identifier for the device
+          example: '500123'
+        hostname:
+          type: string
+          description: Hostname of the device
+          example: example_value
+        ipAddress:
+          type: string
+          format: ipv4
+          description: IP address of the device
+          example: example_value
+        deviceType:
+          type: string
+          enum:
+          - CallServer
+          - VXMLServer
+          - ReportingServer
+          - MediaServer
+          - OAMPServer
+          description: Type of CVP component
+          example: CallServer
+        description:
+          type: string
+          description: Device description
+          example: A sample description.
+        status:
+          type: string
+          enum:
+          - online
+          - offline
+          - maintenance
+          - error
+          description: Current operational status
+          example: online
+        version:
+          type: string
+          description: Software version installed on the device
+          example: example_value
+        lastContact:
+          type: string
+          format: date-time
+          description: Last time the OAMP server contacted this device
+          example: '2026-01-15T10:30:00Z'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    OperationStatus:
+      type: object
+      properties:
+        operationId:
+          type: string
+          example: '500123'
+        status:
+          type: string
+          enum:
+          - pending
+          - in_progress
+          - completed
+          - failed
+          example: pending
+        message:
+          type: string
+          example: example_value
+        startedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        completedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        progress:
+          type: number
+          format: float
+          description: Progress percentage (0-100)
+          example: 42.5
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    DeviceId:
+      name: deviceId
+      in: path
+      required: true
+      description: Unique device identifier
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

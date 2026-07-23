@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration Call Routing API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Call Routing
+  description: Call routing lookup and testing
+paths:
+  /routing/lookup:
+    post:
+      operationId: routingLookup
+      summary: Cisco Voice Portal Perform a Routing Lookup
+      description: Performs a routing lookup to determine the call treatment for a given dialed number. This queries the configured dialed number patterns and returns the routing decision without initiating an actual call. Useful for testing and validation.
+      tags:
+      - Call Routing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - dialedNumber
+              properties:
+                dialedNumber:
+                  type: string
+                  description: The dialed number to look up
+                callingNumber:
+                  type: string
+                  description: Optional calling number for context
+      responses:
+        '200':
+          description: Routing lookup result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutingResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    RoutingResult:
+      type: object
+      properties:
+        dialedNumber:
+          type: string
+          example: example_value
+        matched:
+          type: boolean
+          description: Whether a matching pattern was found
+          example: true
+        matchedPattern:
+          type: string
+          description: The dialed number pattern that matched
+          example: example_value
+        callType:
+          type: string
+          enum:
+          - preroute
+          - translation_route
+          - post_route
+          example: preroute
+        applicationName:
+          type: string
+          description: Application that would handle the call
+          example: example_value
+        routeDestination:
+          type: string
+          description: Resulting route destination
+          example: example_value
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

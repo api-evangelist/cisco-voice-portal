@@ -1,0 +1,333 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration Historical Reports API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Historical Reports
+  description: Aggregated historical reporting data
+paths:
+  /statistics/summary:
+    get:
+      operationId: getCallSummaryStatistics
+      summary: Cisco Voice Portal Get Call Summary Statistics
+      description: Retrieves aggregated call summary statistics for a specified time period, including total calls, average handle time, abandonment rate, and self-service completion rate.
+      tags:
+      - Historical Reports
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: interval
+        in: query
+        description: Aggregation interval
+        schema:
+          type: string
+          enum:
+          - fifteen_minutes
+          - thirty_minutes
+          - hourly
+          - daily
+          default: hourly
+      - name: calledNumber
+        in: query
+        description: Filter by called number (DNIS)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Summary statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallSummaryStatistics'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /statistics/application:
+    get:
+      operationId: getApplicationStatistics
+      summary: Cisco Voice Portal Get Vxml Application Statistics
+      description: Retrieves usage and performance statistics for deployed VXML applications, including invocation counts, completion rates, and average interaction duration.
+      tags:
+      - Historical Reports
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: applicationName
+        in: query
+        description: Filter by specific application name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Application statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationStatistics'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /statistics/server:
+    get:
+      operationId: getServerStatistics
+      summary: Cisco Voice Portal Get Per-server Statistics
+      description: Retrieves call processing statistics broken down by individual CVP server, useful for capacity planning and load monitoring.
+      tags:
+      - Historical Reports
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: serverType
+        in: query
+        description: Filter by server type
+        schema:
+          type: string
+          enum:
+          - CallServer
+          - VXMLServer
+      responses:
+        '200':
+          description: Server statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerStatistics'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ApplicationStatistics:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        applications:
+          type: array
+          items:
+            type: object
+            properties:
+              applicationName:
+                type: string
+              totalInvocations:
+                type: integer
+              completedInvocations:
+                type: integer
+              errorInvocations:
+                type: integer
+              averageDuration:
+                type: number
+                format: float
+                description: Average application interaction duration in seconds
+              completionRate:
+                type: number
+                format: float
+              errorRate:
+                type: number
+                format: float
+          example: []
+    ServerStatistics:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        servers:
+          type: array
+          items:
+            type: object
+            properties:
+              serverId:
+                type: string
+              hostname:
+                type: string
+              serverType:
+                type: string
+              totalCalls:
+                type: integer
+              peakConcurrentCalls:
+                type: integer
+              averageConcurrentCalls:
+                type: number
+                format: float
+              cpuUsageAverage:
+                type: number
+                format: float
+              memoryUsageAverage:
+                type: number
+                format: float
+          example: []
+    CallSummaryStatistics:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        interval:
+          type: string
+          example: example_value
+        intervals:
+          type: array
+          items:
+            type: object
+            properties:
+              intervalStart:
+                type: string
+                format: date-time
+              intervalEnd:
+                type: string
+                format: date-time
+              totalCalls:
+                type: integer
+              completedCalls:
+                type: integer
+              abandonedCalls:
+                type: integer
+              transferredCalls:
+                type: integer
+              errorCalls:
+                type: integer
+              averageDuration:
+                type: number
+                format: float
+                description: Average call duration in seconds
+              averageSelfServiceDuration:
+                type: number
+                format: float
+              selfServiceCompletionRate:
+                type: number
+                format: float
+                description: Percentage of calls completed in self-service
+              abandonRate:
+                type: number
+                format: float
+                description: Percentage of abandoned calls
+          example: []
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

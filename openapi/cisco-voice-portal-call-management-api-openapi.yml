@@ -1,0 +1,531 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration Call Management API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Call Management
+  description: Manage and control active calls
+paths:
+  /call:
+    get:
+      operationId: listActiveCalls
+      summary: Cisco Voice Portal List Active Calls
+      description: Retrieves a list of all currently active calls on this Call Server. Each entry includes the call GUID, current state, and associated SIP session information.
+      tags:
+      - Call Management
+      parameters:
+      - name: state
+        in: query
+        description: Filter by call state
+        schema:
+          type: string
+          enum:
+          - ringing
+          - connected
+          - queued
+          - self_service
+          - transferring
+      - name: calledNumber
+        in: query
+        description: Filter by DNIS
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+          maximum: 1000
+      responses:
+        '200':
+          description: List of active calls
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalActiveCalls:
+                    type: integer
+                  calls:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ActiveCall'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /call/{callGuid}:
+    get:
+      operationId: getCallDetails
+      summary: Cisco Voice Portal Get Active Call Details
+      description: Retrieves detailed information about a specific active call, including SIP session details, current state, call variables, and routing information.
+      tags:
+      - Call Management
+      parameters:
+      - $ref: '#/components/parameters/CallGuid'
+      responses:
+        '200':
+          description: Call details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveCallDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Call not found or no longer active
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /call/{callGuid}/transfer:
+    post:
+      operationId: transferCall
+      summary: Cisco Voice Portal Transfer an Active Call
+      description: Initiates a transfer of an active call to a specified destination. The transfer can be a blind transfer or a consultation transfer. This operation sends the appropriate SIP REFER or re-INVITE to execute the transfer.
+      tags:
+      - Call Management
+      parameters:
+      - $ref: '#/components/parameters/CallGuid'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferRequest'
+      responses:
+        '202':
+          description: Transfer initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOperationResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Call not found or no longer active
+        '409':
+          description: Call is in a state that does not allow transfer
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /call/{callGuid}/terminate:
+    post:
+      operationId: terminateCall
+      summary: Cisco Voice Portal Terminate an Active Call
+      description: Terminates an active call by sending a SIP BYE request. The call is disconnected and a CDR is generated.
+      tags:
+      - Call Management
+      parameters:
+      - $ref: '#/components/parameters/CallGuid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: Reason for termination
+                  enum:
+                  - administrative
+                  - timeout
+                  - error
+                  - requested
+      responses:
+        '200':
+          description: Call terminated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOperationResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Call not found or already terminated
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /call/{callGuid}/variables:
+    get:
+      operationId: getCallVariables
+      summary: Cisco Voice Portal Get Call Variables
+      description: Retrieves the Expanded Call Context (ECC) variables and peripheral variables associated with an active call. These variables carry data between CVP, ICM, and the VXML application.
+      tags:
+      - Call Management
+      parameters:
+      - $ref: '#/components/parameters/CallGuid'
+      responses:
+        '200':
+          description: Call variables
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallVariables'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Call not found
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: setCallVariables
+      summary: Cisco Voice Portal Set Call Variables
+      description: Sets or updates ECC variables on an active call. These variables are passed to the VXML application and to ICM for routing decisions.
+      tags:
+      - Call Management
+      parameters:
+      - $ref: '#/components/parameters/CallGuid'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallVariablesUpdate'
+      responses:
+        '200':
+          description: Variables updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallVariables'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Call not found
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    CallGuid:
+      name: callGuid
+      in: path
+      required: true
+      description: Globally unique call identifier
+      schema:
+        type: string
+  schemas:
+    TransferRequest:
+      type: object
+      required:
+      - destination
+      properties:
+        destination:
+          type: string
+          description: Transfer destination (phone number, SIP URI, or agent extension)
+          example: example_value
+        transferType:
+          type: string
+          enum:
+          - blind
+          - consultation
+          default: blind
+          description: Type of transfer
+          example: blind
+        label:
+          type: string
+          description: ICM label for the transfer destination. Used when routing through ICM/UCCE.
+          example: Example Title
+        eccVariables:
+          type: object
+          additionalProperties:
+            type: string
+          description: ECC variables to pass with the transfer
+          example: example_value
+    CallVariablesUpdate:
+      type: object
+      properties:
+        eccVariables:
+          type: object
+          additionalProperties:
+            type: string
+          example: example_value
+        peripheralVariables:
+          type: object
+          additionalProperties:
+            type: string
+          example: example_value
+        callVariables:
+          type: object
+          additionalProperties:
+            type: string
+          example: example_value
+    CallVariables:
+      type: object
+      properties:
+        callGuid:
+          type: string
+          example: '500123'
+        eccVariables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Expanded Call Context variables
+          example: example_value
+        peripheralVariables:
+          type: object
+          properties:
+            peripheral1:
+              type: string
+            peripheral2:
+              type: string
+            peripheral3:
+              type: string
+            peripheral4:
+              type: string
+            peripheral5:
+              type: string
+            peripheral6:
+              type: string
+            peripheral7:
+              type: string
+            peripheral8:
+              type: string
+            peripheral9:
+              type: string
+            peripheral10:
+              type: string
+          description: ICM peripheral variables (1-10)
+          example: example_value
+        callVariables:
+          type: object
+          properties:
+            callVariable1:
+              type: string
+            callVariable2:
+              type: string
+            callVariable3:
+              type: string
+            callVariable4:
+              type: string
+            callVariable5:
+              type: string
+            callVariable6:
+              type: string
+            callVariable7:
+              type: string
+            callVariable8:
+              type: string
+            callVariable9:
+              type: string
+            callVariable10:
+              type: string
+          description: ICM call variables (1-10)
+          example: example_value
+    ActiveCallDetail:
+      type: object
+      properties:
+        callGuid:
+          type: string
+          example: '500123'
+        state:
+          type: string
+          enum:
+          - ringing
+          - connected
+          - queued
+          - self_service
+          - transferring
+          - on_hold
+          example: ringing
+        callingNumber:
+          type: string
+          example: example_value
+        calledNumber:
+          type: string
+          example: example_value
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        duration:
+          type: integer
+          example: 10
+        applicationName:
+          type: string
+          example: example_value
+        sipCallId:
+          type: string
+          description: SIP Call-ID
+          example: '500123'
+        sipFromTag:
+          type: string
+          example: example_value
+        sipToTag:
+          type: string
+          example: example_value
+        icmRouteResult:
+          type: object
+          properties:
+            routeLabel:
+              type: string
+            skillGroup:
+              type: string
+            agentId:
+              type: string
+          example: example_value
+        vxmlServer:
+          type: string
+          description: VXML Server currently handling the call
+          example: example_value
+        callHistory:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              event:
+                type: string
+              details:
+                type: string
+          description: Chronological list of call events
+          example: []
+        eccVariables:
+          type: object
+          additionalProperties:
+            type: string
+          example: example_value
+    ActiveCall:
+      type: object
+      properties:
+        callGuid:
+          type: string
+          description: Globally unique call identifier
+          example: '500123'
+        state:
+          type: string
+          enum:
+          - ringing
+          - connected
+          - queued
+          - self_service
+          - transferring
+          - on_hold
+          example: ringing
+        callingNumber:
+          type: string
+          description: Caller ANI
+          example: example_value
+        calledNumber:
+          type: string
+          description: Called DNIS
+          example: example_value
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        duration:
+          type: integer
+          description: Current call duration in seconds
+          example: 10
+        applicationName:
+          type: string
+          description: Current VXML application handling the call
+          example: example_value
+    CallOperationResult:
+      type: object
+      properties:
+        callGuid:
+          type: string
+          example: '500123'
+        operation:
+          type: string
+          example: example_value
+        status:
+          type: string
+          enum:
+          - success
+          - pending
+          - failed
+          example: success
+        message:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

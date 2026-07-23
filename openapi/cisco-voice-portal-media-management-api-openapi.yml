@@ -1,0 +1,188 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration Media Management API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Media Management
+  description: Manage audio media files and prompts
+paths:
+  /media:
+    get:
+      operationId: listMediaFiles
+      summary: Cisco Voice Portal List Media Files
+      description: Retrieves a list of media files (audio prompts) available on the VXML Server. Media files are used by VXML applications and micro-applications for playing prompts to callers.
+      tags:
+      - Media Management
+      parameters:
+      - name: path
+        in: query
+        description: Directory path to list media from
+        schema:
+          type: string
+          default: /
+      - name: type
+        in: query
+        description: Filter by media type
+        schema:
+          type: string
+          enum:
+          - wav
+          - au
+          - vox
+      responses:
+        '200':
+          description: List of media files
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MediaFile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /media/upload:
+    post:
+      operationId: uploadMediaFile
+      summary: Cisco Voice Portal Upload a Media File
+      description: Uploads an audio media file (WAV, AU, or VOX format) to the VXML Server for use in voice prompts and announcements.
+      tags:
+      - Media Management
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Audio file to upload
+                path:
+                  type: string
+                  description: Target directory path
+                  default: /
+                overwrite:
+                  type: boolean
+                  default: false
+                  description: Whether to overwrite existing file
+      responses:
+        '201':
+          description: Media file uploaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFile'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: File already exists and overwrite is false
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    MediaFile:
+      type: object
+      properties:
+        fileName:
+          type: string
+          example: example_value
+        filePath:
+          type: string
+          example: example_value
+        fileType:
+          type: string
+          enum:
+          - wav
+          - au
+          - vox
+          example: wav
+        fileSize:
+          type: integer
+          description: File size in bytes
+          example: 10
+        duration:
+          type: number
+          format: float
+          description: Audio duration in seconds
+          example: 42.5
+        lastModified:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

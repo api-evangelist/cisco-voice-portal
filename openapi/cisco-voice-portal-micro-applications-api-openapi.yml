@@ -1,0 +1,185 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration Micro-Applications API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Micro-Applications
+  description: Manage built-in CVP micro-applications
+paths:
+  /microapp:
+    get:
+      operationId: listMicroApplications
+      summary: Cisco Voice Portal List Available Micro-applications
+      description: Retrieves a list of built-in CVP micro-applications. Micro-applications are pre-built VXML applications for common IVR tasks such as playing media, collecting digits, and external VXML retrieval. These are invoked through ICM scripting via the Run External Script node.
+      tags:
+      - Micro-Applications
+      responses:
+        '200':
+          description: List of micro-applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MicroApplication'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /microapp/{microAppName}/config:
+    get:
+      operationId: getMicroAppConfig
+      summary: Cisco Voice Portal Get Micro-application Configuration
+      description: Retrieves the configuration for a specific built-in micro-application such as PlayMedia (PM), GetDigits (GD), Menu, PlayData (PD), CaptureCurrentCallerInfo, or ExternalVXML (EV).
+      tags:
+      - Micro-Applications
+      parameters:
+      - name: microAppName
+        in: path
+        required: true
+        description: Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)
+        schema:
+          type: string
+          enum:
+          - PlayMedia
+          - GetDigits
+          - Menu
+          - PlayData
+          - ExternalVXML
+          - CaptureCurrentCallerInfo
+          - AgentGreeting
+      responses:
+        '200':
+          description: Micro-application configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicroAppConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    MicroApplication:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Micro-application name
+          example: Example Title
+        description:
+          type: string
+          example: A sample description.
+        type:
+          type: string
+          enum:
+          - PlayMedia
+          - GetDigits
+          - Menu
+          - PlayData
+          - ExternalVXML
+          - CaptureCurrentCallerInfo
+          - AgentGreeting
+          example: PlayMedia
+        configurable:
+          type: boolean
+          example: true
+    MicroAppConfig:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Example Title
+        description:
+          type: string
+          example: A sample description.
+        parameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              required:
+                type: boolean
+              defaultValue:
+                type: string
+              description:
+                type: string
+          description: Configuration parameters for the micro-application
+          example: []
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

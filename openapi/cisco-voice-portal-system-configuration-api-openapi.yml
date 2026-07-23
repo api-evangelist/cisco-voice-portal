@@ -1,0 +1,238 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration System Configuration API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: System Configuration
+  description: Global system settings and licensing
+paths:
+  /system/config:
+    get:
+      operationId: getSystemConfig
+      summary: Cisco Voice Portal Get System-wide Configuration
+      description: Retrieves global system configuration settings including logging levels, security settings, and system-wide defaults.
+      tags:
+      - System Configuration
+      responses:
+        '200':
+          description: System configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateSystemConfig
+      summary: Cisco Voice Portal Update System-wide Configuration
+      tags:
+      - System Configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SystemConfig'
+      responses:
+        '200':
+          description: Configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemConfig'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /system/license:
+    get:
+      operationId: getLicenseInfo
+      summary: Cisco Voice Portal Get Licensing Information
+      description: Retrieves current licensing information including licensed features, port capacity, and license expiration status.
+      tags:
+      - System Configuration
+      responses:
+        '200':
+          description: License information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    SystemConfig:
+      type: object
+      properties:
+        logging:
+          type: object
+          properties:
+            globalLogLevel:
+              type: string
+              enum:
+              - ERROR
+              - WARN
+              - INFO
+              - DEBUG
+              - TRACE
+            syslogServer:
+              type: string
+            syslogPort:
+              type: integer
+              default: 514
+          example: example_value
+        security:
+          type: object
+          properties:
+            enableTls:
+              type: boolean
+              default: true
+            tlsVersion:
+              type: string
+              default: TLSv1.2
+            sessionTimeout:
+              type: integer
+              description: Session timeout in minutes
+              default: 30
+            passwordPolicy:
+              type: object
+              properties:
+                minLength:
+                  type: integer
+                  default: 8
+                requireUppercase:
+                  type: boolean
+                  default: true
+                requireSpecialChar:
+                  type: boolean
+                  default: true
+                maxAge:
+                  type: integer
+                  description: Password max age in days
+          example: example_value
+        snmp:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              default: false
+            communityString:
+              type: string
+            trapDestination:
+              type: string
+          example: example_value
+    LicenseInfo:
+      type: object
+      properties:
+        licenseType:
+          type: string
+          enum:
+          - standard
+          - premium
+          - enterprise
+          example: standard
+        maxPorts:
+          type: integer
+          description: Maximum number of concurrent call ports
+          example: 10
+        usedPorts:
+          type: integer
+          description: Currently used call ports
+          example: 10
+        features:
+          type: array
+          items:
+            type: string
+          description: Licensed feature list
+          example: []
+        expirationDate:
+          type: string
+          format: date
+          example: '2026-01-15'
+        status:
+          type: string
+          enum:
+          - active
+          - expired
+          - grace_period
+          example: active
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

@@ -1,0 +1,258 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration VXML Server Management API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: VXML Server Management
+  description: Configure and manage CVP VXML Servers
+paths:
+  /vxmlserver:
+    get:
+      operationId: listVxmlServers
+      summary: Cisco Voice Portal List All Vxml Servers
+      description: Retrieves a list of all CVP VXML Servers. VXML Servers host and execute VoiceXML applications that provide interactive voice response (IVR) functionality.
+      tags:
+      - VXML Server Management
+      responses:
+        '200':
+          description: List of VXML Servers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VxmlServer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /vxmlserver/{serverId}/config:
+    get:
+      operationId: getVxmlServerConfig
+      summary: Cisco Voice Portal Get Vxml Server Configuration
+      description: Retrieves the configuration of a specific VXML Server, including application settings, thread pool configuration, and VXML browser settings.
+      tags:
+      - VXML Server Management
+      parameters:
+      - $ref: '#/components/parameters/ServerId'
+      responses:
+        '200':
+          description: VXML Server configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VxmlServerConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateVxmlServerConfig
+      summary: Cisco Voice Portal Update Vxml Server Configuration
+      description: Updates the configuration of a specific VXML Server. Application deployment changes take effect immediately; server configuration changes may require a restart.
+      tags:
+      - VXML Server Management
+      parameters:
+      - $ref: '#/components/parameters/ServerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VxmlServerConfig'
+      responses:
+        '200':
+          description: Configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VxmlServerConfig'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    VxmlServerConfig:
+      type: object
+      properties:
+        serverId:
+          type: string
+          example: '500123'
+        http:
+          type: object
+          properties:
+            port:
+              type: integer
+              default: 7000
+            httpsPort:
+              type: integer
+              default: 7443
+            enableHttps:
+              type: boolean
+              default: true
+          example: example_value
+        threadPool:
+          type: object
+          properties:
+            minThreads:
+              type: integer
+              default: 5
+            maxThreads:
+              type: integer
+              default: 500
+          example: example_value
+        vxmlBrowser:
+          type: object
+          properties:
+            fetchTimeout:
+              type: integer
+              description: Default fetch timeout in milliseconds
+              default: 30000
+            maxDocumentSize:
+              type: integer
+              description: Maximum VXML document size in bytes
+            defaultLanguage:
+              type: string
+              default: en-US
+          example: example_value
+        logging:
+          type: object
+          properties:
+            level:
+              type: string
+              enum:
+              - ERROR
+              - WARN
+              - INFO
+              - DEBUG
+              - TRACE
+            maxLogFileSize:
+              type: string
+              description: Maximum log file size (e.g., 10MB)
+          example: example_value
+    VxmlServer:
+      type: object
+      properties:
+        serverId:
+          type: string
+          example: '500123'
+        hostname:
+          type: string
+          example: example_value
+        ipAddress:
+          type: string
+          format: ipv4
+          example: example_value
+        httpPort:
+          type: integer
+          default: 7000
+          example: 10
+        httpsPort:
+          type: integer
+          default: 7443
+          example: 10
+        status:
+          type: string
+          enum:
+          - online
+          - offline
+          - maintenance
+          example: online
+        deployedApplications:
+          type: integer
+          description: Number of applications deployed on this server
+          example: 10
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ServerId:
+      name: serverId
+      in: path
+      required: true
+      description: Server identifier
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

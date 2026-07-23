@@ -1,0 +1,234 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration Session Monitoring API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Session Monitoring
+  description: Monitor active VXML call sessions
+paths:
+  /application/{applicationName}/sessions:
+    get:
+      operationId: listApplicationSessions
+      summary: Cisco Voice Portal List Active Application Sessions
+      description: Retrieves a list of active call sessions currently being handled by the specified VXML application.
+      tags:
+      - Session Monitoring
+      parameters:
+      - $ref: '#/components/parameters/ApplicationName'
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: Active sessions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalSessions:
+                    type: integer
+                  sessions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VxmlSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /session/{sessionId}:
+    get:
+      operationId: getSessionDetails
+      summary: Cisco Voice Portal Get Vxml Session Details
+      description: Retrieves detailed information about an active VXML session, including the current element being executed, session variables, and execution history.
+      tags:
+      - Session Monitoring
+      parameters:
+      - name: sessionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Session details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VxmlSessionDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Session not found
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    VxmlSession:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          example: '500123'
+        callGuid:
+          type: string
+          description: Associated CVP call GUID
+          example: '500123'
+        applicationName:
+          type: string
+          example: example_value
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        duration:
+          type: integer
+          description: Session duration in seconds
+          example: 10
+        currentElement:
+          type: string
+          description: Currently executing call flow element
+          example: example_value
+        callingNumber:
+          type: string
+          example: example_value
+        calledNumber:
+          type: string
+          example: example_value
+    VxmlSessionDetail:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          example: '500123'
+        callGuid:
+          type: string
+          example: '500123'
+        applicationName:
+          type: string
+          example: example_value
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        duration:
+          type: integer
+          example: 10
+        currentElement:
+          type: string
+          example: example_value
+        callingNumber:
+          type: string
+          example: example_value
+        calledNumber:
+          type: string
+          example: example_value
+        sessionVariables:
+          type: object
+          additionalProperties:
+            type: string
+          description: VXML session-level variables
+          example: example_value
+        elementHistory:
+          type: array
+          items:
+            type: object
+            properties:
+              elementName:
+                type: string
+              enteredAt:
+                type: string
+                format: date-time
+              exitedAt:
+                type: string
+                format: date-time
+              exitState:
+                type: string
+          description: History of elements visited in this session
+          example: []
+        lastUserInput:
+          type: string
+          description: Last input received from the caller (DTMF or ASR result)
+          example: example_value
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  parameters:
+    ApplicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Name of the deployed VXML application
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

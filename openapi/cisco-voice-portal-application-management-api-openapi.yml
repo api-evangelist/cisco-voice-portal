@@ -1,0 +1,462 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration Application Management API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Application Management
+  description: Deploy and manage VXML and Call Studio applications
+paths:
+  /application:
+    get:
+      operationId: listApplications
+      summary: Cisco Voice Portal List Deployed Applications
+      description: Retrieves a list of all VXML and call studio applications deployed across the CVP infrastructure. Includes deployment status and associated server assignments.
+      tags:
+      - Application Management
+      parameters:
+      - name: type
+        in: query
+        description: Filter by application type
+        schema:
+          type: string
+          enum:
+          - vxml
+          - callstudio
+          - microapp
+      - name: status
+        in: query
+        description: Filter by deployment status
+        schema:
+          type: string
+          enum:
+          - deployed
+          - undeployed
+          - error
+      responses:
+        '200':
+          description: List of applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: deployApplication
+      summary: Cisco Voice Portal Deploy a New Application
+      description: Deploys a VXML or Call Studio application to designated VXML Servers. The application archive is uploaded and distributed to the target servers.
+      tags:
+      - Application Management
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - applicationName
+              - applicationFile
+              properties:
+                applicationName:
+                  type: string
+                  description: Unique name for the application
+                applicationType:
+                  type: string
+                  enum:
+                  - vxml
+                  - callstudio
+                  - microapp
+                  description: Type of the application
+                applicationFile:
+                  type: string
+                  format: binary
+                  description: Application archive file (.zip or .war)
+                targetServers:
+                  type: array
+                  items:
+                    type: string
+                  description: List of VXML Server IDs to deploy to
+      responses:
+        '201':
+          description: Application deployed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /application/{applicationId}:
+    get:
+      operationId: getApplication
+      summary: Cisco Voice Portal Get Application Details
+      description: Retrieves detailed information about a deployed application, including deployment status on each server and configuration parameters.
+      tags:
+      - Application Management
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '200':
+          description: Application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: undeployApplication
+      summary: Cisco Voice Portal Undeploy an Application
+      description: Removes a deployed application from all associated VXML Servers. Active calls using the application are allowed to complete before removal.
+      tags:
+      - Application Management
+      parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+      responses:
+        '202':
+          description: Undeployment initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /application/{applicationName}:
+    get:
+      operationId: getApplicationDetails
+      summary: Cisco Voice Portal Get Vxml Application Details
+      description: Retrieves detailed information about a specific deployed VXML application, including its configuration, call flow elements, and deployment metadata.
+      tags:
+      - Application Management
+      parameters:
+      - $ref: '#/components/parameters/ApplicationName'
+      responses:
+        '200':
+          description: Application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VxmlApplicationDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /application/{applicationName}/activate:
+    post:
+      operationId: activateApplication
+      summary: Cisco Voice Portal Activate a Vxml Application
+      description: Activates a deployed VXML application, making it available to handle incoming calls. An application must be active to process calls.
+      tags:
+      - Application Management
+      parameters:
+      - $ref: '#/components/parameters/ApplicationName'
+      responses:
+        '200':
+          description: Application activated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Application is already active
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /application/{applicationName}/deactivate:
+    post:
+      operationId: deactivateApplication
+      summary: Cisco Voice Portal Deactivate a Vxml Application
+      description: Deactivates a VXML application. Active calls using the application are allowed to complete, but no new calls will be routed to it.
+      tags:
+      - Application Management
+      parameters:
+      - $ref: '#/components/parameters/ApplicationName'
+      responses:
+        '200':
+          description: Application deactivated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Application is already inactive
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    VxmlApplicationDetail:
+      type: object
+      properties:
+        applicationName:
+          type: string
+          example: example_value
+        applicationType:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+        version:
+          type: string
+          example: example_value
+        activeSessions:
+          type: integer
+          example: 10
+        deployedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        description:
+          type: string
+          example: A sample description.
+        entryPoint:
+          type: string
+          description: Starting element of the call flow
+          example: example_value
+        elements:
+          type: array
+          items:
+            type: string
+          description: List of element names in the application
+          example: []
+        mediaDirectory:
+          type: string
+          description: Path to the application media files
+          example: example_value
+        grammarDirectory:
+          type: string
+          description: Path to the application grammar files
+          example: example_value
+        configParameters:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application-level configuration parameters
+          example: example_value
+    Application:
+      type: object
+      properties:
+        applicationId:
+          type: string
+          example: '500123'
+        applicationName:
+          type: string
+          example: example_value
+        applicationType:
+          type: string
+          enum:
+          - vxml
+          - callstudio
+          - microapp
+          example: vxml
+        status:
+          type: string
+          enum:
+          - deployed
+          - undeployed
+          - deploying
+          - error
+          example: deployed
+        version:
+          type: string
+          example: example_value
+        deployedServers:
+          type: array
+          items:
+            type: object
+            properties:
+              serverId:
+                type: string
+              serverHostname:
+                type: string
+              deploymentStatus:
+                type: string
+                enum:
+                - deployed
+                - pending
+                - error
+          example: []
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    OperationResult:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - success
+          - failed
+          example: success
+        message:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    OperationStatus:
+      type: object
+      properties:
+        operationId:
+          type: string
+          example: '500123'
+        status:
+          type: string
+          enum:
+          - pending
+          - in_progress
+          - completed
+          - failed
+          example: pending
+        message:
+          type: string
+          example: example_value
+        startedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        completedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        progress:
+          type: number
+          format: float
+          description: Progress percentage (0-100)
+          example: 42.5
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ApplicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Name of the deployed VXML application
+      schema:
+        type: string
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Application identifier
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

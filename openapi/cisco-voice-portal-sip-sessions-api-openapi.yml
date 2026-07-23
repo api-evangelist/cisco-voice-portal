@@ -1,0 +1,218 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration SIP Sessions API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: SIP Sessions
+  description: Monitor SIP session details
+paths:
+  /sip/session:
+    get:
+      operationId: listSipSessions
+      summary: Cisco Voice Portal List Active Sip Sessions
+      description: Retrieves information about active SIP sessions (dialogs) on the Call Server. Each SIP session corresponds to an active call leg.
+      tags:
+      - SIP Sessions
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: Active SIP sessions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalSessions:
+                    type: integer
+                  sessions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SipSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sip/session/{sessionId}:
+    get:
+      operationId: getSipSession
+      summary: Cisco Voice Portal Get Sip Session Details
+      description: Retrieves detailed SIP session information including SIP headers, dialog state, and associated call GUID.
+      tags:
+      - SIP Sessions
+      parameters:
+      - name: sessionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: SIP session details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SipSessionDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Session not found
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    SipSessionDetail:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          example: '500123'
+        callId:
+          type: string
+          example: '500123'
+        callGuid:
+          type: string
+          example: '500123'
+        state:
+          type: string
+          example: example_value
+        fromUri:
+          type: string
+          example: example_value
+        toUri:
+          type: string
+          example: example_value
+        fromTag:
+          type: string
+          example: example_value
+        toTag:
+          type: string
+          example: example_value
+        cseq:
+          type: integer
+          example: 10
+        transport:
+          type: string
+          enum:
+          - UDP
+          - TCP
+          - TLS
+          example: UDP
+        localAddress:
+          type: string
+          example: example_value
+        remoteAddress:
+          type: string
+          example: example_value
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        lastActivityTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    SipSession:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          example: '500123'
+        callId:
+          type: string
+          description: SIP Call-ID
+          example: '500123'
+        callGuid:
+          type: string
+          description: Associated CVP call GUID
+          example: '500123'
+        state:
+          type: string
+          enum:
+          - initial
+          - early
+          - confirmed
+          - terminated
+          example: initial
+        method:
+          type: string
+          description: Initial SIP method (INVITE)
+          example: example_value
+        fromUri:
+          type: string
+          example: example_value
+        toUri:
+          type: string
+          example: example_value
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

@@ -1,0 +1,286 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Application Configuration
+  description: Configure VXML application runtime settings
+paths:
+  /application/{applicationName}/config:
+    get:
+      operationId: getApplicationConfig
+      summary: Cisco Voice Portal Get Application Configuration
+      description: Retrieves the runtime configuration parameters for a VXML application. These settings are defined in the Call Studio project and can be overridden at runtime.
+      tags:
+      - Application Configuration
+      parameters:
+      - $ref: '#/components/parameters/ApplicationName'
+      responses:
+        '200':
+          description: Application configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateApplicationConfig
+      summary: Cisco Voice Portal Update Application Configuration
+      description: Updates the runtime configuration parameters for a VXML application. Changes take effect for new calls; active calls continue with their existing configuration.
+      tags:
+      - Application Configuration
+      parameters:
+      - $ref: '#/components/parameters/ApplicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationConfigUpdate'
+      responses:
+        '200':
+          description: Configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationConfig'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /application/{applicationName}/elements:
+    get:
+      operationId: listApplicationElements
+      summary: Cisco Voice Portal List Application Call Flow Elements
+      description: Retrieves the list of call flow elements (voice elements, action elements, and decision elements) that make up the VXML application. Elements are the building blocks of Call Studio applications.
+      tags:
+      - Application Configuration
+      parameters:
+      - $ref: '#/components/parameters/ApplicationName'
+      responses:
+        '200':
+          description: List of application elements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CallFlowElement'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    ApplicationConfig:
+      type: object
+      properties:
+        applicationName:
+          type: string
+          example: example_value
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+          description: Runtime configuration parameters
+          example: example_value
+        defaultLanguage:
+          type: string
+          default: en-US
+          example: example_value
+        fetchTimeout:
+          type: integer
+          description: VXML document fetch timeout in milliseconds
+          example: 10
+        maxSessionDuration:
+          type: integer
+          description: Maximum session duration in seconds
+          example: 10
+        inputModes:
+          type: array
+          items:
+            type: string
+            enum:
+            - dtmf
+            - voice
+          description: Allowed input modes
+          example: []
+        loggingLevel:
+          type: string
+          enum:
+          - ERROR
+          - WARN
+          - INFO
+          - DEBUG
+          example: ERROR
+    CallFlowElement:
+      type: object
+      properties:
+        elementName:
+          type: string
+          description: Name of the call flow element
+          example: example_value
+        elementType:
+          type: string
+          enum:
+          - voice
+          - action
+          - decision
+          - subdialog
+          description: Type of element. Voice elements interact with the caller, action elements perform backend operations, decision elements control flow logic, and subdialog elements invoke sub-applications.
+          example: voice
+        description:
+          type: string
+          example: A sample description.
+        className:
+          type: string
+          description: Java class implementing the element
+          example: example_value
+        configParameters:
+          type: object
+          additionalProperties:
+            type: string
+          description: Element-specific configuration
+          example: example_value
+        exits:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              targetElement:
+                type: string
+          description: Element exit paths and their targets
+          example: []
+    ApplicationConfigUpdate:
+      type: object
+      properties:
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+          example: example_value
+        defaultLanguage:
+          type: string
+          example: example_value
+        fetchTimeout:
+          type: integer
+          example: 10
+        maxSessionDuration:
+          type: integer
+          example: 10
+        inputModes:
+          type: array
+          items:
+            type: string
+            enum:
+            - dtmf
+            - voice
+          example: []
+        loggingLevel:
+          type: string
+          enum:
+          - ERROR
+          - WARN
+          - INFO
+          - DEBUG
+          example: ERROR
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  parameters:
+    ApplicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Name of the deployed VXML application
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

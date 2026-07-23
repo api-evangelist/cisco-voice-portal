@@ -1,0 +1,249 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration Call Server Management API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Call Server Management
+  description: Configure and manage CVP Call Servers
+paths:
+  /callserver:
+    get:
+      operationId: listCallServers
+      summary: Cisco Voice Portal List All Call Servers
+      description: Retrieves a list of all CVP Call Servers managed by the OAMP Server. Call Servers handle SIP call control and routing within the CVP deployment.
+      tags:
+      - Call Server Management
+      responses:
+        '200':
+          description: List of Call Servers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CallServer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /callserver/{serverId}/config:
+    get:
+      operationId: getCallServerConfig
+      summary: Cisco Voice Portal Get Call Server Configuration
+      description: Retrieves the full configuration of a specific Call Server, including SIP settings, call routing rules, dialed number patterns, and connection settings to ICM/UCCE.
+      tags:
+      - Call Server Management
+      parameters:
+      - $ref: '#/components/parameters/ServerId'
+      responses:
+        '200':
+          description: Call Server configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallServerConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateCallServerConfig
+      summary: Cisco Voice Portal Update Call Server Configuration
+      description: Updates the configuration of a specific Call Server. Changes to SIP and routing configuration may require a service restart.
+      tags:
+      - Call Server Management
+      parameters:
+      - $ref: '#/components/parameters/ServerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallServerConfig'
+      responses:
+        '200':
+          description: Configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallServerConfig'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ServerId:
+      name: serverId
+      in: path
+      required: true
+      description: Server identifier
+      schema:
+        type: string
+  schemas:
+    CallServer:
+      type: object
+      properties:
+        serverId:
+          type: string
+          example: '500123'
+        hostname:
+          type: string
+          example: example_value
+        ipAddress:
+          type: string
+          format: ipv4
+          example: example_value
+        sipPort:
+          type: integer
+          default: 5060
+          example: 10
+        status:
+          type: string
+          enum:
+          - online
+          - offline
+          - maintenance
+          example: online
+        activeCalls:
+          type: integer
+          example: 10
+        maxCalls:
+          type: integer
+          example: 10
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    CallServerConfig:
+      type: object
+      properties:
+        serverId:
+          type: string
+          example: '500123'
+        sip:
+          type: object
+          properties:
+            port:
+              type: integer
+              default: 5060
+            transport:
+              type: string
+              enum:
+              - UDP
+              - TCP
+              - TLS
+              default: UDP
+            maxConnections:
+              type: integer
+            heartbeatInterval:
+              type: integer
+              description: SIP OPTIONS heartbeat interval in seconds
+          example: example_value
+        icm:
+          type: object
+          properties:
+            primaryVruLabel:
+              type: string
+              description: Primary VRU label for ICM/UCCE integration
+            secondaryVruLabel:
+              type: string
+              description: Secondary VRU label
+            maxCallDuration:
+              type: integer
+              description: Maximum call duration in seconds
+          example: example_value
+        callRouting:
+          type: object
+          properties:
+            defaultDnisPattern:
+              type: string
+            sendToVxmlServer:
+              type: boolean
+              default: true
+            ringtoneApplication:
+              type: string
+            errorApplication:
+              type: string
+          example: example_value
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

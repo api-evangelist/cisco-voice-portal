@@ -1,0 +1,297 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration Report Templates API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Report Templates
+  description: Execute pre-defined report templates
+paths:
+  /report:
+    get:
+      operationId: listReportTemplates
+      summary: Cisco Voice Portal List Available Report Templates
+      description: Retrieves a list of available report templates that can be executed. These correspond to the standard CVP reports available in Cisco Unified Intelligence Center.
+      tags:
+      - Report Templates
+      responses:
+        '200':
+          description: List of report templates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReportTemplate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /report/{templateId}/execute:
+    post:
+      operationId: executeReport
+      summary: Cisco Voice Portal Execute a Report Template
+      description: Executes a report template with the specified parameters. Reports may be generated synchronously for small datasets or asynchronously for large reports.
+      tags:
+      - Report Templates
+      parameters:
+      - name: templateId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportExecutionRequest'
+      responses:
+        '200':
+          description: Report results (synchronous)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportResult'
+        '202':
+          description: Report generation initiated (asynchronous)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reportId:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                    - processing
+                  estimatedCompletionTime:
+                    type: string
+                    format: date-time
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /report/{reportId}/result:
+    get:
+      operationId: getReportResult
+      summary: Cisco Voice Portal Get Report Execution Result
+      description: Retrieves the result of a previously executed report. For asynchronous reports, returns the result once generation is complete.
+      tags:
+      - Report Templates
+      parameters:
+      - name: reportId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: Output format
+        schema:
+          type: string
+          enum:
+          - json
+          - csv
+          default: json
+      responses:
+        '200':
+          description: Report result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportResult'
+            text/csv:
+              schema:
+                type: string
+        '202':
+          description: Report still processing
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ReportResult:
+      type: object
+      properties:
+        reportId:
+          type: string
+          example: '500123'
+        templateId:
+          type: string
+          example: '500123'
+        templateName:
+          type: string
+          example: example_value
+        status:
+          type: string
+          enum:
+          - completed
+          - processing
+          - error
+          example: completed
+        generatedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        parameters:
+          type: object
+          additionalProperties: true
+          example: example_value
+        columns:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+          example: []
+        rows:
+          type: array
+          items:
+            type: array
+            items: {}
+          example: []
+        totalRows:
+          type: integer
+          example: 10
+    ReportExecutionRequest:
+      type: object
+      properties:
+        parameters:
+          type: object
+          additionalProperties: true
+          description: Report parameters as defined by the template
+          example: example_value
+        format:
+          type: string
+          enum:
+          - json
+          - csv
+          default: json
+          example: json
+        async:
+          type: boolean
+          default: false
+          description: Whether to execute asynchronously
+          example: true
+    ReportTemplate:
+      type: object
+      properties:
+        templateId:
+          type: string
+          example: '500123'
+        name:
+          type: string
+          example: Example Title
+        description:
+          type: string
+          example: A sample description.
+        category:
+          type: string
+          enum:
+          - call_activity
+          - application_performance
+          - server_performance
+          - error_analysis
+          example: call_activity
+        parameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              required:
+                type: boolean
+              description:
+                type: string
+          example: []
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.

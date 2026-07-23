@@ -1,0 +1,226 @@
+openapi: 3.1.0
+info:
+  title: Cisco Voice Portal Administration Application Configuration Server Status API
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  version: 12.6.0
+  contact:
+    name: Cisco Developer Support
+    url: https://developer.cisco.com/
+  license:
+    name: Cisco DevNet
+    url: https://developer.cisco.com/site/license/
+  x-provider: cisco
+  x-product: unified-customer-voice-portal
+servers:
+- url: https://{oamp-server}:9443/oamp/rest
+  description: CVP OAMP Server REST API
+  variables:
+    oamp-server:
+      default: cvp-oamp.example.com
+      description: Hostname or IP of the CVP OAMP Server
+security:
+- basicAuth: []
+- sessionCookie: []
+tags:
+- name: Server Status
+  description: VXML Server status and monitoring
+paths:
+  /server/status:
+    get:
+      operationId: getVxmlServerStatus
+      summary: Cisco Voice Portal Get Vxml Server Status
+      description: Retrieves the operational status of the VXML Server, including active session count, thread pool status, and resource utilization.
+      tags:
+      - Server Status
+      responses:
+        '200':
+          description: Server status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VxmlServerStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /server/log:
+    get:
+      operationId: getServerLogs
+      summary: Cisco Voice Portal Get Recent Server Log Entries
+      description: Retrieves recent log entries from the VXML Server. Supports filtering by severity level and time range.
+      tags:
+      - Server Status
+      parameters:
+      - name: level
+        in: query
+        description: Minimum log level to include
+        schema:
+          type: string
+          enum:
+          - ERROR
+          - WARN
+          - INFO
+          - DEBUG
+          default: INFO
+      - name: since
+        in: query
+        description: Return logs since this timestamp
+        schema:
+          type: string
+          format: date-time
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+          maximum: 1000
+      responses:
+        '200':
+          description: Log entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    VxmlServerStatus:
+      type: object
+      properties:
+        hostname:
+          type: string
+          example: example_value
+        status:
+          type: string
+          enum:
+          - running
+          - stopped
+          - error
+          example: running
+        uptime:
+          type: string
+          example: example_value
+        version:
+          type: string
+          example: example_value
+        activeSessions:
+          type: integer
+          example: 10
+        maxSessions:
+          type: integer
+          example: 10
+        threadPool:
+          type: object
+          properties:
+            activeThreads:
+              type: integer
+            idleThreads:
+              type: integer
+            maxThreads:
+              type: integer
+            queuedRequests:
+              type: integer
+          example: example_value
+        cpuUsage:
+          type: number
+          format: float
+          example: 42.5
+        memoryUsage:
+          type: object
+          properties:
+            heapUsed:
+              type: integer
+              description: Heap memory used in bytes
+            heapMax:
+              type: integer
+              description: Maximum heap memory in bytes
+            heapPercentage:
+              type: number
+              format: float
+          example: example_value
+        deployedApplications:
+          type: integer
+          example: 10
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    LogEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        level:
+          type: string
+          enum:
+          - ERROR
+          - WARN
+          - INFO
+          - DEBUG
+          example: ERROR
+        logger:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        sessionId:
+          type: string
+          description: Associated session ID, if applicable
+          example: '500123'
+        applicationName:
+          type: string
+          description: Associated application, if applicable
+          example: example_value
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.
