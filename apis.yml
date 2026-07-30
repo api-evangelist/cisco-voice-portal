@@ -2,6 +2,19 @@ name: Cisco Voice Portal
 description: >-
   Cisco Voice Portal (CVP) is an enterprise-class Voice XML (VXML) browser and call control platform that enables
   self-service applications for voice, video, and multimodal interactions.
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.cisco.com/c/en/us/products/customer-collaboration/unified-contact-center-enterprise/index.html
 tags:
   - Contact Center
@@ -14,101 +27,327 @@ modified: '2026-05-19'
 specificationVersion: '0.18'
 url: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
 apis:
-  - name: Cisco Voice Portal Call Control API
-    description: >-
-      Provides programmatic access to call control functions on the CVP Call Server including active call management,
-      call routing, transfers, SIP session monitoring, and health status of the call processing component.
-    image: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
-    humanURL: https://developer.cisco.com/docs/voice-portal/
-    baseURL: https://cvp-callserver.example.com:8000/cvp/rest
-    tags:
-      - Call Control
-      - Routing
-      - Session Management
-      - SIP
-    properties:
-      - type: Documentation
-        url: >-
-          https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
-      - type: OpenAPI
-        url: openapi/cisco-voice-portal-call-control-openapi.yml
-  - name: Cisco Voice Portal Reporting API
-    description: >-
-      Access to call detail records (CDRs), real-time call statistics, historical reporting data, and report template
-      execution through the CVP Reporting Server.
-    image: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
-    humanURL: https://developer.cisco.com/docs/voice-portal/
-    baseURL: https://cvp-reporting.example.com:8111/cvp-reporting/rest
-    tags:
-      - Analytics
-      - CDR
-      - Reporting
-      - Statistics
-    properties:
-      - type: Documentation
-        url: >-
-          https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
-      - type: OpenAPI
-        url: openapi/cisco-voice-portal-reporting-openapi.yml
-  - name: Cisco Voice Portal Administration API
-    description: >-
-      The CVP OAMP (Operations, Administration, Maintenance, and Provisioning) REST API for managing devices,
-      applications, dialed number patterns, SIP server groups, system configuration, user management, and deployment
-      operations.
-    image: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
-    humanURL: https://developer.cisco.com/docs/voice-portal/
-    baseURL: https://cvp-oamp.example.com:9443/oamp/rest
-    tags:
-      - Administration
-      - Configuration
-      - Management
-      - OAMP
-      - Provisioning
-    properties:
-      - type: Documentation
-        url: >-
-          https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
-      - type: OpenAPI
-        url: openapi/cisco-voice-portal-administration-openapi.yml
-  - name: Cisco Voice Portal VXML Services API
-    description: >-
-      Management and monitoring of the CVP VXML Server including application deployment, activation, configuration,
-      session monitoring, micro-application management, media file management, and grammar management.
-    image: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
-    humanURL: https://developer.cisco.com/docs/voice-portal/
-    baseURL: https://cvp-vxmlserver.example.com:7443/CVP/rest
-    tags:
-      - Call Studio
-      - IVR
-      - Micro-Applications
-      - Voice Applications
-      - VXML
-    properties:
-      - type: Documentation
-        url: >-
-          https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
-      - type: OpenAPI
-        url: openapi/cisco-voice-portal-vxml-services-openapi.yml
-  - name: Cisco Voice Portal Call Events API
-    description: >-
-      Event-driven interface for consuming real-time CVP call lifecycle events, system alerts, device status changes,
-      and operational notifications via JMS messaging and syslog.
-    image: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
-    humanURL: https://developer.cisco.com/docs/voice-portal/
-    baseURL: tcp://cvp-callserver.example.com:61616
-    tags:
-      - Call Lifecycle
-      - Events
-      - JMS
-      - Monitoring
-      - Notifications
-    properties:
-      - type: Documentation
-        url: >-
-          https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
-      - type: AsyncAPI
-        url: asyncapi/cisco-voice-portal-call-events-asyncapi.yml
+- name: Cisco Voice Portal Call Events API
+  description: >-
+    Event-driven interface for consuming real-time CVP call lifecycle events, system alerts, device status
+    changes, and operational notifications via JMS messaging and syslog.
+  image: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: tcp://cvp-callserver.example.com:61616
+  tags:
+  - Call Lifecycle
+  - Events
+  - JMS
+  - Monitoring
+  - Notifications
+  properties:
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+  - type: AsyncAPI
+    url: asyncapi/cisco-voice-portal-call-events-asyncapi.yml
+- aid: cisco-voice-portal:cisco-voice-portal-application-configuration-api
+  name: Cisco Voice Portal Application Configuration API
+  description: Configure VXML application runtime settings
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Application Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-application-configuration-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-application-management-api
+  name: Cisco Voice Portal Application Management API
+  description: Deploy and manage VXML and Call Studio applications
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Application Management
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-application-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-call-detail-records-api
+  name: Cisco Voice Portal Call Detail Records API
+  description: Access and query call detail records
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Call Detail Records
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-call-detail-records-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-call-management-api
+  name: Cisco Voice Portal Call Management API
+  description: Manage and control active calls
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Call Management
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-call-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-call-routing-api
+  name: Cisco Voice Portal Call Routing API
+  description: Call routing lookup and testing
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Call Routing
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-call-routing-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-call-server-management-api
+  name: Cisco Voice Portal Call Server Management API
+  description: Configure and manage CVP Call Servers
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Call Server Management
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-call-server-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-deployment-api
+  name: Cisco Voice Portal Deployment API
+  description: Deploy configuration to managed devices
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Deployment
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-deployment-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-device-management-api
+  name: Cisco Voice Portal Device Management API
+  description: Manage CVP devices (Call Servers, VXML Servers, Reporting Servers)
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Device Management
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-device-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-dialed-number-patterns-api
+  name: Cisco Voice Portal Dialed Number Patterns API
+  description: Manage call routing dialed number patterns
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Dialed Number Patterns
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-dialed-number-patterns-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-grammar-management-api
+  name: Cisco Voice Portal Grammar Management API
+  description: Manage speech recognition grammar files
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Grammar Management
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-grammar-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-health-api
+  name: Cisco Voice Portal Health API
+  description: Call Server health and connectivity status
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-health-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-historical-reports-api
+  name: Cisco Voice Portal Historical Reports API
+  description: Aggregated historical reporting data
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Historical Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-historical-reports-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-media-management-api
+  name: Cisco Voice Portal Media Management API
+  description: Manage audio media files and prompts
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Media Management
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-media-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-micro-applications-api
+  name: Cisco Voice Portal Micro-Applications API
+  description: Manage built-in CVP micro-applications
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Micro-Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-micro-applications-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-real-time-statistics-api
+  name: Cisco Voice Portal Real-Time Statistics API
+  description: Current call processing statistics
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Real-Time Statistics
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-real-time-statistics-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-report-templates-api
+  name: Cisco Voice Portal Report Templates API
+  description: Execute pre-defined report templates
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Report Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-report-templates-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-server-status-api
+  name: Cisco Voice Portal Server Status API
+  description: VXML Server status and monitoring
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Server Status
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-server-status-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-session-monitoring-api
+  name: Cisco Voice Portal Session Monitoring API
+  description: Monitor active VXML call sessions
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - Session Monitoring
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-session-monitoring-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-sip-configuration-api
+  name: Cisco Voice Portal SIP Configuration API
+  description: Configure SIP server groups and settings
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - SIP Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-sip-configuration-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-sip-sessions-api
+  name: Cisco Voice Portal SIP Sessions API
+  description: Monitor SIP session details
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - SIP Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-sip-sessions-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-system-configuration-api
+  name: Cisco Voice Portal System Configuration API
+  description: Global system settings and licensing
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - System Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-system-configuration-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-user-management-api
+  name: Cisco Voice Portal User Management API
+  description: Manage OAMP user accounts
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - User Management
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-user-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
+- aid: cisco-voice-portal:cisco-voice-portal-vxml-server-management-api
+  name: Cisco Voice Portal VXML Server Management API
+  description: Configure and manage CVP VXML Servers
+  humanURL: https://developer.cisco.com/docs/voice-portal/
+  baseURL: https://cvp-callserver.example.com:8000/cvp/rest
+  tags:
+  - VXML Server Management
+  properties:
+  - type: OpenAPI
+    url: openapi/cisco-voice-portal-vxml-server-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/cisco-voice-portal/overview
   - type: AgenticAccess
     url: agentic-access/cisco-voice-portal-agentic-access.yml
   - type: VulnerabilityDisclosure
