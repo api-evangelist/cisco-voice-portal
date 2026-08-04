@@ -1,0 +1,1899 @@
+{
+  "info": {
+    "_postman_id": "663fa1c6-e663-4189-be3c-d299338471c5",
+    "name": "Cisco Voice Portal Administration Application Configuration Application Management API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:02.000Z",
+    "updatedAt": "2026-07-28T01:21:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-663fa1c6-e663-4189-be3c-d299338471c5"
+  },
+  "item": [
+    {
+      "name": "application",
+      "item": [
+        {
+          "name": "{applicationId}",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Get Application Details",
+              "id": "a21f55e0-0e8b-45c9-8cb5-aa8014b1ec52",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/application/:applicationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "application",
+                    ":applicationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a1d084a8-4e17-489e-ba88-2f0160ffdb1a",
+                      "key": "applicationId",
+                      "value": "<string>",
+                      "description": "(Required) Application identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieves detailed information about a deployed application, including deployment status on each server and configuration parameters."
+              },
+              "response": [
+                {
+                  "id": "56317ff0-502d-4837-94f5-662925d258ca",
+                  "name": "Application details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"applicationId\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"applicationType\": \"vxml\",\n  \"status\": \"deployed\",\n  \"version\": \"<string>\",\n  \"deployedServers\": [\n    {\n      \"serverId\": \"<string>\",\n      \"serverHostname\": \"<string>\",\n      \"deploymentStatus\": \"error\"\n    },\n    {\n      \"serverId\": \"<string>\",\n      \"serverHostname\": \"<string>\",\n      \"deploymentStatus\": \"deployed\"\n    }\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-56317ff0-502d-4837-94f5-662925d258ca"
+                },
+                {
+                  "id": "ad368888-0973-4bcf-9dd2-8b0f4de5a61a",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-ad368888-0973-4bcf-9dd2-8b0f4de5a61a"
+                },
+                {
+                  "id": "8e194cf9-05a6-4f06-8a6a-97e384b6ff1a",
+                  "name": "Requested resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-8e194cf9-05a6-4f06-8a6a-97e384b6ff1a"
+                },
+                {
+                  "id": "658ea91b-5c39-4f8b-96b2-dd811d62ed74",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-658ea91b-5c39-4f8b-96b2-dd811d62ed74"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-a21f55e0-0e8b-45c9-8cb5-aa8014b1ec52"
+            },
+            {
+              "name": "Cisco Voice Portal Undeploy an Application",
+              "id": "a23980be-967c-4bc3-be6c-147068331100",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/application/:applicationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "application",
+                    ":applicationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c32dd133-c4c2-45c9-b08b-5dd6e55ba872",
+                      "key": "applicationId",
+                      "value": "<string>",
+                      "description": "(Required) Application identifier"
+                    }
+                  ]
+                },
+                "description": "Removes a deployed application from all associated VXML Servers. Active calls using the application are allowed to complete before removal."
+              },
+              "response": [
+                {
+                  "id": "c1fb0c49-8113-4c72-b88c-e0eb7d84d45a",
+                  "name": "Undeployment initiated",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"operationId\": \"<string>\",\n  \"status\": \"failed\",\n  \"message\": \"<string>\",\n  \"startedAt\": \"<dateTime>\",\n  \"completedAt\": \"<dateTime>\",\n  \"progress\": \"<float>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-c1fb0c49-8113-4c72-b88c-e0eb7d84d45a"
+                },
+                {
+                  "id": "a5b55a11-a39a-4ae9-a3b4-12cd45623a58",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-a5b55a11-a39a-4ae9-a3b4-12cd45623a58"
+                },
+                {
+                  "id": "eea18628-fc5a-430c-a8d4-18046b9d7368",
+                  "name": "Requested resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-eea18628-fc5a-430c-a8d4-18046b9d7368"
+                },
+                {
+                  "id": "a26e25d4-1c73-475c-85bc-f89e81028caf",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-a26e25d4-1c73-475c-85bc-f89e81028caf"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-a23980be-967c-4bc3-be6c-147068331100"
+            }
+          ],
+          "id": "e031a323-bfdd-4f83-a286-6908310cf12c",
+          "createdAt": "2026-07-28T01:21:03.000Z",
+          "updatedAt": "2026-07-28T01:21:03.000Z",
+          "uid": "35240-e031a323-bfdd-4f83-a286-6908310cf12c"
+        },
+        {
+          "name": "{applicationName}",
+          "item": [
+            {
+              "name": "activate",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Activate a Vxml Application",
+                  "id": "7cdfd7cc-be21-4d14-880a-c8fe9e19c1df",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationName/activate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationName",
+                        "activate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "85e8ece8-351a-4693-a728-f0fd278a4f93",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the deployed VXML application"
+                        }
+                      ]
+                    },
+                    "description": "Activates a deployed VXML application, making it available to handle incoming calls. An application must be active to process calls."
+                  },
+                  "response": [
+                    {
+                      "id": "67ea3565-22ff-4f20-b87c-071a25771fd3",
+                      "name": "Application activated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"success\",\n  \"message\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:03.000Z",
+                      "updatedAt": "2026-07-28T01:21:03.000Z",
+                      "uid": "35240-67ea3565-22ff-4f20-b87c-071a25771fd3"
+                    },
+                    {
+                      "id": "d322c083-2784-4fb0-83e2-fbbe4ec30a17",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:03.000Z",
+                      "updatedAt": "2026-07-28T01:21:03.000Z",
+                      "uid": "35240-d322c083-2784-4fb0-83e2-fbbe4ec30a17"
+                    },
+                    {
+                      "id": "d22ab104-392e-4ab7-ab7d-291c7a1b9478",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:03.000Z",
+                      "updatedAt": "2026-07-28T01:21:03.000Z",
+                      "uid": "35240-d22ab104-392e-4ab7-ab7d-291c7a1b9478"
+                    },
+                    {
+                      "id": "0e51cce5-23d7-4e9e-8a76-cd13c13a2164",
+                      "name": "Application is already active",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:03.000Z",
+                      "updatedAt": "2026-07-28T01:21:03.000Z",
+                      "uid": "35240-0e51cce5-23d7-4e9e-8a76-cd13c13a2164"
+                    },
+                    {
+                      "id": "8c29160c-6b1b-4ca8-920b-db99cde737f3",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:03.000Z",
+                      "updatedAt": "2026-07-28T01:21:03.000Z",
+                      "uid": "35240-8c29160c-6b1b-4ca8-920b-db99cde737f3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-7cdfd7cc-be21-4d14-880a-c8fe9e19c1df"
+                }
+              ],
+              "id": "b84046f3-50f7-4ac9-b794-c5fddf2cc23e",
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-b84046f3-50f7-4ac9-b794-c5fddf2cc23e"
+            },
+            {
+              "name": "deactivate",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Deactivate a Vxml Application",
+                  "id": "befa9122-c973-4c05-b26e-d0a16a7cb1c3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationName/deactivate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationName",
+                        "deactivate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "44d9049e-0ed6-45f5-bed5-1ad724117bf2",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the deployed VXML application"
+                        }
+                      ]
+                    },
+                    "description": "Deactivates a VXML application. Active calls using the application are allowed to complete, but no new calls will be routed to it."
+                  },
+                  "response": [
+                    {
+                      "id": "432d253b-bf85-43c5-ba62-1b6d5466cf38",
+                      "name": "Application deactivated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"success\",\n  \"message\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:03.000Z",
+                      "updatedAt": "2026-07-28T01:21:03.000Z",
+                      "uid": "35240-432d253b-bf85-43c5-ba62-1b6d5466cf38"
+                    },
+                    {
+                      "id": "dc413343-b0ad-41fd-b40e-318e805bd5bb",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:03.000Z",
+                      "updatedAt": "2026-07-28T01:21:03.000Z",
+                      "uid": "35240-dc413343-b0ad-41fd-b40e-318e805bd5bb"
+                    },
+                    {
+                      "id": "6ef73d6c-8f5d-4082-9098-947802389fbc",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:03.000Z",
+                      "updatedAt": "2026-07-28T01:21:03.000Z",
+                      "uid": "35240-6ef73d6c-8f5d-4082-9098-947802389fbc"
+                    },
+                    {
+                      "id": "2d6e0e58-0190-4fe1-a8d5-2f316e90a401",
+                      "name": "Application is already inactive",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:03.000Z",
+                      "updatedAt": "2026-07-28T01:21:03.000Z",
+                      "uid": "35240-2d6e0e58-0190-4fe1-a8d5-2f316e90a401"
+                    },
+                    {
+                      "id": "8c350fb9-bef1-49e3-8bda-a91e0048626e",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:03.000Z",
+                      "updatedAt": "2026-07-28T01:21:03.000Z",
+                      "uid": "35240-8c350fb9-bef1-49e3-8bda-a91e0048626e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-befa9122-c973-4c05-b26e-d0a16a7cb1c3"
+                }
+              ],
+              "id": "24d8bdb8-b1af-4b55-b491-6c90ced9240c",
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-24d8bdb8-b1af-4b55-b491-6c90ced9240c"
+            },
+            {
+              "name": "Cisco Voice Portal Get Vxml Application Details",
+              "id": "d0dbc5b4-9d77-4748-80d8-833f868c46a0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/application/:applicationName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "application",
+                    ":applicationName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5b359047-c2e8-4fd0-bd2d-ebdb5f4c0816",
+                      "key": "applicationName",
+                      "value": "<string>",
+                      "description": "(Required) Name of the deployed VXML application"
+                    }
+                  ]
+                },
+                "description": "Retrieves detailed information about a specific deployed VXML application, including its configuration, call flow elements, and deployment metadata."
+              },
+              "response": [
+                {
+                  "id": "d7a606e1-0721-40f1-8bda-67184f981b54",
+                  "name": "Application details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"applicationName\": \"<string>\",\n  \"applicationType\": \"<string>\",\n  \"status\": \"<string>\",\n  \"version\": \"<string>\",\n  \"activeSessions\": \"<integer>\",\n  \"deployedAt\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"entryPoint\": \"<string>\",\n  \"elements\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mediaDirectory\": \"<string>\",\n  \"grammarDirectory\": \"<string>\",\n  \"configParameters\": {\n    \"aliqua_3d\": \"<string>\",\n    \"sed_f\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-d7a606e1-0721-40f1-8bda-67184f981b54"
+                },
+                {
+                  "id": "1782aaa4-4c25-4e8f-a1ff-ce17b73526f8",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-1782aaa4-4c25-4e8f-a1ff-ce17b73526f8"
+                },
+                {
+                  "id": "a443a291-63b8-4359-b2c3-3a6f1ef7603d",
+                  "name": "Requested resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-a443a291-63b8-4359-b2c3-3a6f1ef7603d"
+                },
+                {
+                  "id": "f944218c-b835-48c2-a3fa-545e1de9fdc0",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-f944218c-b835-48c2-a3fa-545e1de9fdc0"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-d0dbc5b4-9d77-4748-80d8-833f868c46a0"
+            }
+          ],
+          "id": "33def837-afa6-4670-af6e-e380e44d672f",
+          "createdAt": "2026-07-28T01:21:03.000Z",
+          "updatedAt": "2026-07-28T01:21:03.000Z",
+          "uid": "35240-33def837-afa6-4670-af6e-e380e44d672f"
+        },
+        {
+          "name": "Cisco Voice Portal List Deployed Applications",
+          "id": "d10636ff-afcf-4551-abb6-6030cba4c177",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/application?type=vxml&status=undeployed",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "application"
+              ],
+              "query": [
+                {
+                  "description": "Filter by application type",
+                  "key": "type",
+                  "value": "vxml"
+                },
+                {
+                  "description": "Filter by deployment status",
+                  "key": "status",
+                  "value": "undeployed"
+                }
+              ]
+            },
+            "description": "Retrieves a list of all VXML and call studio applications deployed across the CVP infrastructure. Includes deployment status and associated server assignments."
+          },
+          "response": [
+            {
+              "id": "af49cb2a-1a4a-4df6-baee-00fc70162686",
+              "name": "List of applications",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/application?type=vxml&status=undeployed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "application"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by application type",
+                      "key": "type",
+                      "value": "vxml"
+                    },
+                    {
+                      "description": "Filter by deployment status",
+                      "key": "status",
+                      "value": "undeployed"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"applicationId\": \"<string>\",\n    \"applicationName\": \"<string>\",\n    \"applicationType\": \"callstudio\",\n    \"status\": \"undeployed\",\n    \"version\": \"<string>\",\n    \"deployedServers\": [\n      {\n        \"serverId\": \"<string>\",\n        \"serverHostname\": \"<string>\",\n        \"deploymentStatus\": \"pending\"\n      },\n      {\n        \"serverId\": \"<string>\",\n        \"serverHostname\": \"<string>\",\n        \"deploymentStatus\": \"pending\"\n      }\n    ],\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"applicationId\": \"<string>\",\n    \"applicationName\": \"<string>\",\n    \"applicationType\": \"microapp\",\n    \"status\": \"error\",\n    \"version\": \"<string>\",\n    \"deployedServers\": [\n      {\n        \"serverId\": \"<string>\",\n        \"serverHostname\": \"<string>\",\n        \"deploymentStatus\": \"deployed\"\n      },\n      {\n        \"serverId\": \"<string>\",\n        \"serverHostname\": \"<string>\",\n        \"deploymentStatus\": \"error\"\n      }\n    ],\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-af49cb2a-1a4a-4df6-baee-00fc70162686"
+            },
+            {
+              "id": "3b762cb5-81d5-443f-b10d-17735b8c6db2",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/application?type=vxml&status=undeployed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "application"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by application type",
+                      "key": "type",
+                      "value": "vxml"
+                    },
+                    {
+                      "description": "Filter by deployment status",
+                      "key": "status",
+                      "value": "undeployed"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-3b762cb5-81d5-443f-b10d-17735b8c6db2"
+            },
+            {
+              "id": "5a66cc95-b1c1-4bbe-b796-35524930e2b0",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/application?type=vxml&status=undeployed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "application"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by application type",
+                      "key": "type",
+                      "value": "vxml"
+                    },
+                    {
+                      "description": "Filter by deployment status",
+                      "key": "status",
+                      "value": "undeployed"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-5a66cc95-b1c1-4bbe-b796-35524930e2b0"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:03.000Z",
+          "updatedAt": "2026-07-28T01:21:03.000Z",
+          "uid": "35240-d10636ff-afcf-4551-abb6-6030cba4c177"
+        },
+        {
+          "name": "Cisco Voice Portal Deploy a New Application",
+          "id": "95120d46-7b74-4a66-971d-afcfc6042a25",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "description": "(Required) Unique name for the application",
+                  "key": "applicationName",
+                  "value": "<string>",
+                  "type": "text"
+                },
+                {
+                  "description": "(Required) Application archive file (.zip or .war)",
+                  "key": "applicationFile",
+                  "type": "file",
+                  "value": null
+                },
+                {
+                  "description": "Type of the application (This can only be one of vxml,callstudio,microapp)",
+                  "key": "applicationType",
+                  "value": "callstudio",
+                  "type": "text"
+                },
+                {
+                  "description": "List of VXML Server IDs to deploy to",
+                  "key": "targetServers",
+                  "value": "<string>,<string>",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/application",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "application"
+              ]
+            },
+            "description": "Deploys a VXML or Call Studio application to designated VXML Servers. The application archive is uploaded and distributed to the target servers."
+          },
+          "response": [
+            {
+              "id": "8124e63e-be54-48c8-a6ef-3ea1ca1c8f67",
+              "name": "Application deployed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) Unique name for the application",
+                      "key": "applicationName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "(Required) Application archive file (.zip or .war)",
+                      "key": "applicationFile",
+                      "type": "file"
+                    },
+                    {
+                      "description": "Type of the application (This can only be one of vxml,callstudio,microapp)",
+                      "key": "applicationType",
+                      "value": "callstudio",
+                      "type": "text"
+                    },
+                    {
+                      "description": "List of VXML Server IDs to deploy to",
+                      "key": "targetServers",
+                      "value": "<string>,<string>",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/application",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "application"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"applicationId\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"applicationType\": \"vxml\",\n  \"status\": \"deployed\",\n  \"version\": \"<string>\",\n  \"deployedServers\": [\n    {\n      \"serverId\": \"<string>\",\n      \"serverHostname\": \"<string>\",\n      \"deploymentStatus\": \"error\"\n    },\n    {\n      \"serverId\": \"<string>\",\n      \"serverHostname\": \"<string>\",\n      \"deploymentStatus\": \"deployed\"\n    }\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-8124e63e-be54-48c8-a6ef-3ea1ca1c8f67"
+            },
+            {
+              "id": "98683cce-ab44-49a4-b51c-94eff63a3400",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) Unique name for the application",
+                      "key": "applicationName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "(Required) Application archive file (.zip or .war)",
+                      "key": "applicationFile",
+                      "type": "file"
+                    },
+                    {
+                      "description": "Type of the application (This can only be one of vxml,callstudio,microapp)",
+                      "key": "applicationType",
+                      "value": "callstudio",
+                      "type": "text"
+                    },
+                    {
+                      "description": "List of VXML Server IDs to deploy to",
+                      "key": "targetServers",
+                      "value": "<string>,<string>",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/application",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "application"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-98683cce-ab44-49a4-b51c-94eff63a3400"
+            },
+            {
+              "id": "df788c52-fe57-43a4-ad61-2b4b447453b5",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) Unique name for the application",
+                      "key": "applicationName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "(Required) Application archive file (.zip or .war)",
+                      "key": "applicationFile",
+                      "type": "file"
+                    },
+                    {
+                      "description": "Type of the application (This can only be one of vxml,callstudio,microapp)",
+                      "key": "applicationType",
+                      "value": "callstudio",
+                      "type": "text"
+                    },
+                    {
+                      "description": "List of VXML Server IDs to deploy to",
+                      "key": "targetServers",
+                      "value": "<string>,<string>",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/application",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "application"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-df788c52-fe57-43a4-ad61-2b4b447453b5"
+            },
+            {
+              "id": "81c63d30-e20b-4fcd-922f-7564d4d3f4ed",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) Unique name for the application",
+                      "key": "applicationName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "(Required) Application archive file (.zip or .war)",
+                      "key": "applicationFile",
+                      "type": "file"
+                    },
+                    {
+                      "description": "Type of the application (This can only be one of vxml,callstudio,microapp)",
+                      "key": "applicationType",
+                      "value": "callstudio",
+                      "type": "text"
+                    },
+                    {
+                      "description": "List of VXML Server IDs to deploy to",
+                      "key": "targetServers",
+                      "value": "<string>,<string>",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/application",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "application"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-81c63d30-e20b-4fcd-922f-7564d4d3f4ed"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:03.000Z",
+          "updatedAt": "2026-07-28T01:21:03.000Z",
+          "uid": "35240-95120d46-7b74-4a66-971d-afcfc6042a25"
+        }
+      ],
+      "id": "42a5c17c-98e1-4230-a979-db963d1729ee",
+      "createdAt": "2026-07-28T01:21:03.000Z",
+      "updatedAt": "2026-07-28T01:21:03.000Z",
+      "uid": "35240-42a5c17c-98e1-4230-a979-db963d1729ee"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

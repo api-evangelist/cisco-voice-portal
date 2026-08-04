@@ -1,0 +1,930 @@
+{
+  "info": {
+    "_postman_id": "2a4e606a-b424-4375-a74a-c0d2e530f733",
+    "name": "Cisco Voice Portal Administration Application Configuration Report Templates API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:16.000Z",
+    "updatedAt": "2026-07-28T01:21:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2a4e606a-b424-4375-a74a-c0d2e530f733"
+  },
+  "item": [
+    {
+      "name": "report",
+      "item": [
+        {
+          "name": "{templateId}",
+          "item": [
+            {
+              "name": "execute",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Execute a Report Template",
+                  "id": "dcec284c-7d06-43e8-8cc0-1f329f46407a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"parameters\": {\n    \"irure4e\": \"ad velit consequat\",\n    \"dolor_c1\": false\n  },\n  \"format\": \"json\",\n  \"async\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/report/:templateId/execute",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "report",
+                        ":templateId",
+                        "execute"
+                      ],
+                      "variable": [
+                        {
+                          "id": "16082b4d-9737-425f-8e7b-e3d05f74c1f5",
+                          "key": "templateId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Executes a report template with the specified parameters. Reports may be generated synchronously for small datasets or asynchronously for large reports."
+                  },
+                  "response": [
+                    {
+                      "id": "54b90dcf-0f2f-4815-8e5a-77e3ccb3b072",
+                      "name": "Report results (synchronous)",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": {\n    \"irure4e\": \"ad velit consequat\",\n    \"dolor_c1\": false\n  },\n  \"format\": \"json\",\n  \"async\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/report/:templateId/execute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "report",
+                            ":templateId",
+                            "execute"
+                          ],
+                          "variable": [
+                            {
+                              "key": "templateId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reportId\": \"<string>\",\n  \"templateId\": \"<string>\",\n  \"templateName\": \"<string>\",\n  \"status\": \"error\",\n  \"generatedAt\": \"<dateTime>\",\n  \"parameters\": {\n    \"fugiat__b\": -55477671,\n    \"aliqua_92\": false\n  },\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"rows\": [\n    [],\n    []\n  ],\n  \"totalRows\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-54b90dcf-0f2f-4815-8e5a-77e3ccb3b072"
+                    },
+                    {
+                      "id": "3b810fbb-d00f-459a-990c-bf2e94d3ac31",
+                      "name": "Report generation initiated (asynchronous)",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": {\n    \"irure4e\": \"ad velit consequat\",\n    \"dolor_c1\": false\n  },\n  \"format\": \"json\",\n  \"async\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/report/:templateId/execute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "report",
+                            ":templateId",
+                            "execute"
+                          ],
+                          "variable": [
+                            {
+                              "key": "templateId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reportId\": \"<string>\",\n  \"status\": \"processing\",\n  \"estimatedCompletionTime\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-3b810fbb-d00f-459a-990c-bf2e94d3ac31"
+                    },
+                    {
+                      "id": "59c0fe62-a902-4c72-90cb-a9b18d42f2d4",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": {\n    \"irure4e\": \"ad velit consequat\",\n    \"dolor_c1\": false\n  },\n  \"format\": \"json\",\n  \"async\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/report/:templateId/execute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "report",
+                            ":templateId",
+                            "execute"
+                          ],
+                          "variable": [
+                            {
+                              "key": "templateId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-59c0fe62-a902-4c72-90cb-a9b18d42f2d4"
+                    },
+                    {
+                      "id": "5b558cf3-1ea5-4f10-b3bb-d736466d81ac",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": {\n    \"irure4e\": \"ad velit consequat\",\n    \"dolor_c1\": false\n  },\n  \"format\": \"json\",\n  \"async\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/report/:templateId/execute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "report",
+                            ":templateId",
+                            "execute"
+                          ],
+                          "variable": [
+                            {
+                              "key": "templateId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-5b558cf3-1ea5-4f10-b3bb-d736466d81ac"
+                    },
+                    {
+                      "id": "9364a7c3-e8e6-475d-8b9d-7c9fa23500f3",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": {\n    \"irure4e\": \"ad velit consequat\",\n    \"dolor_c1\": false\n  },\n  \"format\": \"json\",\n  \"async\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/report/:templateId/execute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "report",
+                            ":templateId",
+                            "execute"
+                          ],
+                          "variable": [
+                            {
+                              "key": "templateId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-9364a7c3-e8e6-475d-8b9d-7c9fa23500f3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-dcec284c-7d06-43e8-8cc0-1f329f46407a"
+                }
+              ],
+              "id": "451ca605-05b5-4109-b98d-4290a672f1be",
+              "createdAt": "2026-07-28T01:21:17.000Z",
+              "updatedAt": "2026-07-28T01:21:17.000Z",
+              "uid": "35240-451ca605-05b5-4109-b98d-4290a672f1be"
+            }
+          ],
+          "id": "7561f5f6-54b8-44e9-a525-96ea09127136",
+          "createdAt": "2026-07-28T01:21:17.000Z",
+          "updatedAt": "2026-07-28T01:21:17.000Z",
+          "uid": "35240-7561f5f6-54b8-44e9-a525-96ea09127136"
+        },
+        {
+          "name": "{reportId}",
+          "item": [
+            {
+              "name": "result",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Get Report Execution Result",
+                  "id": "06964d79-b8c2-4bb0-9e65-45ed5d2a9fc8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/report/:reportId/result?format=json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "report",
+                        ":reportId",
+                        "result"
+                      ],
+                      "query": [
+                        {
+                          "description": "Output format",
+                          "key": "format",
+                          "value": "json"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "7c192994-1626-47f1-a90b-ee50d0dcf69f",
+                          "key": "reportId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the result of a previously executed report. For asynchronous reports, returns the result once generation is complete."
+                  },
+                  "response": [
+                    {
+                      "id": "0efb50ba-6cae-45c6-b686-1f5514ea59c0",
+                      "name": "Report result",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/report/:reportId/result?format=json",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "report",
+                            ":reportId",
+                            "result"
+                          ],
+                          "query": [
+                            {
+                              "description": "Output format",
+                              "key": "format",
+                              "value": "json"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reportId\": \"<string>\",\n  \"templateId\": \"<string>\",\n  \"templateName\": \"<string>\",\n  \"status\": \"error\",\n  \"generatedAt\": \"<dateTime>\",\n  \"parameters\": {\n    \"fugiat__b\": -55477671,\n    \"aliqua_92\": false\n  },\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"rows\": [\n    [],\n    []\n  ],\n  \"totalRows\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-0efb50ba-6cae-45c6-b686-1f5514ea59c0"
+                    },
+                    {
+                      "id": "99be8af3-6d53-4cfa-8d00-d0a21bc25190",
+                      "name": "Report still processing",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/report/:reportId/result?format=json",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "report",
+                            ":reportId",
+                            "result"
+                          ],
+                          "query": [
+                            {
+                              "description": "Output format",
+                              "key": "format",
+                              "value": "json"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-99be8af3-6d53-4cfa-8d00-d0a21bc25190"
+                    },
+                    {
+                      "id": "03b7a63e-dca7-43fb-82e8-eab3aff377a1",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/report/:reportId/result?format=json",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "report",
+                            ":reportId",
+                            "result"
+                          ],
+                          "query": [
+                            {
+                              "description": "Output format",
+                              "key": "format",
+                              "value": "json"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-03b7a63e-dca7-43fb-82e8-eab3aff377a1"
+                    },
+                    {
+                      "id": "72e7e28e-5c31-42a5-bba4-3686dd64f083",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/report/:reportId/result?format=json",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "report",
+                            ":reportId",
+                            "result"
+                          ],
+                          "query": [
+                            {
+                              "description": "Output format",
+                              "key": "format",
+                              "value": "json"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-72e7e28e-5c31-42a5-bba4-3686dd64f083"
+                    },
+                    {
+                      "id": "7e28d890-3b10-44d4-b11a-236556293c47",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/report/:reportId/result?format=json",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "report",
+                            ":reportId",
+                            "result"
+                          ],
+                          "query": [
+                            {
+                              "description": "Output format",
+                              "key": "format",
+                              "value": "json"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:17.000Z",
+                      "updatedAt": "2026-07-28T01:21:17.000Z",
+                      "uid": "35240-7e28d890-3b10-44d4-b11a-236556293c47"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:17.000Z",
+                  "updatedAt": "2026-07-28T01:21:17.000Z",
+                  "uid": "35240-06964d79-b8c2-4bb0-9e65-45ed5d2a9fc8"
+                }
+              ],
+              "id": "bda5d7bc-a4e6-4910-965b-6b0abf8d48c6",
+              "createdAt": "2026-07-28T01:21:17.000Z",
+              "updatedAt": "2026-07-28T01:21:17.000Z",
+              "uid": "35240-bda5d7bc-a4e6-4910-965b-6b0abf8d48c6"
+            }
+          ],
+          "id": "ccc2f2c9-5eb0-474d-a9ca-613928285321",
+          "createdAt": "2026-07-28T01:21:17.000Z",
+          "updatedAt": "2026-07-28T01:21:17.000Z",
+          "uid": "35240-ccc2f2c9-5eb0-474d-a9ca-613928285321"
+        },
+        {
+          "name": "Cisco Voice Portal List Available Report Templates",
+          "id": "6ffd6a56-769d-4583-97d3-aa3aae1730f4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/report",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "report"
+              ]
+            },
+            "description": "Retrieves a list of available report templates that can be executed. These correspond to the standard CVP reports available in Cisco Unified Intelligence Center."
+          },
+          "response": [
+            {
+              "id": "b379601b-359f-406b-bc6d-688ca566d8f0",
+              "name": "List of report templates",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/report",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "report"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"templateId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"category\": \"application_performance\",\n    \"parameters\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"description\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"templateId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"category\": \"server_performance\",\n    \"parameters\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"description\": \"<string>\"\n      }\n    ]\n  }\n]",
+              "createdAt": "2026-07-28T01:21:17.000Z",
+              "updatedAt": "2026-07-28T01:21:17.000Z",
+              "uid": "35240-b379601b-359f-406b-bc6d-688ca566d8f0"
+            },
+            {
+              "id": "391707ef-c1e5-467b-8141-2d3e8b9ec675",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/report",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "report"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:17.000Z",
+              "updatedAt": "2026-07-28T01:21:17.000Z",
+              "uid": "35240-391707ef-c1e5-467b-8141-2d3e8b9ec675"
+            },
+            {
+              "id": "da7ba022-0b90-474d-bed2-f78d00e5d8a2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/report",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "report"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:17.000Z",
+              "updatedAt": "2026-07-28T01:21:17.000Z",
+              "uid": "35240-da7ba022-0b90-474d-bed2-f78d00e5d8a2"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:17.000Z",
+          "updatedAt": "2026-07-28T01:21:17.000Z",
+          "uid": "35240-6ffd6a56-769d-4583-97d3-aa3aae1730f4"
+        }
+      ],
+      "id": "941429b7-49bf-4fcd-8514-5057d63ff5fb",
+      "createdAt": "2026-07-28T01:21:17.000Z",
+      "updatedAt": "2026-07-28T01:21:17.000Z",
+      "uid": "35240-941429b7-49bf-4fcd-8514-5057d63ff5fb"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

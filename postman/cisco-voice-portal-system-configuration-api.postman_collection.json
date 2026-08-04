@@ -1,0 +1,661 @@
+{
+  "info": {
+    "_postman_id": "1bcf0249-c60f-42d3-a570-8589ea8e4836",
+    "name": "Cisco Voice Portal Administration Application Configuration System Configuration API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:56.000Z",
+    "updatedAt": "2026-07-28T01:21:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1bcf0249-c60f-42d3-a570-8589ea8e4836"
+  },
+  "item": [
+    {
+      "name": "system",
+      "item": [
+        {
+          "name": "config",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Get System-wide Configuration",
+              "id": "572e2db0-f2ef-443f-bee1-eb123591a11a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/system/config",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "system",
+                    "config"
+                  ]
+                },
+                "description": "Retrieves global system configuration settings including logging levels, security settings, and system-wide defaults."
+              },
+              "response": [
+                {
+                  "id": "56fea3eb-4b71-4b4f-852a-780a5c39b74d",
+                  "name": "System configuration",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/system/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "system",
+                        "config"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"logging\": {\n    \"globalLogLevel\": \"WARN\",\n    \"syslogServer\": \"<string>\",\n    \"syslogPort\": 514\n  },\n  \"security\": {\n    \"enableTls\": true,\n    \"tlsVersion\": \"TLSv1.2\",\n    \"sessionTimeout\": 30,\n    \"passwordPolicy\": {\n      \"minLength\": 8,\n      \"requireUppercase\": true,\n      \"requireSpecialChar\": true,\n      \"maxAge\": \"<integer>\"\n    }\n  },\n  \"snmp\": {\n    \"enabled\": false,\n    \"communityString\": \"<string>\",\n    \"trapDestination\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:21:57.000Z",
+                  "updatedAt": "2026-07-28T01:21:57.000Z",
+                  "uid": "35240-56fea3eb-4b71-4b4f-852a-780a5c39b74d"
+                },
+                {
+                  "id": "642a1389-458c-4a9e-b03c-66f87b0b6a8d",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/system/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "system",
+                        "config"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:57.000Z",
+                  "updatedAt": "2026-07-28T01:21:57.000Z",
+                  "uid": "35240-642a1389-458c-4a9e-b03c-66f87b0b6a8d"
+                },
+                {
+                  "id": "eeac58b6-e907-46db-b52d-285bdef3637e",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/system/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "system",
+                        "config"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:57.000Z",
+                  "updatedAt": "2026-07-28T01:21:57.000Z",
+                  "uid": "35240-eeac58b6-e907-46db-b52d-285bdef3637e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:56.000Z",
+              "updatedAt": "2026-07-28T01:21:56.000Z",
+              "uid": "35240-572e2db0-f2ef-443f-bee1-eb123591a11a"
+            },
+            {
+              "name": "Cisco Voice Portal Update System-wide Configuration",
+              "id": "b53f0b4f-d878-4a54-87d5-e997775cc8ba",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logging\": {\n    \"globalLogLevel\": \"WARN\",\n    \"syslogServer\": \"<string>\",\n    \"syslogPort\": 514\n  },\n  \"security\": {\n    \"enableTls\": true,\n    \"tlsVersion\": \"TLSv1.2\",\n    \"sessionTimeout\": 30,\n    \"passwordPolicy\": {\n      \"minLength\": 8,\n      \"requireUppercase\": true,\n      \"requireSpecialChar\": true,\n      \"maxAge\": \"<integer>\"\n    }\n  },\n  \"snmp\": {\n    \"enabled\": false,\n    \"communityString\": \"<string>\",\n    \"trapDestination\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/system/config",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "system",
+                    "config"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "35aadecc-9fa7-4c94-929e-76f03ccd298c",
+                  "name": "Configuration updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"logging\": {\n    \"globalLogLevel\": \"WARN\",\n    \"syslogServer\": \"<string>\",\n    \"syslogPort\": 514\n  },\n  \"security\": {\n    \"enableTls\": true,\n    \"tlsVersion\": \"TLSv1.2\",\n    \"sessionTimeout\": 30,\n    \"passwordPolicy\": {\n      \"minLength\": 8,\n      \"requireUppercase\": true,\n      \"requireSpecialChar\": true,\n      \"maxAge\": \"<integer>\"\n    }\n  },\n  \"snmp\": {\n    \"enabled\": false,\n    \"communityString\": \"<string>\",\n    \"trapDestination\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/system/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "system",
+                        "config"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"logging\": {\n    \"globalLogLevel\": \"WARN\",\n    \"syslogServer\": \"<string>\",\n    \"syslogPort\": 514\n  },\n  \"security\": {\n    \"enableTls\": true,\n    \"tlsVersion\": \"TLSv1.2\",\n    \"sessionTimeout\": 30,\n    \"passwordPolicy\": {\n      \"minLength\": 8,\n      \"requireUppercase\": true,\n      \"requireSpecialChar\": true,\n      \"maxAge\": \"<integer>\"\n    }\n  },\n  \"snmp\": {\n    \"enabled\": false,\n    \"communityString\": \"<string>\",\n    \"trapDestination\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:21:57.000Z",
+                  "updatedAt": "2026-07-28T01:21:57.000Z",
+                  "uid": "35240-35aadecc-9fa7-4c94-929e-76f03ccd298c"
+                },
+                {
+                  "id": "64d5dac8-ee48-4f65-a434-32ee15f3bc74",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"logging\": {\n    \"globalLogLevel\": \"WARN\",\n    \"syslogServer\": \"<string>\",\n    \"syslogPort\": 514\n  },\n  \"security\": {\n    \"enableTls\": true,\n    \"tlsVersion\": \"TLSv1.2\",\n    \"sessionTimeout\": 30,\n    \"passwordPolicy\": {\n      \"minLength\": 8,\n      \"requireUppercase\": true,\n      \"requireSpecialChar\": true,\n      \"maxAge\": \"<integer>\"\n    }\n  },\n  \"snmp\": {\n    \"enabled\": false,\n    \"communityString\": \"<string>\",\n    \"trapDestination\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/system/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "system",
+                        "config"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:57.000Z",
+                  "updatedAt": "2026-07-28T01:21:57.000Z",
+                  "uid": "35240-64d5dac8-ee48-4f65-a434-32ee15f3bc74"
+                },
+                {
+                  "id": "416a396c-bd6c-4652-bb33-dbcac67f98c8",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"logging\": {\n    \"globalLogLevel\": \"WARN\",\n    \"syslogServer\": \"<string>\",\n    \"syslogPort\": 514\n  },\n  \"security\": {\n    \"enableTls\": true,\n    \"tlsVersion\": \"TLSv1.2\",\n    \"sessionTimeout\": 30,\n    \"passwordPolicy\": {\n      \"minLength\": 8,\n      \"requireUppercase\": true,\n      \"requireSpecialChar\": true,\n      \"maxAge\": \"<integer>\"\n    }\n  },\n  \"snmp\": {\n    \"enabled\": false,\n    \"communityString\": \"<string>\",\n    \"trapDestination\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/system/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "system",
+                        "config"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:57.000Z",
+                  "updatedAt": "2026-07-28T01:21:57.000Z",
+                  "uid": "35240-416a396c-bd6c-4652-bb33-dbcac67f98c8"
+                },
+                {
+                  "id": "3b11ab15-e672-4aca-b556-2cd9191e080a",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"logging\": {\n    \"globalLogLevel\": \"WARN\",\n    \"syslogServer\": \"<string>\",\n    \"syslogPort\": 514\n  },\n  \"security\": {\n    \"enableTls\": true,\n    \"tlsVersion\": \"TLSv1.2\",\n    \"sessionTimeout\": 30,\n    \"passwordPolicy\": {\n      \"minLength\": 8,\n      \"requireUppercase\": true,\n      \"requireSpecialChar\": true,\n      \"maxAge\": \"<integer>\"\n    }\n  },\n  \"snmp\": {\n    \"enabled\": false,\n    \"communityString\": \"<string>\",\n    \"trapDestination\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/system/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "system",
+                        "config"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:57.000Z",
+                  "updatedAt": "2026-07-28T01:21:57.000Z",
+                  "uid": "35240-3b11ab15-e672-4aca-b556-2cd9191e080a"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:56.000Z",
+              "updatedAt": "2026-07-28T01:21:56.000Z",
+              "uid": "35240-b53f0b4f-d878-4a54-87d5-e997775cc8ba"
+            }
+          ],
+          "id": "5495f2bb-f930-4d35-a95f-b1bba91b0485",
+          "createdAt": "2026-07-28T01:21:56.000Z",
+          "updatedAt": "2026-07-28T01:21:56.000Z",
+          "uid": "35240-5495f2bb-f930-4d35-a95f-b1bba91b0485"
+        },
+        {
+          "name": "license",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Get Licensing Information",
+              "id": "c2ee9f36-5c70-414e-aff6-fab23bc895bc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/system/license",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "system",
+                    "license"
+                  ]
+                },
+                "description": "Retrieves current licensing information including licensed features, port capacity, and license expiration status."
+              },
+              "response": [
+                {
+                  "id": "fdaf32ad-5cac-4f42-9a82-c4c86318b984",
+                  "name": "License information",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/system/license",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "system",
+                        "license"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"licenseType\": \"enterprise\",\n  \"maxPorts\": \"<integer>\",\n  \"usedPorts\": \"<integer>\",\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expirationDate\": \"<date>\",\n  \"status\": \"active\"\n}",
+                  "createdAt": "2026-07-28T01:21:57.000Z",
+                  "updatedAt": "2026-07-28T01:21:57.000Z",
+                  "uid": "35240-fdaf32ad-5cac-4f42-9a82-c4c86318b984"
+                },
+                {
+                  "id": "bc2bee6a-957c-41bf-b910-49e41a37043d",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/system/license",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "system",
+                        "license"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:57.000Z",
+                  "updatedAt": "2026-07-28T01:21:57.000Z",
+                  "uid": "35240-bc2bee6a-957c-41bf-b910-49e41a37043d"
+                },
+                {
+                  "id": "b5d2adb5-8ae2-486c-8dbd-ba6dfbae46af",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/system/license",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "system",
+                        "license"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:57.000Z",
+                  "updatedAt": "2026-07-28T01:21:57.000Z",
+                  "uid": "35240-b5d2adb5-8ae2-486c-8dbd-ba6dfbae46af"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:56.000Z",
+              "updatedAt": "2026-07-28T01:21:56.000Z",
+              "uid": "35240-c2ee9f36-5c70-414e-aff6-fab23bc895bc"
+            }
+          ],
+          "id": "8f90370d-1a25-47a9-ae97-7ece9f341b08",
+          "createdAt": "2026-07-28T01:21:56.000Z",
+          "updatedAt": "2026-07-28T01:21:56.000Z",
+          "uid": "35240-8f90370d-1a25-47a9-ae97-7ece9f341b08"
+        }
+      ],
+      "id": "48502987-d778-4835-b53c-63fcff3916d9",
+      "createdAt": "2026-07-28T01:21:56.000Z",
+      "updatedAt": "2026-07-28T01:21:56.000Z",
+      "uid": "35240-48502987-d778-4835-b53c-63fcff3916d9"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

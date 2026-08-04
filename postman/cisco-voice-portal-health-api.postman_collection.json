@@ -1,0 +1,290 @@
+{
+  "info": {
+    "_postman_id": "f90ce5a1-32ee-4dca-a56b-6533c4437760",
+    "name": "Cisco Voice Portal Administration Application Configuration Health API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:11.000Z",
+    "updatedAt": "2026-07-28T01:21:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f90ce5a1-32ee-4dca-a56b-6533c4437760"
+  },
+  "item": [
+    {
+      "name": "health",
+      "item": [
+        {
+          "name": "connectivity",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Get Connectivity Status to Upstream Components",
+              "id": "35e2037d-8cd0-4d7c-989d-cf928a28c352",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health/connectivity",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "connectivity"
+                  ]
+                },
+                "description": "Checks and reports the connectivity status to all configured upstream components including ICM/UCCE, CUCM clusters, VXML Servers, and Reporting Server."
+              },
+              "response": [
+                {
+                  "id": "579b2e77-2d09-4ebd-ad5d-25ad72bf1fc7",
+                  "name": "Connectivity status",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/health/connectivity",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "health",
+                        "connectivity"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"timestamp\": \"<dateTime>\",\n  \"connections\": [\n    {\n      \"component\": \"ICM\",\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"status\": \"disconnected\",\n      \"latency\": \"<integer>\",\n      \"lastSuccessfulContact\": \"<dateTime>\"\n    },\n    {\n      \"component\": \"MediaServer\",\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"status\": \"disconnected\",\n      \"latency\": \"<integer>\",\n      \"lastSuccessfulContact\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:21:12.000Z",
+                  "updatedAt": "2026-07-28T01:21:12.000Z",
+                  "uid": "35240-579b2e77-2d09-4ebd-ad5d-25ad72bf1fc7"
+                },
+                {
+                  "id": "2ce20484-ce8c-4402-9844-faa3eba2a650",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/health/connectivity",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "health",
+                        "connectivity"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:12.000Z",
+                  "updatedAt": "2026-07-28T01:21:12.000Z",
+                  "uid": "35240-2ce20484-ce8c-4402-9844-faa3eba2a650"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:12.000Z",
+              "updatedAt": "2026-07-28T01:21:12.000Z",
+              "uid": "35240-35e2037d-8cd0-4d7c-989d-cf928a28c352"
+            }
+          ],
+          "id": "35773439-acfa-40aa-947b-0d0f58a84689",
+          "createdAt": "2026-07-28T01:21:12.000Z",
+          "updatedAt": "2026-07-28T01:21:12.000Z",
+          "uid": "35240-35773439-acfa-40aa-947b-0d0f58a84689"
+        },
+        {
+          "name": "Cisco Voice Portal Get Call Server Health Status",
+          "id": "aaff6f55-0112-423d-bcb1-5cf1aa2441ae",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Retrieves the health and resource status of the Call Server, including active call count, SIP stack status, and connectivity to upstream components (ICM, CUCM, VXML Server)."
+          },
+          "response": [
+            {
+              "id": "580aeeb2-eb78-48e6-9f05-c0342fb4e3be",
+              "name": "Call Server health status",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"serverName\": \"<string>\",\n  \"status\": \"degraded\",\n  \"uptime\": \"<string>\",\n  \"version\": \"<string>\",\n  \"activeCalls\": \"<integer>\",\n  \"maxCalls\": \"<integer>\",\n  \"sipStackStatus\": \"running\",\n  \"cpuUsage\": \"<float>\",\n  \"memoryUsage\": \"<float>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:12.000Z",
+              "updatedAt": "2026-07-28T01:21:12.000Z",
+              "uid": "35240-580aeeb2-eb78-48e6-9f05-c0342fb4e3be"
+            },
+            {
+              "id": "50c5089b-e509-438f-a0a8-c2214277f77c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:12.000Z",
+              "updatedAt": "2026-07-28T01:21:12.000Z",
+              "uid": "35240-50c5089b-e509-438f-a0a8-c2214277f77c"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:12.000Z",
+          "updatedAt": "2026-07-28T01:21:12.000Z",
+          "uid": "35240-aaff6f55-0112-423d-bcb1-5cf1aa2441ae"
+        }
+      ],
+      "id": "8f588111-e7cc-4b52-b2a1-aac9c7f3421c",
+      "createdAt": "2026-07-28T01:21:12.000Z",
+      "updatedAt": "2026-07-28T01:21:12.000Z",
+      "uid": "35240-8f588111-e7cc-4b52-b2a1-aac9c7f3421c"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

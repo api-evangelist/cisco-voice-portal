@@ -1,0 +1,474 @@
+{
+  "info": {
+    "_postman_id": "74f39841-01bc-49ed-973f-44328ddc83fd",
+    "name": "Cisco Voice Portal Administration Application Configuration SIP Configuration API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:19.000Z",
+    "updatedAt": "2026-07-28T01:21:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-74f39841-01bc-49ed-973f-44328ddc83fd"
+  },
+  "item": [
+    {
+      "name": "sipserver",
+      "item": [
+        {
+          "name": "Cisco Voice Portal List Sip Server Groups",
+          "id": "37a64b4c-7137-43c0-847a-b3d4ce507bd6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sipserver",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sipserver"
+              ]
+            },
+            "description": "Retrieves the configured SIP server groups used for call routing. Server groups define clusters of SIP endpoints (such as CUCM, SBCs, or gateways) that the CVP Call Server communicates with."
+          },
+          "response": [
+            {
+              "id": "45b046b7-343e-43ad-8c15-40741ae209cd",
+              "name": "List of SIP server groups",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sipserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sipserver"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"groupId\": \"<string>\",\n    \"groupName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"servers\": [\n      {\n        \"hostname\": \"<string>\",\n        \"ipAddress\": \"<ipv4>\",\n        \"port\": 5060,\n        \"priority\": \"<integer>\",\n        \"weight\": \"<integer>\"\n      },\n      {\n        \"hostname\": \"<string>\",\n        \"ipAddress\": \"<ipv4>\",\n        \"port\": 5060,\n        \"priority\": \"<integer>\",\n        \"weight\": \"<integer>\"\n      }\n    ],\n    \"loadBalancing\": \"round_robin\"\n  },\n  {\n    \"groupId\": \"<string>\",\n    \"groupName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"servers\": [\n      {\n        \"hostname\": \"<string>\",\n        \"ipAddress\": \"<ipv4>\",\n        \"port\": 5060,\n        \"priority\": \"<integer>\",\n        \"weight\": \"<integer>\"\n      },\n      {\n        \"hostname\": \"<string>\",\n        \"ipAddress\": \"<ipv4>\",\n        \"port\": 5060,\n        \"priority\": \"<integer>\",\n        \"weight\": \"<integer>\"\n      }\n    ],\n    \"loadBalancing\": \"round_robin\"\n  }\n]",
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-45b046b7-343e-43ad-8c15-40741ae209cd"
+            },
+            {
+              "id": "d2bdea7e-e677-4ab0-9ef1-c8ec4311b003",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sipserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sipserver"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-d2bdea7e-e677-4ab0-9ef1-c8ec4311b003"
+            },
+            {
+              "id": "9c3a4769-4286-48ef-8200-f058d5719f05",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sipserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sipserver"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-9c3a4769-4286-48ef-8200-f058d5719f05"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:20.000Z",
+          "updatedAt": "2026-07-28T01:21:20.000Z",
+          "uid": "35240-37a64b4c-7137-43c0-847a-b3d4ce507bd6"
+        },
+        {
+          "name": "Cisco Voice Portal Create a Sip Server Group",
+          "id": "b454a8ff-398a-4f91-979c-26bfe1cdc6a0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupName\": \"<string>\",\n  \"servers\": [\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": 1,\n      \"weight\": 100\n    },\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": 1,\n      \"weight\": 100\n    }\n  ],\n  \"description\": \"<string>\",\n  \"loadBalancing\": \"round_robin\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sipserver",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sipserver"
+              ]
+            },
+            "description": "Creates a new SIP server group for call routing purposes. Server groups allow load balancing and failover across multiple SIP endpoints."
+          },
+          "response": [
+            {
+              "id": "0c61d882-3d58-46f7-98d2-8f5c4566b68c",
+              "name": "SIP server group created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupName\": \"<string>\",\n  \"servers\": [\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": 1,\n      \"weight\": 100\n    },\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": 1,\n      \"weight\": 100\n    }\n  ],\n  \"description\": \"<string>\",\n  \"loadBalancing\": \"round_robin\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sipserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sipserver"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"groupId\": \"<string>\",\n  \"groupName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"servers\": [\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": \"<integer>\",\n      \"weight\": \"<integer>\"\n    },\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": \"<integer>\",\n      \"weight\": \"<integer>\"\n    }\n  ],\n  \"loadBalancing\": \"round_robin\"\n}",
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-0c61d882-3d58-46f7-98d2-8f5c4566b68c"
+            },
+            {
+              "id": "e34828f2-97b4-460c-806e-2ce27d374583",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupName\": \"<string>\",\n  \"servers\": [\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": 1,\n      \"weight\": 100\n    },\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": 1,\n      \"weight\": 100\n    }\n  ],\n  \"description\": \"<string>\",\n  \"loadBalancing\": \"round_robin\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sipserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sipserver"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-e34828f2-97b4-460c-806e-2ce27d374583"
+            },
+            {
+              "id": "48b52b76-8fdf-42d4-a3f1-c2136aa09397",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupName\": \"<string>\",\n  \"servers\": [\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": 1,\n      \"weight\": 100\n    },\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": 1,\n      \"weight\": 100\n    }\n  ],\n  \"description\": \"<string>\",\n  \"loadBalancing\": \"round_robin\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sipserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sipserver"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-48b52b76-8fdf-42d4-a3f1-c2136aa09397"
+            },
+            {
+              "id": "f4ce0beb-b74d-47a2-b6d2-c36591ab7c44",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupName\": \"<string>\",\n  \"servers\": [\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": 1,\n      \"weight\": 100\n    },\n    {\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"port\": 5060,\n      \"priority\": 1,\n      \"weight\": 100\n    }\n  ],\n  \"description\": \"<string>\",\n  \"loadBalancing\": \"round_robin\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sipserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sipserver"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-f4ce0beb-b74d-47a2-b6d2-c36591ab7c44"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:20.000Z",
+          "updatedAt": "2026-07-28T01:21:20.000Z",
+          "uid": "35240-b454a8ff-398a-4f91-979c-26bfe1cdc6a0"
+        }
+      ],
+      "id": "20a743b1-f9ff-47a1-8f39-683e190b62bc",
+      "createdAt": "2026-07-28T01:21:19.000Z",
+      "updatedAt": "2026-07-28T01:21:19.000Z",
+      "uid": "35240-20a743b1-f9ff-47a1-8f39-683e190b62bc"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

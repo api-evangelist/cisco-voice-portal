@@ -1,0 +1,1830 @@
+{
+  "info": {
+    "_postman_id": "50c5f1ca-cc98-4aba-a65b-f3fff57b6dd1",
+    "name": "Cisco Voice Portal Administration Application Configuration Call Management API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:04.000Z",
+    "updatedAt": "2026-07-28T01:21:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-50c5f1ca-cc98-4aba-a65b-f3fff57b6dd1"
+  },
+  "item": [
+    {
+      "name": "call",
+      "item": [
+        {
+          "name": "{callGuid}",
+          "item": [
+            {
+              "name": "transfer",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Transfer an Active Call",
+                  "id": "1eb27179-c32c-42a7-9bcd-9fa03ded7fa2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"destination\": \"<string>\",\n  \"transferType\": \"blind\",\n  \"label\": \"<string>\",\n  \"eccVariables\": {\n    \"tempore_\": \"<string>\",\n    \"essec\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/call/:callGuid/transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call",
+                        ":callGuid",
+                        "transfer"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ab1b1492-4de1-4064-84ec-a3cd2ef86977",
+                          "key": "callGuid",
+                          "value": "<string>",
+                          "description": "(Required) Globally unique call identifier"
+                        }
+                      ]
+                    },
+                    "description": "Initiates a transfer of an active call to a specified destination. The transfer can be a blind transfer or a consultation transfer. This operation sends the appropriate SIP REFER or re-INVITE to execute the transfer."
+                  },
+                  "response": [
+                    {
+                      "id": "dd5a6563-50ae-4bdc-a113-893b3ac7ca4e",
+                      "name": "Transfer initiated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"destination\": \"<string>\",\n  \"transferType\": \"blind\",\n  \"label\": \"<string>\",\n  \"eccVariables\": {\n    \"tempore_\": \"<string>\",\n    \"essec\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/transfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "transfer"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"callGuid\": \"<string>\",\n  \"operation\": \"<string>\",\n  \"status\": \"success\",\n  \"message\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-dd5a6563-50ae-4bdc-a113-893b3ac7ca4e"
+                    },
+                    {
+                      "id": "53593899-9316-48c5-b81b-7276bb269764",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"destination\": \"<string>\",\n  \"transferType\": \"blind\",\n  \"label\": \"<string>\",\n  \"eccVariables\": {\n    \"tempore_\": \"<string>\",\n    \"essec\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/transfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "transfer"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-53593899-9316-48c5-b81b-7276bb269764"
+                    },
+                    {
+                      "id": "376a7ed6-5c8b-4ca9-bc38-2f53fd8a3d13",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"destination\": \"<string>\",\n  \"transferType\": \"blind\",\n  \"label\": \"<string>\",\n  \"eccVariables\": {\n    \"tempore_\": \"<string>\",\n    \"essec\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/transfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "transfer"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-376a7ed6-5c8b-4ca9-bc38-2f53fd8a3d13"
+                    },
+                    {
+                      "id": "d9596a69-2629-4840-af65-2d3ecff2b64a",
+                      "name": "Call not found or no longer active",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"destination\": \"<string>\",\n  \"transferType\": \"blind\",\n  \"label\": \"<string>\",\n  \"eccVariables\": {\n    \"tempore_\": \"<string>\",\n    \"essec\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/transfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "transfer"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-d9596a69-2629-4840-af65-2d3ecff2b64a"
+                    },
+                    {
+                      "id": "437b8c36-a64c-4ddc-b2ea-5d97266facaa",
+                      "name": "Call is in a state that does not allow transfer",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"destination\": \"<string>\",\n  \"transferType\": \"blind\",\n  \"label\": \"<string>\",\n  \"eccVariables\": {\n    \"tempore_\": \"<string>\",\n    \"essec\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/transfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "transfer"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-437b8c36-a64c-4ddc-b2ea-5d97266facaa"
+                    },
+                    {
+                      "id": "ea6cc9d5-4bfe-4f8c-a130-64c9ba039e32",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"destination\": \"<string>\",\n  \"transferType\": \"blind\",\n  \"label\": \"<string>\",\n  \"eccVariables\": {\n    \"tempore_\": \"<string>\",\n    \"essec\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/transfer",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "transfer"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-ea6cc9d5-4bfe-4f8c-a130-64c9ba039e32"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-1eb27179-c32c-42a7-9bcd-9fa03ded7fa2"
+                }
+              ],
+              "id": "2f68c5e6-2b74-44c4-b792-0895e540548e",
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-2f68c5e6-2b74-44c4-b792-0895e540548e"
+            },
+            {
+              "name": "terminate",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Terminate an Active Call",
+                  "id": "fa65954a-3673-4d87-bb68-ba555baddbc6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reason\": \"administrative\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/call/:callGuid/terminate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call",
+                        ":callGuid",
+                        "terminate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cb090726-063f-478a-b6b7-aecfa55ad997",
+                          "key": "callGuid",
+                          "value": "<string>",
+                          "description": "(Required) Globally unique call identifier"
+                        }
+                      ]
+                    },
+                    "description": "Terminates an active call by sending a SIP BYE request. The call is disconnected and a CDR is generated."
+                  },
+                  "response": [
+                    {
+                      "id": "c9fbe576-3008-4acc-883e-59ce22f199a1",
+                      "name": "Call terminated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reason\": \"administrative\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/terminate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "terminate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"callGuid\": \"<string>\",\n  \"operation\": \"<string>\",\n  \"status\": \"success\",\n  \"message\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-c9fbe576-3008-4acc-883e-59ce22f199a1"
+                    },
+                    {
+                      "id": "be1cae3a-1fc1-43d0-9448-58d2084d0151",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reason\": \"administrative\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/terminate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "terminate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-be1cae3a-1fc1-43d0-9448-58d2084d0151"
+                    },
+                    {
+                      "id": "c0e8e7d2-40d4-4c6f-b3eb-73b160e60ffb",
+                      "name": "Call not found or already terminated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reason\": \"administrative\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/terminate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "terminate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-c0e8e7d2-40d4-4c6f-b3eb-73b160e60ffb"
+                    },
+                    {
+                      "id": "8dad220d-4497-4440-bcec-c8ce98494511",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reason\": \"administrative\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/terminate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "terminate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-8dad220d-4497-4440-bcec-c8ce98494511"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-fa65954a-3673-4d87-bb68-ba555baddbc6"
+                }
+              ],
+              "id": "6cd826f3-d347-4075-93fe-12efc044bef7",
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-6cd826f3-d347-4075-93fe-12efc044bef7"
+            },
+            {
+              "name": "variables",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Get Call Variables",
+                  "id": "0929b4eb-5943-4697-8ff8-ee3e8f7be21c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call/:callGuid/variables",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call",
+                        ":callGuid",
+                        "variables"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4cb96fd8-616b-429e-ac2c-cd002816040a",
+                          "key": "callGuid",
+                          "value": "<string>",
+                          "description": "(Required) Globally unique call identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the Expanded Call Context (ECC) variables and peripheral variables associated with an active call. These variables carry data between CVP, ICM, and the VXML application."
+                  },
+                  "response": [
+                    {
+                      "id": "b0405180-8c90-43dd-8c2a-540f1ec9ea83",
+                      "name": "Call variables",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/variables",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "variables"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"callGuid\": \"<string>\",\n  \"eccVariables\": {\n    \"consequat8a\": \"<string>\",\n    \"in0\": \"<string>\",\n    \"mollit_f4_\": \"<string>\",\n    \"labore44b\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"peripheral1\": \"<string>\",\n    \"peripheral2\": \"<string>\",\n    \"peripheral3\": \"<string>\",\n    \"peripheral4\": \"<string>\",\n    \"peripheral5\": \"<string>\",\n    \"peripheral6\": \"<string>\",\n    \"peripheral7\": \"<string>\",\n    \"peripheral8\": \"<string>\",\n    \"peripheral9\": \"<string>\",\n    \"peripheral10\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"callVariable1\": \"<string>\",\n    \"callVariable2\": \"<string>\",\n    \"callVariable3\": \"<string>\",\n    \"callVariable4\": \"<string>\",\n    \"callVariable5\": \"<string>\",\n    \"callVariable6\": \"<string>\",\n    \"callVariable7\": \"<string>\",\n    \"callVariable8\": \"<string>\",\n    \"callVariable9\": \"<string>\",\n    \"callVariable10\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-b0405180-8c90-43dd-8c2a-540f1ec9ea83"
+                    },
+                    {
+                      "id": "5dedc287-cf53-4671-a0bd-bb9e710919b7",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/variables",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "variables"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-5dedc287-cf53-4671-a0bd-bb9e710919b7"
+                    },
+                    {
+                      "id": "e08653c4-07ed-4b35-9824-a5cda95b7780",
+                      "name": "Call not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/variables",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "variables"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-e08653c4-07ed-4b35-9824-a5cda95b7780"
+                    },
+                    {
+                      "id": "d13899ef-72db-431f-950a-bb5463f1f3ff",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/variables",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "variables"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-d13899ef-72db-431f-950a-bb5463f1f3ff"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-0929b4eb-5943-4697-8ff8-ee3e8f7be21c"
+                },
+                {
+                  "name": "Cisco Voice Portal Set Call Variables",
+                  "id": "0c8016b8-fed7-483f-984d-b3fcf34a0be0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"eccVariables\": {\n    \"magna_e\": \"<string>\",\n    \"mollit_6\": \"<string>\",\n    \"qui_a3c\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"utd_\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"ex_43c\": \"<string>\",\n    \"ea_3\": \"<string>\",\n    \"culpa9\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/call/:callGuid/variables",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call",
+                        ":callGuid",
+                        "variables"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c4daed54-0591-406f-bfc3-55b3266af170",
+                          "key": "callGuid",
+                          "value": "<string>",
+                          "description": "(Required) Globally unique call identifier"
+                        }
+                      ]
+                    },
+                    "description": "Sets or updates ECC variables on an active call. These variables are passed to the VXML application and to ICM for routing decisions."
+                  },
+                  "response": [
+                    {
+                      "id": "ebf2ab08-9b16-4841-b829-31d5e829ff67",
+                      "name": "Variables updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eccVariables\": {\n    \"magna_e\": \"<string>\",\n    \"mollit_6\": \"<string>\",\n    \"qui_a3c\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"utd_\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"ex_43c\": \"<string>\",\n    \"ea_3\": \"<string>\",\n    \"culpa9\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/variables",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "variables"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"callGuid\": \"<string>\",\n  \"eccVariables\": {\n    \"consequat8a\": \"<string>\",\n    \"in0\": \"<string>\",\n    \"mollit_f4_\": \"<string>\",\n    \"labore44b\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"peripheral1\": \"<string>\",\n    \"peripheral2\": \"<string>\",\n    \"peripheral3\": \"<string>\",\n    \"peripheral4\": \"<string>\",\n    \"peripheral5\": \"<string>\",\n    \"peripheral6\": \"<string>\",\n    \"peripheral7\": \"<string>\",\n    \"peripheral8\": \"<string>\",\n    \"peripheral9\": \"<string>\",\n    \"peripheral10\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"callVariable1\": \"<string>\",\n    \"callVariable2\": \"<string>\",\n    \"callVariable3\": \"<string>\",\n    \"callVariable4\": \"<string>\",\n    \"callVariable5\": \"<string>\",\n    \"callVariable6\": \"<string>\",\n    \"callVariable7\": \"<string>\",\n    \"callVariable8\": \"<string>\",\n    \"callVariable9\": \"<string>\",\n    \"callVariable10\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-ebf2ab08-9b16-4841-b829-31d5e829ff67"
+                    },
+                    {
+                      "id": "db19ad2d-2ec3-4782-9158-ab11d61bb620",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eccVariables\": {\n    \"magna_e\": \"<string>\",\n    \"mollit_6\": \"<string>\",\n    \"qui_a3c\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"utd_\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"ex_43c\": \"<string>\",\n    \"ea_3\": \"<string>\",\n    \"culpa9\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/variables",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "variables"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-db19ad2d-2ec3-4782-9158-ab11d61bb620"
+                    },
+                    {
+                      "id": "9fb19436-5ca0-40eb-839f-4c7ed2b0c047",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eccVariables\": {\n    \"magna_e\": \"<string>\",\n    \"mollit_6\": \"<string>\",\n    \"qui_a3c\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"utd_\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"ex_43c\": \"<string>\",\n    \"ea_3\": \"<string>\",\n    \"culpa9\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/variables",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "variables"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-9fb19436-5ca0-40eb-839f-4c7ed2b0c047"
+                    },
+                    {
+                      "id": "6ec4c757-d91a-4f30-a9e2-ccaaffceb749",
+                      "name": "Call not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eccVariables\": {\n    \"magna_e\": \"<string>\",\n    \"mollit_6\": \"<string>\",\n    \"qui_a3c\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"utd_\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"ex_43c\": \"<string>\",\n    \"ea_3\": \"<string>\",\n    \"culpa9\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/variables",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "variables"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-6ec4c757-d91a-4f30-a9e2-ccaaffceb749"
+                    },
+                    {
+                      "id": "8f6a5414-1c4e-49e5-8ee4-5d89788bd8fc",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eccVariables\": {\n    \"magna_e\": \"<string>\",\n    \"mollit_6\": \"<string>\",\n    \"qui_a3c\": \"<string>\"\n  },\n  \"peripheralVariables\": {\n    \"utd_\": \"<string>\"\n  },\n  \"callVariables\": {\n    \"ex_43c\": \"<string>\",\n    \"ea_3\": \"<string>\",\n    \"culpa9\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/call/:callGuid/variables",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "call",
+                            ":callGuid",
+                            "variables"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:05.000Z",
+                      "updatedAt": "2026-07-28T01:21:05.000Z",
+                      "uid": "35240-8f6a5414-1c4e-49e5-8ee4-5d89788bd8fc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-0c8016b8-fed7-483f-984d-b3fcf34a0be0"
+                }
+              ],
+              "id": "cc198015-56ed-494c-a58c-34d6614cf01a",
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-cc198015-56ed-494c-a58c-34d6614cf01a"
+            },
+            {
+              "name": "Cisco Voice Portal Get Active Call Details",
+              "id": "3e5ff3b5-2870-4eae-8eb3-205ed438ef8e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/call/:callGuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "call",
+                    ":callGuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "115da67b-d520-428e-afef-5f53de054831",
+                      "key": "callGuid",
+                      "value": "<string>",
+                      "description": "(Required) Globally unique call identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieves detailed information about a specific active call, including SIP session details, current state, call variables, and routing information."
+              },
+              "response": [
+                {
+                  "id": "35970389-f891-48d8-b31d-8b8e42467981",
+                  "name": "Call details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call/:callGuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call",
+                        ":callGuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "callGuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"callGuid\": \"<string>\",\n  \"state\": \"on_hold\",\n  \"callingNumber\": \"<string>\",\n  \"calledNumber\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"duration\": \"<integer>\",\n  \"applicationName\": \"<string>\",\n  \"sipCallId\": \"<string>\",\n  \"sipFromTag\": \"<string>\",\n  \"sipToTag\": \"<string>\",\n  \"icmRouteResult\": {\n    \"routeLabel\": \"<string>\",\n    \"skillGroup\": \"<string>\",\n    \"agentId\": \"<string>\"\n  },\n  \"vxmlServer\": \"<string>\",\n  \"callHistory\": [\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"event\": \"<string>\",\n      \"details\": \"<string>\"\n    },\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"event\": \"<string>\",\n      \"details\": \"<string>\"\n    }\n  ],\n  \"eccVariables\": {\n    \"magna817\": \"<string>\",\n    \"sit2\": \"<string>\",\n    \"deserunt8e7\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-35970389-f891-48d8-b31d-8b8e42467981"
+                },
+                {
+                  "id": "8bc9ddbd-c41a-4fa7-98c7-a1bdfa4f8a9b",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call/:callGuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call",
+                        ":callGuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "callGuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-8bc9ddbd-c41a-4fa7-98c7-a1bdfa4f8a9b"
+                },
+                {
+                  "id": "eb303c42-9f62-4e8d-98aa-5f27cae0725c",
+                  "name": "Call not found or no longer active",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call/:callGuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call",
+                        ":callGuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "callGuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-eb303c42-9f62-4e8d-98aa-5f27cae0725c"
+                },
+                {
+                  "id": "6963e4f1-f359-4f96-ab9e-bde47edc90f1",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/call/:callGuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "call",
+                        ":callGuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "callGuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-6963e4f1-f359-4f96-ab9e-bde47edc90f1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-3e5ff3b5-2870-4eae-8eb3-205ed438ef8e"
+            }
+          ],
+          "id": "7ee0ca65-f6e1-4990-a4cd-e012885c453b",
+          "createdAt": "2026-07-28T01:21:05.000Z",
+          "updatedAt": "2026-07-28T01:21:05.000Z",
+          "uid": "35240-7ee0ca65-f6e1-4990-a4cd-e012885c453b"
+        },
+        {
+          "name": "Cisco Voice Portal List Active Calls",
+          "id": "e7c23f9e-5152-4688-9d4c-a47d0e683d17",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/call?state=self_service&calledNumber=<string>&limit=100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "call"
+              ],
+              "query": [
+                {
+                  "description": "Filter by call state",
+                  "key": "state",
+                  "value": "self_service"
+                },
+                {
+                  "description": "Filter by DNIS",
+                  "key": "calledNumber",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "100"
+                }
+              ]
+            },
+            "description": "Retrieves a list of all currently active calls on this Call Server. Each entry includes the call GUID, current state, and associated SIP session information."
+          },
+          "response": [
+            {
+              "id": "69e788a3-4c3d-4d9b-89db-e723068a808b",
+              "name": "List of active calls",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/call?state=self_service&calledNumber=<string>&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "call"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by call state",
+                      "key": "state",
+                      "value": "self_service"
+                    },
+                    {
+                      "description": "Filter by DNIS",
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalActiveCalls\": \"<integer>\",\n  \"calls\": [\n    {\n      \"callGuid\": \"<string>\",\n      \"state\": \"connected\",\n      \"callingNumber\": \"<string>\",\n      \"calledNumber\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"duration\": \"<integer>\",\n      \"applicationName\": \"<string>\"\n    },\n    {\n      \"callGuid\": \"<string>\",\n      \"state\": \"on_hold\",\n      \"callingNumber\": \"<string>\",\n      \"calledNumber\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"duration\": \"<integer>\",\n      \"applicationName\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-69e788a3-4c3d-4d9b-89db-e723068a808b"
+            },
+            {
+              "id": "aa294b5b-a7c9-4678-b34b-1d3f4a274a19",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/call?state=self_service&calledNumber=<string>&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "call"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by call state",
+                      "key": "state",
+                      "value": "self_service"
+                    },
+                    {
+                      "description": "Filter by DNIS",
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-aa294b5b-a7c9-4678-b34b-1d3f4a274a19"
+            },
+            {
+              "id": "d58ae0f2-5dc5-4b65-82b5-b94127d7173e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/call?state=self_service&calledNumber=<string>&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "call"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by call state",
+                      "key": "state",
+                      "value": "self_service"
+                    },
+                    {
+                      "description": "Filter by DNIS",
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-d58ae0f2-5dc5-4b65-82b5-b94127d7173e"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:05.000Z",
+          "updatedAt": "2026-07-28T01:21:05.000Z",
+          "uid": "35240-e7c23f9e-5152-4688-9d4c-a47d0e683d17"
+        }
+      ],
+      "id": "71507c71-d875-48f2-b6a8-0c7ddd95ec58",
+      "createdAt": "2026-07-28T01:21:05.000Z",
+      "updatedAt": "2026-07-28T01:21:05.000Z",
+      "uid": "35240-71507c71-d875-48f2-b6a8-0c7ddd95ec58"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

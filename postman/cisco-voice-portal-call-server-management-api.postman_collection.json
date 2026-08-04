@@ -1,0 +1,830 @@
+{
+  "info": {
+    "_postman_id": "89230e6b-a2e0-43f4-9ab6-149a8ccaf1f3",
+    "name": "Cisco Voice Portal Administration Application Configuration Call Server Management API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:06.000Z",
+    "updatedAt": "2026-07-28T01:21:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-89230e6b-a2e0-43f4-9ab6-149a8ccaf1f3"
+  },
+  "item": [
+    {
+      "name": "callserver",
+      "item": [
+        {
+          "name": "{serverId}",
+          "item": [
+            {
+              "name": "config",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Get Call Server Configuration",
+                  "id": "372a838d-858d-4c71-bbc2-7bb7a70d8b86",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/callserver/:serverId/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "callserver",
+                        ":serverId",
+                        "config"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e1a44fdf-6b66-4944-b134-f0df6b10ae1c",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) Server identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the full configuration of a specific Call Server, including SIP settings, call routing rules, dialed number patterns, and connection settings to ICM/UCCE."
+                  },
+                  "response": [
+                    {
+                      "id": "95fff506-2391-4ed0-9113-939a7ae6cc5c",
+                      "name": "Call Server configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/callserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "callserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"serverId\": \"<string>\",\n  \"sip\": {\n    \"port\": 5060,\n    \"transport\": \"UDP\",\n    \"maxConnections\": \"<integer>\",\n    \"heartbeatInterval\": \"<integer>\"\n  },\n  \"icm\": {\n    \"primaryVruLabel\": \"<string>\",\n    \"secondaryVruLabel\": \"<string>\",\n    \"maxCallDuration\": \"<integer>\"\n  },\n  \"callRouting\": {\n    \"defaultDnisPattern\": \"<string>\",\n    \"sendToVxmlServer\": true,\n    \"ringtoneApplication\": \"<string>\",\n    \"errorApplication\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:21:07.000Z",
+                      "updatedAt": "2026-07-28T01:21:07.000Z",
+                      "uid": "35240-95fff506-2391-4ed0-9113-939a7ae6cc5c"
+                    },
+                    {
+                      "id": "18606927-efe1-406c-a25f-3a29aeef06d2",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/callserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "callserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:07.000Z",
+                      "updatedAt": "2026-07-28T01:21:07.000Z",
+                      "uid": "35240-18606927-efe1-406c-a25f-3a29aeef06d2"
+                    },
+                    {
+                      "id": "d1ba661c-86f0-4912-9a20-90cef0c81d07",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/callserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "callserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:07.000Z",
+                      "updatedAt": "2026-07-28T01:21:07.000Z",
+                      "uid": "35240-d1ba661c-86f0-4912-9a20-90cef0c81d07"
+                    },
+                    {
+                      "id": "b37d66e6-f1d3-4235-91e3-fe0b52b743fe",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/callserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "callserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:07.000Z",
+                      "updatedAt": "2026-07-28T01:21:07.000Z",
+                      "uid": "35240-b37d66e6-f1d3-4235-91e3-fe0b52b743fe"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:07.000Z",
+                  "updatedAt": "2026-07-28T01:21:07.000Z",
+                  "uid": "35240-372a838d-858d-4c71-bbc2-7bb7a70d8b86"
+                },
+                {
+                  "name": "Cisco Voice Portal Update Call Server Configuration",
+                  "id": "81195fe3-c3c5-4f42-b0df-c3f1310568ff",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"serverId\": \"<string>\",\n  \"sip\": {\n    \"port\": 5060,\n    \"transport\": \"UDP\",\n    \"maxConnections\": \"<integer>\",\n    \"heartbeatInterval\": \"<integer>\"\n  },\n  \"icm\": {\n    \"primaryVruLabel\": \"<string>\",\n    \"secondaryVruLabel\": \"<string>\",\n    \"maxCallDuration\": \"<integer>\"\n  },\n  \"callRouting\": {\n    \"defaultDnisPattern\": \"<string>\",\n    \"sendToVxmlServer\": true,\n    \"ringtoneApplication\": \"<string>\",\n    \"errorApplication\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/callserver/:serverId/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "callserver",
+                        ":serverId",
+                        "config"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c9afa751-a9dd-4d2b-b548-2d17ff10e544",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) Server identifier"
+                        }
+                      ]
+                    },
+                    "description": "Updates the configuration of a specific Call Server. Changes to SIP and routing configuration may require a service restart."
+                  },
+                  "response": [
+                    {
+                      "id": "bae0e7da-8671-4cce-8424-28a250b68086",
+                      "name": "Configuration updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverId\": \"<string>\",\n  \"sip\": {\n    \"port\": 5060,\n    \"transport\": \"UDP\",\n    \"maxConnections\": \"<integer>\",\n    \"heartbeatInterval\": \"<integer>\"\n  },\n  \"icm\": {\n    \"primaryVruLabel\": \"<string>\",\n    \"secondaryVruLabel\": \"<string>\",\n    \"maxCallDuration\": \"<integer>\"\n  },\n  \"callRouting\": {\n    \"defaultDnisPattern\": \"<string>\",\n    \"sendToVxmlServer\": true,\n    \"ringtoneApplication\": \"<string>\",\n    \"errorApplication\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/callserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "callserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"serverId\": \"<string>\",\n  \"sip\": {\n    \"port\": 5060,\n    \"transport\": \"UDP\",\n    \"maxConnections\": \"<integer>\",\n    \"heartbeatInterval\": \"<integer>\"\n  },\n  \"icm\": {\n    \"primaryVruLabel\": \"<string>\",\n    \"secondaryVruLabel\": \"<string>\",\n    \"maxCallDuration\": \"<integer>\"\n  },\n  \"callRouting\": {\n    \"defaultDnisPattern\": \"<string>\",\n    \"sendToVxmlServer\": true,\n    \"ringtoneApplication\": \"<string>\",\n    \"errorApplication\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:21:07.000Z",
+                      "updatedAt": "2026-07-28T01:21:07.000Z",
+                      "uid": "35240-bae0e7da-8671-4cce-8424-28a250b68086"
+                    },
+                    {
+                      "id": "c5dfebfd-7934-46ab-8bd6-f20833b98208",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverId\": \"<string>\",\n  \"sip\": {\n    \"port\": 5060,\n    \"transport\": \"UDP\",\n    \"maxConnections\": \"<integer>\",\n    \"heartbeatInterval\": \"<integer>\"\n  },\n  \"icm\": {\n    \"primaryVruLabel\": \"<string>\",\n    \"secondaryVruLabel\": \"<string>\",\n    \"maxCallDuration\": \"<integer>\"\n  },\n  \"callRouting\": {\n    \"defaultDnisPattern\": \"<string>\",\n    \"sendToVxmlServer\": true,\n    \"ringtoneApplication\": \"<string>\",\n    \"errorApplication\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/callserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "callserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:07.000Z",
+                      "updatedAt": "2026-07-28T01:21:07.000Z",
+                      "uid": "35240-c5dfebfd-7934-46ab-8bd6-f20833b98208"
+                    },
+                    {
+                      "id": "835d8a0a-1e90-42cc-b7f5-89e330f27f5b",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverId\": \"<string>\",\n  \"sip\": {\n    \"port\": 5060,\n    \"transport\": \"UDP\",\n    \"maxConnections\": \"<integer>\",\n    \"heartbeatInterval\": \"<integer>\"\n  },\n  \"icm\": {\n    \"primaryVruLabel\": \"<string>\",\n    \"secondaryVruLabel\": \"<string>\",\n    \"maxCallDuration\": \"<integer>\"\n  },\n  \"callRouting\": {\n    \"defaultDnisPattern\": \"<string>\",\n    \"sendToVxmlServer\": true,\n    \"ringtoneApplication\": \"<string>\",\n    \"errorApplication\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/callserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "callserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:07.000Z",
+                      "updatedAt": "2026-07-28T01:21:07.000Z",
+                      "uid": "35240-835d8a0a-1e90-42cc-b7f5-89e330f27f5b"
+                    },
+                    {
+                      "id": "e9f1b7f3-be5e-4bf1-8dc5-8f6b44f4ee67",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverId\": \"<string>\",\n  \"sip\": {\n    \"port\": 5060,\n    \"transport\": \"UDP\",\n    \"maxConnections\": \"<integer>\",\n    \"heartbeatInterval\": \"<integer>\"\n  },\n  \"icm\": {\n    \"primaryVruLabel\": \"<string>\",\n    \"secondaryVruLabel\": \"<string>\",\n    \"maxCallDuration\": \"<integer>\"\n  },\n  \"callRouting\": {\n    \"defaultDnisPattern\": \"<string>\",\n    \"sendToVxmlServer\": true,\n    \"ringtoneApplication\": \"<string>\",\n    \"errorApplication\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/callserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "callserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:07.000Z",
+                      "updatedAt": "2026-07-28T01:21:07.000Z",
+                      "uid": "35240-e9f1b7f3-be5e-4bf1-8dc5-8f6b44f4ee67"
+                    },
+                    {
+                      "id": "5b19d27b-21b2-4bc5-8412-f60bcab1b9a7",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverId\": \"<string>\",\n  \"sip\": {\n    \"port\": 5060,\n    \"transport\": \"UDP\",\n    \"maxConnections\": \"<integer>\",\n    \"heartbeatInterval\": \"<integer>\"\n  },\n  \"icm\": {\n    \"primaryVruLabel\": \"<string>\",\n    \"secondaryVruLabel\": \"<string>\",\n    \"maxCallDuration\": \"<integer>\"\n  },\n  \"callRouting\": {\n    \"defaultDnisPattern\": \"<string>\",\n    \"sendToVxmlServer\": true,\n    \"ringtoneApplication\": \"<string>\",\n    \"errorApplication\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/callserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "callserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:07.000Z",
+                      "updatedAt": "2026-07-28T01:21:07.000Z",
+                      "uid": "35240-5b19d27b-21b2-4bc5-8412-f60bcab1b9a7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:07.000Z",
+                  "updatedAt": "2026-07-28T01:21:07.000Z",
+                  "uid": "35240-81195fe3-c3c5-4f42-b0df-c3f1310568ff"
+                }
+              ],
+              "id": "83362fe2-1229-43d0-94bc-dfa97864491e",
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-83362fe2-1229-43d0-94bc-dfa97864491e"
+            }
+          ],
+          "id": "a3360b6b-2505-4418-81d7-13e103052b9c",
+          "createdAt": "2026-07-28T01:21:07.000Z",
+          "updatedAt": "2026-07-28T01:21:07.000Z",
+          "uid": "35240-a3360b6b-2505-4418-81d7-13e103052b9c"
+        },
+        {
+          "name": "Cisco Voice Portal List All Call Servers",
+          "id": "dbc1a034-6365-44c6-87d8-853fce729d8a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/callserver",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "callserver"
+              ]
+            },
+            "description": "Retrieves a list of all CVP Call Servers managed by the OAMP Server. Call Servers handle SIP call control and routing within the CVP deployment."
+          },
+          "response": [
+            {
+              "id": "beabb767-3e92-4c61-bda6-56d21e85cdca",
+              "name": "List of Call Servers",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/callserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "callserver"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"serverId\": \"<string>\",\n    \"hostname\": \"<string>\",\n    \"ipAddress\": \"<ipv4>\",\n    \"sipPort\": 5060,\n    \"status\": \"maintenance\",\n    \"activeCalls\": \"<integer>\",\n    \"maxCalls\": \"<integer>\"\n  },\n  {\n    \"serverId\": \"<string>\",\n    \"hostname\": \"<string>\",\n    \"ipAddress\": \"<ipv4>\",\n    \"sipPort\": 5060,\n    \"status\": \"offline\",\n    \"activeCalls\": \"<integer>\",\n    \"maxCalls\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-beabb767-3e92-4c61-bda6-56d21e85cdca"
+            },
+            {
+              "id": "37a7f660-53d3-4092-9ac0-43a74268cf4c",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/callserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "callserver"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-37a7f660-53d3-4092-9ac0-43a74268cf4c"
+            },
+            {
+              "id": "5c7c2c21-3282-4139-a22d-5f9fd7a7938a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/callserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "callserver"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-5c7c2c21-3282-4139-a22d-5f9fd7a7938a"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:07.000Z",
+          "updatedAt": "2026-07-28T01:21:07.000Z",
+          "uid": "35240-dbc1a034-6365-44c6-87d8-853fce729d8a"
+        }
+      ],
+      "id": "855d7138-ffa9-4f01-ab01-de8110a3c9fe",
+      "createdAt": "2026-07-28T01:21:07.000Z",
+      "updatedAt": "2026-07-28T01:21:07.000Z",
+      "uid": "35240-855d7138-ffa9-4f01-ab01-de8110a3c9fe"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

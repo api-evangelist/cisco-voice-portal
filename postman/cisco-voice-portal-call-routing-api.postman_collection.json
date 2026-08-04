@@ -1,0 +1,331 @@
+{
+  "info": {
+    "_postman_id": "abca5c68-10b1-431f-80be-9c1f19934440",
+    "name": "Cisco Voice Portal Administration Application Configuration Call Routing API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:06.000Z",
+    "updatedAt": "2026-07-28T01:21:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-abca5c68-10b1-431f-80be-9c1f19934440"
+  },
+  "item": [
+    {
+      "name": "routing",
+      "item": [
+        {
+          "name": "lookup",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Perform a Routing Lookup",
+              "id": "4be431c3-2f05-450b-bd6b-718914edcde0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dialedNumber\": \"<string>\",\n  \"callingNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/routing/lookup",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "routing",
+                    "lookup"
+                  ]
+                },
+                "description": "Performs a routing lookup to determine the call treatment for a given dialed number. This queries the configured dialed number patterns and returns the routing decision without initiating an actual call. Useful for testing and validation."
+              },
+              "response": [
+                {
+                  "id": "48fede06-2886-41a3-9813-5f7f1222bcfe",
+                  "name": "Routing lookup result",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"dialedNumber\": \"<string>\",\n  \"callingNumber\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/routing/lookup",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routing",
+                        "lookup"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"dialedNumber\": \"<string>\",\n  \"matched\": \"<boolean>\",\n  \"matchedPattern\": \"<string>\",\n  \"callType\": \"post_route\",\n  \"applicationName\": \"<string>\",\n  \"routeDestination\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:06.000Z",
+                  "updatedAt": "2026-07-28T01:21:06.000Z",
+                  "uid": "35240-48fede06-2886-41a3-9813-5f7f1222bcfe"
+                },
+                {
+                  "id": "c2dc3f46-5324-456d-bf00-68cfc7dcc0a0",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"dialedNumber\": \"<string>\",\n  \"callingNumber\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/routing/lookup",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routing",
+                        "lookup"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:06.000Z",
+                  "updatedAt": "2026-07-28T01:21:06.000Z",
+                  "uid": "35240-c2dc3f46-5324-456d-bf00-68cfc7dcc0a0"
+                },
+                {
+                  "id": "af5c53a7-0d21-4e5b-9af5-eeee28463b8b",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"dialedNumber\": \"<string>\",\n  \"callingNumber\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/routing/lookup",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routing",
+                        "lookup"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:06.000Z",
+                  "updatedAt": "2026-07-28T01:21:06.000Z",
+                  "uid": "35240-af5c53a7-0d21-4e5b-9af5-eeee28463b8b"
+                },
+                {
+                  "id": "0a155ac6-0d64-48d6-ab51-d9c7322c8e8d",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"dialedNumber\": \"<string>\",\n  \"callingNumber\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/routing/lookup",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "routing",
+                        "lookup"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:06.000Z",
+                  "updatedAt": "2026-07-28T01:21:06.000Z",
+                  "uid": "35240-0a155ac6-0d64-48d6-ab51-d9c7322c8e8d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:06.000Z",
+              "updatedAt": "2026-07-28T01:21:06.000Z",
+              "uid": "35240-4be431c3-2f05-450b-bd6b-718914edcde0"
+            }
+          ],
+          "id": "20eb7e92-e8ce-4581-b623-4b6f88e8b6b7",
+          "createdAt": "2026-07-28T01:21:06.000Z",
+          "updatedAt": "2026-07-28T01:21:06.000Z",
+          "uid": "35240-20eb7e92-e8ce-4581-b623-4b6f88e8b6b7"
+        }
+      ],
+      "id": "37d88900-596b-43ec-a616-637b8af0c478",
+      "createdAt": "2026-07-28T01:21:06.000Z",
+      "updatedAt": "2026-07-28T01:21:06.000Z",
+      "uid": "35240-37d88900-596b-43ec-a616-637b8af0c478"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

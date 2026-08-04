@@ -1,0 +1,1841 @@
+{
+  "info": {
+    "_postman_id": "fa403bf9-b73c-4fb1-a832-3c422b3adc21",
+    "name": "Cisco Voice Portal Administration Application Configuration Device Management API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:08.000Z",
+    "updatedAt": "2026-07-28T01:21:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fa403bf9-b73c-4fb1-a832-3c422b3adc21"
+  },
+  "item": [
+    {
+      "name": "device",
+      "item": [
+        {
+          "name": "{deviceId}",
+          "item": [
+            {
+              "name": "status",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Get Device Operational Status",
+                  "id": "088f7daf-47b1-4918-8c03-44e48c9c538b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId",
+                        "status"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e2a53cd4-e315-4f2c-9ca0-b93213b1aa53",
+                          "key": "deviceId",
+                          "value": "<string>",
+                          "description": "(Required) Unique device identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the current operational status of a managed device, including service status, resource utilization, and connectivity state."
+                  },
+                  "response": [
+                    {
+                      "id": "b35e7054-a80c-4fe0-b9c8-c3f828d4a968",
+                      "name": "Device status information",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device/:deviceId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device",
+                            ":deviceId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"deviceId\": \"<string>\",\n  \"status\": \"offline\",\n  \"services\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"error\",\n      \"uptime\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"running\",\n      \"uptime\": \"<string>\"\n    }\n  ],\n  \"cpuUsage\": \"<float>\",\n  \"memoryUsage\": \"<float>\",\n  \"activeCalls\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:09.000Z",
+                      "updatedAt": "2026-07-28T01:21:09.000Z",
+                      "uid": "35240-b35e7054-a80c-4fe0-b9c8-c3f828d4a968"
+                    },
+                    {
+                      "id": "aaa91234-2771-438f-8ec6-8f0f36589fbc",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device/:deviceId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device",
+                            ":deviceId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:09.000Z",
+                      "updatedAt": "2026-07-28T01:21:09.000Z",
+                      "uid": "35240-aaa91234-2771-438f-8ec6-8f0f36589fbc"
+                    },
+                    {
+                      "id": "0087e479-5739-4d28-bad6-dda3797b71a6",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device/:deviceId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device",
+                            ":deviceId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:09.000Z",
+                      "updatedAt": "2026-07-28T01:21:09.000Z",
+                      "uid": "35240-0087e479-5739-4d28-bad6-dda3797b71a6"
+                    },
+                    {
+                      "id": "8a1fc245-7d34-49b8-8584-4229a0dd9e3c",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device/:deviceId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device",
+                            ":deviceId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:09.000Z",
+                      "updatedAt": "2026-07-28T01:21:09.000Z",
+                      "uid": "35240-8a1fc245-7d34-49b8-8584-4229a0dd9e3c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-088f7daf-47b1-4918-8c03-44e48c9c538b"
+                }
+              ],
+              "id": "5804a35f-65c1-421a-af0d-08ddccf3faf4",
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-5804a35f-65c1-421a-af0d-08ddccf3faf4"
+            },
+            {
+              "name": "restart",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Restart a Device Service",
+                  "id": "3bfb4581-fdd3-4784-8774-86dd28232bf5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId/restart",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId",
+                        "restart"
+                      ],
+                      "variable": [
+                        {
+                          "id": "30f9f887-46db-4ac6-8c48-dea202375fa8",
+                          "key": "deviceId",
+                          "value": "<string>",
+                          "description": "(Required) Unique device identifier"
+                        }
+                      ]
+                    },
+                    "description": "Initiates a restart of the CVP service on the specified device. This operation is asynchronous and the device status can be monitored via the status endpoint."
+                  },
+                  "response": [
+                    {
+                      "id": "23519c0b-101c-4a4e-a4b6-3eaf21106c35",
+                      "name": "Restart initiated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device/:deviceId/restart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device",
+                            ":deviceId",
+                            "restart"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"operationId\": \"<string>\",\n  \"status\": \"failed\",\n  \"message\": \"<string>\",\n  \"startedAt\": \"<dateTime>\",\n  \"completedAt\": \"<dateTime>\",\n  \"progress\": \"<float>\"\n}",
+                      "createdAt": "2026-07-28T01:21:09.000Z",
+                      "updatedAt": "2026-07-28T01:21:09.000Z",
+                      "uid": "35240-23519c0b-101c-4a4e-a4b6-3eaf21106c35"
+                    },
+                    {
+                      "id": "c884a625-52f0-4648-baf0-3d53f15583ed",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device/:deviceId/restart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device",
+                            ":deviceId",
+                            "restart"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:09.000Z",
+                      "updatedAt": "2026-07-28T01:21:09.000Z",
+                      "uid": "35240-c884a625-52f0-4648-baf0-3d53f15583ed"
+                    },
+                    {
+                      "id": "34168bbb-467e-4cd9-9a54-c7ed84222d6e",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device/:deviceId/restart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device",
+                            ":deviceId",
+                            "restart"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:09.000Z",
+                      "updatedAt": "2026-07-28T01:21:09.000Z",
+                      "uid": "35240-34168bbb-467e-4cd9-9a54-c7ed84222d6e"
+                    },
+                    {
+                      "id": "1061736e-e0e8-48c1-89a7-bb53b5bab44b",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device/:deviceId/restart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device",
+                            ":deviceId",
+                            "restart"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:09.000Z",
+                      "updatedAt": "2026-07-28T01:21:09.000Z",
+                      "uid": "35240-1061736e-e0e8-48c1-89a7-bb53b5bab44b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-3bfb4581-fdd3-4784-8774-86dd28232bf5"
+                }
+              ],
+              "id": "b017f746-5dec-4116-b549-8c25104769f1",
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-b017f746-5dec-4116-b549-8c25104769f1"
+            },
+            {
+              "name": "Cisco Voice Portal Get Device Details",
+              "id": "067d2904-40c4-4494-8023-c802c4d95c40",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/device/:deviceId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device",
+                    ":deviceId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "293141f4-e9ab-4654-bcf3-b6b3c19e2ef4",
+                      "key": "deviceId",
+                      "value": "<string>",
+                      "description": "(Required) Unique device identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieves detailed information about a specific managed device, including its configuration, status, and associated services."
+              },
+              "response": [
+                {
+                  "id": "3800d5aa-f517-45ee-a46a-a8b1914f9c93",
+                  "name": "Device details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"deviceId\": \"<string>\",\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"deviceType\": \"OAMPServer\",\n  \"description\": \"<string>\",\n  \"status\": \"offline\",\n  \"version\": \"<string>\",\n  \"lastContact\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-3800d5aa-f517-45ee-a46a-a8b1914f9c93"
+                },
+                {
+                  "id": "3ae8a97a-7cdf-44a5-854f-9ad458f4c4f2",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-3ae8a97a-7cdf-44a5-854f-9ad458f4c4f2"
+                },
+                {
+                  "id": "e9e95a0e-3742-4ff0-9571-6fc1e2ceba8d",
+                  "name": "Requested resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-e9e95a0e-3742-4ff0-9571-6fc1e2ceba8d"
+                },
+                {
+                  "id": "8c0ee949-d159-4082-8d11-4f2d9d394f6f",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-8c0ee949-d159-4082-8d11-4f2d9d394f6f"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-067d2904-40c4-4494-8023-c802c4d95c40"
+            },
+            {
+              "name": "Cisco Voice Portal Update Device Configuration",
+              "id": "1ba2fdd9-0889-42b1-bdbf-3936c03b9c9a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/device/:deviceId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device",
+                    ":deviceId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a97cbe9f-9623-46f3-9b12-068582046211",
+                      "key": "deviceId",
+                      "value": "<string>",
+                      "description": "(Required) Unique device identifier"
+                    }
+                  ]
+                },
+                "description": "Updates the configuration of an existing managed device. Changes may require a device restart to take effect."
+              },
+              "response": [
+                {
+                  "id": "4373abcd-be9a-4d42-b552-fadd0ec06da3",
+                  "name": "Device updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"deviceId\": \"<string>\",\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"deviceType\": \"OAMPServer\",\n  \"description\": \"<string>\",\n  \"status\": \"offline\",\n  \"version\": \"<string>\",\n  \"lastContact\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-4373abcd-be9a-4d42-b552-fadd0ec06da3"
+                },
+                {
+                  "id": "95233ff1-3c7f-4b1b-b5ac-0c4e7a1ded81",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-95233ff1-3c7f-4b1b-b5ac-0c4e7a1ded81"
+                },
+                {
+                  "id": "61fc510f-d7f4-4454-90e3-4a1f851db2c3",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-61fc510f-d7f4-4454-90e3-4a1f851db2c3"
+                },
+                {
+                  "id": "7a021152-ac49-475a-8ae5-86aa72c24d83",
+                  "name": "Requested resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-7a021152-ac49-475a-8ae5-86aa72c24d83"
+                },
+                {
+                  "id": "c7098d41-0efe-4e9b-b977-38e8e037feaa",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-c7098d41-0efe-4e9b-b977-38e8e037feaa"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-1ba2fdd9-0889-42b1-bdbf-3936c03b9c9a"
+            },
+            {
+              "name": "Cisco Voice Portal Remove a Managed Device",
+              "id": "2ed90abd-4fe2-4755-ba5e-221ffa55cd6f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/device/:deviceId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device",
+                    ":deviceId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "763b933d-b667-4892-a17e-8fcd784a354f",
+                      "key": "deviceId",
+                      "value": "<string>",
+                      "description": "(Required) Unique device identifier"
+                    }
+                  ]
+                },
+                "description": "Removes a device from the CVP OAMP management. The device itself is not uninstalled but is no longer managed centrally."
+              },
+              "response": [
+                {
+                  "id": "beb0805b-ae5d-4fe1-921e-a2be4820a7fa",
+                  "name": "Device removed successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-beb0805b-ae5d-4fe1-921e-a2be4820a7fa"
+                },
+                {
+                  "id": "bc01ce05-cf71-42b8-8a4a-01743e1ccc1b",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-bc01ce05-cf71-42b8-8a4a-01743e1ccc1b"
+                },
+                {
+                  "id": "cb94e244-ad67-4f46-bfd0-f1c906033f13",
+                  "name": "Requested resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-cb94e244-ad67-4f46-bfd0-f1c906033f13"
+                },
+                {
+                  "id": "4a63885c-7538-4754-a709-97ffb206a875",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device/:deviceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device",
+                        ":deviceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deviceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:09.000Z",
+                  "updatedAt": "2026-07-28T01:21:09.000Z",
+                  "uid": "35240-4a63885c-7538-4754-a709-97ffb206a875"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-2ed90abd-4fe2-4755-ba5e-221ffa55cd6f"
+            }
+          ],
+          "id": "6feb5e27-c521-43b6-8320-e8022e824dfc",
+          "createdAt": "2026-07-28T01:21:09.000Z",
+          "updatedAt": "2026-07-28T01:21:09.000Z",
+          "uid": "35240-6feb5e27-c521-43b6-8320-e8022e824dfc"
+        },
+        {
+          "name": "Cisco Voice Portal List All Managed Devices",
+          "id": "afad7575-ff0f-4fc7-90b1-a00b8a4f91e3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/device",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "device"
+              ]
+            },
+            "description": "Retrieves a list of all devices registered with the CVP OAMP Server, including Call Servers, VXML Servers, Reporting Servers, and Media Servers. Each device entry contains its type, hostname, IP address, and current operational status."
+          },
+          "response": [
+            {
+              "id": "3e97c864-07a0-4c49-9d66-f6ecc0a3aee7",
+              "name": "List of managed devices",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/device",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"deviceId\": \"<string>\",\n    \"hostname\": \"<string>\",\n    \"ipAddress\": \"<ipv4>\",\n    \"deviceType\": \"VXMLServer\",\n    \"description\": \"<string>\",\n    \"status\": \"online\",\n    \"version\": \"<string>\",\n    \"lastContact\": \"<dateTime>\"\n  },\n  {\n    \"deviceId\": \"<string>\",\n    \"hostname\": \"<string>\",\n    \"ipAddress\": \"<ipv4>\",\n    \"deviceType\": \"ReportingServer\",\n    \"description\": \"<string>\",\n    \"status\": \"online\",\n    \"version\": \"<string>\",\n    \"lastContact\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-3e97c864-07a0-4c49-9d66-f6ecc0a3aee7"
+            },
+            {
+              "id": "2092a95a-e89c-412e-bccd-36742c864d65",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/device",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-2092a95a-e89c-412e-bccd-36742c864d65"
+            },
+            {
+              "id": "a85489d4-a78f-4725-8cf1-0a0875abc1b4",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/device",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-a85489d4-a78f-4725-8cf1-0a0875abc1b4"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:09.000Z",
+          "updatedAt": "2026-07-28T01:21:09.000Z",
+          "uid": "35240-afad7575-ff0f-4fc7-90b1-a00b8a4f91e3"
+        },
+        {
+          "name": "Cisco Voice Portal Add a New Device",
+          "id": "c0dca461-1b8f-4e5a-9ab6-6d40bbf37f86",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"deviceType\": \"VXMLServer\",\n  \"description\": \"<string>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/device",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "device"
+              ]
+            },
+            "description": "Registers a new device (Call Server, VXML Server, Reporting Server, or Media Server) with the CVP OAMP Server for centralized management."
+          },
+          "response": [
+            {
+              "id": "bf633ec7-374d-4633-9164-7ab4b4fcc42b",
+              "name": "Device created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"deviceType\": \"VXMLServer\",\n  \"description\": \"<string>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/device",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"deviceId\": \"<string>\",\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"deviceType\": \"OAMPServer\",\n  \"description\": \"<string>\",\n  \"status\": \"offline\",\n  \"version\": \"<string>\",\n  \"lastContact\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-bf633ec7-374d-4633-9164-7ab4b4fcc42b"
+            },
+            {
+              "id": "84e6f5b0-75c5-43aa-9db6-4412b1921396",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"deviceType\": \"VXMLServer\",\n  \"description\": \"<string>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/device",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-84e6f5b0-75c5-43aa-9db6-4412b1921396"
+            },
+            {
+              "id": "f6cacc9f-34f6-47e0-9dfa-7bf76d05f994",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"deviceType\": \"VXMLServer\",\n  \"description\": \"<string>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/device",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-f6cacc9f-34f6-47e0-9dfa-7bf76d05f994"
+            },
+            {
+              "id": "fc937054-f727-421c-b671-4a085298c991",
+              "name": "Device with this hostname or IP already exists",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"deviceType\": \"VXMLServer\",\n  \"description\": \"<string>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/device",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-fc937054-f727-421c-b671-4a085298c991"
+            },
+            {
+              "id": "dfc6b22d-1455-4d70-bf8d-583547e0eed9",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"ipAddress\": \"<ipv4>\",\n  \"deviceType\": \"VXMLServer\",\n  \"description\": \"<string>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/device",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:09.000Z",
+              "updatedAt": "2026-07-28T01:21:09.000Z",
+              "uid": "35240-dfc6b22d-1455-4d70-bf8d-583547e0eed9"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:09.000Z",
+          "updatedAt": "2026-07-28T01:21:09.000Z",
+          "uid": "35240-c0dca461-1b8f-4e5a-9ab6-6d40bbf37f86"
+        }
+      ],
+      "id": "3001ee3a-471c-4cdc-bbc5-cdcbe7a907bc",
+      "createdAt": "2026-07-28T01:21:09.000Z",
+      "updatedAt": "2026-07-28T01:21:09.000Z",
+      "uid": "35240-3001ee3a-471c-4cdc-bbc5-cdcbe7a907bc"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

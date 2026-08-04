@@ -1,0 +1,967 @@
+{
+  "info": {
+    "_postman_id": "60d241f0-a2e0-44e9-a25b-81eb02d51b90",
+    "name": "Cisco Voice Portal Administration Application Configuration Historical Reports API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:12.000Z",
+    "updatedAt": "2026-07-28T01:21:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-60d241f0-a2e0-44e9-a25b-81eb02d51b90"
+  },
+  "item": [
+    {
+      "name": "statistics",
+      "item": [
+        {
+          "name": "summary",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Get Call Summary Statistics",
+              "id": "eb3fdd28-7f9b-48f1-b458-84def7956e14",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/statistics/summary?startTime=<dateTime>&endTime=<dateTime>&interval=hourly&calledNumber=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "statistics",
+                    "summary"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Aggregation interval",
+                      "key": "interval",
+                      "value": "hourly"
+                    },
+                    {
+                      "description": "Filter by called number (DNIS)",
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves aggregated call summary statistics for a specified time period, including total calls, average handle time, abandonment rate, and self-service completion rate."
+              },
+              "response": [
+                {
+                  "id": "a16a024b-b125-4c7f-9c48-7c739b64e761",
+                  "name": "Summary statistics",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/summary?startTime=<dateTime>&endTime=<dateTime>&interval=hourly&calledNumber=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "summary"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Aggregation interval",
+                          "key": "interval",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "Filter by called number (DNIS)",
+                          "key": "calledNumber",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"interval\": \"<string>\",\n  \"intervals\": [\n    {\n      \"intervalStart\": \"<dateTime>\",\n      \"intervalEnd\": \"<dateTime>\",\n      \"totalCalls\": \"<integer>\",\n      \"completedCalls\": \"<integer>\",\n      \"abandonedCalls\": \"<integer>\",\n      \"transferredCalls\": \"<integer>\",\n      \"errorCalls\": \"<integer>\",\n      \"averageDuration\": \"<float>\",\n      \"averageSelfServiceDuration\": \"<float>\",\n      \"selfServiceCompletionRate\": \"<float>\",\n      \"abandonRate\": \"<float>\"\n    },\n    {\n      \"intervalStart\": \"<dateTime>\",\n      \"intervalEnd\": \"<dateTime>\",\n      \"totalCalls\": \"<integer>\",\n      \"completedCalls\": \"<integer>\",\n      \"abandonedCalls\": \"<integer>\",\n      \"transferredCalls\": \"<integer>\",\n      \"errorCalls\": \"<integer>\",\n      \"averageDuration\": \"<float>\",\n      \"averageSelfServiceDuration\": \"<float>\",\n      \"selfServiceCompletionRate\": \"<float>\",\n      \"abandonRate\": \"<float>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-a16a024b-b125-4c7f-9c48-7c739b64e761"
+                },
+                {
+                  "id": "a0c24e33-64fb-4cdd-aa98-bc279f9aff41",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/summary?startTime=<dateTime>&endTime=<dateTime>&interval=hourly&calledNumber=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "summary"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Aggregation interval",
+                          "key": "interval",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "Filter by called number (DNIS)",
+                          "key": "calledNumber",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-a0c24e33-64fb-4cdd-aa98-bc279f9aff41"
+                },
+                {
+                  "id": "2eee7fbd-b538-43f2-8c22-ef3eecfea5e7",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/summary?startTime=<dateTime>&endTime=<dateTime>&interval=hourly&calledNumber=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "summary"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Aggregation interval",
+                          "key": "interval",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "Filter by called number (DNIS)",
+                          "key": "calledNumber",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-2eee7fbd-b538-43f2-8c22-ef3eecfea5e7"
+                },
+                {
+                  "id": "94845bed-5c33-4bb7-af21-cdb2c12c709b",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/summary?startTime=<dateTime>&endTime=<dateTime>&interval=hourly&calledNumber=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "summary"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Aggregation interval",
+                          "key": "interval",
+                          "value": "hourly"
+                        },
+                        {
+                          "description": "Filter by called number (DNIS)",
+                          "key": "calledNumber",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-94845bed-5c33-4bb7-af21-cdb2c12c709b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:13.000Z",
+              "updatedAt": "2026-07-28T01:21:13.000Z",
+              "uid": "35240-eb3fdd28-7f9b-48f1-b458-84def7956e14"
+            }
+          ],
+          "id": "4a23c8b9-e2d0-4a79-9235-d0f61224dc43",
+          "createdAt": "2026-07-28T01:21:13.000Z",
+          "updatedAt": "2026-07-28T01:21:13.000Z",
+          "uid": "35240-4a23c8b9-e2d0-4a79-9235-d0f61224dc43"
+        },
+        {
+          "name": "application",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Get Vxml Application Statistics",
+              "id": "4a71506a-f1b7-4b84-bef7-75e2de94243c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/statistics/application?startTime=<dateTime>&endTime=<dateTime>&applicationName=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "statistics",
+                    "application"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter by specific application name",
+                      "key": "applicationName",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves usage and performance statistics for deployed VXML applications, including invocation counts, completion rates, and average interaction duration."
+              },
+              "response": [
+                {
+                  "id": "9a76df40-8b6f-441b-a2d6-cd17618324b3",
+                  "name": "Application statistics",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/application?startTime=<dateTime>&endTime=<dateTime>&applicationName=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "application"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter by specific application name",
+                          "key": "applicationName",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"applications\": [\n    {\n      \"applicationName\": \"<string>\",\n      \"totalInvocations\": \"<integer>\",\n      \"completedInvocations\": \"<integer>\",\n      \"errorInvocations\": \"<integer>\",\n      \"averageDuration\": \"<float>\",\n      \"completionRate\": \"<float>\",\n      \"errorRate\": \"<float>\"\n    },\n    {\n      \"applicationName\": \"<string>\",\n      \"totalInvocations\": \"<integer>\",\n      \"completedInvocations\": \"<integer>\",\n      \"errorInvocations\": \"<integer>\",\n      \"averageDuration\": \"<float>\",\n      \"completionRate\": \"<float>\",\n      \"errorRate\": \"<float>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-9a76df40-8b6f-441b-a2d6-cd17618324b3"
+                },
+                {
+                  "id": "bb7bf106-cbb4-4b07-bbc8-0213805fefb7",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/application?startTime=<dateTime>&endTime=<dateTime>&applicationName=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "application"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter by specific application name",
+                          "key": "applicationName",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-bb7bf106-cbb4-4b07-bbc8-0213805fefb7"
+                },
+                {
+                  "id": "34b01600-e397-4610-b8d6-32c594157821",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/application?startTime=<dateTime>&endTime=<dateTime>&applicationName=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "application"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter by specific application name",
+                          "key": "applicationName",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-34b01600-e397-4610-b8d6-32c594157821"
+                },
+                {
+                  "id": "c9cb8628-c1f0-40d0-88f3-b1eeda68034c",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/application?startTime=<dateTime>&endTime=<dateTime>&applicationName=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "application"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter by specific application name",
+                          "key": "applicationName",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-c9cb8628-c1f0-40d0-88f3-b1eeda68034c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:13.000Z",
+              "updatedAt": "2026-07-28T01:21:13.000Z",
+              "uid": "35240-4a71506a-f1b7-4b84-bef7-75e2de94243c"
+            }
+          ],
+          "id": "50073fae-0258-4a6d-b93e-3babca854e39",
+          "createdAt": "2026-07-28T01:21:13.000Z",
+          "updatedAt": "2026-07-28T01:21:13.000Z",
+          "uid": "35240-50073fae-0258-4a6d-b93e-3babca854e39"
+        },
+        {
+          "name": "server",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Get Per-server Statistics",
+              "id": "a066bdf5-baf5-40ab-941f-d7e95d58d4d2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/statistics/server?startTime=<dateTime>&endTime=<dateTime>&serverType=VXMLServer",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "statistics",
+                    "server"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter by server type",
+                      "key": "serverType",
+                      "value": "VXMLServer"
+                    }
+                  ]
+                },
+                "description": "Retrieves call processing statistics broken down by individual CVP server, useful for capacity planning and load monitoring."
+              },
+              "response": [
+                {
+                  "id": "8ca2bb4f-b943-415a-93c7-2aa4bbed4201",
+                  "name": "Server statistics",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/server?startTime=<dateTime>&endTime=<dateTime>&serverType=VXMLServer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "server"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter by server type",
+                          "key": "serverType",
+                          "value": "VXMLServer"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"servers\": [\n    {\n      \"serverId\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"serverType\": \"<string>\",\n      \"totalCalls\": \"<integer>\",\n      \"peakConcurrentCalls\": \"<integer>\",\n      \"averageConcurrentCalls\": \"<float>\",\n      \"cpuUsageAverage\": \"<float>\",\n      \"memoryUsageAverage\": \"<float>\"\n    },\n    {\n      \"serverId\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"serverType\": \"<string>\",\n      \"totalCalls\": \"<integer>\",\n      \"peakConcurrentCalls\": \"<integer>\",\n      \"averageConcurrentCalls\": \"<float>\",\n      \"cpuUsageAverage\": \"<float>\",\n      \"memoryUsageAverage\": \"<float>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-8ca2bb4f-b943-415a-93c7-2aa4bbed4201"
+                },
+                {
+                  "id": "02bbcf8b-74e2-4848-bce9-7c2ffd0dcf17",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/server?startTime=<dateTime>&endTime=<dateTime>&serverType=VXMLServer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "server"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter by server type",
+                          "key": "serverType",
+                          "value": "VXMLServer"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-02bbcf8b-74e2-4848-bce9-7c2ffd0dcf17"
+                },
+                {
+                  "id": "d10a6738-2e7c-49a6-9fc4-0adb795ef15b",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/server?startTime=<dateTime>&endTime=<dateTime>&serverType=VXMLServer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "server"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter by server type",
+                          "key": "serverType",
+                          "value": "VXMLServer"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-d10a6738-2e7c-49a6-9fc4-0adb795ef15b"
+                },
+                {
+                  "id": "8b40bec3-c004-4af4-8b5b-cc77467efc73",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/statistics/server?startTime=<dateTime>&endTime=<dateTime>&serverType=VXMLServer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "statistics",
+                        "server"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "startTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "endTime",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter by server type",
+                          "key": "serverType",
+                          "value": "VXMLServer"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:13.000Z",
+                  "updatedAt": "2026-07-28T01:21:13.000Z",
+                  "uid": "35240-8b40bec3-c004-4af4-8b5b-cc77467efc73"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:13.000Z",
+              "updatedAt": "2026-07-28T01:21:13.000Z",
+              "uid": "35240-a066bdf5-baf5-40ab-941f-d7e95d58d4d2"
+            }
+          ],
+          "id": "3c13cdf1-65f1-40c8-9586-4b6628825ca1",
+          "createdAt": "2026-07-28T01:21:13.000Z",
+          "updatedAt": "2026-07-28T01:21:13.000Z",
+          "uid": "35240-3c13cdf1-65f1-40c8-9586-4b6628825ca1"
+        }
+      ],
+      "id": "c878bfcb-53b6-4c75-ac50-be2c21ed84b2",
+      "createdAt": "2026-07-28T01:21:13.000Z",
+      "updatedAt": "2026-07-28T01:21:13.000Z",
+      "uid": "35240-c878bfcb-53b6-4c75-ac50-be2c21ed84b2"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

@@ -1,0 +1,657 @@
+{
+  "info": {
+    "_postman_id": "e9a38f14-a5b3-4e15-a6d9-dae705b1378b",
+    "name": "Cisco Voice Portal Administration Application Configuration Media Management API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:13.000Z",
+    "updatedAt": "2026-07-28T01:21:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e9a38f14-a5b3-4e15-a6d9-dae705b1378b"
+  },
+  "item": [
+    {
+      "name": "media",
+      "item": [
+        {
+          "name": "upload",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Upload a Media File",
+              "id": "36c85b52-99c6-4a72-a2c7-ec5c3a2132b8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) Audio file to upload",
+                      "key": "file",
+                      "type": "file",
+                      "value": null
+                    },
+                    {
+                      "description": "Target directory path",
+                      "key": "path",
+                      "value": "/",
+                      "type": "text"
+                    },
+                    {
+                      "description": "Whether to overwrite existing file",
+                      "key": "overwrite",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/media/upload",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "media",
+                    "upload"
+                  ]
+                },
+                "description": "Uploads an audio media file (WAV, AU, or VOX format) to the VXML Server for use in voice prompts and announcements."
+              },
+              "response": [
+                {
+                  "id": "2cb67a2d-0c3c-4131-8031-a504408ca6cf",
+                  "name": "Media file uploaded",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) Audio file to upload",
+                          "key": "file",
+                          "type": "file"
+                        },
+                        {
+                          "description": "Target directory path",
+                          "key": "path",
+                          "value": "/",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Whether to overwrite existing file",
+                          "key": "overwrite",
+                          "value": "false",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/media/upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "media",
+                        "upload"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"fileName\": \"<string>\",\n  \"filePath\": \"<string>\",\n  \"fileType\": \"au\",\n  \"fileSize\": \"<integer>\",\n  \"duration\": \"<float>\",\n  \"lastModified\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:14.000Z",
+                  "updatedAt": "2026-07-28T01:21:14.000Z",
+                  "uid": "35240-2cb67a2d-0c3c-4131-8031-a504408ca6cf"
+                },
+                {
+                  "id": "3fcdd005-a4bb-4947-a4ab-3ce2a2b83945",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) Audio file to upload",
+                          "key": "file",
+                          "type": "file"
+                        },
+                        {
+                          "description": "Target directory path",
+                          "key": "path",
+                          "value": "/",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Whether to overwrite existing file",
+                          "key": "overwrite",
+                          "value": "false",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/media/upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "media",
+                        "upload"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:14.000Z",
+                  "updatedAt": "2026-07-28T01:21:14.000Z",
+                  "uid": "35240-3fcdd005-a4bb-4947-a4ab-3ce2a2b83945"
+                },
+                {
+                  "id": "fc2dfe77-252d-4cb6-8ed7-a8148dd672b3",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) Audio file to upload",
+                          "key": "file",
+                          "type": "file"
+                        },
+                        {
+                          "description": "Target directory path",
+                          "key": "path",
+                          "value": "/",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Whether to overwrite existing file",
+                          "key": "overwrite",
+                          "value": "false",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/media/upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "media",
+                        "upload"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:14.000Z",
+                  "updatedAt": "2026-07-28T01:21:14.000Z",
+                  "uid": "35240-fc2dfe77-252d-4cb6-8ed7-a8148dd672b3"
+                },
+                {
+                  "id": "964e674e-c272-4a54-9c20-6f577328df08",
+                  "name": "File already exists and overwrite is false",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) Audio file to upload",
+                          "key": "file",
+                          "type": "file"
+                        },
+                        {
+                          "description": "Target directory path",
+                          "key": "path",
+                          "value": "/",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Whether to overwrite existing file",
+                          "key": "overwrite",
+                          "value": "false",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/media/upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "media",
+                        "upload"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:21:14.000Z",
+                  "updatedAt": "2026-07-28T01:21:14.000Z",
+                  "uid": "35240-964e674e-c272-4a54-9c20-6f577328df08"
+                },
+                {
+                  "id": "be1f8668-b388-41c5-87a2-48a3ae102bec",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) Audio file to upload",
+                          "key": "file",
+                          "type": "file"
+                        },
+                        {
+                          "description": "Target directory path",
+                          "key": "path",
+                          "value": "/",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Whether to overwrite existing file",
+                          "key": "overwrite",
+                          "value": "false",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/media/upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "media",
+                        "upload"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:14.000Z",
+                  "updatedAt": "2026-07-28T01:21:14.000Z",
+                  "uid": "35240-be1f8668-b388-41c5-87a2-48a3ae102bec"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:14.000Z",
+              "updatedAt": "2026-07-28T01:21:14.000Z",
+              "uid": "35240-36c85b52-99c6-4a72-a2c7-ec5c3a2132b8"
+            }
+          ],
+          "id": "80c416fd-8bfd-4fe7-ad76-c86255ba5436",
+          "createdAt": "2026-07-28T01:21:14.000Z",
+          "updatedAt": "2026-07-28T01:21:14.000Z",
+          "uid": "35240-80c416fd-8bfd-4fe7-ad76-c86255ba5436"
+        },
+        {
+          "name": "Cisco Voice Portal List Media Files",
+          "id": "0f0ab696-a97f-478e-ac65-1f0e2de00a00",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/media?path=/&type=vox",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "media"
+              ],
+              "query": [
+                {
+                  "description": "Directory path to list media from",
+                  "key": "path",
+                  "value": "/"
+                },
+                {
+                  "description": "Filter by media type",
+                  "key": "type",
+                  "value": "vox"
+                }
+              ]
+            },
+            "description": "Retrieves a list of media files (audio prompts) available on the VXML Server. Media files are used by VXML applications and micro-applications for playing prompts to callers."
+          },
+          "response": [
+            {
+              "id": "c7d53e56-3be2-4fbe-8925-b118ab567ffa",
+              "name": "List of media files",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/media?path=/&type=vox",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "media"
+                  ],
+                  "query": [
+                    {
+                      "description": "Directory path to list media from",
+                      "key": "path",
+                      "value": "/"
+                    },
+                    {
+                      "description": "Filter by media type",
+                      "key": "type",
+                      "value": "vox"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"fileName\": \"<string>\",\n    \"filePath\": \"<string>\",\n    \"fileType\": \"wav\",\n    \"fileSize\": \"<integer>\",\n    \"duration\": \"<float>\",\n    \"lastModified\": \"<dateTime>\"\n  },\n  {\n    \"fileName\": \"<string>\",\n    \"filePath\": \"<string>\",\n    \"fileType\": \"au\",\n    \"fileSize\": \"<integer>\",\n    \"duration\": \"<float>\",\n    \"lastModified\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T01:21:14.000Z",
+              "updatedAt": "2026-07-28T01:21:14.000Z",
+              "uid": "35240-c7d53e56-3be2-4fbe-8925-b118ab567ffa"
+            },
+            {
+              "id": "45a021f9-b809-43b0-9fdf-4ebb0d5261ae",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/media?path=/&type=vox",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "media"
+                  ],
+                  "query": [
+                    {
+                      "description": "Directory path to list media from",
+                      "key": "path",
+                      "value": "/"
+                    },
+                    {
+                      "description": "Filter by media type",
+                      "key": "type",
+                      "value": "vox"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:14.000Z",
+              "updatedAt": "2026-07-28T01:21:14.000Z",
+              "uid": "35240-45a021f9-b809-43b0-9fdf-4ebb0d5261ae"
+            },
+            {
+              "id": "d54062b7-f3ff-47ee-9a04-a102cc3a443c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/media?path=/&type=vox",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "media"
+                  ],
+                  "query": [
+                    {
+                      "description": "Directory path to list media from",
+                      "key": "path",
+                      "value": "/"
+                    },
+                    {
+                      "description": "Filter by media type",
+                      "key": "type",
+                      "value": "vox"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:14.000Z",
+              "updatedAt": "2026-07-28T01:21:14.000Z",
+              "uid": "35240-d54062b7-f3ff-47ee-9a04-a102cc3a443c"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:14.000Z",
+          "updatedAt": "2026-07-28T01:21:14.000Z",
+          "uid": "35240-0f0ab696-a97f-478e-ac65-1f0e2de00a00"
+        }
+      ],
+      "id": "56f15d64-fc9b-42df-aeaa-75c561b47ce7",
+      "createdAt": "2026-07-28T01:21:14.000Z",
+      "updatedAt": "2026-07-28T01:21:14.000Z",
+      "uid": "35240-56f15d64-fc9b-42df-aeaa-75c561b47ce7"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

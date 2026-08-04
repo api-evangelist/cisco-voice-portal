@@ -1,0 +1,574 @@
+{
+  "info": {
+    "_postman_id": "4e345210-f066-476a-a95e-b2956f50c2f7",
+    "name": "Cisco Voice Portal Administration Application Configuration Session Monitoring API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:18.000Z",
+    "updatedAt": "2026-07-28T01:21:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4e345210-f066-476a-a95e-b2956f50c2f7"
+  },
+  "item": [
+    {
+      "name": "application",
+      "item": [
+        {
+          "name": "{applicationName}",
+          "item": [
+            {
+              "name": "sessions",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal List Active Application Sessions",
+                  "id": "9a4453d6-284e-4831-ab91-684aaaa7abcb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationName/sessions?limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationName",
+                        "sessions"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "519f1b9c-bc7e-46fa-a6aa-75f33002127e",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the deployed VXML application"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of active call sessions currently being handled by the specified VXML application."
+                  },
+                  "response": [
+                    {
+                      "id": "78a50168-dff5-4762-9ee4-1cd30b368e6f",
+                      "name": "Active sessions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/sessions?limit=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "sessions"
+                          ],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "100"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"totalSessions\": \"<integer>\",\n  \"sessions\": [\n    {\n      \"sessionId\": \"<string>\",\n      \"callGuid\": \"<string>\",\n      \"applicationName\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"duration\": \"<integer>\",\n      \"currentElement\": \"<string>\",\n      \"callingNumber\": \"<string>\",\n      \"calledNumber\": \"<string>\"\n    },\n    {\n      \"sessionId\": \"<string>\",\n      \"callGuid\": \"<string>\",\n      \"applicationName\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"duration\": \"<integer>\",\n      \"currentElement\": \"<string>\",\n      \"callingNumber\": \"<string>\",\n      \"calledNumber\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:21:19.000Z",
+                      "updatedAt": "2026-07-28T01:21:19.000Z",
+                      "uid": "35240-78a50168-dff5-4762-9ee4-1cd30b368e6f"
+                    },
+                    {
+                      "id": "d24d9eed-825e-41b7-b4cc-ef20be4b9bc7",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/sessions?limit=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "sessions"
+                          ],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "100"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:19.000Z",
+                      "updatedAt": "2026-07-28T01:21:19.000Z",
+                      "uid": "35240-d24d9eed-825e-41b7-b4cc-ef20be4b9bc7"
+                    },
+                    {
+                      "id": "240eca7c-41dd-40d5-8dae-f4909a92bef6",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/sessions?limit=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "sessions"
+                          ],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "100"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:19.000Z",
+                      "updatedAt": "2026-07-28T01:21:19.000Z",
+                      "uid": "35240-240eca7c-41dd-40d5-8dae-f4909a92bef6"
+                    },
+                    {
+                      "id": "9670808e-9adb-46e6-99d7-03b347bd2625",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/sessions?limit=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "sessions"
+                          ],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "100"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:19.000Z",
+                      "updatedAt": "2026-07-28T01:21:19.000Z",
+                      "uid": "35240-9670808e-9adb-46e6-99d7-03b347bd2625"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-9a4453d6-284e-4831-ab91-684aaaa7abcb"
+                }
+              ],
+              "id": "a7c09599-197f-4829-a975-e6fca2e9ef9d",
+              "createdAt": "2026-07-28T01:21:19.000Z",
+              "updatedAt": "2026-07-28T01:21:19.000Z",
+              "uid": "35240-a7c09599-197f-4829-a975-e6fca2e9ef9d"
+            }
+          ],
+          "id": "eecd2116-8975-4d40-8bdc-372b269181fb",
+          "createdAt": "2026-07-28T01:21:19.000Z",
+          "updatedAt": "2026-07-28T01:21:19.000Z",
+          "uid": "35240-eecd2116-8975-4d40-8bdc-372b269181fb"
+        }
+      ],
+      "id": "f73a899c-a733-4acf-b607-888b5e0e38e0",
+      "createdAt": "2026-07-28T01:21:19.000Z",
+      "updatedAt": "2026-07-28T01:21:19.000Z",
+      "uid": "35240-f73a899c-a733-4acf-b607-888b5e0e38e0"
+    },
+    {
+      "name": "session",
+      "item": [
+        {
+          "name": "{sessionId}",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Get Vxml Session Details",
+              "id": "33d93771-0e43-4fde-a8e8-6b1a2f6f1274",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/session/:sessionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "session",
+                    ":sessionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fcbafa2c-ca8d-4f70-8d62-b2abeb96d45b",
+                      "key": "sessionId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves detailed information about an active VXML session, including the current element being executed, session variables, and execution history."
+              },
+              "response": [
+                {
+                  "id": "be335949-6631-4a2f-b0b4-6d0a2b9cc30a",
+                  "name": "Session details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/session/:sessionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        ":sessionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sessionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"sessionId\": \"<string>\",\n  \"callGuid\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"duration\": \"<integer>\",\n  \"currentElement\": \"<string>\",\n  \"callingNumber\": \"<string>\",\n  \"calledNumber\": \"<string>\",\n  \"sessionVariables\": {\n    \"qui0\": \"<string>\"\n  },\n  \"elementHistory\": [\n    {\n      \"elementName\": \"<string>\",\n      \"enteredAt\": \"<dateTime>\",\n      \"exitedAt\": \"<dateTime>\",\n      \"exitState\": \"<string>\"\n    },\n    {\n      \"elementName\": \"<string>\",\n      \"enteredAt\": \"<dateTime>\",\n      \"exitedAt\": \"<dateTime>\",\n      \"exitState\": \"<string>\"\n    }\n  ],\n  \"lastUserInput\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-be335949-6631-4a2f-b0b4-6d0a2b9cc30a"
+                },
+                {
+                  "id": "ce19a12d-3baa-474e-ba44-b3d53bb88dc7",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/session/:sessionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        ":sessionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sessionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-ce19a12d-3baa-474e-ba44-b3d53bb88dc7"
+                },
+                {
+                  "id": "7212e207-cc15-4a8d-9286-4313d826be21",
+                  "name": "Session not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/session/:sessionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        ":sessionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sessionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-7212e207-cc15-4a8d-9286-4313d826be21"
+                },
+                {
+                  "id": "6c34f7e3-a8f6-43d9-9cdc-be33e9cf1be2",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/session/:sessionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        ":sessionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sessionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:19.000Z",
+                  "updatedAt": "2026-07-28T01:21:19.000Z",
+                  "uid": "35240-6c34f7e3-a8f6-43d9-9cdc-be33e9cf1be2"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:19.000Z",
+              "updatedAt": "2026-07-28T01:21:19.000Z",
+              "uid": "35240-33d93771-0e43-4fde-a8e8-6b1a2f6f1274"
+            }
+          ],
+          "id": "45573686-c40e-4de1-bd8f-ffe420294eba",
+          "createdAt": "2026-07-28T01:21:19.000Z",
+          "updatedAt": "2026-07-28T01:21:19.000Z",
+          "uid": "35240-45573686-c40e-4de1-bd8f-ffe420294eba"
+        }
+      ],
+      "id": "a59d0633-9293-4fa1-9633-3177749d8136",
+      "createdAt": "2026-07-28T01:21:19.000Z",
+      "updatedAt": "2026-07-28T01:21:19.000Z",
+      "uid": "35240-a59d0633-9293-4fa1-9633-3177749d8136"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

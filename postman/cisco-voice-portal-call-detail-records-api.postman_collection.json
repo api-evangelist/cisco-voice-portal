@@ -1,0 +1,989 @@
+{
+  "info": {
+    "_postman_id": "fb64ffc5-b0be-4b31-9525-59e55b57e38b",
+    "name": "Cisco Voice Portal Administration Application Configuration Call Detail Records API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:03.000Z",
+    "updatedAt": "2026-07-28T01:21:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fb64ffc5-b0be-4b31-9525-59e55b57e38b"
+  },
+  "item": [
+    {
+      "name": "cdr",
+      "item": [
+        {
+          "name": "{callGuid}",
+          "item": [
+            {
+              "name": "legs",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Get Call Legs for a Call",
+                  "id": "02a5952d-6d36-4874-a349-d34c7c983997",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cdr/:callGuid/legs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cdr",
+                        ":callGuid",
+                        "legs"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9d76dc2b-0df7-4bc9-aadf-b10ab19518b4",
+                          "key": "callGuid",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves all individual call legs associated with a specific call. A call may have multiple legs representing transfers, conferences, or application hand-offs within the CVP system."
+                  },
+                  "response": [
+                    {
+                      "id": "22c93abb-cdb0-47e7-95db-15afdb5140f4",
+                      "name": "Call legs",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cdr/:callGuid/legs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cdr",
+                            ":callGuid",
+                            "legs"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"legId\": \"<string>\",\n    \"callGuid\": \"<string>\",\n    \"legType\": \"conference\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"duration\": \"<integer>\",\n    \"fromUri\": \"<string>\",\n    \"toUri\": \"<string>\",\n    \"serverHostname\": \"<string>\",\n    \"sipResponseCode\": \"<integer>\"\n  },\n  {\n    \"legId\": \"<string>\",\n    \"callGuid\": \"<string>\",\n    \"legType\": \"outbound\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"duration\": \"<integer>\",\n    \"fromUri\": \"<string>\",\n    \"toUri\": \"<string>\",\n    \"serverHostname\": \"<string>\",\n    \"sipResponseCode\": \"<integer>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:21:04.000Z",
+                      "updatedAt": "2026-07-28T01:21:04.000Z",
+                      "uid": "35240-22c93abb-cdb0-47e7-95db-15afdb5140f4"
+                    },
+                    {
+                      "id": "4cb2ca4c-5bdd-4dd8-ba23-bee00a019c20",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cdr/:callGuid/legs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cdr",
+                            ":callGuid",
+                            "legs"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:04.000Z",
+                      "updatedAt": "2026-07-28T01:21:04.000Z",
+                      "uid": "35240-4cb2ca4c-5bdd-4dd8-ba23-bee00a019c20"
+                    },
+                    {
+                      "id": "24944e0c-09db-49c6-a981-28ee0c282625",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cdr/:callGuid/legs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cdr",
+                            ":callGuid",
+                            "legs"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:04.000Z",
+                      "updatedAt": "2026-07-28T01:21:04.000Z",
+                      "uid": "35240-24944e0c-09db-49c6-a981-28ee0c282625"
+                    },
+                    {
+                      "id": "4722afe9-3db6-4373-a7c0-8b035fd32c9f",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/cdr/:callGuid/legs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "cdr",
+                            ":callGuid",
+                            "legs"
+                          ],
+                          "variable": [
+                            {
+                              "key": "callGuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:04.000Z",
+                      "updatedAt": "2026-07-28T01:21:04.000Z",
+                      "uid": "35240-4722afe9-3db6-4373-a7c0-8b035fd32c9f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:04.000Z",
+                  "updatedAt": "2026-07-28T01:21:04.000Z",
+                  "uid": "35240-02a5952d-6d36-4874-a349-d34c7c983997"
+                }
+              ],
+              "id": "df14b19e-3b48-4a0b-bdfe-041f1d3cdeb2",
+              "createdAt": "2026-07-28T01:21:04.000Z",
+              "updatedAt": "2026-07-28T01:21:04.000Z",
+              "uid": "35240-df14b19e-3b48-4a0b-bdfe-041f1d3cdeb2"
+            },
+            {
+              "name": "Cisco Voice Portal Get a Specific Call Detail Record",
+              "id": "941b448e-a657-4238-9e83-11f74fabe8e6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cdr/:callGuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cdr",
+                    ":callGuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "459d31a0-a1f8-4fb6-b220-d3a7c4690005",
+                      "key": "callGuid",
+                      "value": "<string>",
+                      "description": "(Required) Globally unique call identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieves the complete call detail record for a specific call, identified by its globally unique identifier (GUID). Includes all call legs, application interactions, and ECC variables."
+              },
+              "response": [
+                {
+                  "id": "b52336be-ef31-40c0-b102-7286230627c9",
+                  "name": "Call detail record",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cdr/:callGuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cdr",
+                        ":callGuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "callGuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"callGuid\": \"<string>\",\n  \"callStartTime\": \"<dateTime>\",\n  \"callEndTime\": \"<dateTime>\",\n  \"callingNumber\": \"<string>\",\n  \"calledNumber\": \"<string>\",\n  \"callResult\": \"completed\",\n  \"callDuration\": \"<integer>\",\n  \"selfServiceDuration\": \"<integer>\",\n  \"queueDuration\": \"<integer>\",\n  \"applicationName\": \"<string>\",\n  \"callServerHostname\": \"<string>\",\n  \"vxmlServerHostname\": \"<string>\",\n  \"sipCallId\": \"<string>\",\n  \"icmCallKey\": \"<string>\",\n  \"eccVariables\": {\n    \"non_cb\": \"<string>\",\n    \"eu__45\": \"<string>\",\n    \"nostruda\": \"<string>\",\n    \"etea2\": \"<string>\"\n  },\n  \"transferDestination\": \"<string>\",\n  \"errorCode\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:04.000Z",
+                  "updatedAt": "2026-07-28T01:21:04.000Z",
+                  "uid": "35240-b52336be-ef31-40c0-b102-7286230627c9"
+                },
+                {
+                  "id": "23940971-b962-41e0-aed1-64c1d5acd011",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cdr/:callGuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cdr",
+                        ":callGuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "callGuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:04.000Z",
+                  "updatedAt": "2026-07-28T01:21:04.000Z",
+                  "uid": "35240-23940971-b962-41e0-aed1-64c1d5acd011"
+                },
+                {
+                  "id": "1f2c4c77-7875-4666-b1e1-958b7ecbdd47",
+                  "name": "Requested resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cdr/:callGuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cdr",
+                        ":callGuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "callGuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:04.000Z",
+                  "updatedAt": "2026-07-28T01:21:04.000Z",
+                  "uid": "35240-1f2c4c77-7875-4666-b1e1-958b7ecbdd47"
+                },
+                {
+                  "id": "6b6429e8-c5f0-40b0-b077-d361258ca7bc",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cdr/:callGuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cdr",
+                        ":callGuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "callGuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:04.000Z",
+                  "updatedAt": "2026-07-28T01:21:04.000Z",
+                  "uid": "35240-6b6429e8-c5f0-40b0-b077-d361258ca7bc"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:04.000Z",
+              "updatedAt": "2026-07-28T01:21:04.000Z",
+              "uid": "35240-941b448e-a657-4238-9e83-11f74fabe8e6"
+            }
+          ],
+          "id": "dd08ebf6-08c0-4ec9-b823-de675e6290f0",
+          "createdAt": "2026-07-28T01:21:04.000Z",
+          "updatedAt": "2026-07-28T01:21:04.000Z",
+          "uid": "35240-dd08ebf6-08c0-4ec9-b823-de675e6290f0"
+        },
+        {
+          "name": "Cisco Voice Portal Query Call Detail Records",
+          "id": "7beece8f-3032-4cce-9bf2-73c03bc4f6b4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cdr?startTime=<dateTime>&endTime=<dateTime>&calledNumber=<string>&callingNumber=<string>&callGuid=<string>&callResult=abandoned&offset=0&limit=100&sortBy=callStartTime&sortOrder=desc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cdr"
+              ],
+              "query": [
+                {
+                  "description": "(Required) Start of the query time range (ISO 8601)",
+                  "key": "startTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "(Required) End of the query time range (ISO 8601)",
+                  "key": "endTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Filter by called number (DNIS)",
+                  "key": "calledNumber",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by calling number (ANI)",
+                  "key": "callingNumber",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by unique call GUID",
+                  "key": "callGuid",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by call result",
+                  "key": "callResult",
+                  "value": "abandoned"
+                },
+                {
+                  "description": "Pagination offset",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "description": "Field to sort by",
+                  "key": "sortBy",
+                  "value": "callStartTime"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "desc"
+                }
+              ]
+            },
+            "description": "Retrieves call detail records (CDRs) based on specified filter criteria. CDRs contain comprehensive information about each call processed by CVP including timing, routing decisions, application interactions, and outcome."
+          },
+          "response": [
+            {
+              "id": "3c706c89-fbd7-4800-8370-2cfc1aabaff0",
+              "name": "Call detail records matching the query",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cdr?startTime=<dateTime>&endTime=<dateTime>&calledNumber=<string>&callingNumber=<string>&callGuid=<string>&callResult=abandoned&offset=0&limit=100&sortBy=callStartTime&sortOrder=desc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cdr"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Start of the query time range (ISO 8601)",
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "(Required) End of the query time range (ISO 8601)",
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter by called number (DNIS)",
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by calling number (ANI)",
+                      "key": "callingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by unique call GUID",
+                      "key": "callGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by call result",
+                      "key": "callResult",
+                      "value": "abandoned"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Field to sort by",
+                      "key": "sortBy",
+                      "value": "callStartTime"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalRecords\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"records\": [\n    {\n      \"callGuid\": \"<string>\",\n      \"callStartTime\": \"<dateTime>\",\n      \"callEndTime\": \"<dateTime>\",\n      \"callingNumber\": \"<string>\",\n      \"calledNumber\": \"<string>\",\n      \"callResult\": \"error\",\n      \"callDuration\": \"<integer>\",\n      \"selfServiceDuration\": \"<integer>\",\n      \"queueDuration\": \"<integer>\",\n      \"applicationName\": \"<string>\",\n      \"callServerHostname\": \"<string>\",\n      \"vxmlServerHostname\": \"<string>\",\n      \"sipCallId\": \"<string>\",\n      \"icmCallKey\": \"<string>\",\n      \"eccVariables\": {\n        \"occaecat1\": \"<string>\"\n      },\n      \"transferDestination\": \"<string>\",\n      \"errorCode\": \"<string>\"\n    },\n    {\n      \"callGuid\": \"<string>\",\n      \"callStartTime\": \"<dateTime>\",\n      \"callEndTime\": \"<dateTime>\",\n      \"callingNumber\": \"<string>\",\n      \"calledNumber\": \"<string>\",\n      \"callResult\": \"transferred\",\n      \"callDuration\": \"<integer>\",\n      \"selfServiceDuration\": \"<integer>\",\n      \"queueDuration\": \"<integer>\",\n      \"applicationName\": \"<string>\",\n      \"callServerHostname\": \"<string>\",\n      \"vxmlServerHostname\": \"<string>\",\n      \"sipCallId\": \"<string>\",\n      \"icmCallKey\": \"<string>\",\n      \"eccVariables\": {\n        \"voluptate_daf\": \"<string>\",\n        \"do93\": \"<string>\",\n        \"incididunt_e\": \"<string>\",\n        \"adipisicing_e7\": \"<string>\"\n      },\n      \"transferDestination\": \"<string>\",\n      \"errorCode\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:21:04.000Z",
+              "updatedAt": "2026-07-28T01:21:04.000Z",
+              "uid": "35240-3c706c89-fbd7-4800-8370-2cfc1aabaff0"
+            },
+            {
+              "id": "02df8b71-f05c-4ba3-8d05-db6d6e9b8cfd",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cdr?startTime=<dateTime>&endTime=<dateTime>&calledNumber=<string>&callingNumber=<string>&callGuid=<string>&callResult=abandoned&offset=0&limit=100&sortBy=callStartTime&sortOrder=desc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cdr"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Start of the query time range (ISO 8601)",
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "(Required) End of the query time range (ISO 8601)",
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter by called number (DNIS)",
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by calling number (ANI)",
+                      "key": "callingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by unique call GUID",
+                      "key": "callGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by call result",
+                      "key": "callResult",
+                      "value": "abandoned"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Field to sort by",
+                      "key": "sortBy",
+                      "value": "callStartTime"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:04.000Z",
+              "updatedAt": "2026-07-28T01:21:04.000Z",
+              "uid": "35240-02df8b71-f05c-4ba3-8d05-db6d6e9b8cfd"
+            },
+            {
+              "id": "059c5933-2760-49b7-99c7-f401354afd0e",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cdr?startTime=<dateTime>&endTime=<dateTime>&calledNumber=<string>&callingNumber=<string>&callGuid=<string>&callResult=abandoned&offset=0&limit=100&sortBy=callStartTime&sortOrder=desc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cdr"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Start of the query time range (ISO 8601)",
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "(Required) End of the query time range (ISO 8601)",
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter by called number (DNIS)",
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by calling number (ANI)",
+                      "key": "callingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by unique call GUID",
+                      "key": "callGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by call result",
+                      "key": "callResult",
+                      "value": "abandoned"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Field to sort by",
+                      "key": "sortBy",
+                      "value": "callStartTime"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:04.000Z",
+              "updatedAt": "2026-07-28T01:21:04.000Z",
+              "uid": "35240-059c5933-2760-49b7-99c7-f401354afd0e"
+            },
+            {
+              "id": "a67dc150-4bca-4ee7-bde7-8b821c79b451",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cdr?startTime=<dateTime>&endTime=<dateTime>&calledNumber=<string>&callingNumber=<string>&callGuid=<string>&callResult=abandoned&offset=0&limit=100&sortBy=callStartTime&sortOrder=desc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cdr"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Start of the query time range (ISO 8601)",
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "(Required) End of the query time range (ISO 8601)",
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter by called number (DNIS)",
+                      "key": "calledNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by calling number (ANI)",
+                      "key": "callingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by unique call GUID",
+                      "key": "callGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by call result",
+                      "key": "callResult",
+                      "value": "abandoned"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Field to sort by",
+                      "key": "sortBy",
+                      "value": "callStartTime"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:04.000Z",
+              "updatedAt": "2026-07-28T01:21:04.000Z",
+              "uid": "35240-a67dc150-4bca-4ee7-bde7-8b821c79b451"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:04.000Z",
+          "updatedAt": "2026-07-28T01:21:04.000Z",
+          "uid": "35240-7beece8f-3032-4cce-9bf2-73c03bc4f6b4"
+        }
+      ],
+      "id": "50404b29-7d26-402a-ba38-03729d93bba6",
+      "createdAt": "2026-07-28T01:21:04.000Z",
+      "updatedAt": "2026-07-28T01:21:04.000Z",
+      "uid": "35240-50404b29-7d26-402a-ba38-03729d93bba6"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

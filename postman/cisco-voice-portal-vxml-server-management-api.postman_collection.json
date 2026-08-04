@@ -1,0 +1,830 @@
+{
+  "info": {
+    "_postman_id": "d19d5a6a-6502-4b10-949d-08887c1eff7c",
+    "name": "Cisco Voice Portal Administration Application Configuration VXML Server Management API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:58.000Z",
+    "updatedAt": "2026-07-28T01:21:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d19d5a6a-6502-4b10-949d-08887c1eff7c"
+  },
+  "item": [
+    {
+      "name": "vxmlserver",
+      "item": [
+        {
+          "name": "{serverId}",
+          "item": [
+            {
+              "name": "config",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Get Vxml Server Configuration",
+                  "id": "80471bfd-464d-47f4-9588-31737be6c6f3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vxmlserver/:serverId/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vxmlserver",
+                        ":serverId",
+                        "config"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0db5be4d-3e53-4856-b461-8f1135a8f6d3",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) Server identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the configuration of a specific VXML Server, including application settings, thread pool configuration, and VXML browser settings."
+                  },
+                  "response": [
+                    {
+                      "id": "16b9c7b1-b204-4a7d-b7fa-6500af0b60db",
+                      "name": "VXML Server configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/vxmlserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vxmlserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"serverId\": \"<string>\",\n  \"http\": {\n    \"port\": 7000,\n    \"httpsPort\": 7443,\n    \"enableHttps\": true\n  },\n  \"threadPool\": {\n    \"minThreads\": 5,\n    \"maxThreads\": 500\n  },\n  \"vxmlBrowser\": {\n    \"fetchTimeout\": 30000,\n    \"maxDocumentSize\": \"<integer>\",\n    \"defaultLanguage\": \"en-US\"\n  },\n  \"logging\": {\n    \"level\": \"INFO\",\n    \"maxLogFileSize\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:21:58.000Z",
+                      "updatedAt": "2026-07-28T01:21:58.000Z",
+                      "uid": "35240-16b9c7b1-b204-4a7d-b7fa-6500af0b60db"
+                    },
+                    {
+                      "id": "be4230a5-fd2a-4299-890b-7ec13ec53405",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/vxmlserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vxmlserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:58.000Z",
+                      "updatedAt": "2026-07-28T01:21:58.000Z",
+                      "uid": "35240-be4230a5-fd2a-4299-890b-7ec13ec53405"
+                    },
+                    {
+                      "id": "3bed093d-8518-4028-97df-e4c9f93c8f68",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/vxmlserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vxmlserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:58.000Z",
+                      "updatedAt": "2026-07-28T01:21:58.000Z",
+                      "uid": "35240-3bed093d-8518-4028-97df-e4c9f93c8f68"
+                    },
+                    {
+                      "id": "c75c558e-4426-426c-afe8-33405e284a2d",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/vxmlserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vxmlserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:58.000Z",
+                      "updatedAt": "2026-07-28T01:21:58.000Z",
+                      "uid": "35240-c75c558e-4426-426c-afe8-33405e284a2d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:58.000Z",
+                  "updatedAt": "2026-07-28T01:21:58.000Z",
+                  "uid": "35240-80471bfd-464d-47f4-9588-31737be6c6f3"
+                },
+                {
+                  "name": "Cisco Voice Portal Update Vxml Server Configuration",
+                  "id": "b5b506fa-5eeb-410a-84f9-7f0a064dbcad",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"serverId\": \"<string>\",\n  \"http\": {\n    \"port\": 7000,\n    \"httpsPort\": 7443,\n    \"enableHttps\": true\n  },\n  \"threadPool\": {\n    \"minThreads\": 5,\n    \"maxThreads\": 500\n  },\n  \"vxmlBrowser\": {\n    \"fetchTimeout\": 30000,\n    \"maxDocumentSize\": \"<integer>\",\n    \"defaultLanguage\": \"en-US\"\n  },\n  \"logging\": {\n    \"level\": \"INFO\",\n    \"maxLogFileSize\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/vxmlserver/:serverId/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vxmlserver",
+                        ":serverId",
+                        "config"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ff6f5ea1-5c18-406e-836b-24d16f886f47",
+                          "key": "serverId",
+                          "value": "<string>",
+                          "description": "(Required) Server identifier"
+                        }
+                      ]
+                    },
+                    "description": "Updates the configuration of a specific VXML Server. Application deployment changes take effect immediately; server configuration changes may require a restart."
+                  },
+                  "response": [
+                    {
+                      "id": "b786eb9d-ac75-40a1-a2f0-c860b73284ae",
+                      "name": "Configuration updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverId\": \"<string>\",\n  \"http\": {\n    \"port\": 7000,\n    \"httpsPort\": 7443,\n    \"enableHttps\": true\n  },\n  \"threadPool\": {\n    \"minThreads\": 5,\n    \"maxThreads\": 500\n  },\n  \"vxmlBrowser\": {\n    \"fetchTimeout\": 30000,\n    \"maxDocumentSize\": \"<integer>\",\n    \"defaultLanguage\": \"en-US\"\n  },\n  \"logging\": {\n    \"level\": \"INFO\",\n    \"maxLogFileSize\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/vxmlserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vxmlserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"serverId\": \"<string>\",\n  \"http\": {\n    \"port\": 7000,\n    \"httpsPort\": 7443,\n    \"enableHttps\": true\n  },\n  \"threadPool\": {\n    \"minThreads\": 5,\n    \"maxThreads\": 500\n  },\n  \"vxmlBrowser\": {\n    \"fetchTimeout\": 30000,\n    \"maxDocumentSize\": \"<integer>\",\n    \"defaultLanguage\": \"en-US\"\n  },\n  \"logging\": {\n    \"level\": \"INFO\",\n    \"maxLogFileSize\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:21:58.000Z",
+                      "updatedAt": "2026-07-28T01:21:58.000Z",
+                      "uid": "35240-b786eb9d-ac75-40a1-a2f0-c860b73284ae"
+                    },
+                    {
+                      "id": "3fda9d95-f6be-4ebc-9c03-d14533d00748",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverId\": \"<string>\",\n  \"http\": {\n    \"port\": 7000,\n    \"httpsPort\": 7443,\n    \"enableHttps\": true\n  },\n  \"threadPool\": {\n    \"minThreads\": 5,\n    \"maxThreads\": 500\n  },\n  \"vxmlBrowser\": {\n    \"fetchTimeout\": 30000,\n    \"maxDocumentSize\": \"<integer>\",\n    \"defaultLanguage\": \"en-US\"\n  },\n  \"logging\": {\n    \"level\": \"INFO\",\n    \"maxLogFileSize\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/vxmlserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vxmlserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:58.000Z",
+                      "updatedAt": "2026-07-28T01:21:58.000Z",
+                      "uid": "35240-3fda9d95-f6be-4ebc-9c03-d14533d00748"
+                    },
+                    {
+                      "id": "e81a0cbb-5661-412a-89fc-75a2f9d64830",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverId\": \"<string>\",\n  \"http\": {\n    \"port\": 7000,\n    \"httpsPort\": 7443,\n    \"enableHttps\": true\n  },\n  \"threadPool\": {\n    \"minThreads\": 5,\n    \"maxThreads\": 500\n  },\n  \"vxmlBrowser\": {\n    \"fetchTimeout\": 30000,\n    \"maxDocumentSize\": \"<integer>\",\n    \"defaultLanguage\": \"en-US\"\n  },\n  \"logging\": {\n    \"level\": \"INFO\",\n    \"maxLogFileSize\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/vxmlserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vxmlserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:58.000Z",
+                      "updatedAt": "2026-07-28T01:21:58.000Z",
+                      "uid": "35240-e81a0cbb-5661-412a-89fc-75a2f9d64830"
+                    },
+                    {
+                      "id": "bfe850ff-61a6-4f90-b078-8cc59bb06c31",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverId\": \"<string>\",\n  \"http\": {\n    \"port\": 7000,\n    \"httpsPort\": 7443,\n    \"enableHttps\": true\n  },\n  \"threadPool\": {\n    \"minThreads\": 5,\n    \"maxThreads\": 500\n  },\n  \"vxmlBrowser\": {\n    \"fetchTimeout\": 30000,\n    \"maxDocumentSize\": \"<integer>\",\n    \"defaultLanguage\": \"en-US\"\n  },\n  \"logging\": {\n    \"level\": \"INFO\",\n    \"maxLogFileSize\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/vxmlserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vxmlserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:58.000Z",
+                      "updatedAt": "2026-07-28T01:21:58.000Z",
+                      "uid": "35240-bfe850ff-61a6-4f90-b078-8cc59bb06c31"
+                    },
+                    {
+                      "id": "1711c7e3-b577-4063-ab4f-dc8404b3d04f",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverId\": \"<string>\",\n  \"http\": {\n    \"port\": 7000,\n    \"httpsPort\": 7443,\n    \"enableHttps\": true\n  },\n  \"threadPool\": {\n    \"minThreads\": 5,\n    \"maxThreads\": 500\n  },\n  \"vxmlBrowser\": {\n    \"fetchTimeout\": 30000,\n    \"maxDocumentSize\": \"<integer>\",\n    \"defaultLanguage\": \"en-US\"\n  },\n  \"logging\": {\n    \"level\": \"INFO\",\n    \"maxLogFileSize\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/vxmlserver/:serverId/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vxmlserver",
+                            ":serverId",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:58.000Z",
+                      "updatedAt": "2026-07-28T01:21:58.000Z",
+                      "uid": "35240-1711c7e3-b577-4063-ab4f-dc8404b3d04f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:58.000Z",
+                  "updatedAt": "2026-07-28T01:21:58.000Z",
+                  "uid": "35240-b5b506fa-5eeb-410a-84f9-7f0a064dbcad"
+                }
+              ],
+              "id": "e042633c-c341-44ca-aaa1-88745d119fa7",
+              "createdAt": "2026-07-28T01:21:58.000Z",
+              "updatedAt": "2026-07-28T01:21:58.000Z",
+              "uid": "35240-e042633c-c341-44ca-aaa1-88745d119fa7"
+            }
+          ],
+          "id": "572e7e99-67a5-43eb-800e-d9ae79e907b2",
+          "createdAt": "2026-07-28T01:21:58.000Z",
+          "updatedAt": "2026-07-28T01:21:58.000Z",
+          "uid": "35240-572e7e99-67a5-43eb-800e-d9ae79e907b2"
+        },
+        {
+          "name": "Cisco Voice Portal List All Vxml Servers",
+          "id": "83851654-2468-4c0f-9125-3aebb3b146ac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/vxmlserver",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vxmlserver"
+              ]
+            },
+            "description": "Retrieves a list of all CVP VXML Servers. VXML Servers host and execute VoiceXML applications that provide interactive voice response (IVR) functionality."
+          },
+          "response": [
+            {
+              "id": "db378131-f1c2-4515-bc21-950680d2dc36",
+              "name": "List of VXML Servers",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vxmlserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vxmlserver"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"serverId\": \"<string>\",\n    \"hostname\": \"<string>\",\n    \"ipAddress\": \"<ipv4>\",\n    \"httpPort\": 7000,\n    \"httpsPort\": 7443,\n    \"status\": \"offline\",\n    \"deployedApplications\": \"<integer>\"\n  },\n  {\n    \"serverId\": \"<string>\",\n    \"hostname\": \"<string>\",\n    \"ipAddress\": \"<ipv4>\",\n    \"httpPort\": 7000,\n    \"httpsPort\": 7443,\n    \"status\": \"maintenance\",\n    \"deployedApplications\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-07-28T01:21:58.000Z",
+              "updatedAt": "2026-07-28T01:21:58.000Z",
+              "uid": "35240-db378131-f1c2-4515-bc21-950680d2dc36"
+            },
+            {
+              "id": "afff8066-4157-4077-b492-34d6c874da3c",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vxmlserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vxmlserver"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:58.000Z",
+              "updatedAt": "2026-07-28T01:21:58.000Z",
+              "uid": "35240-afff8066-4157-4077-b492-34d6c874da3c"
+            },
+            {
+              "id": "b2f1e7d4-7773-4950-99fb-4877e5486629",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vxmlserver",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vxmlserver"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:58.000Z",
+              "updatedAt": "2026-07-28T01:21:58.000Z",
+              "uid": "35240-b2f1e7d4-7773-4950-99fb-4877e5486629"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:58.000Z",
+          "updatedAt": "2026-07-28T01:21:58.000Z",
+          "uid": "35240-83851654-2468-4c0f-9125-3aebb3b146ac"
+        }
+      ],
+      "id": "a3e185e0-cdf9-479a-a0f1-9625702532ac",
+      "createdAt": "2026-07-28T01:21:58.000Z",
+      "updatedAt": "2026-07-28T01:21:58.000Z",
+      "uid": "35240-a3e185e0-cdf9-479a-a0f1-9625702532ac"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

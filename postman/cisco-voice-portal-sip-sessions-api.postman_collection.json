@@ -1,0 +1,479 @@
+{
+  "info": {
+    "_postman_id": "8d76fb12-a88c-4707-b4bb-439aa1b04223",
+    "name": "Cisco Voice Portal Administration Application Configuration SIP Sessions API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:20.000Z",
+    "updatedAt": "2026-07-28T01:21:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8d76fb12-a88c-4707-b4bb-439aa1b04223"
+  },
+  "item": [
+    {
+      "name": "sip",
+      "item": [
+        {
+          "name": "session",
+          "item": [
+            {
+              "name": "{sessionId}",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Get Sip Session Details",
+                  "id": "bff31d9a-33e4-4535-8ae3-dfc6070f425a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sip/session/:sessionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sip",
+                        "session",
+                        ":sessionId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "36e39d12-e4b3-4a86-84c3-954401f1d0e3",
+                          "key": "sessionId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves detailed SIP session information including SIP headers, dialog state, and associated call GUID."
+                  },
+                  "response": [
+                    {
+                      "id": "393fb415-d004-425a-aef0-9e5b96fb17a3",
+                      "name": "SIP session details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sip/session/:sessionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sip",
+                            "session",
+                            ":sessionId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sessionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"sessionId\": \"<string>\",\n  \"callId\": \"<string>\",\n  \"callGuid\": \"<string>\",\n  \"state\": \"<string>\",\n  \"fromUri\": \"<string>\",\n  \"toUri\": \"<string>\",\n  \"fromTag\": \"<string>\",\n  \"toTag\": \"<string>\",\n  \"cseq\": \"<integer>\",\n  \"transport\": \"TLS\",\n  \"localAddress\": \"<string>\",\n  \"remoteAddress\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"lastActivityTime\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:20.000Z",
+                      "updatedAt": "2026-07-28T01:21:20.000Z",
+                      "uid": "35240-393fb415-d004-425a-aef0-9e5b96fb17a3"
+                    },
+                    {
+                      "id": "8d53f332-6e37-4f41-81f4-966d40b2e8e7",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sip/session/:sessionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sip",
+                            "session",
+                            ":sessionId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sessionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:20.000Z",
+                      "updatedAt": "2026-07-28T01:21:20.000Z",
+                      "uid": "35240-8d53f332-6e37-4f41-81f4-966d40b2e8e7"
+                    },
+                    {
+                      "id": "d30ff6dd-0fc5-4ed6-821b-62b0de0cd078",
+                      "name": "Session not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sip/session/:sessionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sip",
+                            "session",
+                            ":sessionId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sessionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:21:20.000Z",
+                      "updatedAt": "2026-07-28T01:21:20.000Z",
+                      "uid": "35240-d30ff6dd-0fc5-4ed6-821b-62b0de0cd078"
+                    },
+                    {
+                      "id": "f4bece74-4012-4477-b1c2-a6001571bc7c",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sip/session/:sessionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sip",
+                            "session",
+                            ":sessionId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sessionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:20.000Z",
+                      "updatedAt": "2026-07-28T01:21:20.000Z",
+                      "uid": "35240-f4bece74-4012-4477-b1c2-a6001571bc7c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:20.000Z",
+                  "updatedAt": "2026-07-28T01:21:20.000Z",
+                  "uid": "35240-bff31d9a-33e4-4535-8ae3-dfc6070f425a"
+                }
+              ],
+              "id": "e5a6e846-3fca-44dc-8fb1-4e632093e7d0",
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-e5a6e846-3fca-44dc-8fb1-4e632093e7d0"
+            },
+            {
+              "name": "Cisco Voice Portal List Active Sip Sessions",
+              "id": "a5c3af63-1265-4437-894d-6a9ba3092626",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sip/session?limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sip",
+                    "session"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                },
+                "description": "Retrieves information about active SIP sessions (dialogs) on the Call Server. Each SIP session corresponds to an active call leg."
+              },
+              "response": [
+                {
+                  "id": "481e7d21-06fa-4fa4-b1c0-fc03e0e6d361",
+                  "name": "Active SIP sessions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sip/session?limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sip",
+                        "session"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"totalSessions\": \"<integer>\",\n  \"sessions\": [\n    {\n      \"sessionId\": \"<string>\",\n      \"callId\": \"<string>\",\n      \"callGuid\": \"<string>\",\n      \"state\": \"confirmed\",\n      \"method\": \"<string>\",\n      \"fromUri\": \"<string>\",\n      \"toUri\": \"<string>\",\n      \"startTime\": \"<dateTime>\"\n    },\n    {\n      \"sessionId\": \"<string>\",\n      \"callId\": \"<string>\",\n      \"callGuid\": \"<string>\",\n      \"state\": \"terminated\",\n      \"method\": \"<string>\",\n      \"fromUri\": \"<string>\",\n      \"toUri\": \"<string>\",\n      \"startTime\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:21:20.000Z",
+                  "updatedAt": "2026-07-28T01:21:20.000Z",
+                  "uid": "35240-481e7d21-06fa-4fa4-b1c0-fc03e0e6d361"
+                },
+                {
+                  "id": "d641763d-86b1-401e-9ca5-ca7a96b7f057",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sip/session?limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sip",
+                        "session"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:20.000Z",
+                  "updatedAt": "2026-07-28T01:21:20.000Z",
+                  "uid": "35240-d641763d-86b1-401e-9ca5-ca7a96b7f057"
+                },
+                {
+                  "id": "8b39e8fa-0539-47ae-b9e2-300d48351296",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sip/session?limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sip",
+                        "session"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:20.000Z",
+                  "updatedAt": "2026-07-28T01:21:20.000Z",
+                  "uid": "35240-8b39e8fa-0539-47ae-b9e2-300d48351296"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:20.000Z",
+              "updatedAt": "2026-07-28T01:21:20.000Z",
+              "uid": "35240-a5c3af63-1265-4437-894d-6a9ba3092626"
+            }
+          ],
+          "id": "6b6ce17a-815e-462b-95bb-f9f9f5762a02",
+          "createdAt": "2026-07-28T01:21:20.000Z",
+          "updatedAt": "2026-07-28T01:21:20.000Z",
+          "uid": "35240-6b6ce17a-815e-462b-95bb-f9f9f5762a02"
+        }
+      ],
+      "id": "d920b4c4-21b8-4742-8abf-e2416c5f1e94",
+      "createdAt": "2026-07-28T01:21:20.000Z",
+      "updatedAt": "2026-07-28T01:21:20.000Z",
+      "uid": "35240-d920b4c4-21b8-4742-8abf-e2416c5f1e94"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

@@ -1,0 +1,452 @@
+{
+  "info": {
+    "_postman_id": "b03e561f-6313-411f-99ce-1b6880fccb34",
+    "name": "Cisco Voice Portal Administration Application Configuration Server Status API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:17.000Z",
+    "updatedAt": "2026-07-28T01:21:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b03e561f-6313-411f-99ce-1b6880fccb34"
+  },
+  "item": [
+    {
+      "name": "server",
+      "item": [
+        {
+          "name": "status",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Get Vxml Server Status",
+              "id": "4d8f08bd-e4bf-424b-9cb4-286612c2010d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/server/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "server",
+                    "status"
+                  ]
+                },
+                "description": "Retrieves the operational status of the VXML Server, including active session count, thread pool status, and resource utilization."
+              },
+              "response": [
+                {
+                  "id": "8711e458-1472-4d82-9491-7e308fba24a5",
+                  "name": "Server status",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/server/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "server",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"hostname\": \"<string>\",\n  \"status\": \"error\",\n  \"uptime\": \"<string>\",\n  \"version\": \"<string>\",\n  \"activeSessions\": \"<integer>\",\n  \"maxSessions\": \"<integer>\",\n  \"threadPool\": {\n    \"activeThreads\": \"<integer>\",\n    \"idleThreads\": \"<integer>\",\n    \"maxThreads\": \"<integer>\",\n    \"queuedRequests\": \"<integer>\"\n  },\n  \"cpuUsage\": \"<float>\",\n  \"memoryUsage\": {\n    \"heapUsed\": \"<integer>\",\n    \"heapMax\": \"<integer>\",\n    \"heapPercentage\": \"<float>\"\n  },\n  \"deployedApplications\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-8711e458-1472-4d82-9491-7e308fba24a5"
+                },
+                {
+                  "id": "dc5509c9-a10d-44fa-86d9-87fcbd68eb9f",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/server/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "server",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-dc5509c9-a10d-44fa-86d9-87fcbd68eb9f"
+                },
+                {
+                  "id": "dcd575c4-bf89-4764-a319-4ed7ad411711",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/server/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "server",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-dcd575c4-bf89-4764-a319-4ed7ad411711"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:18.000Z",
+              "updatedAt": "2026-07-28T01:21:18.000Z",
+              "uid": "35240-4d8f08bd-e4bf-424b-9cb4-286612c2010d"
+            }
+          ],
+          "id": "cada5eeb-acbd-4f99-9333-706482070295",
+          "createdAt": "2026-07-28T01:21:18.000Z",
+          "updatedAt": "2026-07-28T01:21:18.000Z",
+          "uid": "35240-cada5eeb-acbd-4f99-9333-706482070295"
+        },
+        {
+          "name": "log",
+          "item": [
+            {
+              "name": "Cisco Voice Portal Get Recent Server Log Entries",
+              "id": "2ccd9193-18b4-4760-af41-0146aef4e4f6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/server/log?level=INFO&since=<dateTime>&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "server",
+                    "log"
+                  ],
+                  "query": [
+                    {
+                      "description": "Minimum log level to include",
+                      "key": "level",
+                      "value": "INFO"
+                    },
+                    {
+                      "description": "Return logs since this timestamp",
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                },
+                "description": "Retrieves recent log entries from the VXML Server. Supports filtering by severity level and time range."
+              },
+              "response": [
+                {
+                  "id": "67503cef-5a4d-489a-b116-6abe90117c26",
+                  "name": "Log entries",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/server/log?level=INFO&since=<dateTime>&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "server",
+                        "log"
+                      ],
+                      "query": [
+                        {
+                          "description": "Minimum log level to include",
+                          "key": "level",
+                          "value": "INFO"
+                        },
+                        {
+                          "description": "Return logs since this timestamp",
+                          "key": "since",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"level\": \"INFO\",\n    \"logger\": \"<string>\",\n    \"message\": \"<string>\",\n    \"sessionId\": \"<string>\",\n    \"applicationName\": \"<string>\"\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"level\": \"WARN\",\n    \"logger\": \"<string>\",\n    \"message\": \"<string>\",\n    \"sessionId\": \"<string>\",\n    \"applicationName\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-67503cef-5a4d-489a-b116-6abe90117c26"
+                },
+                {
+                  "id": "bccfc313-ceb4-46c1-8e70-2486298cb1c7",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/server/log?level=INFO&since=<dateTime>&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "server",
+                        "log"
+                      ],
+                      "query": [
+                        {
+                          "description": "Minimum log level to include",
+                          "key": "level",
+                          "value": "INFO"
+                        },
+                        {
+                          "description": "Return logs since this timestamp",
+                          "key": "since",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-bccfc313-ceb4-46c1-8e70-2486298cb1c7"
+                },
+                {
+                  "id": "486a6b1f-9097-4712-bb70-834ea96580eb",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/server/log?level=INFO&since=<dateTime>&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "server",
+                        "log"
+                      ],
+                      "query": [
+                        {
+                          "description": "Minimum log level to include",
+                          "key": "level",
+                          "value": "INFO"
+                        },
+                        {
+                          "description": "Return logs since this timestamp",
+                          "key": "since",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:18.000Z",
+                  "updatedAt": "2026-07-28T01:21:18.000Z",
+                  "uid": "35240-486a6b1f-9097-4712-bb70-834ea96580eb"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:18.000Z",
+              "updatedAt": "2026-07-28T01:21:18.000Z",
+              "uid": "35240-2ccd9193-18b4-4760-af41-0146aef4e4f6"
+            }
+          ],
+          "id": "75019eeb-198a-44ce-9f12-0f8b442f650b",
+          "createdAt": "2026-07-28T01:21:18.000Z",
+          "updatedAt": "2026-07-28T01:21:18.000Z",
+          "uid": "35240-75019eeb-198a-44ce-9f12-0f8b442f650b"
+        }
+      ],
+      "id": "1b78042f-5ec1-467c-b333-d1fdb9f7f2e5",
+      "createdAt": "2026-07-28T01:21:18.000Z",
+      "updatedAt": "2026-07-28T01:21:18.000Z",
+      "uid": "35240-1b78042f-5ec1-467c-b333-d1fdb9f7f2e5"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

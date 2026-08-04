@@ -1,0 +1,919 @@
+{
+  "info": {
+    "_postman_id": "fe193474-75c7-46ed-9ed1-75ef64f748e8",
+    "name": "Cisco Voice Portal Administration Application Configuration API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:01.000Z",
+    "updatedAt": "2026-07-28T01:21:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fe193474-75c7-46ed-9ed1-75ef64f748e8"
+  },
+  "item": [
+    {
+      "name": "application",
+      "item": [
+        {
+          "name": "{applicationName}",
+          "item": [
+            {
+              "name": "config",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Get Application Configuration",
+                  "id": "aea09954-ec1c-4114-8d4b-fdbbc308045f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationName/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationName",
+                        "config"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3aa3a891-0a12-4734-908c-374adf47e67b",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the deployed VXML application"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the runtime configuration parameters for a VXML application. These settings are defined in the Call Studio project and can be overridden at runtime."
+                  },
+                  "response": [
+                    {
+                      "id": "4b877659-e214-422f-a697-12560340bf24",
+                      "name": "Application configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"applicationName\": \"<string>\",\n  \"parameters\": {\n    \"voluptate_b\": \"<string>\",\n    \"exercitation5_\": \"<string>\"\n  },\n  \"defaultLanguage\": \"en-US\",\n  \"fetchTimeout\": \"<integer>\",\n  \"maxSessionDuration\": \"<integer>\",\n  \"inputModes\": [\n    \"voice\",\n    \"voice\"\n  ],\n  \"loggingLevel\": \"WARN\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-4b877659-e214-422f-a697-12560340bf24"
+                    },
+                    {
+                      "id": "36013b18-dd94-498b-8ea6-8cb9c2e27a7a",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-36013b18-dd94-498b-8ea6-8cb9c2e27a7a"
+                    },
+                    {
+                      "id": "edff6be5-123b-4df0-ba27-6be595845078",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-edff6be5-123b-4df0-ba27-6be595845078"
+                    },
+                    {
+                      "id": "e9b6fa3b-db4a-41a2-a1c5-8b8c98c9dbf1",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-e9b6fa3b-db4a-41a2-a1c5-8b8c98c9dbf1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:02.000Z",
+                  "updatedAt": "2026-07-28T01:21:02.000Z",
+                  "uid": "35240-aea09954-ec1c-4114-8d4b-fdbbc308045f"
+                },
+                {
+                  "name": "Cisco Voice Portal Update Application Configuration",
+                  "id": "1b95be42-f425-4146-ab4a-deb03491305c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"parameters\": {\n    \"esse55_\": \"<string>\",\n    \"fugiat36\": \"<string>\"\n  },\n  \"defaultLanguage\": \"<string>\",\n  \"fetchTimeout\": \"<integer>\",\n  \"maxSessionDuration\": \"<integer>\",\n  \"inputModes\": [\n    \"voice\",\n    \"dtmf\"\n  ],\n  \"loggingLevel\": \"DEBUG\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationName/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationName",
+                        "config"
+                      ],
+                      "variable": [
+                        {
+                          "id": "00d1dac2-a458-45c5-bb4f-a295af922b6e",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the deployed VXML application"
+                        }
+                      ]
+                    },
+                    "description": "Updates the runtime configuration parameters for a VXML application. Changes take effect for new calls; active calls continue with their existing configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "2fabaae4-a6da-4b3f-8c00-81726c498069",
+                      "name": "Configuration updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": {\n    \"esse55_\": \"<string>\",\n    \"fugiat36\": \"<string>\"\n  },\n  \"defaultLanguage\": \"<string>\",\n  \"fetchTimeout\": \"<integer>\",\n  \"maxSessionDuration\": \"<integer>\",\n  \"inputModes\": [\n    \"voice\",\n    \"dtmf\"\n  ],\n  \"loggingLevel\": \"DEBUG\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"applicationName\": \"<string>\",\n  \"parameters\": {\n    \"voluptate_b\": \"<string>\",\n    \"exercitation5_\": \"<string>\"\n  },\n  \"defaultLanguage\": \"en-US\",\n  \"fetchTimeout\": \"<integer>\",\n  \"maxSessionDuration\": \"<integer>\",\n  \"inputModes\": [\n    \"voice\",\n    \"voice\"\n  ],\n  \"loggingLevel\": \"WARN\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-2fabaae4-a6da-4b3f-8c00-81726c498069"
+                    },
+                    {
+                      "id": "025a5132-14f7-4044-bf01-c4009aed089a",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": {\n    \"esse55_\": \"<string>\",\n    \"fugiat36\": \"<string>\"\n  },\n  \"defaultLanguage\": \"<string>\",\n  \"fetchTimeout\": \"<integer>\",\n  \"maxSessionDuration\": \"<integer>\",\n  \"inputModes\": [\n    \"voice\",\n    \"dtmf\"\n  ],\n  \"loggingLevel\": \"DEBUG\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-025a5132-14f7-4044-bf01-c4009aed089a"
+                    },
+                    {
+                      "id": "db79b642-dbe5-4a78-962c-672bc5a2844f",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": {\n    \"esse55_\": \"<string>\",\n    \"fugiat36\": \"<string>\"\n  },\n  \"defaultLanguage\": \"<string>\",\n  \"fetchTimeout\": \"<integer>\",\n  \"maxSessionDuration\": \"<integer>\",\n  \"inputModes\": [\n    \"voice\",\n    \"dtmf\"\n  ],\n  \"loggingLevel\": \"DEBUG\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-db79b642-dbe5-4a78-962c-672bc5a2844f"
+                    },
+                    {
+                      "id": "bb99d3eb-5cfd-4aa3-9d71-d25fac7bef17",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": {\n    \"esse55_\": \"<string>\",\n    \"fugiat36\": \"<string>\"\n  },\n  \"defaultLanguage\": \"<string>\",\n  \"fetchTimeout\": \"<integer>\",\n  \"maxSessionDuration\": \"<integer>\",\n  \"inputModes\": [\n    \"voice\",\n    \"dtmf\"\n  ],\n  \"loggingLevel\": \"DEBUG\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-bb99d3eb-5cfd-4aa3-9d71-d25fac7bef17"
+                    },
+                    {
+                      "id": "def93474-c574-4619-916e-8ba9ef6b4eb6",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parameters\": {\n    \"esse55_\": \"<string>\",\n    \"fugiat36\": \"<string>\"\n  },\n  \"defaultLanguage\": \"<string>\",\n  \"fetchTimeout\": \"<integer>\",\n  \"maxSessionDuration\": \"<integer>\",\n  \"inputModes\": [\n    \"voice\",\n    \"dtmf\"\n  ],\n  \"loggingLevel\": \"DEBUG\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-def93474-c574-4619-916e-8ba9ef6b4eb6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:02.000Z",
+                  "updatedAt": "2026-07-28T01:21:02.000Z",
+                  "uid": "35240-1b95be42-f425-4146-ab4a-deb03491305c"
+                }
+              ],
+              "id": "e72f4fa3-564d-42af-b587-bb6a3bf1cfc3",
+              "createdAt": "2026-07-28T01:21:02.000Z",
+              "updatedAt": "2026-07-28T01:21:02.000Z",
+              "uid": "35240-e72f4fa3-564d-42af-b587-bb6a3bf1cfc3"
+            },
+            {
+              "name": "elements",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal List Application Call Flow Elements",
+                  "id": "962b3863-e6bb-4e04-a0d8-713405633e9b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/application/:applicationName/elements",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "application",
+                        ":applicationName",
+                        "elements"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b83da94f-501d-4a2e-8a0f-3f2fa5cf29ff",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the deployed VXML application"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the list of call flow elements (voice elements, action elements, and decision elements) that make up the VXML application. Elements are the building blocks of Call Studio applications."
+                  },
+                  "response": [
+                    {
+                      "id": "d4e27e9d-ce0f-490f-b8c8-a668802ad0d9",
+                      "name": "List of application elements",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/elements",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "elements"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"elementName\": \"<string>\",\n    \"elementType\": \"subdialog\",\n    \"description\": \"<string>\",\n    \"className\": \"<string>\",\n    \"configParameters\": {\n      \"veniam_e\": \"<string>\",\n      \"non_8f\": \"<string>\"\n    },\n    \"exits\": [\n      {\n        \"name\": \"<string>\",\n        \"targetElement\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"targetElement\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"elementName\": \"<string>\",\n    \"elementType\": \"decision\",\n    \"description\": \"<string>\",\n    \"className\": \"<string>\",\n    \"configParameters\": {\n      \"nisi36\": \"<string>\",\n      \"voluptate_51e\": \"<string>\",\n      \"cupidatat_f\": \"<string>\"\n    },\n    \"exits\": [\n      {\n        \"name\": \"<string>\",\n        \"targetElement\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"targetElement\": \"<string>\"\n      }\n    ]\n  }\n]",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-d4e27e9d-ce0f-490f-b8c8-a668802ad0d9"
+                    },
+                    {
+                      "id": "422f96fd-87d6-4cba-91a6-c6cb6ab8d53c",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/elements",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "elements"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-422f96fd-87d6-4cba-91a6-c6cb6ab8d53c"
+                    },
+                    {
+                      "id": "69f69775-02a8-4160-b582-11b9c96a1815",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/elements",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "elements"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-69f69775-02a8-4160-b582-11b9c96a1815"
+                    },
+                    {
+                      "id": "3e5ec87d-ae3c-4232-9149-a93c58b7bbf1",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/application/:applicationName/elements",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "application",
+                            ":applicationName",
+                            "elements"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:02.000Z",
+                      "updatedAt": "2026-07-28T01:21:02.000Z",
+                      "uid": "35240-3e5ec87d-ae3c-4232-9149-a93c58b7bbf1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:02.000Z",
+                  "updatedAt": "2026-07-28T01:21:02.000Z",
+                  "uid": "35240-962b3863-e6bb-4e04-a0d8-713405633e9b"
+                }
+              ],
+              "id": "b541c215-0c5d-4fb6-9952-68a829497557",
+              "createdAt": "2026-07-28T01:21:02.000Z",
+              "updatedAt": "2026-07-28T01:21:02.000Z",
+              "uid": "35240-b541c215-0c5d-4fb6-9952-68a829497557"
+            }
+          ],
+          "id": "e8e16e7b-8568-4245-bfd3-b9e9cfdcb7f6",
+          "createdAt": "2026-07-28T01:21:02.000Z",
+          "updatedAt": "2026-07-28T01:21:02.000Z",
+          "uid": "35240-e8e16e7b-8568-4245-bfd3-b9e9cfdcb7f6"
+        }
+      ],
+      "id": "f4d2a54c-219b-4648-8222-4f50c11a3902",
+      "createdAt": "2026-07-28T01:21:02.000Z",
+      "updatedAt": "2026-07-28T01:21:02.000Z",
+      "uid": "35240-f4d2a54c-219b-4648-8222-4f50c11a3902"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

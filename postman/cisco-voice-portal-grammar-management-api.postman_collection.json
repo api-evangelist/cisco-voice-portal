@@ -1,0 +1,205 @@
+{
+  "info": {
+    "_postman_id": "0404f55e-c9a7-4b62-a530-8ac4f6c89355",
+    "name": "Cisco Voice Portal Administration Application Configuration Grammar Management API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:10.000Z",
+    "updatedAt": "2026-07-28T01:21:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0404f55e-c9a7-4b62-a530-8ac4f6c89355"
+  },
+  "item": [
+    {
+      "name": "grammar",
+      "item": [
+        {
+          "name": "Cisco Voice Portal List Grammar Files",
+          "id": "8ca77e89-af08-435b-9c5d-e4480c8594f3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/grammar",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "grammar"
+              ]
+            },
+            "description": "Retrieves a list of speech recognition grammar files (GRXML, GSL) available on the VXML Server. Grammars define the speech recognition rules used by voice-enabled VXML applications."
+          },
+          "response": [
+            {
+              "id": "b5634765-1c51-4a23-91bb-e1b0be86db5c",
+              "name": "List of grammar files",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/grammar",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "grammar"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"fileName\": \"<string>\",\n    \"filePath\": \"<string>\",\n    \"fileType\": \"gsl\",\n    \"fileSize\": \"<integer>\",\n    \"language\": \"<string>\",\n    \"lastModified\": \"<dateTime>\"\n  },\n  {\n    \"fileName\": \"<string>\",\n    \"filePath\": \"<string>\",\n    \"fileType\": \"gsl\",\n    \"fileSize\": \"<integer>\",\n    \"language\": \"<string>\",\n    \"lastModified\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T01:21:11.000Z",
+              "updatedAt": "2026-07-28T01:21:11.000Z",
+              "uid": "35240-b5634765-1c51-4a23-91bb-e1b0be86db5c"
+            },
+            {
+              "id": "ca716ba7-e8ad-41ed-83f0-99e038509817",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/grammar",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "grammar"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:11.000Z",
+              "updatedAt": "2026-07-28T01:21:11.000Z",
+              "uid": "35240-ca716ba7-e8ad-41ed-83f0-99e038509817"
+            },
+            {
+              "id": "27a29f17-484b-4b2e-b98a-abaac9a32b0e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/grammar",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "grammar"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:11.000Z",
+              "updatedAt": "2026-07-28T01:21:11.000Z",
+              "uid": "35240-27a29f17-484b-4b2e-b98a-abaac9a32b0e"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:11.000Z",
+          "updatedAt": "2026-07-28T01:21:11.000Z",
+          "uid": "35240-8ca77e89-af08-435b-9c5d-e4480c8594f3"
+        }
+      ],
+      "id": "7e75af51-b611-48f6-8db2-cd005d6e8da7",
+      "createdAt": "2026-07-28T01:21:11.000Z",
+      "updatedAt": "2026-07-28T01:21:11.000Z",
+      "uid": "35240-7e75af51-b611-48f6-8db2-cd005d6e8da7"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}

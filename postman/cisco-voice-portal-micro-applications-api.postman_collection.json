@@ -1,0 +1,460 @@
+{
+  "info": {
+    "_postman_id": "c2c31f58-4633-4dde-ba4a-7459b1f552d7",
+    "name": "Cisco Voice Portal Administration Application Configuration Micro-Applications API",
+    "description": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:15.000Z",
+    "updatedAt": "2026-07-28T01:21:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c2c31f58-4633-4dde-ba4a-7459b1f552d7"
+  },
+  "item": [
+    {
+      "name": "microapp",
+      "item": [
+        {
+          "name": "{microAppName}",
+          "item": [
+            {
+              "name": "config",
+              "item": [
+                {
+                  "name": "Cisco Voice Portal Get Micro-application Configuration",
+                  "id": "15e29483-826b-42e6-835b-7b9a287ab5ea",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/microapp/:microAppName/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "microapp",
+                        ":microAppName",
+                        "config"
+                      ],
+                      "variable": [
+                        {
+                          "id": "30ef2e8d-1538-447b-825a-49a997d4f673",
+                          "key": "microAppName",
+                          "value": "PlayMedia",
+                          "description": "(Required) Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the configuration for a specific built-in micro-application such as PlayMedia (PM), GetDigits (GD), Menu, PlayData (PD), CaptureCurrentCallerInfo, or ExternalVXML (EV)."
+                  },
+                  "response": [
+                    {
+                      "id": "c41e75e8-84c5-4820-be30-fe2438819d12",
+                      "name": "Micro-application configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/microapp/:microAppName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "microapp",
+                            ":microAppName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "microAppName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parameters\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"defaultValue\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"defaultValue\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:21:15.000Z",
+                      "updatedAt": "2026-07-28T01:21:15.000Z",
+                      "uid": "35240-c41e75e8-84c5-4820-be30-fe2438819d12"
+                    },
+                    {
+                      "id": "8b08107a-6bec-4ef9-9293-f6090fc82ab9",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/microapp/:microAppName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "microapp",
+                            ":microAppName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "microAppName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:15.000Z",
+                      "updatedAt": "2026-07-28T01:21:15.000Z",
+                      "uid": "35240-8b08107a-6bec-4ef9-9293-f6090fc82ab9"
+                    },
+                    {
+                      "id": "b04e5085-ad13-4161-bddd-38f964b23079",
+                      "name": "Requested resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/microapp/:microAppName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "microapp",
+                            ":microAppName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "microAppName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:15.000Z",
+                      "updatedAt": "2026-07-28T01:21:15.000Z",
+                      "uid": "35240-b04e5085-ad13-4161-bddd-38f964b23079"
+                    },
+                    {
+                      "id": "d20e9465-7d3f-4678-9747-e2cbcf1af4f8",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/microapp/:microAppName/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "microapp",
+                            ":microAppName",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "microAppName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:21:15.000Z",
+                      "updatedAt": "2026-07-28T01:21:15.000Z",
+                      "uid": "35240-d20e9465-7d3f-4678-9747-e2cbcf1af4f8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:21:15.000Z",
+                  "updatedAt": "2026-07-28T01:21:15.000Z",
+                  "uid": "35240-15e29483-826b-42e6-835b-7b9a287ab5ea"
+                }
+              ],
+              "id": "cb82ca0f-052d-4d04-8811-b04fe57aada8",
+              "createdAt": "2026-07-28T01:21:15.000Z",
+              "updatedAt": "2026-07-28T01:21:15.000Z",
+              "uid": "35240-cb82ca0f-052d-4d04-8811-b04fe57aada8"
+            }
+          ],
+          "id": "72fbf98c-445b-4314-bc16-17bb32dff2e6",
+          "createdAt": "2026-07-28T01:21:15.000Z",
+          "updatedAt": "2026-07-28T01:21:15.000Z",
+          "uid": "35240-72fbf98c-445b-4314-bc16-17bb32dff2e6"
+        },
+        {
+          "name": "Cisco Voice Portal List Available Micro-applications",
+          "id": "aeb42975-eefa-4177-a4a3-c878271cb0f7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/microapp",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "microapp"
+              ]
+            },
+            "description": "Retrieves a list of built-in CVP micro-applications. Micro-applications are pre-built VXML applications for common IVR tasks such as playing media, collecting digits, and external VXML retrieval. These are invoked through ICM scripting via the Run External Script node."
+          },
+          "response": [
+            {
+              "id": "7d98205b-14ab-479a-9b9d-449cc504d2af",
+              "name": "List of micro-applications",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/microapp",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "microapp"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"type\": \"PlayData\",\n    \"configurable\": \"<boolean>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"type\": \"AgentGreeting\",\n    \"configurable\": \"<boolean>\"\n  }\n]",
+              "createdAt": "2026-07-28T01:21:15.000Z",
+              "updatedAt": "2026-07-28T01:21:15.000Z",
+              "uid": "35240-7d98205b-14ab-479a-9b9d-449cc504d2af"
+            },
+            {
+              "id": "22e82a7c-22af-4740-8fb4-78108324bade",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/microapp",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "microapp"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:15.000Z",
+              "updatedAt": "2026-07-28T01:21:15.000Z",
+              "uid": "35240-22e82a7c-22af-4740-8fb4-78108324bade"
+            },
+            {
+              "id": "ce97ce79-99e6-4541-a2ee-793ac48996a3",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/microapp",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "microapp"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:15.000Z",
+              "updatedAt": "2026-07-28T01:21:15.000Z",
+              "uid": "35240-ce97ce79-99e6-4541-a2ee-793ac48996a3"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:15.000Z",
+          "updatedAt": "2026-07-28T01:21:15.000Z",
+          "uid": "35240-aeb42975-eefa-4177-a4a3-c878271cb0f7"
+        }
+      ],
+      "id": "ddb12b3b-8358-4661-9204-fcb82599be17",
+      "createdAt": "2026-07-28T01:21:15.000Z",
+      "updatedAt": "2026-07-28T01:21:15.000Z",
+      "uid": "35240-ddb12b3b-8358-4661-9204-fcb82599be17"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "oamp-server",
+      "value": "cvp-oamp.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{oamp-server}}:9443/oamp/rest"
+    }
+  ]
+}
