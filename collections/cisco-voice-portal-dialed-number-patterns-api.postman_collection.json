@@ -1,0 +1,1349 @@
+{
+  "item": [
+    {
+      "id": "bb0757af-327f-4387-85e0-6f5b60e73ab0",
+      "name": "Dialed Number Patterns",
+      "description": {
+        "content": "Manage call routing dialed number patterns",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "22dff000-497a-4d3e-9d39-bf2bd4ded0d2",
+          "name": "Cisco Voice Portal List Dialed Number Patterns",
+          "request": {
+            "name": "Cisco Voice Portal List Dialed Number Patterns",
+            "description": {
+              "content": "Retrieves all configured dialed number patterns (DNPs). DNPs define how incoming calls are routed to specific applications or call treatments based on the dialed number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dialedNumberPattern"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP OAMP Server",
+                  "type": "any",
+                  "value": "{{oamp-server}}",
+                  "key": "oamp-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f284ef8d-c8b7-4870-972f-cb7cd58e2970",
+              "name": "List of dialed number patterns",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"patternId\": \"500123\",\n    \"pattern\": \"example_value\",\n    \"description\": \"A sample description.\",\n    \"callType\": \"preroute\",\n    \"applicationName\": \"example_value\",\n    \"enabled\": true\n  },\n  {\n    \"patternId\": \"500123\",\n    \"pattern\": \"example_value\",\n    \"description\": \"A sample description.\",\n    \"callType\": \"preroute\",\n    \"applicationName\": \"example_value\",\n    \"enabled\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf107dd9-7205-4825-8149-6c5e2520319b",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "855d40b2-ec8b-45ca-a29f-19f9beb678e5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1f4b39b-39f7-4bc3-a6e6-54f911e91970",
+          "name": "Cisco Voice Portal Create a Dialed Number Pattern",
+          "request": {
+            "name": "Cisco Voice Portal Create a Dialed Number Pattern",
+            "description": {
+              "content": "Creates a new dialed number pattern to route incoming calls to the appropriate application or call treatment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dialedNumberPattern"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP OAMP Server",
+                  "type": "any",
+                  "value": "{{oamp-server}}",
+                  "key": "oamp-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pattern\": \"<string>\",\n  \"callType\": \"<string>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"enabled\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2ac33e96-31ae-43f4-b670-7699d7d0a981",
+              "name": "Pattern created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pattern\": \"example_value\",\n  \"callType\": \"preroute\",\n  \"description\": \"A sample description.\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patternId\": \"500123\",\n  \"pattern\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"callType\": \"preroute\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab7481c4-d91a-4663-8f49-7b3de08bd748",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pattern\": \"example_value\",\n  \"callType\": \"preroute\",\n  \"description\": \"A sample description.\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "264457d7-0084-4744-936a-f155186c7b07",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pattern\": \"example_value\",\n  \"callType\": \"preroute\",\n  \"description\": \"A sample description.\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d246298-c849-41c3-bc47-1058b02ab44a",
+              "name": "Pattern already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pattern\": \"example_value\",\n  \"callType\": \"preroute\",\n  \"description\": \"A sample description.\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c77fcf6-cc32-4cf3-8462-eff060855135",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pattern\": \"example_value\",\n  \"callType\": \"preroute\",\n  \"description\": \"A sample description.\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8763ca80-7f2e-47f7-83bb-20817a36d7a1",
+          "name": "Cisco Voice Portal Get Dialed Number Pattern Details",
+          "request": {
+            "name": "Cisco Voice Portal Get Dialed Number Pattern Details",
+            "description": {},
+            "url": {
+              "path": [
+                "dialedNumberPattern",
+                ":patternId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patternId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP of the CVP OAMP Server",
+                  "type": "any",
+                  "value": "{{oamp-server}}",
+                  "key": "oamp-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fcb15a29-eb90-4941-bcd7-b1df4439bec7",
+              "name": "Pattern details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern",
+                    ":patternId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patternId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patternId\": \"500123\",\n  \"pattern\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"callType\": \"preroute\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "297d97ca-6fe4-47d9-8333-992b4eac8668",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern",
+                    ":patternId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patternId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69a7c914-a091-434f-8a00-4fc3dad2f4a1",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern",
+                    ":patternId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patternId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb5b034a-b6dd-449b-9897-a186bee1e856",
+          "name": "Cisco Voice Portal Update a Dialed Number Pattern",
+          "request": {
+            "name": "Cisco Voice Portal Update a Dialed Number Pattern",
+            "description": {},
+            "url": {
+              "path": [
+                "dialedNumberPattern",
+                ":patternId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patternId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP of the CVP OAMP Server",
+                  "type": "any",
+                  "value": "{{oamp-server}}",
+                  "key": "oamp-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pattern\": \"<string>\",\n  \"callType\": \"<string>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"enabled\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b52b72d2-4c64-4985-b46b-2506e6e113a2",
+              "name": "Pattern updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern",
+                    ":patternId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patternId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pattern\": \"example_value\",\n  \"callType\": \"preroute\",\n  \"description\": \"A sample description.\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patternId\": \"500123\",\n  \"pattern\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"callType\": \"preroute\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a18d9b5-a06d-420a-96ff-b3758c98f8f6",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern",
+                    ":patternId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patternId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pattern\": \"example_value\",\n  \"callType\": \"preroute\",\n  \"description\": \"A sample description.\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c3bdd5b-e858-4651-9259-d0d8f16e2ba5",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern",
+                    ":patternId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patternId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pattern\": \"example_value\",\n  \"callType\": \"preroute\",\n  \"description\": \"A sample description.\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff434792-2292-45ed-8cab-aa91ad134a65",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern",
+                    ":patternId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patternId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pattern\": \"example_value\",\n  \"callType\": \"preroute\",\n  \"description\": \"A sample description.\",\n  \"applicationName\": \"example_value\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fb8a706-3556-4787-ab52-68f4664e1fd7",
+          "name": "Cisco Voice Portal Delete a Dialed Number Pattern",
+          "request": {
+            "name": "Cisco Voice Portal Delete a Dialed Number Pattern",
+            "description": {},
+            "url": {
+              "path": [
+                "dialedNumberPattern",
+                ":patternId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patternId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP of the CVP OAMP Server",
+                  "type": "any",
+                  "value": "{{oamp-server}}",
+                  "key": "oamp-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2950a95c-811c-4bc0-8211-b43986421b46",
+              "name": "Pattern deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern",
+                    ":patternId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patternId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d4ad702c-1908-4026-a86b-d6a852853dd0",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern",
+                    ":patternId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patternId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a1a1c31-84f7-4bc2-9f28-4527c9723727",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dialedNumberPattern",
+                    ":patternId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patternId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP of the CVP OAMP Server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "cvp-oamp.example.com",
+      "key": "oamp-server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{oamp-server}}:9443/oamp/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b94dda4d-2515-475c-ae6e-1b02f6370002",
+    "name": "Cisco Voice Portal Administration Application Configuration Dialed Number Patterns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

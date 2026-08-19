@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Grammar Management API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Grammar Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Grammar Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/grammar"
+          },
+          "docs": "Retrieves a list of speech recognition grammar files (GRXML, GSL) available on the VXML Server. Grammars define the speech recognition rules used by voice-enabled VXML applications."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

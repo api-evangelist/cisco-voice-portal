@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Report Templates API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Available Report Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/report"
+          },
+          "docs": "Retrieves a list of available report templates that can be executed. These correspond to the standard CVP reports available in Cisco Unified Intelligence Center."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Execute a Report Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/report/:templateId/execute",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a report template with the specified parameters. Reports may be generated synchronously for small datasets or asynchronously for large reports."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Report Execution Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/report/:reportId/result",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format"
+              }
+            ]
+          },
+          "docs": "Retrieves the result of a previously executed report. For asynchronous reports, returns the result once generation is complete."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

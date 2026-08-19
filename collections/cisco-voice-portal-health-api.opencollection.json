@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Health API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Call Server Health Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/health"
+          },
+          "docs": "Retrieves the health and resource status of the Call Server, including active call count, SIP stack status, and connectivity to upstream components (ICM, CUCM, VXML Server)."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Connectivity Status to Upstream Components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/health/connectivity"
+          },
+          "docs": "Checks and reports the connectivity status to all configured upstream components including ICM/UCCE, CUCM clusters, VXML Servers, and Reporting Server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

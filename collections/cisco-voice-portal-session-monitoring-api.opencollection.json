@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Session Monitoring API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Session Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Active Application Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/application/:applicationName/sessions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of active call sessions currently being handled by the specified VXML application."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Vxml Session Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/session/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about an active VXML session, including the current element being executed, session variables, and execution history."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

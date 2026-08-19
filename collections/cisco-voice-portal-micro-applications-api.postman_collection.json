@@ -1,0 +1,533 @@
+{
+  "item": [
+    {
+      "id": "912b73ab-5121-4fec-9ec7-1a112f7f4a42",
+      "name": "Micro-Applications",
+      "description": {
+        "content": "Manage built-in CVP micro-applications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13f843a0-e4e3-4ceb-83b5-26cc45da0a94",
+          "name": "Cisco Voice Portal List Available Micro-applications",
+          "request": {
+            "name": "Cisco Voice Portal List Available Micro-applications",
+            "description": {
+              "content": "Retrieves a list of built-in CVP micro-applications. Micro-applications are pre-built VXML applications for common IVR tasks such as playing media, collecting digits, and external VXML retrieval. These are invoked through ICM scripting via the Run External Script node.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "microapp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP OAMP Server",
+                  "type": "any",
+                  "value": "{{oamp-server}}",
+                  "key": "oamp-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e2b4fea-3e6a-4ec7-a5fa-a9ac248128c6",
+              "name": "List of micro-applications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"type\": \"PlayMedia\",\n    \"configurable\": true\n  },\n  {\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"type\": \"PlayMedia\",\n    \"configurable\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "683b74d4-eba6-4478-b375-35609f8044cb",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5024557f-1b98-44c5-8923-fef93026f540",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4970b560-a820-4f0c-a2bb-c96d076b1f64",
+          "name": "Cisco Voice Portal Get Micro-application Configuration",
+          "request": {
+            "name": "Cisco Voice Portal Get Micro-application Configuration",
+            "description": {
+              "content": "Retrieves the configuration for a specific built-in micro-application such as PlayMedia (PM), GetDigits (GD), Menu, PlayData (PD), CaptureCurrentCallerInfo, or ExternalVXML (EV).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "microapp",
+                ":microAppName",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "microAppName",
+                  "description": "(Required) Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+                },
+                {
+                  "description": "Hostname or IP of the CVP OAMP Server",
+                  "type": "any",
+                  "value": "{{oamp-server}}",
+                  "key": "oamp-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "969ddf25-e6e5-41ca-a107-bef238f5876c",
+              "name": "Micro-application configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp",
+                    ":microAppName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "microAppName",
+                      "description": "(Required) Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44375427-2a24-449b-a7f8-d1ab6d834207",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp",
+                    ":microAppName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "microAppName",
+                      "description": "(Required) Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "436d8341-1625-4dd1-a452-087a55c46492",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp",
+                    ":microAppName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "microAppName",
+                      "description": "(Required) Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63b4046a-ea20-4456-aaa9-9f972c79c6d2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microapp",
+                    ":microAppName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "microAppName",
+                      "description": "(Required) Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP of the CVP OAMP Server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "cvp-oamp.example.com",
+      "key": "oamp-server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{oamp-server}}:9443/oamp/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "31ed94e3-3f22-4f49-b6d2-f6e76339a9c3",
+    "name": "Cisco Voice Portal Administration Application Configuration Micro-Applications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

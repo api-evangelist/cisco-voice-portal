@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Media Management API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Media Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Media Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/media",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Directory path to list media from"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by media type"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of media files (audio prompts) available on the VXML Server. Media files are used by VXML applications and micro-applications for playing prompts to callers."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Upload a Media File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/media/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "path",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "overwrite",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads an audio media file (WAV, AU, or VOX format) to the VXML Server for use in voice prompts and announcements."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

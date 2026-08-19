@@ -1,0 +1,1027 @@
+{
+  "item": [
+    {
+      "id": "1b5eebc5-6b48-48bf-bdee-924022883b7e",
+      "name": "Application Configuration",
+      "description": {
+        "content": "Configure VXML application runtime settings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5fc197cc-f1bb-4ef5-ab86-8ce354eb3637",
+          "name": "Cisco Voice Portal Get Application Configuration",
+          "request": {
+            "name": "Cisco Voice Portal Get Application Configuration",
+            "description": {
+              "content": "Retrieves the runtime configuration parameters for a VXML application. These settings are defined in the Call Studio project and can be overridden at runtime.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "application",
+                ":applicationName",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationName",
+                  "description": "(Required) Name of the deployed VXML application"
+                },
+                {
+                  "description": "Hostname or IP of the CVP OAMP Server",
+                  "type": "any",
+                  "value": "{{oamp-server}}",
+                  "key": "oamp-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f9231d9-1fea-47e2-9d6d-833566bcde17",
+              "name": "Application configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"example_value\",\n  \"parameters\": {\n    \"key_0\": \"string\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9a6e546-a467-421f-8384-6702b7197151",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "304b3d51-f1e2-455c-984b-882c3e89e8e4",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a2f6141-cb11-42f3-915b-528dc747a01c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ec51735-2dda-4619-b023-c8d02ef7e50e",
+          "name": "Cisco Voice Portal Update Application Configuration",
+          "request": {
+            "name": "Cisco Voice Portal Update Application Configuration",
+            "description": {
+              "content": "Updates the runtime configuration parameters for a VXML application. Changes take effect for new calls; active calls continue with their existing configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "application",
+                ":applicationName",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationName",
+                  "description": "(Required) Name of the deployed VXML application"
+                },
+                {
+                  "description": "Hostname or IP of the CVP OAMP Server",
+                  "type": "any",
+                  "value": "{{oamp-server}}",
+                  "key": "oamp-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\"\n  },\n  \"defaultLanguage\": \"<string>\",\n  \"fetchTimeout\": \"<integer>\",\n  \"maxSessionDuration\": \"<integer>\",\n  \"inputModes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"loggingLevel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9137b693-f5ec-4d05-9187-1c5a4e185753",
+              "name": "Configuration updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationName\": \"example_value\",\n  \"parameters\": {\n    \"key_0\": \"string\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80d91788-1b92-40fe-a30a-a84edafa6237",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "028a3bea-23eb-4461-9848-0e80e105192d",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c181f597-b6a9-42a2-b913-f32b2a9ec5c9",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "670e80f2-70f6-47e7-aeb1-ab9c9d0ce710",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameters\": {\n    \"key_0\": \"<string>\"\n  },\n  \"defaultLanguage\": \"example_value\",\n  \"fetchTimeout\": 10,\n  \"maxSessionDuration\": 10,\n  \"loggingLevel\": \"ERROR\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99da9706-03c5-4a43-bacd-d9c8dcfc063c",
+          "name": "Cisco Voice Portal List Application Call Flow Elements",
+          "request": {
+            "name": "Cisco Voice Portal List Application Call Flow Elements",
+            "description": {
+              "content": "Retrieves the list of call flow elements (voice elements, action elements, and decision elements) that make up the VXML application. Elements are the building blocks of Call Studio applications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "application",
+                ":applicationName",
+                "elements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationName",
+                  "description": "(Required) Name of the deployed VXML application"
+                },
+                {
+                  "description": "Hostname or IP of the CVP OAMP Server",
+                  "type": "any",
+                  "value": "{{oamp-server}}",
+                  "key": "oamp-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb11e037-e124-4d3b-99d2-06aff831020a",
+              "name": "List of application elements",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"elementName\": \"example_value\",\n    \"elementType\": \"voice\",\n    \"description\": \"A sample description.\",\n    \"className\": \"example_value\",\n    \"configParameters\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  {\n    \"elementName\": \"example_value\",\n    \"elementType\": \"voice\",\n    \"description\": \"A sample description.\",\n    \"className\": \"example_value\",\n    \"configParameters\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e7c7665-f277-47d2-b7cd-1019b02b4b86",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bde4216e-c23c-4eaf-96c8-4f4b2824d774",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f046c114-5d5f-46c0-9049-2231fa99ea8b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application",
+                    ":applicationName",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationName",
+                      "description": "(Required) Name of the deployed VXML application"
+                    },
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP of the CVP OAMP Server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "cvp-oamp.example.com",
+      "key": "oamp-server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{oamp-server}}:9443/oamp/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6a116165-9608-424b-92b4-4e0f98fffa4f",
+    "name": "Cisco Voice Portal Administration Application Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

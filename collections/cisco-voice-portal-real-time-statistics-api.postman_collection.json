@@ -1,0 +1,272 @@
+{
+  "item": [
+    {
+      "id": "b7134867-8b7e-40ac-ba53-cd0b95e79d4a",
+      "name": "Real-Time Statistics",
+      "description": {
+        "content": "Current call processing statistics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "24c456ef-fd40-4577-90fc-a5e1f54d0203",
+          "name": "Cisco Voice Portal Get Real-time Call Statistics",
+          "request": {
+            "name": "Cisco Voice Portal Get Real-time Call Statistics",
+            "description": {
+              "content": "Retrieves current real-time statistics across the CVP deployment, including active calls, calls per second, and resource utilization metrics. Data is refreshed at the reporting server polling interval.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "statistics",
+                "realtime"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "serverId",
+                  "value": "<string>",
+                  "description": "Filter by specific server ID. If omitted, returns aggregate."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP of the CVP OAMP Server",
+                  "type": "any",
+                  "value": "{{oamp-server}}",
+                  "key": "oamp-server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f69fbbe4-cbf4-4dd6-b904-85ba1e5a08f3",
+              "name": "Real-time statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "realtime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serverId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-01-15T10:30:00Z\",\n  \"activeCalls\": 10,\n  \"callsInProgress\": {\n    \"selfService\": 4390,\n    \"queued\": 9354,\n    \"connected\": 8947\n  },\n  \"callsPerSecond\": 42.5,\n  \"peakActiveCalls\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "241726e3-56c1-47d1-927b-6482a362302b",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "realtime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serverId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32d09611-bb63-453d-a80f-ff6413130feb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "realtime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serverId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP of the CVP OAMP Server",
+                      "type": "any",
+                      "value": "{{oamp-server}}",
+                      "key": "oamp-server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"message\": \"example_value\",\n  \"details\": \"example_value\",\n  \"timestamp\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP of the CVP OAMP Server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "cvp-oamp.example.com",
+      "key": "oamp-server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{oamp-server}}:9443/oamp/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "370d5dca-91ab-4946-9d74-9132881c4311",
+    "name": "Cisco Voice Portal Administration Application Configuration Real-Time Statistics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.\n\nContact Support:\n Name: Cisco Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

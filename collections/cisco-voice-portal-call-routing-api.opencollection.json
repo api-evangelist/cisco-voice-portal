@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Call Routing API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Call Routing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Perform a Routing Lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/routing/lookup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a routing lookup to determine the call treatment for a given dialed number. This queries the configured dialed number patterns and returns the routing decision without initiating an actual call. Useful for testing and validation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

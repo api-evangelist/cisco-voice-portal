@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Device Management API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List All Managed Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/device"
+          },
+          "docs": "Retrieves a list of all devices registered with the CVP OAMP Server, including Call Servers, VXML Servers, Reporting Servers, and Media Servers. Each device entry contains its type, hostname, IP address, and current operational status."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Add a New Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/device",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new device (Call Server, VXML Server, Reporting Server, or Media Server) with the CVP OAMP Server for centralized management."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Device Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/device/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific managed device, including its configuration, status, and associated services."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Update Device Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{oamp-server}:9443/oamp/rest/device/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing managed device. Changes may require a device restart to take effect."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Remove a Managed Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{oamp-server}:9443/oamp/rest/device/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Removes a device from the CVP OAMP management. The device itself is not uninstalled but is no longer managed centrally."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Device Operational Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/device/:deviceId/status",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves the current operational status of a managed device, including service status, resource utilization, and connectivity state."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Restart a Device Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/device/:deviceId/restart",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ]
+          },
+          "docs": "Initiates a restart of the CVP service on the specified device. This operation is asynchronous and the device status can be monitored via the status endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

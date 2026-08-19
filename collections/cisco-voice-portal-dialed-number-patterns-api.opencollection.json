@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Dialed Number Patterns API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dialed Number Patterns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Dialed Number Patterns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/dialedNumberPattern"
+          },
+          "docs": "Retrieves all configured dialed number patterns (DNPs). DNPs define how incoming calls are routed to specific applications or call treatments based on the dialed number."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Create a Dialed Number Pattern",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/dialedNumberPattern",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new dialed number pattern to route incoming calls to the appropriate application or call treatment."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Dialed Number Pattern Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/dialedNumberPattern/:patternId",
+            "params": [
+              {
+                "name": "patternId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cisco Voice Portal Get Dialed Number Pattern Details"
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Update a Dialed Number Pattern",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{oamp-server}:9443/oamp/rest/dialedNumberPattern/:patternId",
+            "params": [
+              {
+                "name": "patternId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cisco Voice Portal Update a Dialed Number Pattern"
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Delete a Dialed Number Pattern",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{oamp-server}:9443/oamp/rest/dialedNumberPattern/:patternId",
+            "params": [
+              {
+                "name": "patternId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cisco Voice Portal Delete a Dialed Number Pattern"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Real-Time Statistics API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Real-Time Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Real-time Call Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/statistics/realtime",
+            "params": [
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific server ID. If omitted, returns aggregate."
+              }
+            ]
+          },
+          "docs": "Retrieves current real-time statistics across the CVP deployment, including active calls, calls per second, and resource utilization metrics. Data is refreshed at the reporting server polling interval."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

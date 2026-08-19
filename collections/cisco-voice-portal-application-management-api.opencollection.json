@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Application Management API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Deployed Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/application",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application type"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by deployment status"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all VXML and call studio applications deployed across the CVP infrastructure. Includes deployment status and associated server assignments."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Deploy a New Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/application",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "applicationName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "applicationType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "applicationFile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "targetServers",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Deploys a VXML or Call Studio application to designated VXML Servers. The application archive is uploaded and distributed to the target servers."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Application Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/application/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Application identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a deployed application, including deployment status on each server and configuration parameters."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Undeploy an Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{oamp-server}:9443/oamp/rest/application/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "Application identifier"
+              }
+            ]
+          },
+          "docs": "Removes a deployed application from all associated VXML Servers. Active calls using the application are allowed to complete before removal."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Vxml Application Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/application/:applicationName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific deployed VXML application, including its configuration, call flow elements, and deployment metadata."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Activate a Vxml Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/application/:applicationName/activate",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ]
+          },
+          "docs": "Activates a deployed VXML application, making it available to handle incoming calls. An application must be active to process calls."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Deactivate a Vxml Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{oamp-server}:9443/oamp/rest/application/:applicationName/deactivate",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ]
+          },
+          "docs": "Deactivates a VXML application. Active calls using the application are allowed to complete, but no new calls will be routed to it."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

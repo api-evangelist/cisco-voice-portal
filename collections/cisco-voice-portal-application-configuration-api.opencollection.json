@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Application Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/application/:applicationName/config",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ]
+          },
+          "docs": "Retrieves the runtime configuration parameters for a VXML application. These settings are defined in the Call Studio project and can be overridden at runtime."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Update Application Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{oamp-server}:9443/oamp/rest/application/:applicationName/config",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the runtime configuration parameters for a VXML application. Changes take effect for new calls; active calls continue with their existing configuration."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Application Call Flow Elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/application/:applicationName/elements",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployed VXML application"
+              }
+            ]
+          },
+          "docs": "Retrieves the list of call flow elements (voice elements, action elements, and decision elements) that make up the VXML application. Elements are the building blocks of Call Studio applications."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

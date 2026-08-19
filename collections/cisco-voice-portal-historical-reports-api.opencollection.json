@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Historical Reports API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Historical Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Call Summary Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/statistics/summary",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Aggregation interval"
+              },
+              {
+                "name": "calledNumber",
+                "value": "",
+                "type": "query",
+                "description": "Filter by called number (DNIS)"
+              }
+            ]
+          },
+          "docs": "Retrieves aggregated call summary statistics for a specified time period, including total calls, average handle time, abandonment rate, and self-service completion rate."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Vxml Application Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/statistics/application",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific application name"
+              }
+            ]
+          },
+          "docs": "Retrieves usage and performance statistics for deployed VXML applications, including invocation counts, completion rates, and average interaction duration."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Per-server Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/statistics/server",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "serverType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by server type"
+              }
+            ]
+          },
+          "docs": "Retrieves call processing statistics broken down by individual CVP server, useful for capacity planning and load monitoring."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

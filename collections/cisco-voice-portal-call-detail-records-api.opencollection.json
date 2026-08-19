@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Call Detail Records API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Call Detail Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Query Call Detail Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/cdr",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start of the query time range (ISO 8601)"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End of the query time range (ISO 8601)"
+              },
+              {
+                "name": "calledNumber",
+                "value": "",
+                "type": "query",
+                "description": "Filter by called number (DNIS)"
+              },
+              {
+                "name": "callingNumber",
+                "value": "",
+                "type": "query",
+                "description": "Filter by calling number (ANI)"
+              },
+              {
+                "name": "callGuid",
+                "value": "",
+                "type": "query",
+                "description": "Filter by unique call GUID"
+              },
+              {
+                "name": "callResult",
+                "value": "",
+                "type": "query",
+                "description": "Filter by call result"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves call detail records (CDRs) based on specified filter criteria. CDRs contain comprehensive information about each call processed by CVP including timing, routing decisions, application interactions, and outcome."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get a Specific Call Detail Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/cdr/:callGuid",
+            "params": [
+              {
+                "name": "callGuid",
+                "value": "",
+                "type": "path",
+                "description": "Globally unique call identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves the complete call detail record for a specific call, identified by its globally unique identifier (GUID). Includes all call legs, application interactions, and ECC variables."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Call Legs for a Call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/cdr/:callGuid/legs",
+            "params": [
+              {
+                "name": "callGuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves all individual call legs associated with a specific call. A call may have multiple legs representing transfers, conferences, or application hand-offs within the CVP system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

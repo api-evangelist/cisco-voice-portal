@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Micro-Applications API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Micro-Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal List Available Micro-applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/microapp"
+          },
+          "docs": "Retrieves a list of built-in CVP micro-applications. Micro-applications are pre-built VXML applications for common IVR tasks such as playing media, collecting digits, and external VXML retrieval. These are invoked through ICM scripting via the Run External Script node."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Micro-application Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/microapp/:microAppName/config",
+            "params": [
+              {
+                "name": "microAppName",
+                "value": "",
+                "type": "path",
+                "description": "Micro-application identifier (e.g., PlayMedia, GetDigits, Menu, PlayData, ExternalVXML)"
+              }
+            ]
+          },
+          "docs": "Retrieves the configuration for a specific built-in micro-application such as PlayMedia (PM), GetDigits (GD), Menu, PlayData (PD), CaptureCurrentCallerInfo, or ExternalVXML (EV)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

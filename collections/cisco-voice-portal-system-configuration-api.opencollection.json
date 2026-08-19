@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration System Configuration API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get System-wide Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/system/config"
+          },
+          "docs": "Retrieves global system configuration settings including logging levels, security settings, and system-wide defaults."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Update System-wide Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{oamp-server}:9443/oamp/rest/system/config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cisco Voice Portal Update System-wide Configuration"
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Licensing Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/system/license"
+          },
+          "docs": "Retrieves current licensing information including licensed features, port capacity, and license expiration status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

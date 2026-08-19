@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cisco Voice Portal Administration Application Configuration Server Status API",
+    "version": "12.6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Server Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Vxml Server Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/server/status"
+          },
+          "docs": "Retrieves the operational status of the VXML Server, including active session count, thread pool status, and resource utilization."
+        },
+        {
+          "info": {
+            "name": "Cisco Voice Portal Get Recent Server Log Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{oamp-server}:9443/oamp/rest/server/log",
+            "params": [
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "Minimum log level to include"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Return logs since this timestamp"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves recent log entries from the VXML Server. Supports filtering by severity level and time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
