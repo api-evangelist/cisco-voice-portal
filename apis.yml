@@ -24,7 +24,7 @@ tags:
   - VXML
 created: '2024'
 modified: '2026-05-19'
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 url: https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html
 apis:
 - name: Cisco Voice Portal Call Events API
