@@ -34,6 +34,12 @@ apis:
   baseURL: tcp://cvp-callserver.example.com:61616
   tags:
   - Call Lifecycle
+  - Event
+  - JMS
+  - Monitoring
+  - Notification
+  tags_raw:
+  - Call Lifecycle
   - Events
   - JMS
   - Monitoring
