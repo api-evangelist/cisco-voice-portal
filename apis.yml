@@ -1,6 +1,18 @@
 name: Cisco Voice Portal
 description: Cisco Voice Portal (CVP) is an enterprise-class Voice XML (VXML) browser and call control platform
   that enables self-service applications for voice, video, and multimodal interactions.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
