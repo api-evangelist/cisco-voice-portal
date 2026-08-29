@@ -1,7 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Cisco Voice Portal Administration Application Configuration Application Management API
-  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  title: Cisco Voice Portal Application Management API
   version: 12.6.0
   contact:
     name: Cisco Developer Support
@@ -9,8 +8,9 @@ info:
   license:
     name: Cisco DevNet
     url: https://developer.cisco.com/site/license/
-  x-provider: cisco
   x-product: unified-customer-voice-portal
+  x-provider: cisco
+  description: 'Operations tagged Application Management across 2 of this provider''s published API definitions: cisco-voice-portal-administration-openapi.yml, cisco-voice-portal-vxml-services-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://{oamp-server}:9443/oamp/rest
   description: CVP OAMP Server REST API
@@ -18,9 +18,12 @@ servers:
     oamp-server:
       default: cvp-oamp.example.com
       description: Hostname or IP of the CVP OAMP Server
-security:
-- basicAuth: []
-- sessionCookie: []
+- url: https://{vxml-server}:7443/CVP/rest
+  description: CVP VXML Server REST management interface
+  variables:
+    vxml-server:
+      default: cvp-vxmlserver.example.com
+      description: Hostname or IP of the CVP VXML Server
 tags:
 - name: Application Management
   description: Deploy and manage VXML and Call Studio applications
@@ -67,6 +70,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - basicAuth: []
+      - sessionCookie: []
     post:
       operationId: deployApplication
       summary: Cisco Voice Portal Deploy a New Application
@@ -118,6 +124,16 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - basicAuth: []
+      - sessionCookie: []
+    servers:
+    - url: https://{oamp-server}:9443/oamp/rest
+      description: CVP OAMP Server REST API
+      variables:
+        oamp-server:
+          default: cvp-oamp.example.com
+          description: Hostname or IP of the CVP OAMP Server
   /application/{applicationId}:
     get:
       operationId: getApplication
@@ -143,6 +159,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - basicAuth: []
+      - sessionCookie: []
     delete:
       operationId: undeployApplication
       summary: Cisco Voice Portal Undeploy an Application
@@ -167,6 +186,16 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - basicAuth: []
+      - sessionCookie: []
+    servers:
+    - url: https://{oamp-server}:9443/oamp/rest
+      description: CVP OAMP Server REST API
+      variables:
+        oamp-server:
+          default: cvp-oamp.example.com
+          description: Hostname or IP of the CVP OAMP Server
   /application/{applicationName}:
     get:
       operationId: getApplicationDetails
@@ -192,6 +221,15 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - basicAuth: []
+    servers:
+    - url: https://{vxml-server}:7443/CVP/rest
+      description: CVP VXML Server REST management interface
+      variables:
+        vxml-server:
+          default: cvp-vxmlserver.example.com
+          description: Hostname or IP of the CVP VXML Server
   /application/{applicationName}/activate:
     post:
       operationId: activateApplication
@@ -219,6 +257,15 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - basicAuth: []
+    servers:
+    - url: https://{vxml-server}:7443/CVP/rest
+      description: CVP VXML Server REST management interface
+      variables:
+        vxml-server:
+          default: cvp-vxmlserver.example.com
+          description: Hostname or IP of the CVP VXML Server
   /application/{applicationName}/deactivate:
     post:
       operationId: deactivateApplication
@@ -246,57 +293,33 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - basicAuth: []
+    servers:
+    - url: https://{vxml-server}:7443/CVP/rest
+      description: CVP VXML Server REST management interface
+      variables:
+        vxml-server:
+          default: cvp-vxmlserver.example.com
+          description: Hostname or IP of the CVP VXML Server
 components:
   schemas:
-    VxmlApplicationDetail:
+    Error:
       type: object
       properties:
-        applicationName:
+        code:
           type: string
           example: example_value
-        applicationType:
+        message:
           type: string
           example: example_value
-        status:
+        details:
           type: string
           example: example_value
-        version:
-          type: string
-          example: example_value
-        activeSessions:
-          type: integer
-          example: 10
-        deployedAt:
+        timestamp:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-        description:
-          type: string
-          example: A sample description.
-        entryPoint:
-          type: string
-          description: Starting element of the call flow
-          example: example_value
-        elements:
-          type: array
-          items:
-            type: string
-          description: List of element names in the application
-          example: []
-        mediaDirectory:
-          type: string
-          description: Path to the application media files
-          example: example_value
-        grammarDirectory:
-          type: string
-          description: Path to the application grammar files
-          example: example_value
-        configParameters:
-          type: object
-          additionalProperties:
-            type: string
-          description: Application-level configuration parameters
-          example: example_value
     Application:
       type: object
       properties:
@@ -348,38 +371,6 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-    OperationResult:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - success
-          - failed
-          example: success
-        message:
-          type: string
-          example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          example: example_value
-        message:
-          type: string
-          example: example_value
-        details:
-          type: string
-          example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
     OperationStatus:
       type: object
       properties:
@@ -410,19 +401,119 @@ components:
           format: float
           description: Progress percentage (0-100)
           example: 42.5
+    VxmlApplication:
+      type: object
+      properties:
+        applicationName:
+          type: string
+          description: Application name
+          example: example_value
+        applicationType:
+          type: string
+          enum:
+          - callstudio
+          - standalone_vxml
+          - microapp
+          example: callstudio
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - error
+          example: active
+        version:
+          type: string
+          example: example_value
+        activeSessions:
+          type: integer
+          description: Number of active call sessions
+          example: 10
+        deployedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    OperationResult:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - success
+          - failed
+          example: success
+        message:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    VxmlApplicationDetail:
+      type: object
+      properties:
+        applicationName:
+          type: string
+          example: example_value
+        applicationType:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+        version:
+          type: string
+          example: example_value
+        activeSessions:
+          type: integer
+          example: 10
+        deployedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        description:
+          type: string
+          example: A sample description.
+        entryPoint:
+          type: string
+          description: Starting element of the call flow
+          example: example_value
+        elements:
+          type: array
+          items:
+            type: string
+          description: List of element names in the application
+          example: []
+        mediaDirectory:
+          type: string
+          description: Path to the application media files
+          example: example_value
+        grammarDirectory:
+          type: string
+          description: Path to the application grammar files
+          example: example_value
+        configParameters:
+          type: object
+          additionalProperties:
+            type: string
+          description: Application-level configuration parameters
+          example: example_value
+  parameters:
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Application identifier
+      schema:
+        type: string
+    ApplicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Name of the deployed VXML application
+      schema:
+        type: string
   responses:
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Requested resource not found
       content:
@@ -435,21 +526,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    ApplicationName:
-      name: applicationName
-      in: path
-      required: true
-      description: Name of the deployed VXML application
-      schema:
-        type: string
-    ApplicationId:
-      name: applicationId
-      in: path
-      required: true
-      description: Application identifier
-      schema:
-        type: string
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http
@@ -460,3 +548,6 @@ components:
       in: cookie
       name: JSESSIONID
       description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.
+x-refined-from:
+- cisco-voice-portal-administration-openapi.yml
+- cisco-voice-portal-vxml-services-openapi.yml

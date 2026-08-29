@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Cisco Voice Portal Administration Application Configuration SIP Sessions API
-  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  title: Cisco Voice Portal Call Control SIP Sessions API
+  description: The Cisco Unified Customer Voice Portal (CVP) Call Control API provides programmatic access to call control functions on the CVP Call Server. The Call Server is the SIP-based call control component that manages call routing, transfers, and session management within the CVP deployment. It integrates with Cisco Unified ICM/UCCE for intelligent call routing and with Cisco Unified Communications Manager (CUCM) for agent delivery. This API exposes management and monitoring operations for active call sessions and call routing configuration on the Call Server component, typically accessible on port 8000.
   version: 12.6.0
   contact:
     name: Cisco Developer Support
@@ -12,15 +12,14 @@ info:
   x-provider: cisco
   x-product: unified-customer-voice-portal
 servers:
-- url: https://{oamp-server}:9443/oamp/rest
-  description: CVP OAMP Server REST API
+- url: https://{call-server}:8000/cvp/rest
+  description: CVP Call Server REST management interface
   variables:
-    oamp-server:
-      default: cvp-oamp.example.com
-      description: Hostname or IP of the CVP OAMP Server
+    call-server:
+      default: cvp-callserver.example.com
+      description: Hostname or IP of the CVP Call Server
 security:
 - basicAuth: []
-- sessionCookie: []
 tags:
 - name: SIP Sessions
   description: Monitor SIP session details
@@ -90,57 +89,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SipSessionDetail:
-      type: object
-      properties:
-        sessionId:
-          type: string
-          example: '500123'
-        callId:
-          type: string
-          example: '500123'
-        callGuid:
-          type: string
-          example: '500123'
-        state:
-          type: string
-          example: example_value
-        fromUri:
-          type: string
-          example: example_value
-        toUri:
-          type: string
-          example: example_value
-        fromTag:
-          type: string
-          example: example_value
-        toTag:
-          type: string
-          example: example_value
-        cseq:
-          type: integer
-          example: 10
-        transport:
-          type: string
-          enum:
-          - UDP
-          - TCP
-          - TLS
-          example: UDP
-        localAddress:
-          type: string
-          example: example_value
-        remoteAddress:
-          type: string
-          example: example_value
-        startTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        lastActivityTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
     SipSession:
       type: object
       properties:
@@ -193,15 +141,66 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
+    SipSessionDetail:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          example: '500123'
+        callId:
+          type: string
+          example: '500123'
+        callGuid:
+          type: string
+          example: '500123'
+        state:
+          type: string
+          example: example_value
+        fromUri:
+          type: string
+          example: example_value
+        toUri:
+          type: string
+          example: example_value
+        fromTag:
+          type: string
+          example: example_value
+        toTag:
+          type: string
+          example: example_value
+        cseq:
+          type: integer
+          example: 10
+        transport:
+          type: string
+          enum:
+          - UDP
+          - TCP
+          - TLS
+          example: UDP
+        localAddress:
+          type: string
+          example: example_value
+        remoteAddress:
+          type: string
+          example: example_value
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        lastActivityTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
   responses:
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    InternalError:
+      description: Internal server error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:
@@ -210,9 +209,4 @@ components:
     basicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
-    sessionCookie:
-      type: apiKey
-      in: cookie
-      name: JSESSIONID
-      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.
+      description: HTTP Basic authentication using CVP Call Server credentials

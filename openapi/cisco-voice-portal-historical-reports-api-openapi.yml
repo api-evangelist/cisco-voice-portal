@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Cisco Voice Portal Administration Application Configuration Historical Reports API
-  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  title: Cisco Voice Portal Reporting Historical Reports API
+  description: The Cisco Unified Customer Voice Portal (CVP) Reporting API provides access to call detail records (CDRs), real-time call statistics, and historical reporting data. The Reporting Server collects data from CVP Call Servers and VXML Servers, storing it in the CVP Reporting Database (an Informix database). This API provides RESTful access to reporting data that is typically accessed via the Cisco Unified Intelligence Center (CUIC) reporting interface.
   version: 12.6.0
   contact:
     name: Cisco Developer Support
@@ -12,15 +12,14 @@ info:
   x-provider: cisco
   x-product: unified-customer-voice-portal
 servers:
-- url: https://{oamp-server}:9443/oamp/rest
-  description: CVP OAMP Server REST API
+- url: https://{reporting-server}:8111/cvp-reporting/rest
+  description: CVP Reporting Server REST API
   variables:
-    oamp-server:
-      default: cvp-oamp.example.com
-      description: Hostname or IP of the CVP OAMP Server
+    reporting-server:
+      default: cvp-reporting.example.com
+      description: Hostname or IP of the CVP Reporting Server
 security:
 - basicAuth: []
-- sessionCookie: []
 tags:
 - name: Historical Reports
   description: Aggregated historical reporting data
@@ -164,41 +163,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ApplicationStatistics:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        endTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        applications:
-          type: array
-          items:
-            type: object
-            properties:
-              applicationName:
-                type: string
-              totalInvocations:
-                type: integer
-              completedInvocations:
-                type: integer
-              errorInvocations:
-                type: integer
-              averageDuration:
-                type: number
-                format: float
-                description: Average application interaction duration in seconds
-              completionRate:
-                type: number
-                format: float
-              errorRate:
-                type: number
-                format: float
-          example: []
     ServerStatistics:
       type: object
       properties:
@@ -232,6 +196,57 @@ components:
                 type: number
                 format: float
               memoryUsageAverage:
+                type: number
+                format: float
+          example: []
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    ApplicationStatistics:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        applications:
+          type: array
+          items:
+            type: object
+            properties:
+              applicationName:
+                type: string
+              totalInvocations:
+                type: integer
+              completedInvocations:
+                type: integer
+              errorInvocations:
+                type: integer
+              averageDuration:
+                type: number
+                format: float
+                description: Average application interaction duration in seconds
+              completionRate:
+                type: number
+                format: float
+              errorRate:
                 type: number
                 format: float
           example: []
@@ -286,23 +301,13 @@ components:
                 format: float
                 description: Percentage of abandoned calls
           example: []
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          example: example_value
-        message:
-          type: string
-          example: example_value
-        details:
-          type: string
-          example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
   responses:
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or credentials invalid
       content:
@@ -315,19 +320,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
-    sessionCookie:
-      type: apiKey
-      in: cookie
-      name: JSESSIONID
-      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.
+      description: HTTP Basic authentication using CVP reporting credentials

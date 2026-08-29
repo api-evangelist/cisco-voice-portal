@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Cisco Voice Portal Administration Application Configuration Call Management API
-  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  title: Cisco Voice Portal Call Control Call Management API
+  description: The Cisco Unified Customer Voice Portal (CVP) Call Control API provides programmatic access to call control functions on the CVP Call Server. The Call Server is the SIP-based call control component that manages call routing, transfers, and session management within the CVP deployment. It integrates with Cisco Unified ICM/UCCE for intelligent call routing and with Cisco Unified Communications Manager (CUCM) for agent delivery. This API exposes management and monitoring operations for active call sessions and call routing configuration on the Call Server component, typically accessible on port 8000.
   version: 12.6.0
   contact:
     name: Cisco Developer Support
@@ -12,15 +12,14 @@ info:
   x-provider: cisco
   x-product: unified-customer-voice-portal
 servers:
-- url: https://{oamp-server}:9443/oamp/rest
-  description: CVP OAMP Server REST API
+- url: https://{call-server}:8000/cvp/rest
+  description: CVP Call Server REST management interface
   variables:
-    oamp-server:
-      default: cvp-oamp.example.com
-      description: Hostname or IP of the CVP OAMP Server
+    call-server:
+      default: cvp-callserver.example.com
+      description: Hostname or IP of the CVP Call Server
 security:
 - basicAuth: []
-- sessionCookie: []
 tags:
 - name: Call Management
   description: Manage and control active calls
@@ -233,15 +232,23 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    CallGuid:
-      name: callGuid
-      in: path
-      required: true
-      description: Globally unique call identifier
-      schema:
-        type: string
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
     TransferRequest:
       type: object
       required:
@@ -287,68 +294,66 @@ components:
           additionalProperties:
             type: string
           example: example_value
-    CallVariables:
+    ActiveCall:
+      type: object
+      properties:
+        callGuid:
+          type: string
+          description: Globally unique call identifier
+          example: '500123'
+        state:
+          type: string
+          enum:
+          - ringing
+          - connected
+          - queued
+          - self_service
+          - transferring
+          - on_hold
+          example: ringing
+        callingNumber:
+          type: string
+          description: Caller ANI
+          example: example_value
+        calledNumber:
+          type: string
+          description: Called DNIS
+          example: example_value
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        duration:
+          type: integer
+          description: Current call duration in seconds
+          example: 10
+        applicationName:
+          type: string
+          description: Current VXML application handling the call
+          example: example_value
+    CallOperationResult:
       type: object
       properties:
         callGuid:
           type: string
           example: '500123'
-        eccVariables:
-          type: object
-          additionalProperties:
-            type: string
-          description: Expanded Call Context variables
+        operation:
+          type: string
           example: example_value
-        peripheralVariables:
-          type: object
-          properties:
-            peripheral1:
-              type: string
-            peripheral2:
-              type: string
-            peripheral3:
-              type: string
-            peripheral4:
-              type: string
-            peripheral5:
-              type: string
-            peripheral6:
-              type: string
-            peripheral7:
-              type: string
-            peripheral8:
-              type: string
-            peripheral9:
-              type: string
-            peripheral10:
-              type: string
-          description: ICM peripheral variables (1-10)
+        status:
+          type: string
+          enum:
+          - success
+          - pending
+          - failed
+          example: success
+        message:
+          type: string
           example: example_value
-        callVariables:
-          type: object
-          properties:
-            callVariable1:
-              type: string
-            callVariable2:
-              type: string
-            callVariable3:
-              type: string
-            callVariable4:
-              type: string
-            callVariable5:
-              type: string
-            callVariable6:
-              type: string
-            callVariable7:
-              type: string
-            callVariable8:
-              type: string
-            callVariable9:
-              type: string
-            callVariable10:
-              type: string
-          description: ICM call variables (1-10)
-          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
     ActiveCallDetail:
       type: object
       properties:
@@ -424,83 +429,75 @@ components:
           additionalProperties:
             type: string
           example: example_value
-    ActiveCall:
-      type: object
-      properties:
-        callGuid:
-          type: string
-          description: Globally unique call identifier
-          example: '500123'
-        state:
-          type: string
-          enum:
-          - ringing
-          - connected
-          - queued
-          - self_service
-          - transferring
-          - on_hold
-          example: ringing
-        callingNumber:
-          type: string
-          description: Caller ANI
-          example: example_value
-        calledNumber:
-          type: string
-          description: Called DNIS
-          example: example_value
-        startTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        duration:
-          type: integer
-          description: Current call duration in seconds
-          example: 10
-        applicationName:
-          type: string
-          description: Current VXML application handling the call
-          example: example_value
-    CallOperationResult:
+    CallVariables:
       type: object
       properties:
         callGuid:
           type: string
           example: '500123'
-        operation:
-          type: string
+        eccVariables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Expanded Call Context variables
           example: example_value
-        status:
-          type: string
-          enum:
-          - success
-          - pending
-          - failed
-          example: success
-        message:
-          type: string
+        peripheralVariables:
+          type: object
+          properties:
+            peripheral1:
+              type: string
+            peripheral2:
+              type: string
+            peripheral3:
+              type: string
+            peripheral4:
+              type: string
+            peripheral5:
+              type: string
+            peripheral6:
+              type: string
+            peripheral7:
+              type: string
+            peripheral8:
+              type: string
+            peripheral9:
+              type: string
+            peripheral10:
+              type: string
+          description: ICM peripheral variables (1-10)
           example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
+        callVariables:
+          type: object
+          properties:
+            callVariable1:
+              type: string
+            callVariable2:
+              type: string
+            callVariable3:
+              type: string
+            callVariable4:
+              type: string
+            callVariable5:
+              type: string
+            callVariable6:
+              type: string
+            callVariable7:
+              type: string
+            callVariable8:
+              type: string
+            callVariable9:
+              type: string
+            callVariable10:
+              type: string
+          description: ICM call variables (1-10)
           example: example_value
-        message:
-          type: string
-          example: example_value
-        details:
-          type: string
-          example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
   responses:
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or credentials invalid
       content:
@@ -513,19 +510,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    CallGuid:
+      name: callGuid
+      in: path
+      required: true
+      description: Globally unique call identifier
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
-    sessionCookie:
-      type: apiKey
-      in: cookie
-      name: JSESSIONID
-      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.
+      description: HTTP Basic authentication using CVP Call Server credentials

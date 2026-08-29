@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Cisco Voice Portal Administration Application Configuration Session Monitoring API
-  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  title: Cisco Voice Portal VXML Services Session Monitoring API
+  description: The Cisco Unified Customer Voice Portal (CVP) VXML Services API provides management and monitoring capabilities for the CVP VXML Server component. The VXML Server hosts and executes VoiceXML applications built with Cisco Unified Call Studio. This API enables deployment and management of VXML applications, access to element configurations, and monitoring of the VXML execution environment. The VXML Server exposes its management interface on the HTTP/HTTPS ports (default 7000/7443) alongside the application serving endpoints.
   version: 12.6.0
   contact:
     name: Cisco Developer Support
@@ -12,15 +12,14 @@ info:
   x-provider: cisco
   x-product: unified-customer-voice-portal
 servers:
-- url: https://{oamp-server}:9443/oamp/rest
-  description: CVP OAMP Server REST API
+- url: https://{vxml-server}:7443/CVP/rest
+  description: CVP VXML Server REST management interface
   variables:
-    oamp-server:
-      default: cvp-oamp.example.com
-      description: Hostname or IP of the CVP OAMP Server
+    vxml-server:
+      default: cvp-vxmlserver.example.com
+      description: Hostname or IP of the CVP VXML Server
 security:
 - basicAuth: []
-- sessionCookie: []
 tags:
 - name: Session Monitoring
   description: Monitor active VXML call sessions
@@ -92,57 +91,31 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Requested resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    ApplicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Name of the deployed VXML application
+      schema:
+        type: string
   schemas:
-    VxmlSession:
+    Error:
       type: object
       properties:
-        sessionId:
-          type: string
-          example: '500123'
-        callGuid:
-          type: string
-          description: Associated CVP call GUID
-          example: '500123'
-        applicationName:
+        code:
           type: string
           example: example_value
-        startTime:
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-        duration:
-          type: integer
-          description: Session duration in seconds
-          example: 10
-        currentElement:
-          type: string
-          description: Currently executing call flow element
-          example: example_value
-        callingNumber:
-          type: string
-          example: example_value
-        calledNumber:
-          type: string
-          example: example_value
     VxmlSessionDetail:
       type: object
       properties:
@@ -198,37 +171,58 @@ components:
           type: string
           description: Last input received from the caller (DTMF or ASR result)
           example: example_value
-    Error:
+    VxmlSession:
       type: object
       properties:
-        code:
+        sessionId:
+          type: string
+          example: '500123'
+        callGuid:
+          type: string
+          description: Associated CVP call GUID
+          example: '500123'
+        applicationName:
           type: string
           example: example_value
-        message:
-          type: string
-          example: example_value
-        details:
-          type: string
-          example: example_value
-        timestamp:
+        startTime:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-  parameters:
-    ApplicationName:
-      name: applicationName
-      in: path
-      required: true
-      description: Name of the deployed VXML application
-      schema:
-        type: string
+        duration:
+          type: integer
+          description: Session duration in seconds
+          example: 10
+        currentElement:
+          type: string
+          description: Currently executing call flow element
+          example: example_value
+        callingNumber:
+          type: string
+          example: example_value
+        calledNumber:
+          type: string
+          example: example_value
+  responses:
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication using CVP OAMP administrative credentials. The default administrator account is configured during CVP installation.
-    sessionCookie:
-      type: apiKey
-      in: cookie
-      name: JSESSIONID
-      description: Session-based authentication obtained after login. The JSESSIONID cookie is returned after successful basic authentication.
+      description: HTTP Basic authentication using CVP VXML Server credentials
