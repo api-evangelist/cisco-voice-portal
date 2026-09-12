@@ -340,6 +340,8 @@ apis:
   - type: Documentation
     url: https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
 common:
+- type: Website
+  url: https://www.cisco.com/
 - type: ParentCompany
   url: https://apis.io/providers/cisco/
   name: Cisco
