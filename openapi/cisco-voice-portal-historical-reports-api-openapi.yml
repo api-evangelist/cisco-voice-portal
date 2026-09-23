@@ -163,42 +163,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ServerStatistics:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        endTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        servers:
-          type: array
-          items:
-            type: object
-            properties:
-              serverId:
-                type: string
-              hostname:
-                type: string
-              serverType:
-                type: string
-              totalCalls:
-                type: integer
-              peakConcurrentCalls:
-                type: integer
-              averageConcurrentCalls:
-                type: number
-                format: float
-              cpuUsageAverage:
-                type: number
-                format: float
-              memoryUsageAverage:
-                type: number
-                format: float
-          example: []
     Error:
       type: object
       properties:
@@ -215,41 +179,6 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-    ApplicationStatistics:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        endTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        applications:
-          type: array
-          items:
-            type: object
-            properties:
-              applicationName:
-                type: string
-              totalInvocations:
-                type: integer
-              completedInvocations:
-                type: integer
-              errorInvocations:
-                type: integer
-              averageDuration:
-                type: number
-                format: float
-                description: Average application interaction duration in seconds
-              completionRate:
-                type: number
-                format: float
-              errorRate:
-                type: number
-                format: float
-          example: []
     CallSummaryStatistics:
       type: object
       properties:
@@ -301,7 +230,84 @@ components:
                 format: float
                 description: Percentage of abandoned calls
           example: []
+    ServerStatistics:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        servers:
+          type: array
+          items:
+            type: object
+            properties:
+              serverId:
+                type: string
+              hostname:
+                type: string
+              serverType:
+                type: string
+              totalCalls:
+                type: integer
+              peakConcurrentCalls:
+                type: integer
+              averageConcurrentCalls:
+                type: number
+                format: float
+              cpuUsageAverage:
+                type: number
+                format: float
+              memoryUsageAverage:
+                type: number
+                format: float
+          example: []
+    ApplicationStatistics:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        applications:
+          type: array
+          items:
+            type: object
+            properties:
+              applicationName:
+                type: string
+              totalInvocations:
+                type: integer
+              completedInvocations:
+                type: integer
+              errorInvocations:
+                type: integer
+              averageDuration:
+                type: number
+                format: float
+                description: Average application interaction duration in seconds
+              completionRate:
+                type: number
+                format: float
+              errorRate:
+                type: number
+                format: float
+          example: []
   responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     InternalError:
       description: Internal server error
       content:
@@ -310,12 +316,6 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
       content:
         application/json:
           schema:

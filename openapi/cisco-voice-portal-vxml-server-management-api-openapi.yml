@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Cisco Voice Portal Administration VXML Server Management API
-  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration.
   version: 12.6.0
   contact:
     name: Cisco Developer Support
@@ -123,6 +123,38 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
+    VxmlServer:
+      type: object
+      properties:
+        serverId:
+          type: string
+          example: '500123'
+        hostname:
+          type: string
+          example: example_value
+        ipAddress:
+          type: string
+          format: ipv4
+          example: example_value
+        httpPort:
+          type: integer
+          default: 7000
+          example: 10
+        httpsPort:
+          type: integer
+          default: 7443
+          example: 10
+        status:
+          type: string
+          enum:
+          - online
+          - offline
+          - maintenance
+          example: online
+        deployedApplications:
+          type: integer
+          description: Number of applications deployed on this server
+          example: 10
     VxmlServerConfig:
       type: object
       properties:
@@ -181,41 +213,9 @@ components:
               type: string
               description: Maximum log file size (e.g., 10MB)
           example: example_value
-    VxmlServer:
-      type: object
-      properties:
-        serverId:
-          type: string
-          example: '500123'
-        hostname:
-          type: string
-          example: example_value
-        ipAddress:
-          type: string
-          format: ipv4
-          example: example_value
-        httpPort:
-          type: integer
-          default: 7000
-          example: 10
-        httpsPort:
-          type: integer
-          default: 7443
-          example: 10
-        status:
-          type: string
-          enum:
-          - online
-          - offline
-          - maintenance
-          example: online
-        deployedApplications:
-          type: integer
-          description: Number of applications deployed on this server
-          example: 10
   responses:
-    NotFound:
-      description: Requested resource not found
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:
@@ -226,14 +226,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    NotFound:
+      description: Requested resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:

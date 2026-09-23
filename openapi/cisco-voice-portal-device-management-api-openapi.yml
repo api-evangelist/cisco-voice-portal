@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Cisco Voice Portal Administration Device Management API
-  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration.
   version: 12.6.0
   contact:
     name: Cisco Developer Support
@@ -207,54 +207,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Device:
-      type: object
-      properties:
-        deviceId:
-          type: string
-          description: Unique identifier for the device
-          example: '500123'
-        hostname:
-          type: string
-          description: Hostname of the device
-          example: example_value
-        ipAddress:
-          type: string
-          format: ipv4
-          description: IP address of the device
-          example: example_value
-        deviceType:
-          type: string
-          enum:
-          - CallServer
-          - VXMLServer
-          - ReportingServer
-          - MediaServer
-          - OAMPServer
-          description: Type of CVP component
-          example: CallServer
-        description:
-          type: string
-          description: Device description
-          example: A sample description.
-        status:
-          type: string
-          enum:
-          - online
-          - offline
-          - maintenance
-          - error
-          description: Current operational status
-          example: online
-        version:
-          type: string
-          description: Software version installed on the device
-          example: example_value
-        lastContact:
-          type: string
-          format: date-time
-          description: Last time the OAMP server contacted this device
-          example: '2026-01-15T10:30:00Z'
     Error:
       type: object
       properties:
@@ -305,49 +257,6 @@ components:
               type: string
               format: password
           example: example_value
-    OperationStatus:
-      type: object
-      properties:
-        operationId:
-          type: string
-          example: '500123'
-        status:
-          type: string
-          enum:
-          - pending
-          - in_progress
-          - completed
-          - failed
-          example: pending
-        message:
-          type: string
-          example: example_value
-        startedAt:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        completedAt:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        progress:
-          type: number
-          format: float
-          description: Progress percentage (0-100)
-          example: 42.5
-    DeviceUpdateRequest:
-      type: object
-      properties:
-        hostname:
-          type: string
-          example: example_value
-        ipAddress:
-          type: string
-          format: ipv4
-          example: example_value
-        description:
-          type: string
-          example: A sample description.
     DeviceStatus:
       type: object
       properties:
@@ -397,9 +306,100 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
+    Device:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          description: Unique identifier for the device
+          example: '500123'
+        hostname:
+          type: string
+          description: Hostname of the device
+          example: example_value
+        ipAddress:
+          type: string
+          format: ipv4
+          description: IP address of the device
+          example: example_value
+        deviceType:
+          type: string
+          enum:
+          - CallServer
+          - VXMLServer
+          - ReportingServer
+          - MediaServer
+          - OAMPServer
+          description: Type of CVP component
+          example: CallServer
+        description:
+          type: string
+          description: Device description
+          example: A sample description.
+        status:
+          type: string
+          enum:
+          - online
+          - offline
+          - maintenance
+          - error
+          description: Current operational status
+          example: online
+        version:
+          type: string
+          description: Software version installed on the device
+          example: example_value
+        lastContact:
+          type: string
+          format: date-time
+          description: Last time the OAMP server contacted this device
+          example: '2026-01-15T10:30:00Z'
+    OperationStatus:
+      type: object
+      properties:
+        operationId:
+          type: string
+          example: '500123'
+        status:
+          type: string
+          enum:
+          - pending
+          - in_progress
+          - completed
+          - failed
+          example: pending
+        message:
+          type: string
+          example: example_value
+        startedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        completedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        progress:
+          type: number
+          format: float
+          description: Progress percentage (0-100)
+          example: 42.5
+    DeviceUpdateRequest:
+      type: object
+      properties:
+        hostname:
+          type: string
+          example: example_value
+        ipAddress:
+          type: string
+          format: ipv4
+          example: example_value
+        description:
+          type: string
+          example: A sample description.
   responses:
-    NotFound:
-      description: Requested resource not found
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:
@@ -410,14 +410,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    NotFound:
+      description: Requested resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:

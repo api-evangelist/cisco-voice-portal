@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Cisco Voice Portal VXML Services Session Monitoring API
-  description: The Cisco Unified Customer Voice Portal (CVP) VXML Services API provides management and monitoring capabilities for the CVP VXML Server component. The VXML Server hosts and executes VoiceXML applications built with Cisco Unified Call Studio. This API enables deployment and management of VXML applications, access to element configurations, and monitoring of the VXML execution environment. The VXML Server exposes its management interface on the HTTP/HTTPS ports (default 7000/7443) alongside the application serving endpoints.
+  description: The Cisco Unified Customer Voice Portal (CVP) VXML Services API provides management and monitoring capabilities for the CVP VXML Server component.
   version: 12.6.0
   contact:
     name: Cisco Developer Support
@@ -91,14 +91,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    ApplicationName:
-      name: applicationName
-      in: path
-      required: true
-      description: Name of the deployed VXML application
-      schema:
-        type: string
   schemas:
     Error:
       type: object
@@ -203,14 +195,14 @@ components:
           type: string
           example: example_value
   responses:
-    NotFound:
-      description: Requested resource not found
+    InternalError:
+      description: Internal server error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
+    NotFound:
+      description: Requested resource not found
       content:
         application/json:
           schema:
@@ -221,6 +213,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    ApplicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Name of the deployed VXML application
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Cisco Voice Portal Call Control Call Management API
-  description: The Cisco Unified Customer Voice Portal (CVP) Call Control API provides programmatic access to call control functions on the CVP Call Server. The Call Server is the SIP-based call control component that manages call routing, transfers, and session management within the CVP deployment. It integrates with Cisco Unified ICM/UCCE for intelligent call routing and with Cisco Unified Communications Manager (CUCM) for agent delivery. This API exposes management and monitoring operations for active call sessions and call routing configuration on the Call Server component, typically accessible on port 8000.
+  description: The Cisco Unified Customer Voice Portal (CVP) Call Control API provides programmatic access to call control functions on the CVP Call Server.
   version: 12.6.0
   contact:
     name: Cisco Developer Support
@@ -276,24 +276,6 @@ components:
             type: string
           description: ECC variables to pass with the transfer
           example: example_value
-    CallVariablesUpdate:
-      type: object
-      properties:
-        eccVariables:
-          type: object
-          additionalProperties:
-            type: string
-          example: example_value
-        peripheralVariables:
-          type: object
-          additionalProperties:
-            type: string
-          example: example_value
-        callVariables:
-          type: object
-          additionalProperties:
-            type: string
-          example: example_value
     ActiveCall:
       type: object
       properties:
@@ -331,29 +313,86 @@ components:
           type: string
           description: Current VXML application handling the call
           example: example_value
-    CallOperationResult:
+    CallVariables:
       type: object
       properties:
         callGuid:
           type: string
           example: '500123'
-        operation:
-          type: string
+        eccVariables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Expanded Call Context variables
           example: example_value
-        status:
-          type: string
-          enum:
-          - success
-          - pending
-          - failed
-          example: success
-        message:
-          type: string
+        peripheralVariables:
+          type: object
+          properties:
+            peripheral1:
+              type: string
+            peripheral2:
+              type: string
+            peripheral3:
+              type: string
+            peripheral4:
+              type: string
+            peripheral5:
+              type: string
+            peripheral6:
+              type: string
+            peripheral7:
+              type: string
+            peripheral8:
+              type: string
+            peripheral9:
+              type: string
+            peripheral10:
+              type: string
+          description: ICM peripheral variables (1-10)
           example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
+        callVariables:
+          type: object
+          properties:
+            callVariable1:
+              type: string
+            callVariable2:
+              type: string
+            callVariable3:
+              type: string
+            callVariable4:
+              type: string
+            callVariable5:
+              type: string
+            callVariable6:
+              type: string
+            callVariable7:
+              type: string
+            callVariable8:
+              type: string
+            callVariable9:
+              type: string
+            callVariable10:
+              type: string
+          description: ICM call variables (1-10)
+          example: example_value
+    CallVariablesUpdate:
+      type: object
+      properties:
+        eccVariables:
+          type: object
+          additionalProperties:
+            type: string
+          example: example_value
+        peripheralVariables:
+          type: object
+          additionalProperties:
+            type: string
+          example: example_value
+        callVariables:
+          type: object
+          additionalProperties:
+            type: string
+          example: example_value
     ActiveCallDetail:
       type: object
       properties:
@@ -429,69 +468,36 @@ components:
           additionalProperties:
             type: string
           example: example_value
-    CallVariables:
+    CallOperationResult:
       type: object
       properties:
         callGuid:
           type: string
           example: '500123'
-        eccVariables:
-          type: object
-          additionalProperties:
-            type: string
-          description: Expanded Call Context variables
+        operation:
+          type: string
           example: example_value
-        peripheralVariables:
-          type: object
-          properties:
-            peripheral1:
-              type: string
-            peripheral2:
-              type: string
-            peripheral3:
-              type: string
-            peripheral4:
-              type: string
-            peripheral5:
-              type: string
-            peripheral6:
-              type: string
-            peripheral7:
-              type: string
-            peripheral8:
-              type: string
-            peripheral9:
-              type: string
-            peripheral10:
-              type: string
-          description: ICM peripheral variables (1-10)
+        status:
+          type: string
+          enum:
+          - success
+          - pending
+          - failed
+          example: success
+        message:
+          type: string
           example: example_value
-        callVariables:
-          type: object
-          properties:
-            callVariable1:
-              type: string
-            callVariable2:
-              type: string
-            callVariable3:
-              type: string
-            callVariable4:
-              type: string
-            callVariable5:
-              type: string
-            callVariable6:
-              type: string
-            callVariable7:
-              type: string
-            callVariable8:
-              type: string
-            callVariable9:
-              type: string
-            callVariable10:
-              type: string
-          description: ICM call variables (1-10)
-          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
   responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     InternalError:
       description: Internal server error
       content:
@@ -500,12 +506,6 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
       content:
         application/json:
           schema:

@@ -40,7 +40,8 @@
     "cisco-voice-portal-call-control-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "cisco-voice-portal-reporting-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "cisco-voice-portal-vxml-services-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "tag 'Application Management' spans 2 source specs (cisco-voice-portal-administration-openapi.yml, cisco-voice-portal-vxml-services-openapi.yml): per-path servers applied"
+    "tag 'Application Management' spans 2 source specs (cisco-voice-portal-administration-openapi.yml, cisco-voice-portal-vxml-services-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "cisco-voice-portal-application-configuration-api-openapi.yml: previously refined output, superseded by openapi/_original/",

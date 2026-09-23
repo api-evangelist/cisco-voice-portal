@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Cisco Voice Portal VXML Services Media Management API
-  description: The Cisco Unified Customer Voice Portal (CVP) VXML Services API provides management and monitoring capabilities for the CVP VXML Server component. The VXML Server hosts and executes VoiceXML applications built with Cisco Unified Call Studio. This API enables deployment and management of VXML applications, access to element configurations, and monitoring of the VXML execution environment. The VXML Server exposes its management interface on the HTTP/HTTPS ports (default 7000/7443) alongside the application serving endpoints.
+  description: The Cisco Unified Customer Voice Portal (CVP) VXML Services API provides management and monitoring capabilities for the CVP VXML Server component.
   version: 12.6.0
   contact:
     name: Cisco Developer Support
@@ -157,6 +157,12 @@ components:
           format: date-time
           example: '2026-01-15T10:30:00Z'
   responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     InternalError:
       description: Internal server error
       content:
@@ -165,12 +171,6 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
       content:
         application/json:
           schema:

@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Cisco Voice Portal Administration SIP Configuration API
-  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration. This API enables programmatic access to device management, application deployment, system settings, and provisioning operations through the CVP OAMP Server. The OAMP Server is the central management component of the CVP solution, typically accessed via the Unified CVP Operations Console (OAMP web interface) on port 9443.
+  description: The Cisco Unified Customer Voice Portal (CVP) Operations, Administration, Maintenance, and Provisioning (OAMP) API provides RESTful web services for managing CVP deployment configuration.
   version: 12.6.0
   contact:
     name: Cisco Developer Support
@@ -94,6 +94,44 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
+    SipServerGroup:
+      type: object
+      properties:
+        groupId:
+          type: string
+          example: '500123'
+        groupName:
+          type: string
+          example: example_value
+        description:
+          type: string
+          example: A sample description.
+        servers:
+          type: array
+          items:
+            type: object
+            properties:
+              hostname:
+                type: string
+              ipAddress:
+                type: string
+                format: ipv4
+              port:
+                type: integer
+                default: 5060
+              priority:
+                type: integer
+              weight:
+                type: integer
+          example: []
+        loadBalancing:
+          type: string
+          enum:
+          - round_robin
+          - top_down
+          - weight_based
+          default: round_robin
+          example: round_robin
     SipServerGroupCreate:
       type: object
       required:
@@ -137,45 +175,13 @@ components:
           - weight_based
           default: round_robin
           example: round_robin
-    SipServerGroup:
-      type: object
-      properties:
-        groupId:
-          type: string
-          example: '500123'
-        groupName:
-          type: string
-          example: example_value
-        description:
-          type: string
-          example: A sample description.
-        servers:
-          type: array
-          items:
-            type: object
-            properties:
-              hostname:
-                type: string
-              ipAddress:
-                type: string
-                format: ipv4
-              port:
-                type: integer
-                default: 5060
-              priority:
-                type: integer
-              weight:
-                type: integer
-          example: []
-        loadBalancing:
-          type: string
-          enum:
-          - round_robin
-          - top_down
-          - weight_based
-          default: round_robin
-          example: round_robin
   responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     InternalError:
       description: Internal server error
       content:
@@ -184,12 +190,6 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
       content:
         application/json:
           schema:
