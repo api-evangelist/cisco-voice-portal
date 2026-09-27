@@ -106,23 +106,62 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    CallServer:
       type: object
       properties:
-        code:
+        serverId:
+          type: string
+          example: '500123'
+        hostname:
           type: string
           example: example_value
-        message:
+        ipAddress:
           type: string
+          format: ipv4
           example: example_value
-        details:
+        sipPort:
+          type: integer
+          default: 5060
+          example: 10
+        status:
           type: string
-          example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
+          enum:
+          - online
+          - offline
+          - maintenance
+          example: online
+        activeCalls:
+          type: integer
+          example: 10
+        maxCalls:
+          type: integer
+          example: 10
     CallServerConfig:
       type: object
       properties:
@@ -174,61 +213,22 @@ components:
             errorApplication:
               type: string
           example: example_value
-    CallServer:
+    Error:
       type: object
       properties:
-        serverId:
-          type: string
-          example: '500123'
-        hostname:
+        code:
           type: string
           example: example_value
-        ipAddress:
+        message:
           type: string
-          format: ipv4
           example: example_value
-        sipPort:
-          type: integer
-          default: 5060
-          example: 10
-        status:
+        details:
           type: string
-          enum:
-          - online
-          - offline
-          - maintenance
-          example: online
-        activeCalls:
-          type: integer
-          example: 10
-        maxCalls:
-          type: integer
-          example: 10
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Requested resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
   parameters:
     ServerId:
       name: serverId

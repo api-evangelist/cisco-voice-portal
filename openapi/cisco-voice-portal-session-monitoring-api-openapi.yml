@@ -92,22 +92,37 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
+    VxmlSession:
       type: object
       properties:
-        code:
+        sessionId:
+          type: string
+          example: '500123'
+        callGuid:
+          type: string
+          description: Associated CVP call GUID
+          example: '500123'
+        applicationName:
           type: string
           example: example_value
-        message:
-          type: string
-          example: example_value
-        details:
-          type: string
-          example: example_value
-        timestamp:
+        startTime:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
+        duration:
+          type: integer
+          description: Session duration in seconds
+          example: 10
+        currentElement:
+          type: string
+          description: Currently executing call flow element
+          example: example_value
+        callingNumber:
+          type: string
+          example: example_value
+        calledNumber:
+          type: string
+          example: example_value
     VxmlSessionDetail:
       type: object
       properties:
@@ -163,37 +178,22 @@ components:
           type: string
           description: Last input received from the caller (DTMF or ASR result)
           example: example_value
-    VxmlSession:
+    Error:
       type: object
       properties:
-        sessionId:
-          type: string
-          example: '500123'
-        callGuid:
-          type: string
-          description: Associated CVP call GUID
-          example: '500123'
-        applicationName:
+        code:
           type: string
           example: example_value
-        startTime:
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-        duration:
-          type: integer
-          description: Session duration in seconds
-          example: 10
-        currentElement:
-          type: string
-          description: Currently executing call flow element
-          example: example_value
-        callingNumber:
-          type: string
-          example: example_value
-        calledNumber:
-          type: string
-          example: example_value
   responses:
     InternalError:
       description: Internal server error

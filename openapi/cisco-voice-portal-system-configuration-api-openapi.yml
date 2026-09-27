@@ -96,57 +96,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          example: example_value
-        message:
-          type: string
-          example: example_value
-        details:
-          type: string
-          example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-    LicenseInfo:
-      type: object
-      properties:
-        licenseType:
-          type: string
-          enum:
-          - standard
-          - premium
-          - enterprise
-          example: standard
-        maxPorts:
-          type: integer
-          description: Maximum number of concurrent call ports
-          example: 10
-        usedPorts:
-          type: integer
-          description: Currently used call ports
-          example: 10
-        features:
-          type: array
-          items:
-            type: string
-          description: Licensed feature list
-          example: []
-        expirationDate:
-          type: string
-          format: date
-          example: '2026-01-15'
-        status:
-          type: string
-          enum:
-          - active
-          - expired
-          - grace_period
-          example: active
     SystemConfig:
       type: object
       properties:
@@ -207,13 +156,58 @@ components:
             trapDestination:
               type: string
           example: example_value
+    LicenseInfo:
+      type: object
+      properties:
+        licenseType:
+          type: string
+          enum:
+          - standard
+          - premium
+          - enterprise
+          example: standard
+        maxPorts:
+          type: integer
+          description: Maximum number of concurrent call ports
+          example: 10
+        usedPorts:
+          type: integer
+          description: Currently used call ports
+          example: 10
+        features:
+          type: array
+          items:
+            type: string
+          description: Licensed feature list
+          example: []
+        expirationDate:
+          type: string
+          format: date
+          example: '2026-01-15'
+        status:
+          type: string
+          enum:
+          - active
+          - expired
+          - grace_period
+          example: active
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
   responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     InternalError:
       description: Internal server error
       content:
@@ -222,6 +216,12 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:

@@ -304,22 +304,36 @@ paths:
           description: Hostname or IP of the CVP VXML Server
 components:
   schemas:
-    Error:
+    OperationStatus:
       type: object
       properties:
-        code:
+        operationId:
           type: string
-          example: example_value
+          example: '500123'
+        status:
+          type: string
+          enum:
+          - pending
+          - in_progress
+          - completed
+          - failed
+          example: pending
         message:
           type: string
           example: example_value
-        details:
-          type: string
-          example: example_value
-        timestamp:
+        startedAt:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
+        completedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        progress:
+          type: number
+          format: float
+          description: Progress percentage (0-100)
+          example: 42.5
     Application:
       type: object
       properties:
@@ -371,78 +385,16 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-    OperationStatus:
+    Error:
       type: object
       properties:
-        operationId:
+        code:
           type: string
-          example: '500123'
-        status:
-          type: string
-          enum:
-          - pending
-          - in_progress
-          - completed
-          - failed
-          example: pending
+          example: example_value
         message:
           type: string
           example: example_value
-        startedAt:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        completedAt:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        progress:
-          type: number
-          format: float
-          description: Progress percentage (0-100)
-          example: 42.5
-    VxmlApplication:
-      type: object
-      properties:
-        applicationName:
-          type: string
-          description: Application name
-          example: example_value
-        applicationType:
-          type: string
-          enum:
-          - callstudio
-          - standalone_vxml
-          - microapp
-          example: callstudio
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-          - error
-          example: active
-        version:
-          type: string
-          example: example_value
-        activeSessions:
-          type: integer
-          description: Number of active call sessions
-          example: 10
-        deployedAt:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-    OperationResult:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - success
-          - failed
-          example: success
-        message:
+        details:
           type: string
           example: example_value
         timestamp:
@@ -498,13 +450,55 @@ components:
             type: string
           description: Application-level configuration parameters
           example: example_value
+    VxmlApplication:
+      type: object
+      properties:
+        applicationName:
+          type: string
+          description: Application name
+          example: example_value
+        applicationType:
+          type: string
+          enum:
+          - callstudio
+          - standalone_vxml
+          - microapp
+          example: callstudio
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - error
+          example: active
+        version:
+          type: string
+          example: example_value
+        activeSessions:
+          type: integer
+          description: Number of active call sessions
+          example: 10
+        deployedAt:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    OperationResult:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - success
+          - failed
+          example: success
+        message:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
   responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     InternalError:
       description: Internal server error
       content:
@@ -519,6 +513,12 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:
