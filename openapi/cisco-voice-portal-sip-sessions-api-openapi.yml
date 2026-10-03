@@ -89,6 +89,58 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    SipSession:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          example: '500123'
+        callId:
+          type: string
+          description: SIP Call-ID
+          example: '500123'
+        callGuid:
+          type: string
+          description: Associated CVP call GUID
+          example: '500123'
+        state:
+          type: string
+          enum:
+          - initial
+          - early
+          - confirmed
+          - terminated
+          example: initial
+        method:
+          type: string
+          description: Initial SIP method (INVITE)
+          example: example_value
+        fromUri:
+          type: string
+          example: example_value
+        toUri:
+          type: string
+          example: example_value
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
     SipSessionDetail:
       type: object
       properties:
@@ -140,67 +192,15 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-    SipSession:
-      type: object
-      properties:
-        sessionId:
-          type: string
-          example: '500123'
-        callId:
-          type: string
-          description: SIP Call-ID
-          example: '500123'
-        callGuid:
-          type: string
-          description: Associated CVP call GUID
-          example: '500123'
-        state:
-          type: string
-          enum:
-          - initial
-          - early
-          - confirmed
-          - terminated
-          example: initial
-        method:
-          type: string
-          description: Initial SIP method (INVITE)
-          example: example_value
-        fromUri:
-          type: string
-          example: example_value
-        toUri:
-          type: string
-          example: example_value
-        startTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          example: example_value
-        message:
-          type: string
-          example: example_value
-        details:
-          type: string
-          example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
   responses:
-    InternalError:
-      description: Internal server error
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    InternalError:
+      description: Internal server error
       content:
         application/json:
           schema:

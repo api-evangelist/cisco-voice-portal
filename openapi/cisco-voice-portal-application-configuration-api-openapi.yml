@@ -110,39 +110,22 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ApplicationConfigUpdate:
+    Error:
       type: object
       properties:
-        parameters:
-          type: object
-          additionalProperties:
-            type: string
-          example: example_value
-        defaultLanguage:
+        code:
           type: string
           example: example_value
-        fetchTimeout:
-          type: integer
-          example: 10
-        maxSessionDuration:
-          type: integer
-          example: 10
-        inputModes:
-          type: array
-          items:
-            type: string
-            enum:
-            - dtmf
-            - voice
-          example: []
-        loggingLevel:
+        message:
           type: string
-          enum:
-          - ERROR
-          - WARN
-          - INFO
-          - DEBUG
-          example: ERROR
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
     CallFlowElement:
       type: object
       properties:
@@ -224,33 +207,42 @@ components:
           - INFO
           - DEBUG
           example: ERROR
-    Error:
+    ApplicationConfigUpdate:
       type: object
       properties:
-        code:
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+          example: example_value
+        defaultLanguage:
           type: string
           example: example_value
-        message:
+        fetchTimeout:
+          type: integer
+          example: 10
+        maxSessionDuration:
+          type: integer
+          example: 10
+        inputModes:
+          type: array
+          items:
+            type: string
+            enum:
+            - dtmf
+            - voice
+          example: []
+        loggingLevel:
           type: string
-          example: example_value
-        details:
-          type: string
-          example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-  parameters:
-    ApplicationName:
-      name: applicationName
-      in: path
-      required: true
-      description: Name of the deployed VXML application
-      schema:
-        type: string
+          enum:
+          - ERROR
+          - WARN
+          - INFO
+          - DEBUG
+          example: ERROR
   responses:
-    InternalError:
-      description: Internal server error
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:
@@ -261,8 +253,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    InternalError:
+      description: Internal server error
       content:
         application/json:
           schema:
@@ -273,6 +265,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    ApplicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Name of the deployed VXML application
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -182,70 +182,22 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    CdrQueryResult:
+    Error:
       type: object
       properties:
-        totalRecords:
-          type: integer
-          description: Total number of matching records
-          example: 10
-        offset:
-          type: integer
-          example: 10
-        limit:
-          type: integer
-          example: 10
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/CallDetailRecord'
-          example: []
-    CallLeg:
-      type: object
-      properties:
-        legId:
+        code:
           type: string
-          example: '500123'
-        callGuid:
+          example: example_value
+        message:
           type: string
-          example: '500123'
-        legType:
+          example: example_value
+        details:
           type: string
-          enum:
-          - inbound
-          - outbound
-          - transfer
-          - conference
-          description: Type of call leg
-          example: inbound
-        startTime:
+          example: example_value
+        timestamp:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-        endTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        duration:
-          type: integer
-          description: Leg duration in seconds
-          example: 10
-        fromUri:
-          type: string
-          description: SIP From URI
-          example: example_value
-        toUri:
-          type: string
-          description: SIP To URI
-          example: example_value
-        serverHostname:
-          type: string
-          description: Server that handled this leg
-          example: example_value
-        sipResponseCode:
-          type: integer
-          description: Final SIP response code for this leg
-          example: 10
     CallDetailRecord:
       type: object
       properties:
@@ -326,25 +278,73 @@ components:
           type: string
           description: Error code if the call ended in error
           example: example_value
-    Error:
+    CallLeg:
       type: object
       properties:
-        code:
+        legId:
           type: string
-          example: example_value
-        message:
+          example: '500123'
+        callGuid:
           type: string
-          example: example_value
-        details:
+          example: '500123'
+        legType:
           type: string
-          example: example_value
-        timestamp:
+          enum:
+          - inbound
+          - outbound
+          - transfer
+          - conference
+          description: Type of call leg
+          example: inbound
+        startTime:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        duration:
+          type: integer
+          description: Leg duration in seconds
+          example: 10
+        fromUri:
+          type: string
+          description: SIP From URI
+          example: example_value
+        toUri:
+          type: string
+          description: SIP To URI
+          example: example_value
+        serverHostname:
+          type: string
+          description: Server that handled this leg
+          example: example_value
+        sipResponseCode:
+          type: integer
+          description: Final SIP response code for this leg
+          example: 10
+    CdrQueryResult:
+      type: object
+      properties:
+        totalRecords:
+          type: integer
+          description: Total number of matching records
+          example: 10
+        offset:
+          type: integer
+          example: 10
+        limit:
+          type: integer
+          example: 10
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/CallDetailRecord'
+          example: []
   responses:
-    InternalError:
-      description: Internal server error
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:
@@ -355,8 +355,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    InternalError:
+      description: Internal server error
       content:
         application/json:
           schema:

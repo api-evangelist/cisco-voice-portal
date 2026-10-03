@@ -63,13 +63,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    InternalError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -87,6 +80,46 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
+    ConnectivityStatus:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        connections:
+          type: array
+          items:
+            type: object
+            properties:
+              component:
+                type: string
+                enum:
+                - ICM
+                - CUCM
+                - VXMLServer
+                - ReportingServer
+                - MediaServer
+              hostname:
+                type: string
+              ipAddress:
+                type: string
+              port:
+                type: integer
+              status:
+                type: string
+                enum:
+                - connected
+                - disconnected
+                - timeout
+                - error
+              latency:
+                type: integer
+                description: Connection latency in milliseconds
+              lastSuccessfulContact:
+                type: string
+                format: date-time
+          example: []
     HealthStatus:
       type: object
       properties:
@@ -133,46 +166,13 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-    ConnectivityStatus:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        connections:
-          type: array
-          items:
-            type: object
-            properties:
-              component:
-                type: string
-                enum:
-                - ICM
-                - CUCM
-                - VXMLServer
-                - ReportingServer
-                - MediaServer
-              hostname:
-                type: string
-              ipAddress:
-                type: string
-              port:
-                type: integer
-              status:
-                type: string
-                enum:
-                - connected
-                - disconnected
-                - timeout
-                - error
-              latency:
-                type: integer
-                description: Connection latency in milliseconds
-              lastSuccessfulContact:
-                type: string
-                format: date-time
-          example: []
+  responses:
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http
