@@ -1,0 +1,35 @@
+slug: cisco-voice-portal
+provider: Cisco Voice Portal
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Call Management
+  spec_file: cisco-voice-portal-call-management-api-openapi.yml
+  capability_id: BC-430.30
+  capability_id_l1: BC-430
+  capability_name: Contact Centre Operations Management
+  confidence: 0.75
+  evidence: listActiveCalls List Active Calls; transferCall Transfer an Active Call; terminateCall Terminate
+    an Active Call
+  reason: Live call control — listing, transferring, terminating active calls — is contact centre telephony
+    operations within Customer Service Management.
+- tag: Call Detail Records
+  spec_file: cisco-voice-portal-call-detail-records-api-openapi.yml
+  capability_id: BC-430.30
+  capability_id_l1: BC-430
+  capability_name: Contact Centre Operations Management
+  confidence: 0.7
+  evidence: GET /cdr getCallDetailRecords Query Call Detail Records; 'Reporting Server collects data from
+    CVP Call Servers and VXML Servers'
+  reason: CDR and call statistics reporting for a self-service voice portal underpins contact-centre operations
+    reporting (telephony). Reporting-only surface, so moderate confidence.
