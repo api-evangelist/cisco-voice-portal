@@ -93,23 +93,49 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    LogEntry:
       type: object
       properties:
-        code:
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        level:
+          type: string
+          enum:
+          - ERROR
+          - WARN
+          - INFO
+          - DEBUG
+          example: ERROR
+        logger:
           type: string
           example: example_value
         message:
           type: string
           example: example_value
-        details:
+        sessionId:
           type: string
+          description: Associated session ID, if applicable
+          example: '500123'
+        applicationName:
+          type: string
+          description: Associated application, if applicable
           example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
     VxmlServerStatus:
       type: object
       properties:
@@ -171,48 +197,22 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-    LogEntry:
+    Error:
       type: object
       properties:
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        level:
-          type: string
-          enum:
-          - ERROR
-          - WARN
-          - INFO
-          - DEBUG
-          example: ERROR
-        logger:
+        code:
           type: string
           example: example_value
         message:
           type: string
           example: example_value
-        sessionId:
+        details:
           type: string
-          description: Associated session ID, if applicable
-          example: '500123'
-        applicationName:
-          type: string
-          description: Associated application, if applicable
           example: example_value
-  responses:
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
   securitySchemes:
     basicAuth:
       type: http

@@ -142,57 +142,32 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          example: example_value
-        message:
-          type: string
-          example: example_value
-        details:
-          type: string
-          example: example_value
-        timestamp:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-    ReportTemplate:
-      type: object
-      properties:
-        templateId:
-          type: string
-          example: '500123'
-        name:
-          type: string
-          example: Example Title
-        description:
-          type: string
-          example: A sample description.
-        category:
-          type: string
-          enum:
-          - call_activity
-          - application_performance
-          - server_performance
-          - error_analysis
-          example: call_activity
-        parameters:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-              required:
-                type: boolean
-              description:
-                type: string
-          example: []
     ReportExecutionRequest:
       type: object
       properties:
@@ -259,31 +234,56 @@ components:
         totalRows:
           type: integer
           example: 10
-  responses:
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Requested resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    ReportTemplate:
+      type: object
+      properties:
+        templateId:
+          type: string
+          example: '500123'
+        name:
+          type: string
+          example: Example Title
+        description:
+          type: string
+          example: A sample description.
+        category:
+          type: string
+          enum:
+          - call_activity
+          - application_performance
+          - server_performance
+          - error_analysis
+          example: call_activity
+        parameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              required:
+                type: boolean
+              description:
+                type: string
+          example: []
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: example_value
+        message:
+          type: string
+          example: example_value
+        details:
+          type: string
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
   securitySchemes:
     basicAuth:
       type: http
