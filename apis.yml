@@ -341,6 +341,12 @@ apis:
   - type: Documentation
     url: https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html
 common:
+- type: Plans
+  url: plans/cisco-voice-portal-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/cisco-voice-portal-rate-limits.yml
+- type: FinOps
+  url: finops/cisco-voice-portal-finops.yml
 - type: CapabilityMap
   url: capabilities/cisco-voice-portal-capability-edges.yml
   name: Cisco Voice Portal Business Capability Map
