@@ -78,32 +78,42 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    UserCreate:
+    Error:
       type: object
-      required:
-      - username
-      - password
-      - role
       properties:
-        username:
+        code:
           type: string
           example: example_value
-        password:
+        message:
           type: string
-          format: password
           example: example_value
-        role:
+        details:
           type: string
-          enum:
-          - administrator
-          - operator
-          - read_only
-          example: administrator
-        email:
+          example: example_value
+        timestamp:
           type: string
-          format: email
-          example: user@example.com
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
     User:
       type: object
       properties:
@@ -131,41 +141,31 @@ components:
         enabled:
           type: boolean
           example: true
-    Error:
+    UserCreate:
       type: object
+      required:
+      - username
+      - password
+      - role
       properties:
-        code:
+        username:
           type: string
           example: example_value
-        message:
+        password:
           type: string
+          format: password
           example: example_value
-        details:
+        role:
           type: string
-          example: example_value
-        timestamp:
+          enum:
+          - administrator
+          - operator
+          - read_only
+          example: administrator
+        email:
           type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-  responses:
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+          format: email
+          example: user@example.com
   securitySchemes:
     basicAuth:
       type: http

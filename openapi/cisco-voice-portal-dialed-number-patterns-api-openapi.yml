@@ -160,20 +160,8 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Requested resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
       content:
         application/json:
           schema:
@@ -184,33 +172,19 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    DialedNumberPatternCreate:
-      type: object
-      required:
-      - pattern
-      - callType
-      properties:
-        pattern:
-          type: string
-          example: example_value
-        description:
-          type: string
-          example: A sample description.
-        callType:
-          type: string
-          enum:
-          - preroute
-          - translation_route
-          - post_route
-          example: preroute
-        applicationName:
-          type: string
-          example: example_value
-        enabled:
-          type: boolean
-          default: true
-          example: true
     DialedNumberPattern:
       type: object
       properties:
@@ -235,6 +209,32 @@ components:
         applicationName:
           type: string
           description: Associated VXML application name
+          example: example_value
+        enabled:
+          type: boolean
+          default: true
+          example: true
+    DialedNumberPatternCreate:
+      type: object
+      required:
+      - pattern
+      - callType
+      properties:
+        pattern:
+          type: string
+          example: example_value
+        description:
+          type: string
+          example: A sample description.
+        callType:
+          type: string
+          enum:
+          - preroute
+          - translation_route
+          - post_route
+          example: preroute
+        applicationName:
+          type: string
           example: example_value
         enabled:
           type: boolean
