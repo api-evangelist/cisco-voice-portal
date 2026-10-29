@@ -1,4 +1,4 @@
-# Cisco Voice Portal (cisco-voice-portal)
+# Cisco Voice Portal
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,161 +66,308 @@
 
 Cisco Voice Portal (CVP) is an enterprise-class Voice XML (VXML) browser and call control platform that enables self-service applications for voice, video, and multimodal interactions.
 
-**APIs.json:** [https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html](https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html)
+**Areas:** Contact Center · IVR · Telephony · Voice · VXML · Real-Time
 
-## Tags
+## Cisco Voice Portal on APIs.io
 
-- Contact Center
-- IVR
-- Telephony
-- Voice
-- VXML
+Everything profiled for Cisco Voice Portal is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cisco-voice-portal/](https://apis.io/providers/cisco-voice-portal/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (24)
 
-- **Created:** 2024
-- **Modified:** 2026-05-19
+- [Cisco Voice Portal Call Events API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-call-events-api/) — Event-driven interface for consuming real-time CVP call lifecycle events, system alerts, device status changes, and operational notifications via JMS…
+- [Cisco Voice Portal Application Configuration API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-application-configuration-api/) — Configure VXML application runtime settings
+- [Cisco Voice Portal Application Management API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-application-management-api/) — Deploy and manage VXML and Call Studio applications
+- [Cisco Voice Portal Call Detail Records API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-call-detail-records-api/) — Access and query call detail records
+- [Cisco Voice Portal Call Management API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-call-management-api/) — Manage and control active calls
+- [Cisco Voice Portal Call Routing API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-call-routing-api/) — Call routing lookup and testing
+- [Cisco Voice Portal Call Server Management API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-call-server-management-api/) — Configure and manage CVP Call Servers
+- [Cisco Voice Portal Deployment API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-deployment-api/) — Deploy configuration to managed devices
+- [Cisco Voice Portal Device Management API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-device-management-api/) — Manage CVP devices (Call Servers, VXML Servers, Reporting Servers)
+- [Cisco Voice Portal Dialed Number Patterns API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-dialed-number-patterns-api/) — Manage call routing dialed number patterns
+- [Cisco Voice Portal Grammar Management API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-grammar-management-api/) — Manage speech recognition grammar files
+- [Cisco Voice Portal Health API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-health-api/) — Call Server health and connectivity status
+- [Cisco Voice Portal Historical Reports API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-historical-reports-api/) — Aggregated historical reporting data
+- [Cisco Voice Portal Media Management API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-media-management-api/) — Manage audio media files and prompts
+- [Cisco Voice Portal Micro-Applications API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-micro-applications-api/) — Manage built-in CVP micro-applications
+- [Cisco Voice Portal Real-Time Statistics API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-real-time-statistics-api/) — Current call processing statistics
+- [Cisco Voice Portal Report Templates API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-report-templates-api/) — Execute pre-defined report templates
+- [Cisco Voice Portal Server Status API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-server-status-api/) — VXML Server status and monitoring
+- [Cisco Voice Portal Session Monitoring API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-session-monitoring-api/) — Monitor active VXML call sessions
+- [Cisco Voice Portal SIP Configuration API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-sip-configuration-api/) — Configure SIP server groups and settings
+- [Cisco Voice Portal SIP Sessions API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-sip-sessions-api/) — Monitor SIP session details
+- [Cisco Voice Portal System Configuration API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-system-configuration-api/) — Global system settings and licensing
+- [Cisco Voice Portal User Management API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-user-management-api/) — Manage OAMP user accounts
+- [Cisco Voice Portal VXML Server Management API](https://apis.io/apis/cisco-voice-portal/cisco-voice-portal-vxml-server-management-api/) — Configure and manage CVP VXML Servers
 
-## APIs
+### Published properties
 
-### Cisco Voice Portal Call Control API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Provides programmatic access to call control functions on the CVP Call Server including active call management, call routing, transfers, SIP session monitoring, and health status of the call processing component.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://developer.cisco.com/docs/voice-portal/](https://developer.cisco.com/docs/voice-portal/)
-- **Base URL:** `https://cvp-callserver.example.com:8000/cvp/rest`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Cisco Voice Portal Call Events API](https://apis.io/asyncapis/cisco-voice-portal/cisco-voice-portal-call-events-asyncapi/)
 
-- Call Control
-- Routing
-- Session Management
-- SIP
+#### Event channels (10)
 
-#### Properties
+Individual events and webhooks the provider emits.
 
-- [Documentation](https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html)
-- [OpenAPI](openapi/cisco-voice-portal-call-control-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cisco-voice-portal-call-control.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cisco-voice-portal-call-control.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [cvp/calls/application-invoked](https://apis.io/channels/cisco-voice-portal/cvp-calls-application-invoked/)
+- [cvp/calls/ended](https://apis.io/channels/cisco-voice-portal/cvp-calls-ended/)
+- [cvp/calls/error](https://apis.io/channels/cisco-voice-portal/cvp-calls-error/)
+- [cvp/calls/queued](https://apis.io/channels/cisco-voice-portal/cvp-calls-queued/)
+- [cvp/calls/started](https://apis.io/channels/cisco-voice-portal/cvp-calls-started/)
+- [cvp/calls/transferred](https://apis.io/channels/cisco-voice-portal/cvp-calls-transferred/)
+- [cvp/deployment/config-deployed](https://apis.io/channels/cisco-voice-portal/cvp-deployment-config-deployed/)
+- [cvp/system/device-status-changed](https://apis.io/channels/cisco-voice-portal/cvp-system-device-status-changed/)
+- [cvp/system/service-state-changed](https://apis.io/channels/cisco-voice-portal/cvp-system-service-state-changed/)
+- [cvp/system/threshold-exceeded](https://apis.io/channels/cisco-voice-portal/cvp-system-threshold-exceeded/)
 
-### Cisco Voice Portal Reporting API
+#### Agentic access (1)
 
-Access to call detail records (CDRs), real-time call statistics, historical reporting data, and report template execution through the CVP Reporting Server.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://developer.cisco.com/docs/voice-portal/](https://developer.cisco.com/docs/voice-portal/)
-- **Base URL:** `https://cvp-reporting.example.com:8111/cvp-reporting/rest`
+- [Cisco Voice Portal Agentic Access](https://apis.io/agentic-access/cisco-voice-portal/cisco-voice-portal-agentic-access/)
 
-#### Tags
+#### JSON Schema (61)
 
-- Analytics
-- CDR
-- Reporting
-- Statistics
+The data models the API reads and writes.
 
-#### Properties
+- [Application](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-application/)
+- [CallServer](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-call-server/)
+- [CallServerConfig](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-call-server-config/)
+- [Device](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-device/)
+- [DeviceCreateRequest](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-device-create-request/)
+- [DeviceStatus](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-device-status/)
+- [DeviceUpdateRequest](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-device-update-request/)
+- [DialedNumberPattern](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-dialed-number-pattern/)
+- [DialedNumberPatternCreate](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-dialed-number-pattern-create/)
+- [Error](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-error/)
+- [LicenseInfo](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-license-info/)
+- [OperationStatus](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-operation-status/)
+- [SipServerGroup](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-sip-server-group/)
+- [SipServerGroupCreate](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-sip-server-group-create/)
+- [SystemConfig](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-system-config/)
+- [User](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-user/)
+- [UserCreate](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-user-create/)
+- [VxmlServer](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-vxml-server/)
+- [VxmlServerConfig](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-administration-vxml-server-config/)
+- [Cisco Voice Portal Application](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-application/)
+- [ActiveCall](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-call-control-active-call/)
+- [ActiveCallDetail](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-call-control-active-call-detail/)
+- [CallOperationResult](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-call-control-call-operation-result/)
+- [CallVariables](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-call-control-call-variables/)
+- [CallVariablesUpdate](https://apis.io/schemas/cisco-voice-portal/cisco-voice-portal-call-control-call-variables-update/)
+- …and 36 more published on APIs.io
 
-- [Documentation](https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html)
-- [OpenAPI](openapi/cisco-voice-portal-reporting-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cisco-voice-portal-reporting.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cisco-voice-portal-reporting.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### JSON Structure (57)
 
-### Cisco Voice Portal Administration API
+Data models expressed in JSON Structure.
 
-The CVP OAMP (Operations, Administration, Maintenance, and Provisioning) REST API for managing devices, applications, dialed number patterns, SIP server groups, system configuration, user management, and deployment operations.
+- [Cisco Voice Portal Administration Application Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-application-structure/)
+- [Cisco Voice Portal Administration Call Server Config Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-call-server-config-structure/)
+- [Cisco Voice Portal Administration Call Server Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-call-server-structure/)
+- [Cisco Voice Portal Administration Device Create Request Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-device-create-request-structure/)
+- [Cisco Voice Portal Administration Device Status Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-device-status-structure/)
+- [Cisco Voice Portal Administration Device Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-device-structure/)
+- [Cisco Voice Portal Administration Device Update Request Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-device-update-request-structure/)
+- [Cisco Voice Portal Administration Dialed Number Pattern Create Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-dialed-number-pattern-create-structure/)
+- [Cisco Voice Portal Administration Dialed Number Pattern Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-dialed-number-pattern-structure/)
+- [Cisco Voice Portal Administration Error Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-error-structure/)
+- [Cisco Voice Portal Administration License Info Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-license-info-structure/)
+- [Cisco Voice Portal Administration Operation Status Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-operation-status-structure/)
+- [Cisco Voice Portal Administration Sip Server Group Create Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-sip-server-group-create-structure/)
+- [Cisco Voice Portal Administration Sip Server Group Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-sip-server-group-structure/)
+- [Cisco Voice Portal Administration System Config Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-system-config-structure/)
+- [Cisco Voice Portal Administration User Create Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-user-create-structure/)
+- [Cisco Voice Portal Administration User Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-user-structure/)
+- [Cisco Voice Portal Administration Vxml Server Config Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-vxml-server-config-structure/)
+- [Cisco Voice Portal Administration Vxml Server Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-administration-vxml-server-structure/)
+- [Cisco Voice Portal Call Control Active Call Detail Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-call-control-active-call-detail-structure/)
+- [Cisco Voice Portal Call Control Active Call Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-call-control-active-call-structure/)
+- [Cisco Voice Portal Call Control Call Operation Result Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-call-control-call-operation-result-structure/)
+- [Cisco Voice Portal Call Control Call Variables Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-call-control-call-variables-structure/)
+- [Cisco Voice Portal Call Control Call Variables Update Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-call-control-call-variables-update-structure/)
+- [Cisco Voice Portal Call Control Connectivity Status Structure](https://apis.io/json-structure/cisco-voice-portal/cisco-voice-portal-call-control-connectivity-status-structure/)
+- …and 32 more published on APIs.io
 
-- **Human URL:** [https://developer.cisco.com/docs/voice-portal/](https://developer.cisco.com/docs/voice-portal/)
-- **Base URL:** `https://cvp-oamp.example.com:9443/oamp/rest`
+#### JSON-LD (4)
 
-#### Tags
+Linked-data contexts for the provider's vocabulary.
 
-- Administration
-- Configuration
-- Management
-- OAMP
-- Provisioning
+- [Cisco Voice Portal Administration Context](https://apis.io/jsonld/cisco-voice-portal/cisco-voice-portal-administration-context/)
+- [Cisco Voice Portal Call Control Context](https://apis.io/jsonld/cisco-voice-portal/cisco-voice-portal-call-control-context/)
+- [Cisco Voice Portal Reporting Context](https://apis.io/jsonld/cisco-voice-portal/cisco-voice-portal-reporting-context/)
+- [Cisco Voice Portal Vxml Services Context](https://apis.io/jsonld/cisco-voice-portal/cisco-voice-portal-vxml-services-context/)
 
-#### Properties
+#### Vocabulary (1)
 
-- [Documentation](https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html)
-- [OpenAPI](openapi/cisco-voice-portal-administration-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cisco-voice-portal-administration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cisco-voice-portal-administration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The provider's domain terms, defined.
 
-### Cisco Voice Portal VXML Services API
+- [cisco-voice-portal API Vocabulary](https://apis.io/vocabularies/cisco-voice-portal/cisco-voice-portal-vocabulary/)
 
-Management and monitoring of the CVP VXML Server including application deployment, activation, configuration, session monitoring, micro-application management, media file management, and grammar management.
+#### Examples (57)
 
-- **Human URL:** [https://developer.cisco.com/docs/voice-portal/](https://developer.cisco.com/docs/voice-portal/)
-- **Base URL:** `https://cvp-vxmlserver.example.com:7443/CVP/rest`
+Example requests and responses.
 
-#### Tags
+- [Cisco Voice Portal Administration Application Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-application-example/)
+- [Cisco Voice Portal Administration Call Server Config Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-call-server-config-example/)
+- [Cisco Voice Portal Administration Call Server Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-call-server-example/)
+- [Cisco Voice Portal Administration Device Create Request Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-device-create-request-example/)
+- [Cisco Voice Portal Administration Device Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-device-example/)
+- [Cisco Voice Portal Administration Device Status Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-device-status-example/)
+- [Cisco Voice Portal Administration Device Update Request Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-device-update-request-example/)
+- [Cisco Voice Portal Administration Dialed Number Pattern Create Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-dialed-number-pattern-create-example/)
+- [Cisco Voice Portal Administration Dialed Number Pattern Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-dialed-number-pattern-example/)
+- [Cisco Voice Portal Administration Error Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-error-example/)
+- [Cisco Voice Portal Administration License Info Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-license-info-example/)
+- [Cisco Voice Portal Administration Operation Status Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-operation-status-example/)
+- [Cisco Voice Portal Administration Sip Server Group Create Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-sip-server-group-create-example/)
+- [Cisco Voice Portal Administration Sip Server Group Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-sip-server-group-example/)
+- [Cisco Voice Portal Administration System Config Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-system-config-example/)
+- [Cisco Voice Portal Administration User Create Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-user-create-example/)
+- [Cisco Voice Portal Administration User Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-user-example/)
+- [Cisco Voice Portal Administration Vxml Server Config Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-vxml-server-config-example/)
+- [Cisco Voice Portal Administration Vxml Server Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-administration-vxml-server-example/)
+- [Cisco Voice Portal Call Control Active Call Detail Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-call-control-active-call-detail-example/)
+- [Cisco Voice Portal Call Control Active Call Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-call-control-active-call-example/)
+- [Cisco Voice Portal Call Control Call Operation Result Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-call-control-call-operation-result-example/)
+- [Cisco Voice Portal Call Control Call Variables Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-call-control-call-variables-example/)
+- [Cisco Voice Portal Call Control Call Variables Update Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-call-control-call-variables-update-example/)
+- [Cisco Voice Portal Call Control Connectivity Status Example](https://apis.io/examples/cisco-voice-portal/cisco-voice-portal-call-control-connectivity-status-example/)
+- …and 32 more published on APIs.io
 
-- Call Studio
-- IVR
-- Micro-Applications
-- Voice Applications
-- VXML
+#### Collections (50)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html)
-- [OpenAPI](openapi/cisco-voice-portal-vxml-services-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cisco-voice-portal-vxml-services.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cisco-voice-portal-vxml-services.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Cisco Voice Portal Administration API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-administration/)
+- [Cisco Voice Portal Administration Application Configuration API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-application-configuration-api/)
+- [Cisco Voice Portal Administration Application Configuration Application Management API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-application-management-api/)
+- [Cisco Voice Portal Call Control API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-call-control/)
+- [Cisco Voice Portal Administration Application Configuration Call Detail Records API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-call-detail-records-api/)
+- [Cisco Voice Portal Administration Application Configuration Call Management API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-call-management-api/)
+- [Cisco Voice Portal Administration Application Configuration Call Routing API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-call-routing-api/)
+- [Cisco Voice Portal Administration Application Configuration Call Server Management API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-call-server-management-api/)
+- [Cisco Voice Portal Administration Application Configuration Deployment API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-deployment-api/)
+- [Cisco Voice Portal Administration Application Configuration Device Management API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-device-management-api/)
+- [Cisco Voice Portal Administration Application Configuration Dialed Number Patterns API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-dialed-number-patterns-api/)
+- [Cisco Voice Portal Administration Application Configuration Grammar Management API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-grammar-management-api/)
+- [Cisco Voice Portal Administration Application Configuration Health API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-health-api/)
+- [Cisco Voice Portal Administration Application Configuration Historical Reports API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-historical-reports-api/)
+- [Cisco Voice Portal Administration Application Configuration Media Management API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-media-management-api/)
+- [Cisco Voice Portal Administration Application Configuration Micro-Applications API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-micro-applications-api/)
+- [Cisco Voice Portal Administration Application Configuration Real-Time Statistics API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-real-time-statistics-api/)
+- [Cisco Voice Portal Administration Application Configuration Report Templates API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-report-templates-api/)
+- [Cisco Voice Portal Reporting API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-reporting/)
+- [Cisco Voice Portal Administration Application Configuration Server Status API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-server-status-api/)
+- [Cisco Voice Portal Administration Application Configuration Session Monitoring API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-session-monitoring-api/)
+- [Cisco Voice Portal Administration Application Configuration SIP Configuration API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-sip-configuration-api/)
+- [Cisco Voice Portal Administration Application Configuration SIP Sessions API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-sip-sessions-api/)
+- [Cisco Voice Portal Administration Application Configuration System Configuration API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-system-configuration-api/)
+- [Cisco Voice Portal Administration Application Configuration User Management API](https://apis.io/collections/cisco-voice-portal/open-cisco-voice-portal-user-management-api/)
+- …and 25 more published on APIs.io
 
-### Cisco Voice Portal Call Events API
+#### Governance rules (3)
 
-Event-driven interface for consuming real-time CVP call lifecycle events, system alerts, device status changes, and operational notifications via JMS messaging and syslog.
+Spectral rulesets for the provider's contracts.
 
-- **Human URL:** [https://developer.cisco.com/docs/voice-portal/](https://developer.cisco.com/docs/voice-portal/)
-- **Base URL:** `tcp://cvp-callserver.example.com:61616`
+- [Cisco Voice Portal — asyncapi rules](https://apis.io/rules/cisco-voice-portal/cisco-voice-portal-asyncapi-spectral-rules/)
+- [Cisco Voice Portal — jsonschema rules](https://apis.io/rules/cisco-voice-portal/cisco-voice-portal-jsonschema-spectral-rules/)
+- [Cisco Voice Portal API Rules](https://apis.io/rules/cisco-voice-portal/cisco-voice-portal-spectral-rules/)
 
-#### Tags
+#### Security (3)
 
-- Call Lifecycle
-- Events
-- JMS
-- Monitoring
-- Notifications
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Cisco Voice Portal Authentication](https://apis.io/security/cisco-voice-portal/cisco-voice-portal-authentication/)
+- [Cisco Voice Portal Domain Security](https://apis.io/security/cisco-voice-portal/cisco-voice-portal-domain-security/)
+- [Cisco Voice Portal Vulnerability Disclosure](https://apis.io/security/cisco-voice-portal/cisco-voice-portal-vulnerability-disclosure/)
 
-- [Documentation](https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-programming-reference-guides-list.html)
-- [AsyncAPI](asyncapi/cisco-voice-portal-call-events-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/cisco-voice-portal-administration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cisco-voice-portal-administration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/cisco-voice-portal-call-control.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cisco-voice-portal-call-control.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/cisco-voice-portal-reporting.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cisco-voice-portal-reporting.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/cisco-voice-portal-vxml-services.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cisco-voice-portal-vxml-services.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-## Common Properties
+Published plans, tiers and prices.
 
-- [Developer Portal](https://developer.cisco.com/)
-- [Authentication](https://developer.cisco.com/docs/voice-portal/#!authentication)
-- [Status Page](https://status.cisco.com/)
-- [Support](https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/tsd-products-support-series-home.html)
-- [Terms of Service](https://www.cisco.com/c/en/us/about/legal/terms-conditions.html)
-- [Privacy Policy](https://www.cisco.com/c/en/us/about/legal/privacy-full.html)
+- [Cisco Voice Portal Plans Pricing](https://apis.io/plans/cisco-voice-portal/cisco-voice-portal-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cisco Voice Portal Rate Limits](https://apis.io/rate-limits/cisco-voice-portal/cisco-voice-portal-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Cisco Voice Portal Finops](https://apis.io/finops/cisco-voice-portal/cisco-voice-portal-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.cisco.com/)
 - [Documentation](https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/tsd-products-support-series-home.html)
-- [Getting Started](https://developer.cisco.com/site/devnet/)
+- [Getting started](https://developer.cisco.com/site/devnet/)
+- [Support](https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/tsd-products-support-series-home.html)
 - [Blog](https://blogs.cisco.com/developer)
-- [GitHub Organization](https://github.com/CiscoDevNet)
-- [Sign Up](https://developer.cisco.com/join/devnet)
-- [Release Notes](https://www.cisco.com/c/en/us/support/customer-collaboration/voice-portal/products-release-notes-list.html)
-- [JSON Schema](json-schema/cisco-voice-portal-call-detail-record.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/cisco-voice-portal-device.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/cisco-voice-portal-application.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/cisco-voice-portal-dialed-number-pattern.json) — [JSON Schema](https://json-schema.org/specification)
-- [Features](https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html)
-- [Use Cases](https://www.cisco.com/c/en/us/products/customer-collaboration/voice-portal/index.html)
-- [Integrations](https://developer.cisco.com/ecosystem/)
+- [Terms of service](https://www.cisco.com/c/en/us/about/legal/terms-conditions.html)
+- [Privacy policy](https://www.cisco.com/c/en/us/about/legal/privacy-full.html)
+- [GitHub](https://github.com/CiscoDevNet)
+- [Status](https://status.cisco.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 42.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 59.7 |
+| Contract governance | 13.6 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 13.1 |
+| Access clarity | 39.5 |
+
+**Agent readiness 20.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cisco-voice-portal/](https://apis.io/providers/cisco-voice-portal/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Cisco Voice Portal: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cisco-voice-portal/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
